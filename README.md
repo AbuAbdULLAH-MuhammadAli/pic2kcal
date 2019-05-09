@@ -5,5 +5,6 @@
 * https://essen-und-trinken.de - ?? recipes, organized kinda weirdly
 * https://lecker.de - 60k recipes
 * https://www.kuechengoetter.de - ?? recipes, partially with kcal data
+* https://eatsmarter.de/rezepte
 
 * international sites?

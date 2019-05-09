@@ -5,7 +5,7 @@
 # this file is in Jupyter Text Notebook format,
 # use [VSCode Python plugin](https://code.visualstudio.com/docs/python/jupyter-support)
 # for the best experience :)
-# 
+#
 #
 # somewhat adapted from https://github.com/Murgio/Food-Recipe-CNN/blob/master/python-files/01_rezepte_download.py
 
@@ -22,14 +22,15 @@ from util import desktop_agents
 
 # %% setup sqlite db
 
-db = sqlite3.connect("data/output.sqlite3")
+data_dir = "data/"
+db = sqlite3.connect(data_dir + "output.sqlite3", timeout=10)
 db.row_factory = sqlite3.Row
 
 # unnecessary stuff for 𝐏𝐄𝐀𝐊 𝐏𝐄𝐑𝐅𝐎𝐑𝐌𝐀𝐍𝐂𝐄
 db.execute("pragma page_size = 32768;")
 db.execute("pragma temp_store = memory;")
 db.execute("pragma journal_mode = WAL;")
-db.execute("pragma synchronous = normal;")
+db.execute("pragma synchronous = off;")
 db.execute(f"pragma mmap_size={30 * 1000 * 1e6};")
 db.execute("pragma auto_vacuum = incremental;")
 db.execute("pragma incremental_vacuum;")
@@ -50,6 +51,7 @@ db.executescript(
         detail_html text,
         data json
     );
+    create index if not exists idx_rd on recipes(detail_html) where detail_html is null;
     """
 )
 
@@ -62,38 +64,41 @@ def random_headers():
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
     }
 
-
-reqsession = _requests.Session()
-reqsession.proxies = { # todo: don't hardcode
-    "http": "socks5://localhost:8080",
-    "https": "socks5://localhost:8080",
-}
+proxies = [f"socks5://localhost:173{i:02}" for i in range(0,5)] # todo: don't hardcode
+reqsessions = []
+for proxy in proxies:
+    reqsession = _requests.Session()
+    reqsession.proxies = {  
+        "http": proxy,
+        "https": proxy
+    }
+    reqsessions.append(reqsession)
 # %%
-# Alle 300k Rezepte sortiert nach Datum: http://www.chefkoch.de/rs/s30o3/Rezepte.html
-
-
-# Chefkoch.de Seite
-CHEFKOCH_URL = "http://www.chefkoch.de"
-START_URL = "http://www.chefkoch.de/rs/s"
-CATEGORY = "/Rezepte.html"
-
-category_url = START_URL + "0o3" + CATEGORY
 
 
 def get_or_retry(url):
-    page = ""
-    while page == "":
+    reqsession = choice(reqsessions)
+    i = 5
+    while i > 0:
         try:
-            page = reqsession.get(url, headers=random_headers())
             reqsession.cookies.clear()
-        except Exception as e:
-            print("Connection refused", e)
+            page = reqsession.get(url, headers=random_headers())
+            if page.status_code != _requests.codes.ok:
+                page.raise_for_status()
+            else:
+                return page.text
+        except _requests.exceptions.RequestException as e:
+            print("Could not fetch", url, e)
             sleep(10)
-            continue
-    return page.text
+            i -= 1
+
+    raise Exception("Could not fetch 5 times", url)
 
 
 def compile_index_url_list():
+    START_URL = "http://www.chefkoch.de/rs/s"
+    CATEGORY = "/Rezepte.html"
+
     # get index url list
     def _get_total_pages():
         return math.ceil(334360 / 30)  # todo: dont hardcode
@@ -117,18 +122,6 @@ def compile_index_url_list():
             "insert into index_pages (url, fetched) values (?, ?)",
             [(url, False) for url in url_list],
         )
-
-
-if db.execute("select count(*) from index_pages").fetchone()[0] == 0:
-    compile_index_url_list()
-
-url_list = db.execute("select url from index_pages where not fetched").fetchall()
-url_list = [e["url"] for e in url_list]
-
-from pprint import pprint
-
-# Die ersten 30 Seiten:
-pprint(url_list[:30])
 
 # %%
 
@@ -160,17 +153,22 @@ def get_index_page(url):
         db.execute("update index_pages set fetched=true where url=?", (url,))
 
 
-
 # %% scrape all index pages that have not yet been scraped
 
+if __name__ == "__main__":
+    if db.execute("select count(*) from index_pages").fetchone()[0] == 0:
+        compile_index_url_list()
 
-# url_list = url_list[0:10]
-start_time = time()
-for url in url_list:
-    get_index_page(url)
-    # sleep(randint(1, 2))
+    index_url_list = db.execute("select url from index_pages where not fetched").fetchall()
+    index_url_list = [e["url"] for e in index_url_list]
 
-# with Pool(1) as p:
-#    p.map(scrap_main, url_list)
-print("--- %s seconds ---" % (time() - start_time))
+    start_time = time()
+    print(f"getting {len(index_url_list)} index pages")
+    for url in index_url_list:
+        get_index_page(url)
+        # sleep(randint(1, 2))
+
+    # with Pool(1) as p:
+    #    p.map(scrap_main, url_list)
+    print("--- %s seconds ---" % (time() - start_time))
 
