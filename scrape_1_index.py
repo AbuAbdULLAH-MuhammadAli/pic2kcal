@@ -18,12 +18,13 @@ import requests as _requests
 from bs4 import BeautifulSoup
 import sqlite3
 import math
+from pathlib import Path
 from util import desktop_agents
 
 # %% setup sqlite db
 
-data_dir = "data/"
-db = sqlite3.connect(data_dir + "output.sqlite3", timeout=10)
+data_dir = Path("data")
+db = sqlite3.connect(data_dir / "output.sqlite3", timeout=10)
 db.row_factory = sqlite3.Row
 
 # unnecessary stuff for 𝐏𝐄𝐀𝐊 𝐏𝐄𝐑𝐅𝐎𝐑𝐌𝐀𝐍𝐂𝐄
@@ -64,14 +65,12 @@ def random_headers():
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
     }
 
-proxies = [f"socks5://localhost:173{i:02}" for i in range(0,5)] # todo: don't hardcode
+
+proxies = [f"socks5://localhost:173{i:02}" for i in range(0, 5)]  # todo: don't hardcode
 reqsessions = []
 for proxy in proxies:
     reqsession = _requests.Session()
-    reqsession.proxies = {  
-        "http": proxy,
-        "https": proxy
-    }
+    reqsession.proxies = {"http": proxy, "https": proxy}
     reqsessions.append(reqsession)
 # %%
 
@@ -83,12 +82,10 @@ def get_or_retry(url):
         try:
             reqsession.cookies.clear()
             page = reqsession.get(url, headers=random_headers())
-            if page.status_code != _requests.codes.ok:
-                page.raise_for_status()
-            else:
-                return page.text
+            page.raise_for_status()
+            return page
         except _requests.exceptions.RequestException as e:
-            print("Could not fetch", url, e)
+            print("Could not fetch", url, e, "retrying")
             sleep(10)
             i -= 1
 
@@ -123,12 +120,13 @@ def compile_index_url_list():
             [(url, False) for url in url_list],
         )
 
+
 # %%
 
 
 def get_index_page(url):
     print("get_index_page", url)
-    html = get_or_retry(url)
+    html = get_or_retry(url).text
     soup = BeautifulSoup(html, "lxml")
     lis = soup.select("article.rsel-item")
 
@@ -159,7 +157,9 @@ if __name__ == "__main__":
     if db.execute("select count(*) from index_pages").fetchone()[0] == 0:
         compile_index_url_list()
 
-    index_url_list = db.execute("select url from index_pages where not fetched").fetchall()
+    index_url_list = db.execute(
+        "select url from index_pages where not fetched"
+    ).fetchall()
     index_url_list = [e["url"] for e in index_url_list]
 
     start_time = time()
