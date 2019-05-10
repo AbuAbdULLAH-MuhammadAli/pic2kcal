@@ -1,3 +1,7 @@
+import json
+import itertools
+import collections
+
 desktop_agents = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36",
     "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36",
@@ -64,7 +68,46 @@ def sqlite_db(fname: str):
     db.execute("pragma journal_mode = WAL;")
     db.execute("pragma synchronous = off;")
     db.execute(f"pragma mmap_size={30 * 1000 * 1e6};")
+    db.execute("pragma cache_size=-30000")
     db.execute("pragma auto_vacuum = incremental;")
     db.execute("pragma incremental_vacuum;")
     db.execute("pragma optimize;")
     return db
+
+
+class IterEncoder(json.JSONEncoder):
+    """
+    JSON Encoder that encodes iterators as well.
+    Write directly to file to use minimal memory
+    """
+
+    class FakeListIterator(list):
+        def __init__(self, iterable):
+            self.iterable = iter(iterable)
+            try:
+                self.firstitem = next(self.iterable)
+                self.truthy = True
+            except StopIteration:
+                self.truthy = False
+
+        def __iter__(self):
+            if not self.truthy:
+                return iter([])
+            return itertools.chain([self.firstitem], self.iterable)
+
+        def __len__(self):
+            raise NotImplementedError("Fakelist has no length")
+
+        def __getitem__(self, i):
+            raise NotImplementedError("Fakelist has no getitem")
+
+        def __setitem__(self, i):
+            raise NotImplementedError("Fakelist has no setitem")
+
+        def __bool__(self):
+            return self.truthy
+
+    def default(self, o):
+        if isinstance(o, collections.abc.Iterable):
+            return type(self).FakeListIterator(o)
+        return super().default(o)

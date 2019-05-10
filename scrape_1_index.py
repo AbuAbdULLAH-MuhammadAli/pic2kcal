@@ -55,7 +55,9 @@ def random_headers():
     }
 
 
-proxies = [f"socks5://localhost:173{i:02}" for i in range(0, 5)]  # todo: don't hardcode
+proxies = [
+    f"socks5://localhost:173{i:02}" for i in range(0, 10)
+]  # todo: don't hardcode
 reqsessions = []
 for proxy in proxies:
     reqsession = _requests.Session()

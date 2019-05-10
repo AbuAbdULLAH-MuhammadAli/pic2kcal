@@ -29,5 +29,5 @@ if __name__ == "__main__":
     print(f"getting {len(missing_recipes)} detail pages")
     id_list = [recipe["id"] for recipe in missing_recipes]
 
-    with Pool(30) as p:
+    with Pool(20) as p:
         p.map(get_detail_page, id_list)
