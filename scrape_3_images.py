@@ -15,17 +15,21 @@ def get_filename(url):
     )
 
 
+def get_image_urls(soup):
+    images = soup.select("#morepictures .gallery-imagewrapper img")
+    top_pic = soup.select_one("#top-picture")
+    image_urls = [top_pic["src"]] if top_pic else []
+    image_urls += [img["data-bigimage"] for img in images]
+    return image_urls
+
+
 def get_images(recipe_id):
     print("get_images", recipe_id)
     html = db.execute(
         "select detail_html from recipes where id=?", (recipe_id,)
     ).fetchone()[0]
     soup = BeautifulSoup(html, "lxml")
-    images = soup.select("#morepictures .gallery-imagewrapper img")
-    top_pic = soup.select_one("#top-picture")
-    image_urls = [top_pic["src"]] if top_pic else []
-    image_urls += [img["data-bigimage"] for img in images]
-    # lis = soup.select("article.rsel-item")
+    image_urls = get_image_urls(soup)
     for image_url in image_urls:
         filename = img_dir / get_filename(image_url)
         filename.parent.mkdir(parents=True, exist_ok=True)

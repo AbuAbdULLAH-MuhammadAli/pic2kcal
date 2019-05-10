@@ -50,3 +50,21 @@ desktop_agents = [
     "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36",
     "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36",
 ]
+
+
+def sqlite_db(fname: str):
+    import sqlite3
+
+    db = sqlite3.connect(fname, timeout=10)
+    db.row_factory = sqlite3.Row
+
+    # unnecessary stuff for 𝐏𝐄𝐀𝐊 𝐏𝐄𝐑𝐅𝐎𝐑𝐌𝐀𝐍𝐂𝐄
+    db.execute("pragma page_size = 32768;")
+    db.execute("pragma temp_store = memory;")
+    db.execute("pragma journal_mode = WAL;")
+    db.execute("pragma synchronous = off;")
+    db.execute(f"pragma mmap_size={30 * 1000 * 1e6};")
+    db.execute("pragma auto_vacuum = incremental;")
+    db.execute("pragma incremental_vacuum;")
+    db.execute("pragma optimize;")
+    return db

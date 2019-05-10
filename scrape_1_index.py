@@ -16,26 +16,15 @@ from time import time
 from random import choice
 import requests as _requests
 from bs4 import BeautifulSoup
-import sqlite3
 import math
 from pathlib import Path
-from util import desktop_agents
+from util import desktop_agents, sqlite_db
 
 # %% setup sqlite db
 
 data_dir = Path("data")
-db = sqlite3.connect(data_dir / "output.sqlite3", timeout=10)
-db.row_factory = sqlite3.Row
 
-# unnecessary stuff for 𝐏𝐄𝐀𝐊 𝐏𝐄𝐑𝐅𝐎𝐑𝐌𝐀𝐍𝐂𝐄
-db.execute("pragma page_size = 32768;")
-db.execute("pragma temp_store = memory;")
-db.execute("pragma journal_mode = WAL;")
-db.execute("pragma synchronous = off;")
-db.execute(f"pragma mmap_size={30 * 1000 * 1e6};")
-db.execute("pragma auto_vacuum = incremental;")
-db.execute("pragma incremental_vacuum;")
-db.execute("pragma optimize;")
+db = sqlite_db(data_dir / "raw_data.sqlite3")
 
 db.executescript(
     """
