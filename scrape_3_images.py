@@ -3,6 +3,7 @@ from multiprocessing import Pool
 from scrape_1_index import db, get_or_retry, data_dir
 from bs4 import BeautifulSoup
 from tqdm import tqdm
+import requests as _requests
 
 img_dir = data_dir / "img"
 
@@ -34,9 +35,13 @@ def get_images(recipe_id):
         filename = img_dir / get_filename(image_url)
         filename.parent.mkdir(parents=True, exist_ok=True)
         if not filename.exists():
-            image = get_or_retry(image_url).content
-            with open(filename, "wb") as f:
-                f.write(image)
+            try:
+                print("GETTING URL", image_url)
+                image = get_or_retry(image_url).content
+                with open(filename, "wb") as f:
+                    f.write(image)
+            except _requests.exceptions.RequestException as e:
+                print(f"Error getting image {image_url}: {filename}: {e}")
 
 
 # %%

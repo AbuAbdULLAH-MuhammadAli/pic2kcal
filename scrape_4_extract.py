@@ -22,6 +22,18 @@ dbo.executescript(
 hacks = {
     "2138891343740724": {"<die Bananen": "die Bananen"},
     "2145411344764077": {"<Ober/Unterhitze>": "Ober/Unterhitze"},
+    "2145631344777523": {"<Ober/Unterhitze>": "Ober/Unterhitze"},
+    "2145691344778506": {"<Ober/Unterhitze>": "Ober/Unterhitze"},
+    "2146291344873262": {"<Ober/Unterhitze> ": "Ober/Unterhitze"},
+    "521931148551407": {"<lässt": "lässt", "<Achtung": "Achtung"},
+    "518081147965129": {"<er soll": "er soll"},
+    "278361105753843": {"<b>Für den Boden:<b/>": "Für den Boden:"},
+    "337561117465209": {"<Menge nach Geschmack>": "(Menge nach Geschmack)"},
+    "83641032797388": {"<blind backen>": "blind backen"},
+    "2451521386106352": {"<- Stä": "- Stä"},
+    "2148361345126605": {"<ca.": "ca.", "<Ober/Unterhitze>": "Ober/Unterhitze"},
+    "501571145006172": {"<mit der": "mit der"},
+    "73751027840697": {"<b>Tipp:": "Tipp:"},
 }
 
 
@@ -125,7 +137,8 @@ def get_meta(recipe_id):
         detail_html = detail_html.replace(f, t)
     isoup = BeautifulSoup(index_html, "lxml")
     soup = BeautifulSoup(detail_html, "lxml")
-    image_filenames = [get_image_filename(url) for url in get_image_urls(soup)]
+    image_urls = get_image_urls(soup)
+    image_filenames = [get_image_filename(url) for url in image_urls]
     for basename in image_filenames:
         filename = data_dir / "img" / basename
         if not filename.exists():
@@ -162,13 +175,21 @@ def get_meta(recipe_id):
             .next_sibling
         ),
         **parse_mintbl(soup),
-        "pictures": image_filenames,
+        "picture_urls": image_urls,
+        "picture_files": image_filenames,
     }
     with dbo:
         dbo.execute(
             "insert into recipes (id, data) values (?, ?)",
             (recipe_id, json.dumps(processed_data, ensure_ascii=False)),
         )
+
+
+def get_meta_p(r):
+    try:
+        return get_meta(r)
+    except Exception as e:
+        print(f"{r} failed: {e}")
 
 
 # %%
@@ -179,7 +200,7 @@ if __name__ == "__main__":
     id_list = [recipe["id"] for recipe in missing_recipes]
 
     with Pool(10) as p:
-        data = list(p.imap(get_meta, tqdm(id_list), chunksize=100))
+        data = list(p.imap(get_meta_p, tqdm(id_list), chunksize=100))
 
     with open(data_dir / "processed_data.json", "w") as of:
         json.dump(data, of, ensure_ascii=False, indent="\t")

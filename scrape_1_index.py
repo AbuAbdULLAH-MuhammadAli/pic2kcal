@@ -79,8 +79,9 @@ def get_or_retry(url):
             print("Could not fetch", url, e, "retrying")
             sleep(10)
             i -= 1
-
-    raise Exception("Could not fetch 5 times", url)
+            if i == 0:
+                raise e
+    raise "impossible"
 
 
 def compile_index_url_list():
