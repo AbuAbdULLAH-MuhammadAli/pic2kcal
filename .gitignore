@@ -1,3 +1,7 @@
 /data
 /.vscode
 /__pycache__
+
+/nn/data
+
+.idea
