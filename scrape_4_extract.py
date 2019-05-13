@@ -3,7 +3,7 @@ from multiprocessing import Pool
 from scrape_1_index import db, get_or_retry, data_dir
 from bs4 import BeautifulSoup, element
 from scrape_3_images import get_filename as get_image_filename, get_image_urls
-from util import sqlite_db, IterEncoder
+from util import sqlite_db
 import re
 import json
 from tqdm import tqdm
@@ -119,6 +119,25 @@ def parse_mintbl(soup):
     return out
 
 
+def get_ingredients(soup):
+    ing_tbl = soup.select("#content table.incredients tr")
+    ingredients = []
+    for row in ing_tbl:
+        left, right = row.select("> td")
+        if len(right.select("b")) > 0:
+            if strip_spaces(left.get_text()) != "":
+                raise Exception(f"can't handle {row}")
+            ingredients.append({"subtitle": strip_spaces(right.get_text())})
+        else:
+            ingredients.append(
+                {
+                    "amount": strip_spaces(left.get_text()),
+                    "ingredient": strip_spaces(right.get_text()),
+                }
+            )
+    return ingredients
+
+
 def get_meta(recipe_id):
     if (
         dbo.execute(
@@ -145,15 +164,13 @@ def get_meta(recipe_id):
             print(f"warning: missing image for recipe {recipe_id}: {filename}")
 
     subtitle = soup.select_one("#content > p > strong")
-    ing_tbl = soup.select("#content table.incredients tr")
-    ingredients = [
-        [strip_spaces(col.get_text()) for col in row.select("> td")] for row in ing_tbl
-    ]
+    ingredients = get_ingredients(soup)
 
     ztt = soup.select_one("#content > .content-right > h3")
     rating_count = isoup.select_one("div.ds-rating-count > span:nth-of-type(2)")
     processed_data = {
         "id": recipe_id,
+        "date": strip_spaces([*isoup.select_one("span.recipe-date")][1]),
         "canonical_url": canonical_url,
         "title": strip_spaces(soup.select_one("#content > h1").get_text()),
         "subtitle": strip_spaces(subtitle.get_text()) if subtitle else None,
@@ -201,6 +218,3 @@ if __name__ == "__main__":
 
     with Pool(10) as p:
         data = list(p.imap(get_meta_p, tqdm(id_list), chunksize=100))
-
-    with open(data_dir / "processed_data.json", "w") as of:
-        json.dump(data, of, ensure_ascii=False, indent="\t")
