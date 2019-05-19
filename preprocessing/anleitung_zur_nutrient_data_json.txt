@@ -1,0 +1,692 @@
+Alle Produktnamen (insg. 10412 Stück) sind separat in der Liste 'product_names.csv' abgespeichert.
+
+Aufbau der json:
+
+{
+	<Produktname_0>: {
+		"Allergene und Zusatzstoffe": {
+			<Allergen/Zusatzstoff 0>: {"E-Nummer": <E-Nummer n>}, 
+			...
+			<Allergen/Zusatzstoff n>: {"E-NUmmer": <E-Nummer n>}},
+		"Aminosäuren": {
+			<Inhaltsstoff 0>: {"Einheit": <Einheit 0>, "Menge": <Menge 0>},...},
+		"Fettsäuren": {
+			<Inhaltsstoff 0>: {"Einheit": <Einheit 0>, "Menge": <Menge 0>},...},
+		"Hauptnährstoffe": {
+			<Inhaltsstoff 0>: {"Einheit": <Einheit 0>, "Menge": <Menge 0>},...},
+		"Id": <Id>,
+		"Lebensmittelgruppe": "Lebensmittelgruppe: <Lebensmittelgruppe>",
+		"Mineralstoffe und Spurenelemente": {
+			<Inhaltsstoff 0>: {"Einheit": <Einheit 0>, "Menge": <Menge 0>},...},
+		"Quelle": <Quelle>,
+		"Sonstiges": {
+			<Inhaltsstoff 0>: {"Einheit": <Einheit 0>, "Menge": <Menge 0>},...},
+		"Spezielle Kohlenhydrate": {
+			<Inhaltsstoff 0>: {"Einheit": <Einheit 0>, "Menge": <Menge 0>},...},
+		"Vitamine": {
+			<Inhaltsstoff 0>: {"Einheit": <Einheit 0>, "Menge": <Menge 0>},...}}
+
+	},
+	...
+	<Produktname m>: {...}
+}
+
+
+Beispieleintrag in der 'nutrient_data.json' zum Produkt 'Bebivita Gläschen Rahmkartoffeln mit Karotten und Hühnchen':
+
+
+{
+    "Bebivita Gläschen Rahmkartoffeln mit Karotten und Hühnchen": {
+        "Allergene und Zusatzstoffe": {
+            "Milch und Milcherzeugnisse (einschließlich Laktose)": {
+                "E-Nummer": ""
+            }
+        },
+        "Aminosäuren": {
+            "Alanin": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Arginin": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Asparaginsäure": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Cystein": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Glutaminsäure": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Glycin": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Histidin": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Isoleucin": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Leucin": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Lysin": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Methionin": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Phenylalanin": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Prolin": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Serin": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Threonin": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Tryptophan": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Tyrosin": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Valin": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "essent. Aminosäuren": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "n. essent. Aminosäuren": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "sonst. essent. Aminosäuren": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "sonst. n. essent. Aminosäuren": {
+                "Einheit": "mg",
+                "Menge": ""
+            }
+        },
+        "Fettsäuren": {
+            "Arachidonsäure": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Arachinsäure": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Behensäure": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Buttersäure": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "C14:1 Fettsäure": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "C15:O Fettsäure": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "C16:2 Fettsäure": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "C18:4 Fettsäure": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "C20:5 N-3 Fettsäure": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "C22:1 Fettsäure": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "C22:5 N-3 Fettsäure": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "C22:6 N-3 Fettsäure": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "C24:1 Fettsäure": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Caprinsäure": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Capronsäure": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Caprylsäure": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Docosadiensäure": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Docosatetraensäure": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Docosatriensäure": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Eicosadiensäure": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Eicosatriensäure": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Eicosensäure": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Ges. Fettsäuren": {
+                "Einheit": "g",
+                "Menge": "0,90"
+            },
+            "Glycerin + Lipoide": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Laurinsäure": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Lignocerinsäure": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Linolensäure": {
+                "Einheit": "g",
+                "Menge": "0,09"
+            },
+            "Linolsäure": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Margarinsäure": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Myristinsäure": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Nonadecatriensäure": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Palmitinsäure": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Palmitoleinsäure": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Stearinsäure": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "einfach unges. Fettsäuren": {
+                "Einheit": "g",
+                "Menge": "1,40"
+            },
+            "kurzkettige Fettsäuren": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "langkettige Fettsäuren": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "mehrf. unges. Fettsäuren": {
+                "Einheit": "g",
+                "Menge": "0,60"
+            },
+            "mittelkettige Fettsäuren": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "sonst. einfach unges. Fettsäuren": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "sonst. gesättigte Fettsäuren": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "sonst. kurzkettige Fettsäuren": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "sonst. langkettige Fettsäuren": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "sonst. mehrfach unges. Fettsäuren": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "sonst. mittelkettige Fettsäuren": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Ölsäure": {
+                "Einheit": "g",
+                "Menge": ""
+            }
+        },
+        "Hauptnährstoffe": {
+            "Alkohol": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Ballaststoffe gesamt": {
+                "Einheit": "g",
+                "Menge": "1,50"
+            },
+            "Broteinheiten": {
+                "Einheit": "",
+                "Menge": ""
+            },
+            "Cholesterin": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Eiweiß": {
+                "Einheit": "g",
+                "Menge": "2,50"
+            },
+            "Fett": {
+                "Einheit": "g",
+                "Menge": "2,90"
+            },
+            "Kilojoule": {
+                "Einheit": "",
+                "Menge": "266"
+            },
+            "Kilokalorien": {
+                "Einheit": "",
+                "Menge": "64"
+            },
+            "Kohlenhydrate": {
+                "Einheit": "g",
+                "Menge": "6,10"
+            },
+            "Mineralstoffe": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Wasser": {
+                "Einheit": "g",
+                "Menge": ""
+            }
+        },
+        "Id": "BEBI074",
+        "Lebensmittelgruppe": "Lebensmittelgruppe: Kleinkinder- und Säuglingsnahrung",
+        "Mineralstoffe und Spurenelemente": {
+            "Calcium": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Chlorid": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Eisen": {
+                "Einheit": "mg",
+                "Menge": "1,30"
+            },
+            "Fluorid": {
+                "Einheit": "µg",
+                "Menge": ""
+            },
+            "Jodid": {
+                "Einheit": "µg",
+                "Menge": ""
+            },
+            "Kalium": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Kupfer": {
+                "Einheit": "µg",
+                "Menge": ""
+            },
+            "Magnesium": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Mangan": {
+                "Einheit": "µg",
+                "Menge": ""
+            },
+            "Natrium": {
+                "Einheit": "mg",
+                "Menge": "30,00"
+            },
+            "Phosphor": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Schwefel": {
+                "Einheit": "µg",
+                "Menge": ""
+            },
+            "Selen": {
+                "Einheit": "µg",
+                "Menge": ""
+            },
+            "Zink": {
+                "Einheit": "mg",
+                "Menge": ""
+            }
+        },
+        "Quelle": "\n\tDie Nährwertangaben zu diesem \n\t\tLebensmittel / Firmenprodukt sind - basierend auf den Angaben des \n\t\tHerstellers (Bebivita GmbH) - in die Datenbank NutriBase® \n\t\taufgenommen worden und sind damit auch Bestandteil der \n\t\tErnährungssoftware NutriGuide® und Prodi®. \n\t\tDie Nährwerte beziehen sich jeweils auf 100 Gramm des entsprechenden \n\t\tLebensmittels.\n",
+        "Sonstiges": {
+            "Ballaststoffe w.unlösl.": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Ballaststoffe wasserl.": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Biolog. Wertigkeit": {
+                "Einheit": "%",
+                "Menge": ""
+            },
+            "Fettsäurenanteil": {
+                "Einheit": "",
+                "Menge": ""
+            },
+            "Harnsäure": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Kochsalz": {
+                "Einheit": "g",
+                "Menge": "0,08"
+            },
+            "Küchenabfälle": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Lignin": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Mineralstoffanteil": {
+                "Einheit": "",
+                "Menge": ""
+            },
+            "Mol-Diff. Kationen-Anionen": {
+                "Einheit": "mä",
+                "Menge": ""
+            },
+            "P/S Verhältnis": {
+                "Einheit": "",
+                "Menge": ""
+            },
+            "Purinbasen-Stickstoff": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Stickstoffaktor": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "durchschn. Verzehr": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "fruktosefreie Broteinheiten": {
+                "Einheit": "",
+                "Menge": ""
+            },
+            "pflanzliches Eiweiß": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "sonst. Eiweißstoffe": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "sonst. organischen Säuren": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "tierisches Eiweiß": {
+                "Einheit": "mg",
+                "Menge": ""
+            }
+        },
+        "Spezielle Kohlenhydrate": {
+            "Cellulose": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Disaccharide": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Fructose": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Galactose": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Gesamtzucker": {
+                "Einheit": "g",
+                "Menge": "2,40"
+            },
+            "Glucose": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Glycogen": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Hexosan": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Lactose": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Maltose": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Mannit": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Monosaccharide": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Oligosaccharide n. resorb.": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Oligosaccharide resorb.": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Pentosan": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Polysaccharide": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Polyuronsäure": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Saccharose": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Sorbit": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Stärke": {
+                "Einheit": "g",
+                "Menge": ""
+            },
+            "Summe Zuckeralkohole": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Xylit": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "sonst. Disaccharide": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "sonst. Monosaccharide": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "sonst. Polysaccharide": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "sonst. Zuckeralkohole": {
+                "Einheit": "mg",
+                "Menge": ""
+            }
+        },
+        "Vitamine": {
+            "Biotin": {
+                "Einheit": "µg",
+                "Menge": ""
+            },
+            "Folsäure": {
+                "Einheit": "µg",
+                "Menge": ""
+            },
+            "Niacinäquivalent": {
+                "Einheit": "µg",
+                "Menge": ""
+            },
+            "Nicotinamid": {
+                "Einheit": "µg",
+                "Menge": ""
+            },
+            "Pantothensäure": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Retinoläquivalent": {
+                "Einheit": "µg",
+                "Menge": ""
+            },
+            "Vitamin A Retinol": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Vitamin B1": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Vitamin B12": {
+                "Einheit": "µg",
+                "Menge": ""
+            },
+            "Vitamin B2": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Vitamin B6": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Vitamin C": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Vitamin D": {
+                "Einheit": "µg",
+                "Menge": ""
+            },
+            "Vitamin E Aktiv.": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "Vitamin K": {
+                "Einheit": "µg",
+                "Menge": ""
+            },
+            "a-Tocopherol": {
+                "Einheit": "mg",
+                "Menge": ""
+            },
+            "freie Folsäure": {
+                "Einheit": "µg",
+                "Menge": ""
+            },
+            "freies Folsäureäquivalent": {
+                "Einheit": "µg",
+                "Menge": ""
+            },
+            "ß-Carotin": {
+                "Einheit": "µg",
+                "Menge": ""
+            }
+        }
+    }
+}
+
