@@ -20,8 +20,8 @@ class ResNet(Model):
         # Parameters of newly constructed modules have requires_grad=True by default
         num_ftrs = self.model.fc.in_features
 
-        # 10 output neurons
-        self.model.fc = nn.Linear(num_ftrs, 10)
+        # 1 output neuron to predict kcal
+        self.model.fc = nn.Linear(num_ftrs, 1)
         return self.model
 
     def get_learnable_parameters(self):
