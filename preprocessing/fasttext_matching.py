@@ -101,7 +101,7 @@ for recipe in random.sample(recipes, 3):
             continue
         name = ingredient["ingredient"]
         (best_match, quality), *_ = get_match(name)
-        print(f"{100 * quality:.0f}% match: {name} -> {best_match}")
+        print(f"{100 * quality:<3.0f}% match: {name} -> {best_match}")
 
 
 #%%
