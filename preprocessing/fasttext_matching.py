@@ -21,11 +21,11 @@ print("loading out names")
 
 # jq 'to_entries[] | .value.name=.key | .value' nutrient_data.json > nutrient_data.jsonl
 # jq 'select(.Quelle | contains("ebensmittelschlüssel"))|.name' data/nutrient_data.jsonl |jq -s > data/bls_nutrient_names.json
-with open(data_dir / "bls/bls_nutrient_names.json") as f:
+with open(data_dir / "bls/all_nutrient_names.json") as f:
     out_names = json.load(f)
 
 # cat processed_data.jsonl | jq '.ingredients |.[] | select(.ingredient) | .ingredient' | jq -s unique > ingredients.jsonl
-with open(data_dir / "ingredients.json") as f:
+with open(data_dir / "recipes/ingredients.json") as f:
     in_names = json.load(f)
 
 
@@ -101,7 +101,7 @@ for recipe in random.sample(recipes, 3):
             continue
         name = ingredient["ingredient"]
         (best_match, quality), *_ = get_match(name)
-        print(f"{100 * quality:<3.0f}% match: {name} -> {best_match}")
+        print(f"{100 * quality:3.0f}% match: {name} -> {best_match}")
 
 
 #%%
