@@ -1,0 +1,5 @@
+tb-nightly
+torch
+torchvision
+matplotlib
+scikit-image
