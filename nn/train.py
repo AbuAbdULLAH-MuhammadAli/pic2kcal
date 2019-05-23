@@ -3,6 +3,7 @@ from nn.dataset import ImageCaloriesDataset
 from torch.utils.data import DataLoader
 import matplotlib.pyplot as plt
 import torch.nn as nn
+import torch
 import torch.optim as optim
 from torch.utils.tensorboard import SummaryWriter
 
@@ -10,7 +11,7 @@ plt.ion()
 
 
 if __name__ == '__main__':
-    batch_size = 1
+    batch_size = 100
     shuffle = True
 
     writer = SummaryWriter()
@@ -23,6 +24,7 @@ if __name__ == '__main__':
 
     optimizer = optim.Adadelta(model.get_learnable_parameters())
     criterion = nn.MSELoss()
+    gpu = torch.device('cuda:0')
 
     for epoch in range(1):
         train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=shuffle)
@@ -30,10 +32,11 @@ if __name__ == '__main__':
 
         running_loss = 0.0
         for i, data in enumerate(train_loader, 0):
+            image_ongpu = data['image'].to(device=gpu)
             optimizer.zero_grad()
 
-            outputs = net(data['image'])
-            loss = criterion(outputs, data['kcal'])
+            outputs = net(image_ongpu)
+            loss = criterion(outputs, data['kcal'].to(device=gpu)
             loss.backward()
             optimizer.step()
 
