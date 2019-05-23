@@ -23,7 +23,10 @@ class ToTensor(object):
 
 class ImageCaloriesDataset(Dataset):
 
-    def __init__(self, calories_file, image_dir, transform=transforms.Compose([ToTensor()])):
+    def __init__(self, calories_file, image_dir, transform=transforms.Compose([
+        transforms.Resize(224),
+        ToTensor()
+    ])):
 
         with open(ROOT + calories_file) as json_file:
             self.calorie_image_tuples = json.load(json_file)["data"]

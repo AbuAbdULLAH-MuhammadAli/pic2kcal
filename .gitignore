@@ -1,5 +1,7 @@
-data
+nn/data/**/*.png
+nn/data/**/*.jpg
 /.vscode
 .idea
 __pycache__
 *.log
+venv

@@ -4,6 +4,7 @@ from torch.utils.data import DataLoader
 import matplotlib.pyplot as plt
 import torch.nn as nn
 import torch.optim as optim
+from torch.utils.tensorboard import SummaryWriter
 
 plt.ion()
 
@@ -11,6 +12,8 @@ plt.ion()
 if __name__ == '__main__':
     batch_size = 1
     shuffle = True
+
+    writer = SummaryWriter()
 
     model = ResNet()
     net = model.get_model_on_device()
