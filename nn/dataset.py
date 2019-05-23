@@ -24,6 +24,7 @@ class ToTensor(object):
 class ImageCaloriesDataset(Dataset):
 
     def __init__(self, calories_file, image_dir, transform=transforms.Compose([
+        transforms.ToPILImage(),
         transforms.Resize(224),
         ToTensor()
     ])):
