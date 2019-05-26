@@ -4,18 +4,29 @@ from torch.utils.data import DataLoader
 import matplotlib.pyplot as plt
 import torch.nn as nn
 import torch
+import datetime
 import torch.optim as optim
+import argparse
 from torch.utils.tensorboard import SummaryWriter
 
 plt.ion()
 
+def count_parameters(model):
+    trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    total = sum(p.numel() for p in model.parameters())
+    return trainable, total
 
 if __name__ == '__main__':
-    batch_size = 500
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--runname', help='name this experiment', required=True)
+    args = parser.parse_args()
+    batch_size = 100
     shuffle = True
     validate_every = 1
 
-    writer = SummaryWriter()
+    logdir = "runs/" + datetime.datetime.now().replace(microsecond=0).isoformat().replace(':', '.') + "-" + args.runname
+    writer = SummaryWriter(logdir)
+    print(f"tensorboard logdir: {writer.log_dir}")
 
     model = ResNet()
     net = model.get_model_on_device()
@@ -27,6 +38,8 @@ if __name__ == '__main__':
     optimizer = optim.Adadelta(model.get_learnable_parameters())
     criterion = nn.MSELoss()
     gpu = torch.device('cuda:0')
+    trainable_params, total_params = count_parameters(net)
+    print(f"Parameters: {trainable_params} trainable, {total_params} total")
 
     for epoch in range(10):
         train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=shuffle, num_workers=4)
