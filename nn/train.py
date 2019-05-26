@@ -7,6 +7,7 @@ import torch
 import datetime
 import torch.optim as optim
 import argparse
+from itertools import islice
 from torch.utils.tensorboard import SummaryWriter
 
 plt.ion()
@@ -22,7 +23,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
     batch_size = 100
     shuffle = True
-    validate_every = 1
+    validate_every = 10
+    validate_batches = 5
 
     logdir = "runs/" + datetime.datetime.now().replace(microsecond=0).isoformat().replace(':', '.') + "-" + args.runname
     writer = SummaryWriter(logdir)
@@ -35,18 +37,19 @@ if __name__ == '__main__':
     train_dataset = ImageCaloriesDataset('train.json', 'train')
     val_dataset = ImageCaloriesDataset('val.json', 'val')
 
-    optimizer = optim.Adadelta(model.get_learnable_parameters())
+    optimizer = optim.Adam(net.parameters())
     criterion = nn.MSELoss()
     gpu = torch.device('cuda:0')
     trainable_params, total_params = count_parameters(net)
     print(f"Parameters: {trainable_params} trainable, {total_params} total")
-
-    for epoch in range(10):
+    running_loss = []
+    batch_idx = 0
+    for epoch in range(1, 11):
         train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=shuffle, num_workers=4)
         val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=shuffle, num_workers=4)
 
-        running_loss = 0.0
         for i, data in enumerate(train_loader, 0):
+            batch_idx += 1
             image_ongpu = data['image'].to(device)
             optimizer.zero_grad()
 
@@ -56,31 +59,30 @@ if __name__ == '__main__':
             loss.backward()
             optimizer.step()
 
-            running_loss += loss.item()
-            writer.add_scalar('loss', float(loss.item()), i)
-            if (i + 1) % 10 == 0:
+            running_loss.append(float(loss.item()))
+            if batch_idx % validate_every == 0:
+                avg_loss = np.mean(running_loss)
+                running_loss = []
+                writer.add_scalar('loss', avg_loss, batch_idx)
                 print('[%d, %5d] loss: %.3f' %
-                      (epoch + 1, i + 1, running_loss / 10))
-                running_loss = 0.0
+                      (epoch, i, avg_loss))
             
-            if (i + 1) % validate_every == 0:
-                val_error = 0
-                val_samples = 0
+            if batch_idx % validate_every == 0:
+                val_error = []
                 # validation loop
                 with torch.no_grad():
-                    for vali, data in enumerate(val_loader):
-                        val_samples += 1
-
+                    for data in islice(val_loader, validate_batches):
                         image = data['image'].to(device)
                         kcal = data['kcal'].to(device)
 
                         output = net(image)
 
-                        val_error += criterion(output, kcal).item()
+                        val_error.append(criterion(output, kcal).item())
                         # only single batch for now
                         break
-                writer.add_scalar('val_loss', val_error / val_samples, i)
-                print('[%d, %5d] val loss: %.3f' % (epoch + 1, i + 1, val_error / val_samples))
+                avg_val_error = np.mean(val_error)
+                writer.add_scalar('val_loss', avg_val_error, batch_idx)
+                print('[%d, %5d] val loss: %.3f' % (epoch, i, avg_val_error))
 
     writer.close()
     model.save()
