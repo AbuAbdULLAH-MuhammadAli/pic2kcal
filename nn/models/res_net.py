@@ -5,13 +5,12 @@ from nn.models.model import Model
 
 
 class ResNet(Model):
-
     def __init__(self):
-        super().__init__('ResNet18')
-        self.model = models.resnet18(pretrained=True)
+        super().__init__("ResNet101-kcal")
+        # self.model = models.resnet18(pretrained=True)
 
     def get_model(self):
-        self.model = models.resnet18(pretrained=True)
+        self.model = models.resnet101(pretrained=True)
 
         # freeze first layers
         for param in self.model.parameters():
@@ -25,5 +24,5 @@ class ResNet(Model):
         self.model.fc = nn.Linear(num_ftrs, 1)
         return self.model
 
-    #def get_learnable_parameters(self):
+    # def get_learnable_parameters(self):
     #    return self.model.fc.parameters()
