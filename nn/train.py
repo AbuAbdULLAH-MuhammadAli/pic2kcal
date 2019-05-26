@@ -11,8 +11,9 @@ plt.ion()
 
 
 if __name__ == '__main__':
-    batch_size = 100
+    batch_size = 500
     shuffle = True
+    validate_every = 1
 
     writer = SummaryWriter()
 
@@ -27,12 +28,9 @@ if __name__ == '__main__':
     criterion = nn.MSELoss()
     gpu = torch.device('cuda:0')
 
-    for i in range(100000):
-        writer.add_scalar('test', i, i)
-
-    for epoch in range(3):
-        train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=shuffle)
-        val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=shuffle)
+    for epoch in range(10):
+        train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=shuffle, num_workers=4)
+        val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=shuffle, num_workers=4)
 
         running_loss = 0.0
         for i, data in enumerate(train_loader, 0):
@@ -51,22 +49,25 @@ if __name__ == '__main__':
                 print('[%d, %5d] loss: %.3f' %
                       (epoch + 1, i + 1, running_loss / 10))
                 running_loss = 0.0
+            
+            if (i + 1) % validate_every == 0:
+                val_error = 0
+                val_samples = 0
+                # validation loop
+                with torch.no_grad():
+                    for vali, data in enumerate(val_loader):
+                        val_samples += 1
 
-        val_error = 0
-        val_samples = 0
-        # validation loop
-        with torch.no_grad():
-            for data in val_loader:
-                val_samples += 1
+                        image = data['image'].to(device)
+                        kcal = data['kcal'].to(device)
 
-                image = data['image']
-                kcal = data['kcal']
+                        output = net(image)
 
-                output = net(image)
-
-                val_error += criterion(output, kcal).item()
-        writer.add_scalar('val_error', val_error / val_samples, i)
-        print('[%d] error: %.3f' % (epoch + 1, val_error / val_samples))
+                        val_error += criterion(output, kcal).item()
+                        # only single batch for now
+                        break
+                writer.add_scalar('val_loss', val_error / val_samples, i)
+                print('[%d, %5d] val loss: %.3f' % (epoch + 1, i + 1, val_error / val_samples))
 
     writer.close()
     model.save()
