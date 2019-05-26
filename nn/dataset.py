@@ -42,7 +42,7 @@ class ImageCaloriesDataset(Dataset):
         img_name = os.path.join(self.image_dir, element['name'])
 
         image = io.imread(img_name)
-        kcal = np.array(element['kcal'], dtype=np.float32)
+        kcal = np.array(element['kcal'], dtype=np.float32).reshape(1)
 
         sample = {'image': image, 'kcal': kcal}
 

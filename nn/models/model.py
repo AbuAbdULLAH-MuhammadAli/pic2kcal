@@ -7,6 +7,7 @@ class Model:
 
     def __init__(self, name):
         self.name = name
+        self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
     @abstractmethod
     def get_model(self):
@@ -29,5 +30,7 @@ class Model:
         self.model.load_state_dict(torch.load(path))
 
     def get_model_on_device(self):
-        device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-        return self.get_model().to(device)
+        return self.get_model().to(self.device)
+
+    def ged_device(self):
+        return self.device
