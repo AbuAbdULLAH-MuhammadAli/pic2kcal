@@ -1,7 +1,9 @@
 import json
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 from collections import Counter
+
 
 def bar_plot(data, attribute, xlabel, ylabel, title):
     ls = []
@@ -31,8 +33,10 @@ def bar_plot(data, attribute, xlabel, ylabel, title):
 
     plt.show()
 
+
 def kcal_plot(data, attribute, xlabel, ylabel, title):
     ls = data[attribute]
+    print(ls)
 
     # extract frequencies as values
     counter = Counter(ls)
@@ -42,8 +46,8 @@ def kcal_plot(data, attribute, xlabel, ylabel, title):
         temp = [key, value]
         dictlist.append(temp)
 
-        # sort
-        sorted_dictlist = sorted(dictlist, key=lambda x: x[0])
+    # sort
+    sorted_dictlist = sorted(dictlist, key=lambda x: x[0])
 
     # extract to separate lists
     num, frequencies = map(list, zip(*sorted_dictlist))
@@ -55,18 +59,43 @@ def kcal_plot(data, attribute, xlabel, ylabel, title):
     # ax.set_yscale('log')
     ax.scatter(num, frequencies)
 
+    plt.show()
+
+
+def filter_outliers(data: list, *, factor=2, key=lambda x: x):
+    # https://www.kdnuggets.com/2017/02/removing-outliers-standard-deviation-python.html
+    mean = np.mean(data)
+    stddev = np.std(data)
+    filt_min = mean - factor * stddev
+    filt_max = mean + factor * stddev
+    return (
+        [x for x in data if key(x) >= filt_min and key(x) <= filt_max],
+        filt_min,
+        filt_max,
+    )
+
+
+def kcal_hist(data, attribute, xlabel, ylabel, title):
+    ls = list(data[attribute])
+
+    bef_count = len(ls)
+    ls, filt_min, filt_max = filter_outliers(ls)
+    print(f"filtering kcal to [{filt_min}, {filt_max}]")
+
+    print(f"removed {bef_count - len(ls)} of {bef_count}")
+    fig, ax = plt.subplots()
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    ax.set_title(title)
+    # ax.set_yscale('log')
+    ax.hist(ls, bins=100)
 
     plt.show()
 
 
-
-
-
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     # read json
-    with open('per_portion_data.json') as f:
+    with open("per_portion_data.json") as f:
         data = json.load(f)
     df = pd.DataFrame(data)
 
@@ -75,11 +104,11 @@ if __name__ == '__main__':
     #          ylabel='Frequency', title='Number of Images per Recipe')
 
     # plot of kcal frequencies
-    kcal_plot(df, attribute='kcal_per_portion', xlabel='kcal per recipe-portion',
-             ylabel='Frequency', title='Kcal per Recipe')
-
-
-
-
-
+    kcal_hist(
+        df,
+        attribute="kcal_per_portion",
+        xlabel="kcal per recipe-portion",
+        ylabel="Frequency",
+        title="Kcal per Recipe",
+    )
 
