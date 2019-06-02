@@ -21,19 +21,20 @@ class ToTensor(object):
 
 
 class ImageCaloriesDataset(Dataset):
-
     def __init__(self, calories_file, image_dir, transform=transforms.Compose([
         transforms.ToPILImage(),
         transforms.Resize((224, 224)),
+        transforms.ToTensor()
         # imageNet normalization
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-        transforms.ToTensor()
+
     ])):
 
         with open(ROOT + calories_file) as json_file:
             self.calorie_image_tuples = json.load(json_file)["data"]
         self.image_dir = ROOT + image_dir
         self.transform = transform
+
 
     def __len__(self):
         return len(self.calorie_image_tuples)
