@@ -25,6 +25,8 @@ class ImageCaloriesDataset(Dataset):
     def __init__(self, calories_file, image_dir, transform=transforms.Compose([
         transforms.ToPILImage(),
         transforms.Resize((224, 224)),
+        # imageNet normalization
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
         transforms.ToTensor()
     ])):
 
@@ -48,6 +50,7 @@ class ImageCaloriesDataset(Dataset):
 
         if self.transform:
             sample['image'] = self.transform(sample['image'])
+            # ImageNet normalization
 
         return sample
 
