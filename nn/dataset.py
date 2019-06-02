@@ -50,7 +50,6 @@ class ImageCaloriesDataset(Dataset):
 
         if self.transform:
             sample['image'] = self.transform(sample['image'])
-            # ImageNet normalization
 
         return sample
 
