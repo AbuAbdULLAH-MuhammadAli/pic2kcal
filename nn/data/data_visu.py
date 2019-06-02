@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from collections import Counter
+from split import filter_outliers
 
 
 def bar_plot(data, attribute, xlabel, ylabel, title):
@@ -60,19 +61,6 @@ def kcal_plot(data, attribute, xlabel, ylabel, title):
     ax.scatter(num, frequencies)
 
     plt.show()
-
-
-def filter_outliers(data: list, *, factor=2, key=lambda x: x):
-    # https://www.kdnuggets.com/2017/02/removing-outliers-standard-deviation-python.html
-    mean = np.mean(data)
-    stddev = np.std(data)
-    filt_min = mean - factor * stddev
-    filt_max = mean + factor * stddev
-    return (
-        [x for x in data if key(x) >= filt_min and key(x) <= filt_max],
-        filt_min,
-        filt_max,
-    )
 
 
 def kcal_hist(data, attribute, xlabel, ylabel, title):
