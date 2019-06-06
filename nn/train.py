@@ -92,11 +92,15 @@ if __name__ == "__main__":
                 with torch.no_grad():
                     for data in islice(val_loader, validate_batches):
                         image = data["image"].to(device)
+                        # print(data["image"], type(data["image"]))
                         kcal = data["kcal"].to(device)
 
                         output = net(image)
                         val_error["loss"].append(criterion(output, kcal).item())
                         val_error["l1"].append(float(l1_loss.item()))
+                        writer.add_images(
+                            "YOOO", image.view(-1, 3, 224, 224)[:10].cpu().numpy()
+                        )
                 for loss_name, running_loss in val_error.items():
                     avg_val_error = np.mean(running_loss)
                     writer.add_scalar(f"val_{loss_name}", avg_val_error, batch_idx)
