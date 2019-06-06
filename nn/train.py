@@ -25,7 +25,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--runname", help="name this experiment", required=True)
     args = parser.parse_args()
-    batch_size = 50
+    batch_size = 20
     shuffle = True
     validate_every = 100
     validate_batches = 50
@@ -47,7 +47,7 @@ if __name__ == "__main__":
     val_dataset = ImageCaloriesDataset("val.json", "val")
 
     optimizer = optim.Adam(net.parameters())
-    criterion = nn.MSELoss()
+    criterion = nn.CrossEntropyLoss()
     criterion_l1_loss = nn.L1Loss()
 
     gpu = torch.device("cuda:0")

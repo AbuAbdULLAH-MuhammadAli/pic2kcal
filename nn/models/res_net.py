@@ -21,7 +21,7 @@ class ResNet(Model):
         num_ftrs = self.model.fc.in_features
 
         # 1 output neuron to predict kcal
-        self.model.fc = nn.Linear(num_ftrs, 1)
+        self.model.fc = nn.Linear(2048, 25)  # nn.Sequential(, nn.Softmax(dim=25))
         return self.model
 
     # def get_learnable_parameters(self):
