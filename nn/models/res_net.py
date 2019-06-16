@@ -9,8 +9,8 @@ class ResNet(Model):
         super().__init__("ResNet101-kcal")
 
     def get_model(self):
-        # self.model = models.resnet101(pretrained=True)
-        self.model = models.resnet18(pretrained=True)
+        self.model = models.resnet101(pretrained=True)
+        #self.model = models.resnet18(pretrained=True)
 
         # freeze first layers
         for param in self.model.parameters():
