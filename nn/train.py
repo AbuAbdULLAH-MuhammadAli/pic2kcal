@@ -21,6 +21,24 @@ def count_parameters(model):
     return trainable, total
 
 
+def put_text(imgs, texts):
+    result = np.empty_like(imgs)
+    for i, (img, text) in enumerate(zip(imgs, texts)):
+        from PIL import Image
+        from PIL import ImageFont
+        from PIL import ImageDraw
+
+        img = Image.fromarray((img.transpose((1, 2, 0)) * 255).astype("uint8"), "RGB")
+        draw = ImageDraw.Draw(img)
+        # font = ImageFont.truetype(<font-file>, <font-size>)
+        font = ImageFont.truetype("/usr/share/fonts/TTF/LiberationSans-Regular.ttf", 16)
+        # draw.text((x, y),"Sample Text",(r,g,b))
+        draw.text((0, 0), text, (255, 255, 255), font=font)
+        result[i] = (np.asarray(img).astype("float32")/255).transpose((2, 0, 1))
+    return result
+
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--runname", help="name this experiment", required=True)
@@ -29,12 +47,13 @@ if __name__ == "__main__":
     shuffle = True
     validate_every = 100
     validate_batches = 50
+    show_img_count = 16
 
     logdir = (
-        "runs/"
-        + datetime.datetime.now().replace(microsecond=0).isoformat().replace(":", ".")
-        + "-"
-        + args.runname
+            "runs/"
+            + datetime.datetime.now().replace(microsecond=0).isoformat().replace(":", ".")
+            + "-"
+            + args.runname
     )
     writer = SummaryWriter(logdir)
     print(f"tensorboard logdir: {writer.log_dir}")
@@ -99,14 +118,21 @@ if __name__ == "__main__":
                     for data in islice(val_loader, validate_batches):
                         image = data["image"].to(device)
                         # print(data["image"], type(data["image"]))
-                        kcal = data["kcal"].squeeze().to(device)
+                        kcal_i = data["kcal"].squeeze()
+                        kcal = kcal_i.to(device)
 
                         output = net(image)
                         val_error["loss"].append(criterion(output, kcal).item())
+
+                        truth, pred = kcal_i.numpy(), torch.argmax(output, 1).numpy()
                         # val_error["l1"].append(float(l1_loss.item()))
-                        writer.add_images(
-                            "YOOO", image.view(-1, 3, 224, 224)[:10].cpu().numpy()
+                        images_cpu = image.view(-1, 3, 224, 224)[:show_img_count].cpu().numpy()
+
+                        images_cpu = put_text(
+                            images_cpu,
+                            [f"truth: {t*100 + 50}kcal, pred: {p* 100 + 50}kcal" for t, p in zip(truth, pred)],
                         )
+                        writer.add_images("YOOO", images_cpu)
                 for loss_name, running_loss in val_error.items():
                     avg_val_error = np.mean(running_loss)
                     writer.add_scalar(f"val_{loss_name}", avg_val_error, batch_idx)
