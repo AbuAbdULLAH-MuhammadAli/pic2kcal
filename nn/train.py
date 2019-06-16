@@ -25,7 +25,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--runname", help="name this experiment", required=True)
     args = parser.parse_args()
-    batch_size = 20
+    batch_size = 4
     shuffle = True
     validate_every = 100
     validate_batches = 50
@@ -64,14 +64,21 @@ if __name__ == "__main__":
         )
 
         for i, data in enumerate(train_loader, 0):
+            print(data['kcal'].shape)
+            print(data['kcal'].squeeze_().shape)
+            print(data['kcal'].squeeze_())
             batch_idx += 1
             image_ongpu = data["image"].to(device)
             optimizer.zero_grad()
 
             outputs = net(image_ongpu)
-            kcal = data["kcal"].to(device)
+
+            print(outputs.shape)
+
+            kcal = data["kcal"].squeeze_().to(device)
             loss = criterion(outputs, kcal)
-            l1_loss = criterion_l1_loss(outputs, kcal)
+            l1_loss = torch.zeros([1])  # criterion_l1_loss(outputs, kcal)
+
 
             loss.backward()
             optimizer.step()
