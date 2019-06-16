@@ -9,7 +9,7 @@ class ResNet(Model):
         super().__init__("ResNet101-kcal")
 
     def get_model(self):
-        #self.model = models.resnet101(pretrained=True)
+        # self.model = models.resnet101(pretrained=True)
         self.model = models.resnet18(pretrained=True)
 
         # freeze first layers
@@ -22,6 +22,8 @@ class ResNet(Model):
 
         # 1 output neuron to predict kcal
         self.model.fc = nn.Linear(num_ftrs, 25)  # nn.Sequential(, nn.Softmax(dim=25))
+        # self.model.softmax = nn.Softmax(dim=25)
+
         return self.model
 
     # def get_learnable_parameters(self):

@@ -64,27 +64,26 @@ if __name__ == "__main__":
         )
 
         for i, data in enumerate(train_loader, 0):
-            print(data['kcal'].shape)
-            print(data['kcal'].squeeze_().shape)
-            print(data['kcal'].squeeze_())
+            # print(data["kcal"].shape)
+            # print(data["kcal"].squeeze().shape)
+            # print("sq2", data["kcal"].squeeze())
             batch_idx += 1
             image_ongpu = data["image"].to(device)
             optimizer.zero_grad()
 
             outputs = net(image_ongpu)
 
-            print(outputs.shape)
+            # print("out", outputs.shape)
 
-            kcal = data["kcal"].squeeze_().to(device)
+            kcal = data["kcal"].squeeze().to(device)
             loss = criterion(outputs, kcal)
-            l1_loss = torch.zeros([1])  # criterion_l1_loss(outputs, kcal)
-
+            # l1_loss = torch.zeros([1])  # criterion_l1_loss(outputs, kcal)
 
             loss.backward()
             optimizer.step()
 
             running_losses["loss"].append(float(loss.item()))
-            running_losses["l1"].append(float(l1_loss.item()))
+            # running_losses["l1"].append(float(l1_loss.item()))
 
             if batch_idx % validate_every == 0:
                 for loss_name, running_loss in running_losses.items():
@@ -100,11 +99,11 @@ if __name__ == "__main__":
                     for data in islice(val_loader, validate_batches):
                         image = data["image"].to(device)
                         # print(data["image"], type(data["image"]))
-                        kcal = data["kcal"].to(device)
+                        kcal = data["kcal"].squeeze().to(device)
 
                         output = net(image)
                         val_error["loss"].append(criterion(output, kcal).item())
-                        val_error["l1"].append(float(l1_loss.item()))
+                        # val_error["l1"].append(float(l1_loss.item()))
                         writer.add_images(
                             "YOOO", image.view(-1, 3, 224, 224)[:10].cpu().numpy()
                         )
