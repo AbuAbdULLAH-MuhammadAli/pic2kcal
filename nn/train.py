@@ -124,7 +124,7 @@ if __name__ == "__main__":
                         output = net(image)
                         val_error["loss"].append(criterion(output, kcal).item())
 
-                        truth, pred = kcal_i.numpy(), torch.argmax(output, 1).numpy()
+                        truth, pred = kcal_i.numpy(), torch.argmax(output.cpu(), 1).numpy()
                         # val_error["l1"].append(float(l1_loss.item()))
                         images_cpu = image.view(-1, 3, 224, 224)[:show_img_count].cpu().numpy()
 
