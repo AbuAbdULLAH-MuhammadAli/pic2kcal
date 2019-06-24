@@ -34,12 +34,13 @@ def put_text(imgs, texts):
         font = ImageFont.truetype("/usr/share/fonts/TTF/LiberationSans-Regular.ttf", 16)
         # draw.text((x, y),"Sample Text",(r,g,b))
         draw.text((0, 0), text, (255, 255, 255), font=font)
-        result[i] = (np.asarray(img).astype("float32")/255).transpose((2, 0, 1))
+        result[i] = (np.asarray(img).astype("float32") / 255).transpose((2, 0, 1))
     return result
 
 
 def show_loss(name, val):
     return 50 * val if name == "l1" else val
+
 
 def write_losses(writer, running_losses, prefix=""):
     for loss_name, running_loss in running_losses.items():
@@ -61,10 +62,10 @@ if __name__ == "__main__":
     show_img_count = 16
 
     logdir = (
-            "runs/"
-            + datetime.datetime.now().replace(microsecond=0).isoformat().replace(":", ".")
-            + "-"
-            + args.runname
+        "runs/"
+        + datetime.datetime.now().replace(microsecond=0).isoformat().replace(":", ".")
+        + "-"
+        + args.runname
     )
     writer = SummaryWriter(logdir)
     print(f"tensorboard logdir: {writer.log_dir}")
@@ -78,7 +79,14 @@ if __name__ == "__main__":
 
     optimizer = optim.Adam(net.parameters())
     criterion = nn.CrossEntropyLoss()
-    criterion_l1_loss = nn.L1Loss()
+    __criterion_l1_loss = nn.L1Loss()
+
+    def criterion_l1_loss(a, b):
+        ax = a.argmax(1).float()
+        bx = b.float()
+        print(ax, bx)
+        print(ax.shape, bx.shape)
+        return __criterion_l1_loss(ax, bx) * 50
 
     gpu = torch.device("cuda:0")
     trainable_params, total_params = count_parameters(net)
@@ -108,6 +116,7 @@ if __name__ == "__main__":
             kcal = data["kcal"].squeeze().to(device)
             loss = criterion(outputs, kcal)
             l1_loss = criterion_l1_loss(outputs, kcal)
+            print("got l1 loss")
 
             loss.backward()
             optimizer.step()
@@ -133,17 +142,25 @@ if __name__ == "__main__":
                         val_error["loss"].append(criterion(output, kcal).item())
                         l1_loss = criterion_l1_loss(outputs, kcal)
 
-                        truth, pred = kcal_i.numpy(), torch.argmax(output.cpu(), 1).numpy()
-                        val_error["l1"].append(float(l1_loss.item()))
-                        images_cpu = image.view(-1, 3, 224, 224)[:show_img_count].cpu().numpy()
-
-                        images_cpu = put_text(
-                            images_cpu,
-                            [f"truth: {t*50}kcal, pred: {p*50}kcal" for t, p in zip(truth, pred)],
+                        truth, pred = (
+                            kcal_i.numpy(),
+                            torch.argmax(output.cpu(), 1).numpy(),
                         )
-                        writer.add_images("YOOO", images_cpu)
+                        val_error["l1"].append(float(l1_loss.item()))
+                    # only run this on last batch from val loop
+                    images_cpu = (
+                        image.view(-1, 3, 224, 224)[:show_img_count].cpu().numpy()
+                    )
+
+                    images_cpu = put_text(
+                        images_cpu,
+                        [
+                            f"truth: {t*50}kcal, pred: {p*50}kcal"
+                            for t, p in zip(truth, pred)
+                        ],
+                    )
+                    writer.add_images("YOOO", images_cpu)
                 write_losses(writer, val_error, prefix="val_")
-                
 
     writer.close()
     model.save()
