@@ -70,6 +70,7 @@ def extractor_specialized(dict, idx):
         specialized_table_entries = dict.find_all('div', {'style': "padding:0px 0px 2px 0px;"})
         for part in specialized_table_entries:
             part_text = part.get_text()
+            print('#### ', part_text, '\n')
 
             # split part_texts
             if part_text != '':
@@ -182,6 +183,7 @@ def extract_from_html(data, file_name, folder_name):
     # specialized table 0
     specialized_dict_0 = {}
     specialized_dict_0 = extractor_specialized(specialized_table[0], idx=0)
+    print(specialized_dict_0)
 
     # further specialized tables
     if (len(specialized_table)>1):
