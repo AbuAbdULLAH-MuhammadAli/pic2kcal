@@ -55,7 +55,7 @@ class ImageCaloriesDataset(Dataset):
 
         image = io.imread(img_name)
         kcal = np.array(
-            [np.floor(element["kcal"] / 100)], dtype=np.int64
+            [np.floor(element["kcal"] / 50)], dtype=np.int64
         )  # np.array(np.floor(element["kcal"] / 100), dtype=np.int64).reshape(1)
 
         sample = {"image": image, "kcal": kcal}
