@@ -14,12 +14,12 @@ TODO: set directory 'DIR' in __main__
 
 
 def extractor_standard(string):
-
     # split text at different entries
     naehrwert_idx = string.find('Nährwerte')
     end_idx = string.find('Angaben korrigieren')
     # consider string from naehrwerte_idx on
     string = string[naehrwert_idx:end_idx]
+    string = string[0:end_idx]
 
     brennwert_idx = string.find('Brennwert')
     kalorien_idx = string.find('Kalorien')
@@ -29,21 +29,21 @@ def extractor_standard(string):
     davon_zucker_idx = string.find('davon Zucker')
     fett_idx = string.find('Fett')
     broteinheiten_idx = string.find('Broteinheiten')
-
+    cholesterin_idx = string.find('Cholesterin')
 
     indices = [naehrwert_idx, brennwert_idx, kalorien_idx, protein_idx, kohlenhydrate_idx, davon_zucker_idx,
-               fett_idx, ballasstoff_idx, broteinheiten_idx] #, end_idx]
+               fett_idx, ballasstoff_idx, broteinheiten_idx, cholesterin_idx]  # , end_idx]
 
     # separate parts and remove double spaces
     parts = [re.sub(' +', ' ', string[i:j]) for i, j in zip(indices, indices[1:] + [None])]
 
     # only keep reelvant parts
-    parts = parts[0:9]
+    parts = parts[0:11]
     part_dict = {}
 
-    for i in range(1, len(parts)):
+    for i in range(0, len(parts)):
         part = parts[i]
-        if part != '':
+        if part.strip() != '':
             # remove double-dot and all whitespace
             part = re.sub(r"[\s:]*", "", part)
 
@@ -58,7 +58,7 @@ def extractor_standard(string):
             # save dict
             part_dict[naehrwert] = {'Menge': menge, 'Einheit': einheit}
 
-    dict = {parts[0]: part_dict}
+    dict = {re.sub(' +', ' ', string[0:brennwert_idx]): part_dict}
     return dict
 
 
@@ -70,7 +70,6 @@ def extractor_specialized(dict, idx):
         specialized_table_entries = dict.find_all('div', {'style': "padding:0px 0px 2px 0px;"})
         for part in specialized_table_entries:
             part_text = part.get_text()
-            print('#### ', part_text, '\n')
 
             # split part_texts
             if part_text != '':
@@ -79,6 +78,7 @@ def extractor_specialized(dict, idx):
 
                 # extract letters / words
                 naehrwert, *einheit = list(filter(None, re.split(r'[(-?\d+\,?.?\d)]', part_text)))
+
                 # extract numbers
                 menge = list(filter(None, re.split(r'[a-z]|[A-Z]', part_text)))
                 # transform list of strings to strings
@@ -86,7 +86,7 @@ def extractor_specialized(dict, idx):
                 einheit = ''.join(map(str, einheit))
 
                 # save dict
-                part_dict[naehrwert] = {'Menge': menge[0], 'Einheit': einheit}
+                part_dict[naehrwert] = {'Menge': menge, 'Einheit': einheit}
 
     elif idx == 1:
         specialized_table_entries = dict.find_all('p')
@@ -110,7 +110,6 @@ def extractor_specialized(dict, idx):
 
                         # extract letters / words
                         naehrwert, *einheit = list(filter(None, re.split(r'[(-?\d+\,?.?\d)]', sub_part)))
-                        # extract numbers
                         menge = list(filter(None, re.split(r'[a-z]|[A-Z]', sub_part)))
                         # transform list of strings to strings
                         menge = ''.join(map(str, menge))
@@ -127,6 +126,11 @@ def extract_from_html(data, file_name, folder_name):
 
     # extract the product name
     product_name = soup.find('h1').get_text()
+
+    for tag in soup.find_all("meta"):
+        if tag.get("name", None) == "title":
+            b = tag.get("content", None)
+    product_name = b[:-32]
 
     # extract the source text
     source = ''
@@ -183,19 +187,31 @@ def extract_from_html(data, file_name, folder_name):
     # specialized table 0
     specialized_dict_0 = {}
     specialized_dict_0 = extractor_specialized(specialized_table[0], idx=0)
-    print(specialized_dict_0)
 
     # further specialized tables
-    if (len(specialized_table)>1):
+    if (len(specialized_table) > 1):
         for i in range(1, len(specialized_table)):
             specialized_dict_1 = {}
             specialized_dict_1 = extractor_specialized(specialized_table[i], idx=1)
 
             specialized_dict[specialized_table_headers[i]] = specialized_dict_1
 
+    # number of ratings
+    num_ratings = 0
+    hrefs = soup.find_all('a', attrs={'href': re.compile("^https://")})
+    for href in hrefs:
+        if '#bewertungen' in str(href):
+            s = href.get_text()
+            num_ratings = ''.join(i for i in s if i.isdigit())
+
+    # extract id
+    id = soup.select(".breadcrumb > a")[-1].get("href")
+
     # save to dict
     dict['Spezifische Nährwerte'] = {specialized_table_headers[0]: specialized_dict_0}
     dict['Spezifische Nährwerte'].update(specialized_dict)
+    dict['Bewertungen'] = num_ratings
+    dict['Id'] = id
 
     # save all to data under the current product_name
     data[product_name] = dict
@@ -212,22 +228,24 @@ def getKeys(D, answer):
 
 
 if __name__ == '__main__':
-    b=0
+
     DIR = "/home/veheusser/Code_Projects/cvhci_praktikum/fddb/"
 
-    DATA_DIR = DIR+"/fddb.info/db/de/lebensmittel/"
+    DATA_DIR = DIR + "/fddb.info/db/de/lebensmittel/"
     os.chdir(DATA_DIR)
 
     # create dictionary
     data = {}
+    b = 0
 
     # list of products
     product_names = []
 
     for folder in os.listdir(DATA_DIR):
-        if not(folder == 'selbst_gemacht_100_kalorien_dummy'):
-            b+=1
+        if not (folder == 'selbst_gemacht_100_kalorien_dummy'):
             print('current folder: ', folder, ' ', b)
+
+            b += 1
             os.chdir(DATA_DIR)
 
             # only handle index.html - files
