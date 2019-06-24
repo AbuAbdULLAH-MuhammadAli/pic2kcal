@@ -13,12 +13,4 @@ with open('./data/out.json') as json_file:
 
 
 for ingredient in ingredient_list:
-    score = -1
-    matched_ingredient = ''
-    for to_match in fddb_product_list:
-        new_score = fuzz.token_sort_ratio(ingredient, to_match)
-        if new_score > score:
-            score = new_score
-            matched_ingredient = to_match
-
-    print("{} - {}  score: {}".format(ingredient, matched_ingredient, score))
+    print("{} : {}".format(ingredient, process.extract(ingredient, fddb_product_list, limit=3)))
