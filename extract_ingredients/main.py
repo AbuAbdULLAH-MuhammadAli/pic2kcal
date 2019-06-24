@@ -2,7 +2,7 @@ import json
 import re
 from collections import OrderedDict
 
-TAKE_N = 1500
+TAKE_N = 10000
 
 ingredient_dict = {}
 
@@ -52,5 +52,9 @@ for x, y in most_frequent:
     name = x
     name = name.lower()
     name = re.sub(r"[^a-z]", "", name)
-    ingredients_to_process.append(name)
+    ingredients_to_process.append(x)
     print(name)
+
+
+with open('./data/out.json', 'w') as out_file:
+    json.dump(ingredients_to_process, out_file)
