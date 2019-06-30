@@ -12,6 +12,11 @@ from itertools import islice
 from collections import defaultdict
 from torch.utils.tensorboard import SummaryWriter
 
+# https://github.com/microsoft/ptvsd/issues/943
+import multiprocessing
+
+multiprocessing.set_start_method("spawn", True)
+
 plt.ion()
 
 
@@ -42,19 +47,25 @@ def show_loss(name, val):
     return 50 * val if name == "l1" else val
 
 
-def write_losses(writer, running_losses, prefix=""):
+def write_losses(
+    *, writer, running_losses, epoch, batch_idx, epoch_batch_idx, prefix=""
+):
     for loss_name, running_loss in running_losses.items():
         avg_loss = np.mean(running_loss)
         avg_loss = show_loss(loss_name, avg_loss)
         loss_name_prefixed = f"{prefix}{loss_name}"
         writer.add_scalar(loss_name_prefixed, avg_loss, batch_idx)
-        print("[%d, %5d] %s: %.3f" % (epoch, i, loss_name_prefixed, avg_loss))
+        print(
+            "[%d, %5d] %s: %.3f"
+            % (epoch, epoch_batch_idx, loss_name_prefixed, avg_loss)
+        )
 
-if __name__ == "__main__":
+
+def train():
     parser = argparse.ArgumentParser()
     parser.add_argument("--runname", help="name this experiment", required=True)
     args = parser.parse_args()
-    batch_size = 50
+    batch_size = 20
     epochs = 20
     shuffle = True
     validate_every = 100
@@ -84,8 +95,9 @@ if __name__ == "__main__":
     def criterion_l1_loss(a, b):
         ax = a.argmax(1).float()
         bx = b.float()
-        print(ax, bx)
-        print(ax.shape, bx.shape)
+
+        # ax[torch.isnan(ax)] = 0
+        # bx[torch.isnan(bx)] = 0
         return __criterion_l1_loss(ax, bx) * 50
 
     gpu = torch.device("cuda:0")
@@ -101,7 +113,7 @@ if __name__ == "__main__":
             val_dataset, batch_size=batch_size, shuffle=shuffle, num_workers=4
         )
 
-        for i, data in enumerate(train_loader, 0):
+        for epoch_batch_idx, data in enumerate(train_loader, 0):
             # print(data["kcal"].shape)
             # print(data["kcal"].squeeze().shape)
             # print("sq2", data["kcal"].squeeze())
@@ -116,7 +128,6 @@ if __name__ == "__main__":
             kcal = data["kcal"].squeeze().to(device)
             loss = criterion(outputs, kcal)
             l1_loss = criterion_l1_loss(outputs, kcal)
-            print("got l1 loss")
 
             loss.backward()
             optimizer.step()
@@ -125,7 +136,13 @@ if __name__ == "__main__":
             running_losses["l1"].append(float(l1_loss.item()))
 
             if batch_idx % validate_every == 0:
-                write_losses(writer, running_losses)
+                write_losses(
+                    writer=writer,
+                    running_losses=running_losses,
+                    epoch=epoch,
+                    batch_idx=batch_idx,
+                    epoch_batch_idx=epoch_batch_idx,
+                )
                 running_losses = defaultdict(list)
 
             if batch_idx % validate_every == 0:
@@ -160,7 +177,19 @@ if __name__ == "__main__":
                         ],
                     )
                     writer.add_images("YOOO", images_cpu)
-                write_losses(writer, val_error, prefix="val_")
+                write_losses(
+                    writer=writer,
+                    running_losses=val_error,
+                    epoch=epoch,
+                    batch_idx=batch_idx,
+                    epoch_batch_idx=epoch_batch_idx,
+                    prefix="val_",
+                )
 
     writer.close()
     model.save()
+
+
+if __name__ == "__main__":
+    with torch.autograd.detect_anomaly():
+        train()
