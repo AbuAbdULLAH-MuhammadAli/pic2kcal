@@ -235,7 +235,7 @@ def extract_from_html(file_name, folder_name):
         ".standardcontent > div:nth-child(1) img.imagesimpleborder, .standardcontent > div:nth-child(1) img.imagesmallborder48"
     )
     images = [
-        {"url": image.get("href"), "title": image.get("title")} for image in images
+        {"url": image.get("src"), "title": image.get("title")} for image in images
     ]
 
     # extract id
