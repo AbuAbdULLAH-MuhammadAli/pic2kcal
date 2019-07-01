@@ -44,8 +44,6 @@ def put_text(imgs, texts):
     return result
 
 
-def show_loss(name, val):
-    return 50 * val if name == "l1" else val
 
 
 def write_losses(
@@ -53,7 +51,6 @@ def write_losses(
 ):
     for loss_name, running_loss in running_losses.items():
         avg_loss = np.mean(running_loss)
-        avg_loss = show_loss(loss_name, avg_loss)
         loss_name_prefixed = f"{prefix}{loss_name}"
         writer.add_scalar(loss_name_prefixed, avg_loss, batch_idx)
         print(
