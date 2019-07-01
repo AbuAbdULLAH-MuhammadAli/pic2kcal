@@ -1,4 +1,5 @@
 from nn.models.res_net import ResNet
+from nn.models.res_net50 import ResNet50
 from nn.dataset import ImageCaloriesDataset
 from torch.utils.data import DataLoader
 import matplotlib.pyplot as plt
@@ -81,7 +82,10 @@ def train():
     writer = SummaryWriter(logdir)
     print(f"tensorboard logdir: {writer.log_dir}")
 
-    model = ResNet()
+    # model = ResNet()
+    model = ResNet50()
+
+
     net = model.get_model_on_device()
     device = model.ged_device()
 
