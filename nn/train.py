@@ -161,7 +161,7 @@ def train():
 
                         output = net(image)
                         val_error["loss"].append(criterion(output, kcal).item())
-                        l1_loss = criterion_l1_loss(outputs, kcal)
+                        l1_loss = criterion_l1_loss(output, kcal)
 
                         truth, pred = (
                             kcal_i.numpy(),
