@@ -1,9 +1,8 @@
 from torch.utils.data import Dataset
-from torchvision import transforms, utils
+from torchvision import transforms
 import json
 import os
 import numpy as np
-import matplotlib.pyplot as plt
 from skimage import io
 
 ROOT = "./data/"
@@ -70,14 +69,6 @@ class ImageDataset(Dataset):
 
         return sample
 
-    @staticmethod
-    def show_img_batch(sample_batched):
-        images_batch, kcal_batch = sample_batched["image"], sample_batched["kcal"]
-
-        grid = utils.make_grid(images_batch)
-        plt.imshow(grid.numpy().transpose((1, 2, 0)))
-
-        plt.title("Samples")
 
 
 class ImageNutritionalDataset(Dataset):
