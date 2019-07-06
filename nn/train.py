@@ -1,6 +1,5 @@
 from nn.dataset import ImageDataset
 from torch.utils.data import DataLoader
-import matplotlib.pyplot as plt
 import torch.nn as nn
 import torch
 import datetime
@@ -18,7 +17,6 @@ from nn.models.res_nutritional_net50 import ResNutritionalNet50
 
 multiprocessing.set_start_method("spawn", True)
 
-plt.ion()
 
 
 def count_parameters(model):
