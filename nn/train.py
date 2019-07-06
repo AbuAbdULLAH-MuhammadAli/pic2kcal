@@ -13,7 +13,7 @@ from torch.utils.tensorboard import SummaryWriter
 # https://github.com/microsoft/ptvsd/issues/943
 import multiprocessing
 
-from nn.models.res_nutritional_net50 import ResNutritionalNet50
+from nn.models.nutritional_dense_net import NutritionalDenseNet
 
 multiprocessing.set_start_method("spawn", True)
 
@@ -61,7 +61,7 @@ def train():
     parser = argparse.ArgumentParser()
     parser.add_argument("--runname", help="name this experiment", required=True)
     args = parser.parse_args()
-    batch_size = 2
+    batch_size = 50
     epochs = 1
     shuffle = True
     validate_every = 100
@@ -77,7 +77,7 @@ def train():
     writer = SummaryWriter(logdir)
     print(f"tensorboard logdir: {writer.log_dir}")
 
-    model = ResNutritionalNet50()
+    model = NutritionalDenseNet()
 
 
     net = model.get_model_on_device()
