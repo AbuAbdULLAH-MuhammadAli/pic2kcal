@@ -1,6 +1,4 @@
-from nn.models.res_net import ResNet
-from nn.models.res_net50 import ResNet50
-from nn.dataset import ImageCaloriesDataset
+from nn.dataset import ImageDataset
 from torch.utils.data import DataLoader
 import matplotlib.pyplot as plt
 import torch.nn as nn
@@ -15,6 +13,8 @@ from torch.utils.tensorboard import SummaryWriter
 
 # https://github.com/microsoft/ptvsd/issues/943
 import multiprocessing
+
+from nn.models.res_nutritional_net50 import ResNutritionalNet50
 
 multiprocessing.set_start_method("spawn", True)
 
@@ -63,8 +63,8 @@ def train():
     parser = argparse.ArgumentParser()
     parser.add_argument("--runname", help="name this experiment", required=True)
     args = parser.parse_args()
-    batch_size = 50
-    epochs = 20
+    batch_size = 2
+    epochs = 1
     shuffle = True
     validate_every = 100
     validate_batches = 50
@@ -79,15 +79,14 @@ def train():
     writer = SummaryWriter(logdir)
     print(f"tensorboard logdir: {writer.log_dir}")
 
-    # model = ResNet()
-    model = ResNet50()
+    model = ResNutritionalNet50()
 
 
     net = model.get_model_on_device()
     device = model.ged_device()
 
-    train_dataset = ImageCaloriesDataset("train.json", "train")
-    val_dataset = ImageCaloriesDataset("val.json", "val")
+    train_dataset = ImageDataset("train.json", "train")
+    val_dataset = ImageDataset("val.json", "val")
 
     optimizer = optim.Adam(net.parameters())
     criterion = nn.CrossEntropyLoss()

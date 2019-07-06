@@ -19,8 +19,7 @@ class Model:
 
     def save(self, path='./weights/'):
         model = self.get_model()
-
-        time_str = str(time.time_ns())
+        time_str = str(time.time())
 
         full_path = path+self.name+'-'+time_str+'.pt'
 
