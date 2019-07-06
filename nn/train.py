@@ -61,8 +61,8 @@ def train():
     parser = argparse.ArgumentParser()
     parser.add_argument("--runname", help="name this experiment", required=True)
     args = parser.parse_args()
-    batch_size = 32
-    epochs = 1
+    batch_size = 64
+    epochs = 20
     shuffle = True
     validate_every = 100
     validate_batches = 50
