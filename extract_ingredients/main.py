@@ -45,6 +45,7 @@ for r, n in recipe_num_ingredients.items():
 print('lost recipes: {}/{}'.format(num_lost, len(recipe_num_ingredients)))
 print('recipes: {}'.format(len(recipe_num_ingredients) - num_lost))
 
+
 ingredients_to_process = []
 
 for x, y in most_frequent:

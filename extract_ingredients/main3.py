@@ -25,3 +25,4 @@ with open("./data/ingredient-matching/matches.jsonl", "w") as f:
     with Pool(8) as p:
         for extracted in p.imap(extract, tqdm(ingredient_list), chunksize=20):
             json.dump(extracted, f)
+
