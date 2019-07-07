@@ -4,9 +4,7 @@ import json
 import os
 import numpy as np
 from skimage import io
-
-ROOT = "./data/"
-
+import math
 
 class ToTensor(object):
     """Convert ndarrays in sample to Tensors."""
@@ -21,6 +19,11 @@ def transform_data(element):
     return np.array(
         [np.floor(element / 50)], dtype=np.int64
     )
+
+# one class every 50 kcal
+granularity = 50
+max_val = 2500
+class_count = math.ceil(max_val / granularity) + 1
 
 
 class ImageDataset(Dataset):
@@ -44,9 +47,9 @@ class ImageDataset(Dataset):
         ),
     ):
 
-        with open(ROOT + calories_file) as json_file:
+        with open(calories_file) as json_file:
             self.calorie_image_tuples = json.load(json_file)["data"]
-        self.image_dir = ROOT + image_dir
+        self.image_dir = image_dir
         self.transform = transform
 
     def __len__(self):
@@ -59,7 +62,7 @@ class ImageDataset(Dataset):
 
         image = io.imread(img_name)
         kcal = np.array(
-            [np.floor(element["kcal"] / 50)], dtype=np.int64
+            [np.round(element["kcal"] / granularity)], dtype=np.int64
         )  # np.array(np.floor(element["kcal"] / 100), dtype=np.int64).reshape(1)
 
         sample = {"image": image, "kcal": kcal}
