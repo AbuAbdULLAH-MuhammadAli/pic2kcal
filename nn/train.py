@@ -9,13 +9,15 @@ import numpy as np
 from itertools import islice
 from collections import defaultdict
 from torch.utils.tensorboard import SummaryWriter
+from nn.models.nutritional_dense_net import NutritionalDenseNet
+from nn.models.res_net101 import ResNet101
+from nn.models.res_net50 import ResNet50
 
 # https://github.com/microsoft/ptvsd/issues/943
 import multiprocessing
-
-from nn.models.nutritional_dense_net import NutritionalDenseNet
-
 multiprocessing.set_start_method("spawn", True)
+
+
 
 
 
@@ -77,7 +79,7 @@ def train():
     writer = SummaryWriter(logdir)
     print(f"tensorboard logdir: {writer.log_dir}")
 
-    model = NutritionalDenseNet()
+    model = ResNet50()#NutritionalDenseNet()
 
 
     net = model.get_model_on_device()

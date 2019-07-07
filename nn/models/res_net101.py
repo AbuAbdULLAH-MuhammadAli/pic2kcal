@@ -4,7 +4,7 @@ import torch.nn as nn
 from nn.models.model import Model
 
 
-class ResNet(Model):
+class ResNet101(Model):
     def __init__(self):
         super().__init__("ResNet101-kcal")
 
