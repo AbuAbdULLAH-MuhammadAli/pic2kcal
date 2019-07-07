@@ -1,9 +1,12 @@
 import json
 import os
-
+import sys
 import pandas as pd
 from bs4 import BeautifulSoup
 import re
+from tqdm import tqdm
+from pathlib import Path
+from multiprocessing import Pool
 
 """
 extracts info for each food item from fddb
@@ -148,8 +151,9 @@ def extractor_specialized(dict, idx):
 def normalize_spaces(s):
     return re.sub(r" +", " ", s)
 
-def extract_from_html(data, file_name, folder_name):
-    soup = BeautifulSoup(open(file_name, 'rb'), 'html.parser')
+def extract_from_html(file_name, folder_name):
+    with open(file_name, "rb") as f:
+        soup = BeautifulSoup(f, "html.parser")
 
     # extract the product name
     product_name = soup.find('h1').get_text()
@@ -258,15 +262,23 @@ def extract_from_html(data, file_name, folder_name):
     # extract id
     id = soup.select(".breadcrumb > a")[-1].get("href")
 
+
+    images = soup.select(
+        ".standardcontent > div:nth-child(1) img.imagesimpleborder, .standardcontent > div:nth-child(1) img.imagesmallborder48"
+    )
+    images = [
+        {"url": image.get("src"), "title": image.get("title")} for image in images
+    ]
+
+
     # save to dict
     dict['Spezifische Nährwerte'] = {specialized_table_headers[0]: specialized_dict_0}
     dict['Spezifische Nährwerte'].update(specialized_dict)
     dict['Bewertungen'] = num_ratings
+    dict["Bilder"] = images
     dict['Id'] = id
 
-    # save all to data under the current product_name
-    data[product_name] = dict
-    return data, product_name
+    return dict
 
 
 def getKeys(D, answer):
@@ -277,51 +289,28 @@ def getKeys(D, answer):
             answer.append(D[k])
         return answer
 
+def handle_dir(folder):
+    if not (folder == "selbst_gemacht_100_kalorien_dummy"):
+        return extract_from_html(folder / "index.html", folder)
+    return None
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
-    DIR = "/home/veheusser/Code_Projects/cvhci_praktikum/fddb/"
+    DIR = Path(sys.argv[1])  # "/home/veheusser/Code_Projects/cvhci_praktikum/fddb/"
 
-    DATA_DIR = DIR + "/fddb.info/db/de/lebensmittel/"
-
-    os.chdir(DATA_DIR)
+    DATA_DIR = DIR / "fddb.info/db/de/lebensmittel/"
 
     # create dictionary
-    data = {}
-    b = 0
+    data = []
 
     # list of products
     product_names = []
 
-    for folder in os.listdir(DATA_DIR):
-        if not (folder == 'selbst_gemacht_100_kalorien_dummy'):
-            # print('current folder: ', folder, ' ', b)
-
-            if True: #folder == "naturprodukt_banane_roh":#"rewe_kartoffeln":
-
-                print('folder: ', folder)
-
-                b += 1
-                os.chdir(DATA_DIR)
-
-                # only handle index.html - files
-                for file in os.listdir(folder):
-                    print('folder: ', folder)
-                    if file == 'index.html':
-                        os.chdir(folder)
-                        data, product_name = extract_from_html(data, file, folder)
-                        product_names.append(product_name)
-
-    # to array of dicts
-    data = getKeys(data, answer=[])
+    with Pool(8) as pool:
+        for out in pool.imap(handle_dir, tqdm(DATA_DIR.iterdir()), chunksize=50):
+            data.append(out)
 
     # save data to json file
-    os.chdir(DIR)
-    with open('fddb_data.json', 'w') as outfile:
+    with open(DIR / "fddb_data.json", "w") as outfile:
         # saved as pretty print with indent=4, sort_Keys=True
-        json.dump(data, outfile, ensure_ascii=False, indent=4) # , sort_keys=True)
-    outfile.close()
-
-    # save list of product names to csv file
-    df = pd.DataFrame(product_names)
-    df.to_csv('fddb_product_names.csv', index=False, header=False)
+        json.dump(data, outfile, ensure_ascii=False, indent="\t", sort_keys=True)
