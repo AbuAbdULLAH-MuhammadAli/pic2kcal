@@ -8,4 +8,9 @@ def normalize_out_ingredient(ing: str):
         outs.add(ing)
     if ing == "Ei":
         outs.add("Eier")
+    if ing == "Salz":
+        outs.add("Salz und Pfeffer")
+    if ing == "Karotten / Möhren":
+        outs.add("Karotten")
+        outs.add("Möhren")
     return list(outs)

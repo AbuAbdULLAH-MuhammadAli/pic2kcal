@@ -1,12 +1,16 @@
 import json
 import os
 import sys
-import pandas as pd
 from bs4 import BeautifulSoup
 import re
 from tqdm import tqdm
 from pathlib import Path
 from multiprocessing import Pool
+
+
+# https://github.com/microsoft/ptvsd/issues/943
+import multiprocessing
+multiprocessing.set_start_method("spawn", True)
 
 """
 extracts info for each food item from fddb
@@ -211,8 +215,11 @@ def extract_from_html(file_name, folder_name):
                     if list(div.children)[0].name == "table":
                         continue
                     k, v = div.children
-
-                    naehrwert, einheit = re.match(r"^(\d+(?:,\d+)?%?)(?: (\w+))?$", v.get_text()).groups()
+                    try:
+                        naehrwert, einheit = re.match(r"^(\d+(?:,\d+)?%?)(?: (\w+))?$", v.get_text()).groups()
+                    except Exception as e:
+                        print("warn", "could not parse", v.get_text(), file_name)
+                        return None
                     naehrwert = naehrwert.replace(",", ".")
                     if naehrwert[-1] == "%":
                         naehrwert = float(naehrwert[:-1])
@@ -291,7 +298,11 @@ def getKeys(D, answer):
 
 def handle_dir(folder):
     if not (folder == "selbst_gemacht_100_kalorien_dummy"):
-        return extract_from_html(folder / "index.html", folder)
+        try:
+            return extract_from_html(folder / "index.html", folder)
+        except Exception as e:
+            print("exception in file", folder / "index.html", file=sys.stderr)
+            raise e
     return None
 
 if __name__ == "__main__":
@@ -303,12 +314,10 @@ if __name__ == "__main__":
     # create dictionary
     data = []
 
-    # list of products
-    product_names = []
-
     with Pool(8) as pool:
-        for out in pool.imap(handle_dir, tqdm(DATA_DIR.iterdir()), chunksize=50):
-            data.append(out)
+        for out in pool.imap(handle_dir, tqdm(DATA_DIR.iterdir(), total=330000), chunksize=50):
+            if out is not None:
+                data.append(out)
 
     # save data to json file
     with open(DIR / "fddb_data.json", "w") as outfile:
