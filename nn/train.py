@@ -17,10 +17,8 @@ from pathlib import Path
 
 # https://github.com/microsoft/ptvsd/issues/943
 import multiprocessing
+
 multiprocessing.set_start_method("spawn", True)
-
-
-
 
 
 def count_parameters(model):

@@ -35,9 +35,9 @@ class ImageDataset(Dataset):
             [
                 transforms.ToPILImage(),
                 # transforms.Resize((224, 224)),
-                # transforms.RandomResizedCrop(224, scale=(0.3, 1.0), ratio=(0.9, 1.1)),
+                transforms.RandomResizedCrop(224, scale=(0.7, 1.0), ratio=(0.9, 1.1)),
                 transforms.RandomHorizontalFlip(),
-                transforms.Resize((224, 224)),
+                #transforms.Resize((224, 224)),
                 # imageNet normalization
                 transforms.ToTensor(),
                 # transforms.Normalize(
