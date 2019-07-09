@@ -198,7 +198,7 @@ def train():
                     images_cpu = put_text(
                         images_cpu,
                         [
-                            (f"truth: {t*granularity}kcal, pred: {p*granularity}kcal" if is_regression else f"truth: {t}kcal, pred: {p}kcal")
+                            (f"truth: {t:.0f}kcal, pred: {p:.0f}kcal" if is_regression else f"truth: {t*granularity}kcal, pred: {p*granularity}kcal")
                             for t, p in zip(truth, pred)
                         ],
                     )
