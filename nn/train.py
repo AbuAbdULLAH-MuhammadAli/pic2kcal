@@ -118,7 +118,6 @@ def train():
         # bx[torch.isnan(bx)] = 0
         return __criterion_l1_loss(ax, bx) * granularity
 
-    gpu = torch.device("cuda:0")
     trainable_params, total_params = count_parameters(net)
     print(f"Parameters: {trainable_params} trainable, {total_params} total")
     running_losses = defaultdict(list)
@@ -150,9 +149,9 @@ def train():
 
             # print("out", outputs.shape)
 
-            kcal = data["kcal"].squeeze().to(device)
+            kcal = data["kcal"].to(device) if is_regression else data["kcal"].squeeze().to(device)
             loss = criterion(outputs, kcal)
-            l1_loss = criterion_l1_loss(outputs, kcal)
+            l1_loss = __criterion_l1_loss(outputs, kcal) if is_regression else criterion_l1_loss(outputs, kcal)
 
             loss.backward()
             optimizer.step()
@@ -177,15 +176,14 @@ def train():
                     for data in islice(val_loader, validate_batches):
                         image = data["image"].to(device)
                         # print(data["image"], type(data["image"]))
-                        kcal_i = data["kcal"].squeeze()
-                        kcal = kcal_i.to(device)
+                        kcal = data["kcal"].to(device) if is_regression else data["kcal"].squeeze().to(device)
 
                         output = net(image)
                         val_error["loss"].append(criterion(output, kcal).item())
-                        l1_loss = criterion_l1_loss(output, kcal)
+                        l1_loss = __criterion_l1_loss(output, kcal) if is_regression else criterion_l1_loss(output, kcal)
 
                         truth, pred = (
-                            kcal_i.numpy(),
+                            data["kcal"].squeeze().numpy(),
                             torch.argmax(output.cpu(), 1).numpy(),
                         )
                         val_error["l1"].append(float(l1_loss.item()))
