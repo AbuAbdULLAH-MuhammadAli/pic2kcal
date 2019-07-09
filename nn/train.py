@@ -13,6 +13,7 @@ from torch.utils.tensorboard import SummaryWriter
 from nn.models.dense_net import DenseNet
 from nn.models.res_net101 import ResNet101
 from nn.models.res_net50 import ResNet50
+from nn.models.baseline_model import BaselineModel
 from pathlib import Path
 
 # https://github.com/microsoft/ptvsd/issues/943
@@ -98,9 +99,11 @@ def train():
     writer = SummaryWriter(logdir)
     print(f"tensorboard logdir: {writer.log_dir}")
 
-    model = DenseNet(num_output_neurons) # ResNet50()#
+    model = DenseNet(num_output_neurons) # 
+    print("model:", model.name)
 
     net = model.get_model_on_device(True)
+    print(net)
     device = model.get_device()
 
     train_dataset = ImageDataset(datadir / "train.json", datadir / "train", is_regression, granularity)
