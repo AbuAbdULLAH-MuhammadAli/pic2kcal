@@ -2,11 +2,10 @@ import torchvision.models as models
 import torch.nn as nn
 
 from nn.models.model import Model
-from nn.dataset import class_count
 
-class NutritionalDenseNet(Model):
-    def __init__(self):
-        super().__init__("NutritionalDenseNet")
+class DenseNet(Model):
+    def __init__(self, num_output_neurons):
+        super().__init__("DenseNet", num_output_neurons)
 
     def get_model(self):
         self.model = models.densenet121(pretrained=True)
@@ -19,7 +18,7 @@ class NutritionalDenseNet(Model):
         # Parameters of newly constructed modules have requires_grad=True by default
         num_ftrs = self.model.classifier.in_features
 
-        self.model.classifier = nn.Linear(num_ftrs, class_count)
+        self.model.classifier = nn.Linear(num_ftrs, self.num_output_neurons)
 
         return self.model
 

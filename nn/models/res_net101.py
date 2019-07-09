@@ -20,7 +20,7 @@ class ResNet101(Model):
         num_ftrs = self.model.fc.in_features
 
         # 1 output neuron to predict kcal
-        self.model.fc = nn.Linear(num_ftrs, 50)  # nn.Sequential(, nn.Softmax(dim=25))
+        self.model.fc = nn.Linear(num_ftrs, self.num_output_neurons)  # nn.Sequential(, nn.Softmax(dim=25))
         # self.model.softmax = nn.Softmax(dim=25)
 
         return self.model

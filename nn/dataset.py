@@ -4,7 +4,7 @@ import json
 import os
 import numpy as np
 from skimage import io
-import math
+
 
 class ToTensor(object):
     """Convert ndarrays in sample to Tensors."""
@@ -15,15 +15,16 @@ class ToTensor(object):
         return image.convert("RGB")
 
 
-def transform_data(element):
-    return np.array(
-        [np.floor(element / 50)], dtype=np.int64
-    )
+def transform_data(element, is_regression=False, granularity=50):
+    if is_regression:
+        return np.array(
+            [element], dtype=np.float32
+        )
+    else:
+        return np.array(
+            [np.floor(element / granularity)], dtype=np.int64
+        )
 
-# one class every 50 kcal
-granularity = 50
-max_val = 2500
-class_count = math.ceil(max_val / granularity) + 1
 
 
 class ImageDataset(Dataset):
@@ -31,6 +32,8 @@ class ImageDataset(Dataset):
         self,
         calories_file,
         image_dir,
+        is_regression,
+        granularity,
         transform=transforms.Compose(
             [
                 transforms.ToPILImage(),
@@ -51,6 +54,8 @@ class ImageDataset(Dataset):
             self.calorie_image_tuples = json.load(json_file)["data"]
         self.image_dir = image_dir
         self.transform = transform
+        self.granularity = granularity
+        self.is_regression = is_regression
 
     def __len__(self):
         return len(self.calorie_image_tuples)
@@ -61,9 +66,7 @@ class ImageDataset(Dataset):
         img_name = os.path.join(self.image_dir, element["name"])
 
         image = io.imread(img_name)
-        kcal = np.array(
-            [np.round(element["kcal"] / granularity)], dtype=np.int64
-        )  # np.array(np.floor(element["kcal"] / 100), dtype=np.int64).reshape(1)
+        kcal = transform_data(element["kcal"], self.is_regression, self.granularity)
 
         sample = {"image": image, "kcal": kcal}
 
@@ -109,10 +112,10 @@ class ImageNutritionalDataset(Dataset):
 
         image = io.imread(img_name)
 
-        kcal = transform_data(element["kcal"])
-        protein = transform_data(element["protein"])
-        kohlenhydrate = transform_data(element["kohlenhydrate"])
-        fat = transform_data(element["fat"])
+        kcal = transform_data(element["kcal"], self.is_regression, self.granularity)
+        protein = transform_data(element["protein"], self.is_regression, self.granularity)
+        kohlenhydrate = transform_data(element["kohlenhydrate"], self.is_regression, self.granularity)
+        fat = transform_data(element["fat"], self.is_regression, self.granularity)
 
         sample = {
             "image": image,
