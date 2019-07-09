@@ -14,8 +14,7 @@ class ResNet50(Model):
 
         # freeze first layers
         for param in self.model.parameters():
-            # param.requires_grad = False
-            pass
+            param.requires_grad = False
 
         # Parameters of newly constructed modules have requires_grad=True by default
         num_ftrs = self.model.fc.in_features

@@ -108,6 +108,13 @@ def train():
     running_losses = defaultdict(list)
     batch_idx = 0
     for epoch in range(1, epochs + 1):
+        if epoch == 3:
+            for param in net.parameters():
+                param.requires_grad = True
+            trainable_params, total_params = count_parameters(net)
+            print('all params unfreezed')
+            print(f"Parameters: {trainable_params} trainable, {total_params} total")
+
         train_loader = DataLoader(
             train_dataset, batch_size=batch_size, shuffle=shuffle, num_workers=4
         )
