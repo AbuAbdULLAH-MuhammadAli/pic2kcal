@@ -11,7 +11,7 @@ class Model:
         self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
     @abstractmethod
-    def get_model(self):
+    def get_model(self, all_layers_trainable):
         pass
 
     @abstractmethod
@@ -29,8 +29,8 @@ class Model:
     def load(self, path):
         self.model.load_state_dict(torch.load(path))
 
-    def get_model_on_device(self):
-        return self.get_model().to(self.device)
+    def get_model_on_device(self, all_layers_trainable):
+        return self.get_model(all_layers_trainable).to(self.device)
 
-    def ged_device(self):
+    def get_device(self):
         return self.device

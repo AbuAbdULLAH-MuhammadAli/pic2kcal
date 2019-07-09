@@ -100,8 +100,8 @@ def train():
 
     model = DenseNet(num_output_neurons) # ResNet50()#
 
-    net = model.get_model_on_device()
-    device = model.ged_device()
+    net = model.get_model_on_device(True)
+    device = model.get_device()
 
     train_dataset = ImageDataset(datadir / "train.json", datadir / "train", is_regression, granularity)
     val_dataset = ImageDataset(datadir / "val.json", datadir / "val", is_regression, granularity)
