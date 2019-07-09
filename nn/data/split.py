@@ -6,9 +6,19 @@ from random import sample
 import pandas as pd
 from collections import defaultdict
 from pathlib import Path
-out_root = Path("tomove")
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--mode", required=True, choices=["usergiven", "matched"])
+parser.add_argument(
+    "--kcal-mode", choices=["per_portion", "per_100g", "per_recipe"], required=True
+)
+parser.add_argument("--out-dir", type=str, required=True)
+args = parser.parse_args()
+out_root = Path(args.out_dir)
 if out_root.exists():
     raise Exception("out dir already exists")
+
 
 def filter_outliers(data: list, *, factor=2, key=lambda x: x):
     l = len(data)
@@ -21,45 +31,79 @@ def filter_outliers(data: list, *, factor=2, key=lambda x: x):
         print("std", stddev)
         filt_min = mean - factor * stddev
         filt_max = mean + factor * stddev
-        data = [ele for val, ele in zip(vals, data) if val >= filt_min and val <= filt_max]
+        data = [
+            ele for val, ele in zip(vals, data) if val >= filt_min and val <= filt_max
+        ]
         if len(data) == l:
             break
         l = len(data)
-    return (
-        data,
-        filt_min,
-        filt_max,
-    )
+    return (data, filt_min, filt_max)
 
 
-mode = "matched"
-if mode == "usergiven":
+if args.mode == "usergiven":
     inp_file = "../../data/recipes/processed_data.json"
+
     def get_recipe_outs(r):
-        return r["kcal_per_portion"]
-elif mode == "matched":
+        return {"kcal": r["kcal_per_portion"], "recipe_id": r["id"]}
+
+
+elif args.mode == "matched":
     inp_file = "../../data/recipes/recipes_matched.json"
+
     def get_recipe_outs(r):
-        if r["portions"] < 2:
-            return None
-        nut = r["nutritional_values"]
-        if nut is None:
-            return None
-        if "Kalorien" not in nut["per_portion"]:
-            return None
-        return nut["per_portion"]["Kalorien"]["Menge"]
+        try:
+            kcal_mode = args.kcal_mode
+            if kcal_mode == "per_portion" and r["portions"] < 2:
+                return None
+            nut = r["nutritional_values"]
+            if nut is None:
+                return None
+            if "Kalorien" not in nut["per_portion"]:
+                return None
+            if kcal_mode == "per_100g":
+                # just
+                total_mass = sum(
+                    ingredient["matched"]["normal"]["count"]
+                    for ingredient in r["ingredients"]
+                    if ingredient["type"] == "ingredient"
+                    and ingredient["matched"]["matched"]
+                )
+                kcal_src = {
+                    k: {**v, "Menge": v["Menge"] / total_mass * 100}
+                    for k, v in nut["per_recipe"].items()
+                }
+            else:
+                kcal_src = nut[kcal_mode]
+            return {
+                "kcal": kcal_src["Kalorien"]["Menge"],
+                "protein": kcal_src["Protein"]["Menge"],
+                "fat": kcal_src["Fett"]["Menge"],
+                "carbohydrates": kcal_src["Kohlenhydrate"]["Menge"],
+                "recipe_id": r["id"],
+            }
+        except Exception as e:
+            print("at recipe", r["id"])
+            raise e
+
+
 else:
     raise Exception("noee")
 # read json
 with open(inp_file) as f:
     data = json.load(f)
 
-data = [d for d in data if get_recipe_outs(d) is not None and len(d["picture_files"]) > 0]
+print("before removing", len(data), "recipes")
+data = [
+    d for d in data if get_recipe_outs(d) is not None and len(d["picture_files"]) > 0
+]
+print("after removing", len(data), "recipes")
 bef_count = len(data)
-data, filt_min, filt_max = filter_outliers(data, key=get_recipe_outs)
+data, filt_min, filt_max = filter_outliers(
+    data, key=lambda r: get_recipe_outs(r)["kcal"]
+)
 print(f"filtering kcal to [{filt_min}, {filt_max}]")
 
-print(f"removed {bef_count - len(data)} of {bef_count}")
+print(f"outliers: removed {bef_count - len(data)} of {bef_count}")
 
 df = pd.DataFrame(data)
 
@@ -80,9 +124,9 @@ for dataset, dsname in ((train, "train"), (val, "val"), (test, "test")):
         for i, img_name in enumerate(row["picture_files"]):
             # print(img_name)
             name = row["id"] + "_" + str(i) + ".jpg"
-            output[dsname].append({"name": name, "kcal": get_recipe_outs(row)})
+            output[dsname].append({"name": name, **get_recipe_outs(row)})
             src = "../../img/" + img_name
             dest = out_root / dsname / name
             os.symlink(src, dest)
     with open(out_root / (dsname + ".json"), "w") as file:
-        json.dump({"data": output[dsname]}, file)
+        json.dump({"data": output[dsname]}, file, indent="\t")
