@@ -192,8 +192,8 @@ def train():
                             val_error[loss_name].append(float(loss_fn(output, kcal).item()))
                         
                         truth, pred = (
-                            kcal_cpu.numpy(),
-                            output.cpu().numpy() if is_regression else torch.argmax(output.cpu(), 1).numpy(),
+                            kcal_cpu.squeeze().numpy(),
+                            output.cpu().squeeze().numpy() if is_regression else torch.argmax(output.cpu(), 1).numpy(),
                         )
                     # only run this on last batch from val loop (truth, pred will be from last iteration)
                     images_cpu = (
