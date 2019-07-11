@@ -184,14 +184,15 @@ def train():
                     for data in islice(val_loader, validate_batches):
                         image = data["image"].to(device)
                         # print(data["image"], type(data["image"]))
-                        kcal = data["kcal"].to(device) if is_regression else data["kcal"].squeeze().to(device)
+                        kcal_cpu = data["kcal"] if is_regression else data["kcal"].squeeze()
+                        kcal = kcal_cpu.to(device)
 
                         output = net(image)
                         for loss_name, loss_fn in loss_fns.items():
                             val_error[loss_name].append(float(loss_fn(output, kcal).item()))
-                            
+                        
                         truth, pred = (
-                            data["kcal"].squeeze().numpy(),
+                            kcal_cpu.numpy(),
                             output.cpu().numpy() if is_regression else torch.argmax(output.cpu(), 1).numpy(),
                         )
                     # only run this on last batch from val loop (truth, pred will be from last iteration)
