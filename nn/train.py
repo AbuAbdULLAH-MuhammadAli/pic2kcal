@@ -75,7 +75,7 @@ def train():
     validate_batches = 50
     show_img_count = 16
 
-    is_regression = False
+    is_regression = True
 
     # regression settings
     regression_output_neurons = 1
@@ -111,20 +111,29 @@ def train():
 
     optimizer = optim.Adam(net.parameters())
     criterion = nn.CrossEntropyLoss() if not is_regression else nn.SmoothL1Loss()
-    __criterion_l1_loss = nn.L1Loss()
+    criterion_l1_loss_reg = nn.L1Loss()
 
-    def criterion_l1_loss(a, b):
+    def criterion_l1_loss_classif(a, b):
         ax = a.argmax(1).float()
         bx = b.float()
 
         # ax[torch.isnan(ax)] = 0
         # bx[torch.isnan(bx)] = 0
-        return __criterion_l1_loss(ax, bx) * granularity
-
+        return criterion_l1_loss_reg(ax, bx) * granularity
+    def criterion_rel_error(pred, truth):
+        # https://en.wikipedia.org/wiki/Approximation_error
+        ret = torch.abs(1 - pred / truth)
+        ret[torch.isnan(ret)] = 0 # if truth = 0 relative error is undefined
+        return torch.mean(ret)
     trainable_params, total_params = count_parameters(net)
     print(f"Parameters: {trainable_params} trainable, {total_params} total")
     running_losses = defaultdict(list)
     batch_idx = 0
+    loss_fns = {
+        "loss": criterion,
+        "l1": criterion_l1_loss_reg if is_regression else criterion_l1_loss_classif,
+        "rel_error": criterion_rel_error if is_regression else None, # todo: impl for classif
+    }
     for epoch in range(1, epochs + 1):
         if epoch == 3:
             for param in net.parameters():
@@ -141,9 +150,6 @@ def train():
         )
 
         for epoch_batch_idx, data in enumerate(train_loader, 0):
-            # print(data["kcal"].shape)
-            # print(data["kcal"].squeeze().shape)
-            # print("sq2", data["kcal"].squeeze())
             batch_idx += 1
             image_ongpu = data["image"].to(device)
             optimizer.zero_grad()
@@ -153,14 +159,13 @@ def train():
             # print("out", outputs.shape)
 
             kcal = data["kcal"].to(device) if is_regression else data["kcal"].squeeze().to(device)
-            loss = criterion(outputs, kcal)
-            l1_loss = __criterion_l1_loss(outputs, kcal) if is_regression else criterion_l1_loss(outputs, kcal)
-
-            loss.backward()
-            optimizer.step()
-
-            running_losses["loss"].append(float(loss.item()))
-            running_losses["l1"].append(float(l1_loss.item()))
+            for loss_name, loss_fn in loss_fns.items():
+                loss_value = loss_fn(outputs, kcal)
+                if loss_name == "loss":
+                    loss_value.backward()
+                    optimizer.step()
+                # technically, this is not 100% correct because it assumes all batches are the same size
+                running_losses[loss_name].append(float(loss_value.item()))
 
             if batch_idx % validate_every == 0:
                 write_losses(
@@ -182,15 +187,14 @@ def train():
                         kcal = data["kcal"].to(device) if is_regression else data["kcal"].squeeze().to(device)
 
                         output = net(image)
-                        val_error["loss"].append(criterion(output, kcal).item())
-                        l1_loss = __criterion_l1_loss(output, kcal) if is_regression else criterion_l1_loss(output, kcal)
-
+                        for loss_name, loss_fn in loss_fns.items():
+                            val_error[loss_name].append(float(loss_fn(output, kcal).item()))
+                            
                         truth, pred = (
                             data["kcal"].squeeze().numpy(),
                             output.cpu().numpy() if is_regression else torch.argmax(output.cpu(), 1).numpy(),
                         )
-                        val_error["l1"].append(float(l1_loss.item()))
-                    # only run this on last batch from val loop
+                    # only run this on last batch from val loop (truth, pred will be from last iteration)
                     images_cpu = (
                         image.view(-1, 3, 224, 224)[:show_img_count].cpu().numpy()
                     )
