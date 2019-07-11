@@ -187,7 +187,7 @@ def train():
 
                         truth, pred = (
                             data["kcal"].squeeze().numpy(),
-                            torch.argmax(output.cpu(), 1).numpy(),
+                            output.cpu().numpy() if is_regression else torch.argmax(output.cpu(), 1).numpy(),
                         )
                         val_error["l1"].append(float(l1_loss.item()))
                     # only run this on last batch from val loop
