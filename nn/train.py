@@ -107,8 +107,8 @@ def train():
     print(net)
     device = model.get_device()
 
-    train_dataset = FoodDataset(datadir / "train.json", datadir / "train", is_regression, granularity, True)
-    val_dataset = FoodDataset(datadir / "val.json", datadir / "val", is_regression, granularity, True)
+    train_dataset = FoodDataset(datadir / "train.json", datadir / "train", is_regression, granularity, True, True)
+    val_dataset = FoodDataset(datadir / "val.json", datadir / "val", is_regression, granularity, True, True)
 
     optimizer = optim.Adam(net.parameters())
     criterion = nn.CrossEntropyLoss() if not is_regression else nn.SmoothL1Loss()

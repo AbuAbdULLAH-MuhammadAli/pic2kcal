@@ -79,6 +79,10 @@ class FoodDataset(Dataset):
             fat = transform_data(element["fat"], self.is_regression, self.granularity)
             sample.update({"protein": protein, "fat": fat, "carbohydrates": carbohydrates})
 
+        if self.include_top_ingredients:
+            ingredients = element["ingredients"]
+            sample.update({"ingredients": ingredients})
+
         if self.transform:
             sample["image"] = self.transform(sample["image"])
 
