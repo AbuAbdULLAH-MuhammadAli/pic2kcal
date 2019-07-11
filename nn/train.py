@@ -42,6 +42,7 @@ def put_text(imgs, texts):
         # draw.text((x, y),"Sample Text",(r,g,b))
         draw.text((0, 0), text, (255, 255, 255), font=font)
         result[i] = (np.asarray(img).astype("float32") / 255).transpose((2, 0, 1))
+        result[i] = result[i] - result[i].min() / result[i].max() - result[i].min()
     return result
 
 
