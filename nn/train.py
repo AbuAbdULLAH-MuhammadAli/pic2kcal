@@ -1,4 +1,4 @@
-from nn.dataset import ImageDataset
+from nn.dataset import FoodDataset
 import math
 from torch.utils.data import DataLoader
 import torch.nn as nn
@@ -107,8 +107,8 @@ def train():
     print(net)
     device = model.get_device()
 
-    train_dataset = ImageDataset(datadir / "train.json", datadir / "train", is_regression, granularity)
-    val_dataset = ImageDataset(datadir / "val.json", datadir / "val", is_regression, granularity)
+    train_dataset = FoodDataset(datadir / "train.json", datadir / "train", is_regression, granularity, True)
+    val_dataset = FoodDataset(datadir / "val.json", datadir / "val", is_regression, granularity, True)
 
     optimizer = optim.Adam(net.parameters())
     criterion = nn.CrossEntropyLoss() if not is_regression else nn.SmoothL1Loss()
