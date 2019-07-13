@@ -80,7 +80,7 @@ class FoodDataset(Dataset):
             sample.update({"protein": protein, "fat": fat, "carbohydrates": carbohydrates})
 
         if self.include_top_ingredients:
-            ingredients = element["ingredients"]
+            ingredients = np.array(element["ingredients"], dtype=np.float32)
             sample.update({"ingredients": ingredients})
 
         if self.transform:
