@@ -1,5 +1,6 @@
 from nn.dataset import FoodDataset
 import math
+import random
 from torch.utils.data import DataLoader
 import torch.nn as nn
 import torch
@@ -74,7 +75,7 @@ def train():
     batch_size = 50
     epochs = 20
     shuffle = True
-    validate_every = 1
+    validate_every = 100
     validate_batches = 50
     show_img_count = 16
 
@@ -87,7 +88,7 @@ def train():
 
     # regression settings
     regression_output_neurons = 1
-    num_top_ingredients = 5
+    num_top_ingredients = 50
 
 
     # classification settings
@@ -117,7 +118,9 @@ def train():
         l1 += smooth_l1_loss(pred[:, 2:3], data["fat"])
         l1 += smooth_l1_loss(pred[:, 3:4], data["carbohydrates"])
         if training_type == "regression_include_nutritional_data_and_top_top_ingredients":
-            bce = binary_cross_entropy_with_logits(pred[:, 4:], data["ingredients"])
+            bce = binary_cross_entropy_with_logits(pred[:, 4:], data["ingredients"]) * 400
+            if random.random() < 0.1:
+                print("l1 vs bce weight", float(l1), float(bce))
             return l1 + bce
         return l1
 
