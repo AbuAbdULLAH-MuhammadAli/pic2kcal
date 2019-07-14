@@ -107,28 +107,28 @@ def train():
         ret = torch.abs(1 - pred / truth)
         ret[torch.isnan(ret)] = 0 # if truth = 0 relative error is undefined
         return torch.mean(ret)
-
+    
     def loss_top_incrediens(pred, data):
+        from torch.nn.functional import smooth_l1_loss, binary_cross_entropy_with_logits
 
-        l1 = nn.L1Loss()(pred[:, 0:1], data["kcal"])
-        l1 += nn.L1Loss()(pred[:, 1:2], data["protein"])
-        l1 += nn.L1Loss()(pred[:, 2:3], data["fat"])
-        l1 += nn.L1Loss()(pred[:, 3:4], data["carbohydrates"])
-        bce = nn.BCEWithLogitsLoss()(pred[:, 4:], data["ingredients"])
+        l1 = smooth_l1_loss(pred[:, 0:1], data["kcal"])
+        l1 += smooth_l1_loss(pred[:, 1:2], data["protein"])
+        l1 += smooth_l1_loss(pred[:, 2:3], data["fat"])
+        l1 += smooth_l1_loss(pred[:, 3:4], data["carbohydrates"])
+        bce = binary_cross_entropy_with_logits(pred[:, 4:], data["ingredients"])
 
         return l1 + bce
 
     def l1_top_incrediens(pred, data):
-
-        l1 = nn.L1Loss()(pred[:, 0:1], data["kcal"])
-        l1 += nn.L1Loss()(pred[:, 1:2], data["protein"])
-        l1 += nn.L1Loss()(pred[:, 2:3], data["fat"])
-        l1 += nn.L1Loss()(pred[:, 3:4], data["carbohydrates"])
+        from torch.nn.functional import l1_loss
+        l1 = l1_loss(pred[:, 0:1], data["kcal"])
+        l1 += l1_loss(pred[:, 1:2], data["protein"])
+        l1 += l1_loss(pred[:, 2:3], data["fat"])
+        l1 += l1_loss(pred[:, 3:4], data["carbohydrates"])
 
         return l1
 
     def rel_top_incrediens(pred, data):
-
         l1 = criterion_rel_error(pred[:, 0:1], data["kcal"])
         l1 += criterion_rel_error(pred[:, 1:2], data["protein"])
         l1 += criterion_rel_error(pred[:, 2:3], data["fat"])
@@ -220,11 +220,7 @@ def train():
 
             # print("out", outputs.shape)
 
-
-            kcal = data["kcal"].to(device) if is_regression else data["kcal"].squeeze().to(device)
-
-            target_data = data
-            target_data.pop("image")
+            target_data = {k: v.to(device) for k, v in data.items() if k != "image"}
 
             for loss_name, loss_fn in loss_fns.items():
                 loss_value = loss_fn(outputs, target_data)
