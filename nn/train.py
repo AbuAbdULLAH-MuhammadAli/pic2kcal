@@ -118,6 +118,24 @@ def train():
 
         return l1 + bce
 
+    def l1_top_incrediens(pred, data):
+
+        l1 = nn.L1Loss()(pred[:, 0:1], data["kcal"])
+        l1 += nn.L1Loss()(pred[:, 1:2], data["protein"])
+        l1 += nn.L1Loss()(pred[:, 2:3], data["fat"])
+        l1 += nn.L1Loss()(pred[:, 3:4], data["carbohydrates"])
+
+        return l1
+
+    def rel_top_incrediens(pred, data):
+
+        l1 = criterion_rel_error(pred[:, 0:1], data["kcal"])
+        l1 += criterion_rel_error(pred[:, 1:2], data["protein"])
+        l1 += criterion_rel_error(pred[:, 2:3], data["fat"])
+        l1 += criterion_rel_error(pred[:, 3:4], data["carbohydrates"])
+
+        return l1
+
     if training_type == 'classification':
         is_regression = False
         num_output_neurons = math.ceil(max_val / granularity) + 1
@@ -142,7 +160,8 @@ def train():
         num_output_neurons += num_top_ingredients
 
         loss = loss_top_incrediens
-        l1_loss = nn.L1Loss()
+        l1_loss = l1_top_incrediens
+        rel_error = rel_top_incrediens
 
 
     logdir = (
@@ -235,13 +254,16 @@ def train():
                         kcal_cpu = data["kcal"] if is_regression else data["kcal"].squeeze()
                         kcal = kcal_cpu.to(device)
 
+                        target_data = data
+                        target_data.pop("image")
+
                         output = net(image)
                         for loss_name, loss_fn in loss_fns.items():
-                            val_error[loss_name].append(float(loss_fn(output, kcal).item()))
+                            val_error[loss_name].append(float(loss_fn(output, target_data).item()))
                         
                         truth, pred = (
                             kcal_cpu.squeeze().numpy(),
-                            output.cpu().squeeze().numpy() if is_regression else torch.argmax(output.cpu(), 1).numpy(),
+                            output[:, 0:1].cpu().squeeze().numpy() if is_regression else torch.argmax(output.cpu(), 1).numpy(),
                         )
                     # only run this on last batch from val loop (truth, pred will be from last iteration)
                     images_cpu = (
