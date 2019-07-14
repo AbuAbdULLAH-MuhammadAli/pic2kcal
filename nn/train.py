@@ -119,38 +119,25 @@ def train():
 
         return l1 + bce
 
-    def l1_top_ingredients(pred, data):
-        from torch.nn.functional import l1_loss
-        l1 = l1_loss(pred[:, 0:1], data["kcal"])
-        l1 += l1_loss(pred[:, 1:2], data["protein"])
-        l1 += l1_loss(pred[:, 2:3], data["fat"])
-        l1 += l1_loss(pred[:, 3:4], data["carbohydrates"])
-
         return l1
 
-    def rel_top_ingredients(pred, data):
-        l1 = criterion_rel_error(pred[:, 0:1], data["kcal"])
-        l1 += criterion_rel_error(pred[:, 1:2], data["protein"])
-        l1 += criterion_rel_error(pred[:, 2:3], data["fat"])
-        l1 += criterion_rel_error(pred[:, 3:4], data["carbohydrates"])
-
-        return l1
+    loss_fns = {}
 
     if training_type == 'classification':
         is_regression = False
         num_output_neurons = math.ceil(max_val / granularity) + 1
 
-        loss = nn.CrossEntropyLoss()
-        l1_loss = criterion_l1_loss_classif
-        rel_error = None # TODO
+        loss_fns["loss"] = nn.CrossEntropyLoss()
+        loss_fns["l1_loss"] = criterion_l1_loss_classif
+        # rel_error = None # TODO
 
     else:
         is_regression = True
         num_output_neurons = regression_output_neurons
 
-        loss = nn.SmoothL1Loss()
-        l1_loss = nn.L1Loss()
-        rel_error = criterion_rel_error
+        loss_fns["loss"] = nn.SmoothL1Loss()
+        loss_fns["l1_loss"] = nn.L1Loss()
+        loss_fns["rel_error"] = criterion_rel_error
 
     if training_type == 'regression_include_nutritional_data':
         num_output_neurons += 3
@@ -159,9 +146,11 @@ def train():
         num_output_neurons += 3
         num_output_neurons += num_top_ingredients
 
-        loss = loss_top_ingredients
-        l1_loss = l1_top_ingredients
-        rel_error = rel_top_ingredients
+        loss_fns["loss"] = loss_top_ingredients
+        from torch.nn.functional import l1_loss
+        for i, k in enumerate(["kcal", "protein", "fat", "carbohydrates"]):
+            loss_fns[f"l1_{k}"] = lambda pred, data: l1_loss(pred[:, i:i+1], data[k])
+            loss_fns[f"rel_error_{k}"] = lambda pred, data: criterion_rel_error(pred[:, i:i+1], data[k])
 
 
     logdir = (
@@ -191,11 +180,7 @@ def train():
     print(f"Parameters: {trainable_params} trainable, {total_params} total")
     running_losses = defaultdict(list)
     batch_idx = 0
-    loss_fns = {
-        "loss": loss,
-        "l1": l1_loss,
-        "rel_error": rel_error
-    }
+
     for epoch in range(1, epochs + 1):
         if epoch == 3:
             for param in net.parameters():
