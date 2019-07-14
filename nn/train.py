@@ -250,8 +250,7 @@ def train():
                         kcal_cpu = data["kcal"] if is_regression else data["kcal"].squeeze()
                         kcal = kcal_cpu.to(device)
 
-                        target_data = data
-                        target_data.pop("image")
+                        target_data = {k: v.to(device) for k, v in data.items() if k != "image"}
 
                         output = net(image)
                         for loss_name, loss_fn in loss_fns.items():
