@@ -138,13 +138,14 @@ def train():
         is_regression = True
         num_output_neurons = regression_output_neurons
 
-        loss_fns["loss"] = nn.SmoothL1Loss()
-        loss_fns["l1_loss"] = nn.L1Loss()
-        loss_fns["rel_error"] = criterion_rel_error
+        loss_fns["loss"] = lambda pred, data: nn.functional.smooth_l1_loss(pred, data["kcal"])
+        loss_fns["l1_kcal"] = lambda pred, data: nn.functional.l1_loss(pred, data["kcal"])
+        loss_fns["rel_error_kcal"] = lambda pred, data: criterion_rel_error(pred, data["kcal"])
 
     if training_type.startswith('regression_include_nutritional_data'):
         num_output_neurons += 3
         loss_fns["loss"] = "todo"
+        loss_fns["loss"] = loss_top_ingredients
         from torch.nn.functional import l1_loss
         for i, k in enumerate(["kcal", "protein", "fat", "carbohydrates"]):
             loss_fns[f"l1_{k}"] = lambda pred, data: l1_loss(pred[:, i:i+1], data[k])
@@ -153,7 +154,7 @@ def train():
     if training_type == 'regression_include_nutritional_data_and_top_top_ingredients':
         num_output_neurons += num_top_ingredients
 
-        loss_fns["loss"] = loss_top_ingredients
+        
         
 
 
