@@ -108,7 +108,7 @@ def train():
         ret[torch.isnan(ret)] = 0 # if truth = 0 relative error is undefined
         return torch.mean(ret)
     
-    def loss_top_incrediens(pred, data):
+    def loss_top_ingredients(pred, data):
         from torch.nn.functional import smooth_l1_loss, binary_cross_entropy_with_logits
 
         l1 = smooth_l1_loss(pred[:, 0:1], data["kcal"])
@@ -119,7 +119,7 @@ def train():
 
         return l1 + bce
 
-    def l1_top_incrediens(pred, data):
+    def l1_top_ingredients(pred, data):
         from torch.nn.functional import l1_loss
         l1 = l1_loss(pred[:, 0:1], data["kcal"])
         l1 += l1_loss(pred[:, 1:2], data["protein"])
@@ -128,7 +128,7 @@ def train():
 
         return l1
 
-    def rel_top_incrediens(pred, data):
+    def rel_top_ingredients(pred, data):
         l1 = criterion_rel_error(pred[:, 0:1], data["kcal"])
         l1 += criterion_rel_error(pred[:, 1:2], data["protein"])
         l1 += criterion_rel_error(pred[:, 2:3], data["fat"])
@@ -159,9 +159,9 @@ def train():
         num_output_neurons += 3
         num_output_neurons += num_top_ingredients
 
-        loss = loss_top_incrediens
-        l1_loss = l1_top_incrediens
-        rel_error = rel_top_incrediens
+        loss = loss_top_ingredients
+        l1_loss = l1_top_ingredients
+        rel_error = rel_top_ingredients
 
 
     logdir = (
