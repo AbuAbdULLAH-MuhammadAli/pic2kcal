@@ -43,7 +43,7 @@ def put_text(imgs, texts):
         # draw.text((x, y),"Sample Text",(r,g,b))
         draw.text((0, 0), text, (255, 255, 255))
         result[i] = (np.asarray(img).astype("float32") / 255).transpose((2, 0, 1))
-        result[i] = result[i] - result[i].min() / result[i].max() - result[i].min()
+        result[i] = result[i] - result[i].min() / (result[i].max() - result[i].min())
     return result
 
 
@@ -133,7 +133,6 @@ def train():
         loss_fns["loss"] = nn.CrossEntropyLoss()
         loss_fns["l1_loss"] = criterion_l1_loss_classif
         # rel_error = None # TODO
-
     else:
         is_regression = True
         num_output_neurons = regression_output_neurons
@@ -144,7 +143,6 @@ def train():
 
     if training_type.startswith('regression_include_nutritional_data'):
         num_output_neurons += 3
-        loss_fns["loss"] = "todo"
         loss_fns["loss"] = loss_top_ingredients
         from torch.nn.functional import l1_loss
         for i, k in enumerate(["kcal", "protein", "fat", "carbohydrates"]):
