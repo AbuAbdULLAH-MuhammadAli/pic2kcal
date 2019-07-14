@@ -82,6 +82,7 @@ def train():
     # training_type = 'regression'
     # training_type = 'regression_include_nutritional_data'
     training_type = 'regression_include_nutritional_data_and_top_top_ingredients'
+    
 
 
     # regression settings
@@ -115,10 +116,9 @@ def train():
         l1 += smooth_l1_loss(pred[:, 1:2], data["protein"])
         l1 += smooth_l1_loss(pred[:, 2:3], data["fat"])
         l1 += smooth_l1_loss(pred[:, 3:4], data["carbohydrates"])
-        bce = binary_cross_entropy_with_logits(pred[:, 4:], data["ingredients"])
-
-        return l1 + bce
-
+        if training_type == "regression_include_nutritional_data_and_top_top_ingredients":
+            bce = binary_cross_entropy_with_logits(pred[:, 4:], data["ingredients"])
+            return l1 + bce
         return l1
 
     loss_fns = {}
@@ -139,18 +139,19 @@ def train():
         loss_fns["l1_loss"] = nn.L1Loss()
         loss_fns["rel_error"] = criterion_rel_error
 
-    if training_type == 'regression_include_nutritional_data':
+    if training_type.startswith('regression_include_nutritional_data'):
         num_output_neurons += 3
-
-    if training_type == 'regression_include_nutritional_data_and_top_top_ingredients':
-        num_output_neurons += 3
-        num_output_neurons += num_top_ingredients
-
-        loss_fns["loss"] = loss_top_ingredients
+        loss_fns["loss"] = "todo"
         from torch.nn.functional import l1_loss
         for i, k in enumerate(["kcal", "protein", "fat", "carbohydrates"]):
             loss_fns[f"l1_{k}"] = lambda pred, data: l1_loss(pred[:, i:i+1], data[k])
             loss_fns[f"rel_error_{k}"] = lambda pred, data: criterion_rel_error(pred[:, i:i+1], data[k])
+
+    if training_type == 'regression_include_nutritional_data_and_top_top_ingredients':
+        num_output_neurons += num_top_ingredients
+
+        loss_fns["loss"] = loss_top_ingredients
+        
 
 
     logdir = (
