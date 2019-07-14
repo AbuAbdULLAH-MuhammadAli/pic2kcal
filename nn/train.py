@@ -145,9 +145,13 @@ def train():
         num_output_neurons += 3
         loss_fns["loss"] = loss_top_ingredients
         from torch.nn.functional import l1_loss
+        def mk_loss(i, k, fn):
+            def fuck_python(pred, data):
+                return fn(pred[:, i:(i+1)], data[k])
+            return fuck_python
         for i, k in enumerate(["kcal", "protein", "fat", "carbohydrates"]):
-            loss_fns[f"l1_{k}"] = (lambda i: lambda pred, data: l1_loss(pred[:, i:i+1], data[k]))(i)
-            loss_fns[f"rel_error_{k}"] = (lambda i: lambda pred, data: criterion_rel_error(pred[:, i:i+1], data[k]))(i)
+            loss_fns[f"l1_{k}"] = mk_loss(i, k, l1_loss)
+            loss_fns[f"rel_error_{k}"] = mk_loss(i, k, criterion_rel_error)
         i = 999
     if training_type == 'regression_include_nutritional_data_and_top_top_ingredients':
         num_output_neurons += num_top_ingredients
