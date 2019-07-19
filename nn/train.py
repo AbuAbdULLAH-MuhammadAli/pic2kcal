@@ -275,7 +275,7 @@ def train():
                 )
 
     writer.close()
-    model.save()
+    model.save(net, args.runname)
 
 
 if __name__ == "__main__":
