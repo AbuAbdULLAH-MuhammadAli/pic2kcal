@@ -18,11 +18,10 @@ class Model:
     def get_learnable_parameters(self):
         pass
 
-    def save(self, path='./weights/'):
-        model = self.get_model()
+    def save(self, model, run_name, path='./weights/'):
         time_str = str(time.time())
 
-        full_path = path+self.name+'-'+time_str+'.pt'
+        full_path = path+self.name+'-'+run_name+'-'+time_str+'.pt'
 
         torch.save(model.state_dict(), full_path)
 
