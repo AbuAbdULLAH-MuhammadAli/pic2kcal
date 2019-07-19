@@ -1,5 +1,6 @@
 from nn.dataset import FoodDataset
 import math
+import random
 from torch.utils.data import DataLoader
 import torch.nn as nn
 import torch
@@ -38,11 +39,11 @@ def put_text(imgs, texts):
         img = Image.fromarray((img.transpose((1, 2, 0)) * 255).astype("uint8"), "RGB")
         draw = ImageDraw.Draw(img)
         # font = ImageFont.truetype(<font-file>, <font-size>)
-        font = ImageFont.truetype("/usr/share/fonts/TTF/LiberationSans-Regular.ttf", 16)
+        # font = ImageFont.truetype("/usr/share/fonts/TTF/LiberationSans-Regular.ttf", 16)
         # draw.text((x, y),"Sample Text",(r,g,b))
-        draw.text((0, 0), text, (255, 255, 255), font=font)
+        draw.text((0, 0), text, (255, 255, 255))
         result[i] = (np.asarray(img).astype("float32") / 255).transpose((2, 0, 1))
-        result[i] = result[i] - result[i].min() / result[i].max() - result[i].min()
+        result[i] = result[i] - result[i].min() / (result[i].max() - result[i].min())
     return result
 
 
@@ -61,6 +62,8 @@ def write_losses(
         )
 
 
+
+
 def train():
     parser = argparse.ArgumentParser()
     parser.add_argument("--runname", help="name this experiment", required=True)
@@ -76,20 +79,86 @@ def train():
     validate_batches = 50
     show_img_count = 16
 
-    is_regression = True
+    # training_type = 'classification'
+    # training_type = 'regression'
+    # training_type = 'regression_include_nutritional_data'
+    training_type = 'regression_include_nutritional_data_and_top_top_ingredients'
+    
+
 
     # regression settings
     regression_output_neurons = 1
+    num_top_ingredients = 50
+
 
     # classification settings
     granularity = 50
     max_val = 2500
 
-    if is_regression:
+    def criterion_l1_loss_classif(a, b):
+        ax = a.argmax(1).float()
+        bx = b.float()
+
+        # ax[torch.isnan(ax)] = 0
+        # bx[torch.isnan(bx)] = 0
+        return nn.L1Loss()(ax, bx) * granularity
+
+
+    def criterion_rel_error(pred, truth):
+        # https://en.wikipedia.org/wiki/Approximation_error
+        ret = torch.abs(1 - pred / truth)
+        ret[torch.isnan(ret)] = 0 # if truth = 0 relative error is undefined
+        return torch.mean(ret)
+    
+    def loss_top_ingredients(pred, data):
+        from torch.nn.functional import smooth_l1_loss, binary_cross_entropy_with_logits
+
+        l1 = smooth_l1_loss(pred[:, 0:1], data["kcal"])
+        l1 += smooth_l1_loss(pred[:, 1:2], data["protein"])
+        l1 += smooth_l1_loss(pred[:, 2:3], data["fat"])
+        l1 += smooth_l1_loss(pred[:, 3:4], data["carbohydrates"])
+        if training_type == "regression_include_nutritional_data_and_top_top_ingredients":
+            bce = binary_cross_entropy_with_logits(pred[:, 4:], data["ingredients"]) * 400
+            if random.random() < 0.1:
+                print("l1 vs bce weight", float(l1), float(bce))
+            return l1 + bce
+        return l1
+
+    loss_fns = {}
+
+    if training_type == 'classification':
+        is_regression = False
+        num_output_neurons = math.ceil(max_val / granularity) + 1
+
+        loss_fns["loss"] = nn.CrossEntropyLoss()
+        loss_fns["l1_loss"] = criterion_l1_loss_classif
+        # rel_error = None # TODO
+    else:
+        is_regression = True
         num_output_neurons = regression_output_neurons
 
-    else:
-        num_output_neurons = math.ceil(max_val / granularity) + 1
+        loss_fns["loss"] = lambda pred, data: nn.functional.smooth_l1_loss(pred, data["kcal"])
+        loss_fns["l1_kcal"] = lambda pred, data: nn.functional.l1_loss(pred, data["kcal"])
+        loss_fns["rel_error_kcal"] = lambda pred, data: criterion_rel_error(pred, data["kcal"])
+
+    if training_type.startswith('regression_include_nutritional_data'):
+        num_output_neurons += 3
+        loss_fns["loss"] = loss_top_ingredients
+        from torch.nn.functional import l1_loss
+        def mk_loss(i, k, fn):
+            def fuck_python(pred, data):
+                return fn(pred[:, i:(i+1)], data[k])
+            return fuck_python
+        for i, k in enumerate(["kcal", "protein", "fat", "carbohydrates"]):
+            loss_fns[f"l1_{k}"] = mk_loss(i, k, l1_loss)
+            loss_fns[f"rel_error_{k}"] = mk_loss(i, k, criterion_rel_error)
+        i = 999
+    if training_type == 'regression_include_nutritional_data_and_top_top_ingredients':
+        num_output_neurons += num_top_ingredients
+
+        
+        
+
 
     logdir = (
         "runs/"
@@ -111,30 +180,14 @@ def train():
     val_dataset = FoodDataset(datadir / "val.json", datadir / "val", is_regression, granularity, True, True)
 
     optimizer = optim.Adam(net.parameters())
-    criterion = nn.CrossEntropyLoss() if not is_regression else nn.SmoothL1Loss()
-    criterion_l1_loss_reg = nn.L1Loss()
 
-    def criterion_l1_loss_classif(a, b):
-        ax = a.argmax(1).float()
-        bx = b.float()
 
-        # ax[torch.isnan(ax)] = 0
-        # bx[torch.isnan(bx)] = 0
-        return criterion_l1_loss_reg(ax, bx) * granularity
-    def criterion_rel_error(pred, truth):
-        # https://en.wikipedia.org/wiki/Approximation_error
-        ret = torch.abs(1 - pred / truth)
-        ret[torch.isnan(ret)] = 0 # if truth = 0 relative error is undefined
-        return torch.mean(ret)
+
     trainable_params, total_params = count_parameters(net)
     print(f"Parameters: {trainable_params} trainable, {total_params} total")
     running_losses = defaultdict(list)
     batch_idx = 0
-    loss_fns = {
-        "loss": criterion,
-        "l1": criterion_l1_loss_reg if is_regression else criterion_l1_loss_classif,
-        "rel_error": criterion_rel_error if is_regression else None, # todo: impl for classif
-    }
+
     for epoch in range(1, epochs + 1):
         if epoch == 3:
             for param in net.parameters():
@@ -159,9 +212,10 @@ def train():
 
             # print("out", outputs.shape)
 
-            kcal = data["kcal"].to(device) if is_regression else data["kcal"].squeeze().to(device)
+            target_data = {k: v.to(device) for k, v in data.items() if k != "image"}
+
             for loss_name, loss_fn in loss_fns.items():
-                loss_value = loss_fn(outputs, kcal)
+                loss_value = loss_fn(outputs, target_data)
                 if loss_name == "loss":
                     loss_value.backward()
                     optimizer.step()
@@ -188,13 +242,15 @@ def train():
                         kcal_cpu = data["kcal"] if is_regression else data["kcal"].squeeze()
                         kcal = kcal_cpu.to(device)
 
+                        target_data = {k: v.to(device) for k, v in data.items() if k != "image"}
+
                         output = net(image)
                         for loss_name, loss_fn in loss_fns.items():
-                            val_error[loss_name].append(float(loss_fn(output, kcal).item()))
+                            val_error[loss_name].append(float(loss_fn(output, target_data).item()))
                         
                         truth, pred = (
                             kcal_cpu.squeeze().numpy(),
-                            output.cpu().squeeze().numpy() if is_regression else torch.argmax(output.cpu(), 1).numpy(),
+                            output[:, 0:1].cpu().squeeze().numpy() if is_regression else torch.argmax(output.cpu(), 1).numpy(),
                         )
                     # only run this on last batch from val loop (truth, pred will be from last iteration)
                     images_cpu = (
