@@ -114,8 +114,8 @@ def train():
 
     # training_type = 'classification'
     # training_type = 'regression'
-    training_type = 'regression_include_nutritional_data'
-    # training_type = 'regression_include_nutritional_data_and_top_top_ingredients'
+    # training_type = 'regression_include_nutritional_data'
+    training_type = 'regression_include_nutritional_data_and_top_top_ingredients'
     
 
 
@@ -148,9 +148,9 @@ def train():
 
         # todo: loop over enumerate(prediction_keys) here
         l1 = smooth_l1_loss(pred[:, 0:1], data["kcal"])
-        # l1 += smooth_l1_loss(pred[:, 1:2], data["protein"])
-        # l1 += smooth_l1_loss(pred[:, 2:3], data["fat"])
-        # l1 += smooth_l1_loss(pred[:, 3:4], data["carbohydrates"])
+        l1 += smooth_l1_loss(pred[:, 1:2], data["protein"])
+        l1 += smooth_l1_loss(pred[:, 2:3], data["fat"])
+        l1 += smooth_l1_loss(pred[:, 3:4], data["carbohydrates"])
         if training_type == "regression_include_nutritional_data_and_top_top_ingredients":
             bce = binary_cross_entropy_with_logits(pred[:, 4:], data["ingredients"]) * 400
             if random.random() < 0.1:
