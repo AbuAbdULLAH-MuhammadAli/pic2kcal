@@ -38,10 +38,9 @@ def put_text(imgs, texts):
 
         img = Image.fromarray((img.transpose((1, 2, 0)) * 255).astype("uint8"), "RGB")
         draw = ImageDraw.Draw(img)
-        font = ImageFont.truetype(<font-file>, <font-size>)
         font = ImageFont.truetype("/usr/share/fonts/TTF/LiberationSans-Regular.ttf", 12)
         # draw.text((x, y),"Sample Text",(r,g,b))
-        draw.text((0, 0), text, (255, 255, 255))
+        draw.text((0, 0), text, (255, 255, 255), font=font)
         result[i] = (np.asarray(img).astype("float32") / 255).transpose((2, 0, 1))
         result[i] = (result[i] - result[i].min()) / (result[i].max() - result[i].min())
     return result
@@ -61,7 +60,41 @@ def write_losses(
             % (epoch, epoch_batch_idx, loss_name_prefixed, avg_loss)
         )
 
+def draw_val_images(*, output, data, image, is_regression, device, prediction_keys, granularity, writer, ingredient_names):
+    show_img_count = 16
+    # generate and write pictures to tensorboard
 
+    pred_arrs = ["" for _ in range(output.shape[0])]
+    for pred_inx, pred_key in enumerate(prediction_keys):
+        kcal_cpu = data[pred_key] if is_regression else data[pred_key].squeeze()
+
+        truth, pred = (
+            kcal_cpu.squeeze().numpy(),
+            output[:, pred_inx:pred_inx+1].cpu().squeeze().numpy() if is_regression else torch.argmax(output.cpu(), 1).numpy(),
+        )
+        if pred_key == "kcal":
+            for i, (t, p) in enumerate(zip(truth, pred)):
+                pred_arrs[i] += f"\ntruth: {t:.0f}kcal, pred: {p:.0f}kcal" if is_regression else f"truth: {t*granularity}kcal, pred: {p*granularity}kcal"
+        else:
+            pred_key_p = "carbs" if pred_key == "carbohydrates" else pred_key
+            for i, (t, p) in enumerate(zip(truth, pred)):
+                pred_arrs[i] += f"\ntruth: {t:.0f}g {pred_key_p}, pred: {p:.0f}g {pred_key_p}"
+    ings_pred = (torch.sigmoid(output[:, 4:]) > 0.5).cpu().numpy()
+    ings_truth = data["ingredients"].numpy()
+    for i, (ing_truth, ing_pred) in enumerate(zip(ings_truth, ings_pred)):
+        tru_str = ", ".join([ingredient_names[inx].replace(",", "") for inx in ing_truth.nonzero()[0]])
+        pred_str = ", ".join([ingredient_names[inx].replace(",", "") for inx in ing_pred.nonzero()[0]])
+        pred_arrs[i] += f"\n\nings truth: {tru_str}\nings pred: {pred_str}"
+    images_cpu = (
+        image.view(-1, 3, 224, 224)[:show_img_count].cpu().numpy()
+    )
+    pred_arrs = [s.strip() for s in pred_arrs]
+
+    images_cpu = put_text(
+        images_cpu,
+        pred_arrs,
+    )
+    writer.add_images("val examples", images_cpu)
 
 
 def train():
@@ -250,33 +283,18 @@ def train():
                             val_error[loss_name].append(float(loss_fn(output, target_data).item()))
                         
                         if val_batch_inx == 0:
-                            # only run this on last batch from val loop (truth, pred will be from last iteration)
-                            # generate and write pictures to tensorboard
-
-                            pred_arrs = ["" for _ in range(output.shape[0])]
-                            for pred_inx, pred_key in enumerate(prediction_keys):
-                                kcal_cpu = data[pred_key] if is_regression else data[pred_key].squeeze()
-                                kcal = kcal_cpu.to(device)
-
-                                truth, pred = (
-                                    kcal_cpu.squeeze().numpy(),
-                                    output[:, pred_inx:pred_inx+1].cpu().squeeze().numpy() if is_regression else torch.argmax(output.cpu(), 1).numpy(),
-                                )
-                                if pred_key == "kcal":
-                                    for i, (t, p) in enumerate(zip(truth, pred)):
-                                        pred_arrs[i] += f"\ntruth: {t:.0f}kcal, pred: {p:.0f}kcal" if is_regression else f"truth: {t*granularity}kcal, pred: {p*granularity}kcal"
-                                else:
-                                    for i, (t, p) in enumerate(zip(truth, pred)):
-                                        pred_arrs[i] += f"\ntruth: {t:.0f}g {pred_key}, pred: {p:.0f}g {pred_key}"
-                            images_cpu = (
-                                image.view(-1, 3, 224, 224)[:show_img_count].cpu().numpy()
+                            # only run this on last batch from val loop
+                            draw_val_images(
+                                writer=writer,
+                                output=output,
+                                data=data, 
+                                image=image, 
+                                is_regression=is_regression, 
+                                device=device, 
+                                prediction_keys=prediction_keys,
+                                granularity=granularity,
+                                ingredient_names=train_dataset.ingredient_names
                             )
-
-                            images_cpu = put_text(
-                                images_cpu,
-                                pred_arrs,
-                            )
-                            writer.add_images(pred_key, images_cpu)
                 write_losses(
                     writer=writer,
                     running_losses=val_error,
