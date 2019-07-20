@@ -38,8 +38,8 @@ def put_text(imgs, texts):
 
         img = Image.fromarray((img.transpose((1, 2, 0)) * 255).astype("uint8"), "RGB")
         draw = ImageDraw.Draw(img)
-        # font = ImageFont.truetype(<font-file>, <font-size>)
-        # font = ImageFont.truetype("/usr/share/fonts/TTF/LiberationSans-Regular.ttf", 16)
+        font = ImageFont.truetype(<font-file>, <font-size>)
+        font = ImageFont.truetype("/usr/share/fonts/TTF/LiberationSans-Regular.ttf", 12)
         # draw.text((x, y),"Sample Text",(r,g,b))
         draw.text((0, 0), text, (255, 255, 255))
         result[i] = (np.asarray(img).astype("float32") / 255).transpose((2, 0, 1))
@@ -113,6 +113,7 @@ def train():
     def loss_top_ingredients(pred, data):
         from torch.nn.functional import smooth_l1_loss, binary_cross_entropy_with_logits
 
+        # todo: loop over enumerate(prediction_keys) here
         l1 = smooth_l1_loss(pred[:, 0:1], data["kcal"])
         # l1 += smooth_l1_loss(pred[:, 1:2], data["protein"])
         # l1 += smooth_l1_loss(pred[:, 2:3], data["fat"])
@@ -125,6 +126,9 @@ def train():
         return l1
 
     loss_fns = {}
+
+    
+    prediction_keys = ["kcal"]
 
     if training_type == 'classification':
         is_regression = False
@@ -140,8 +144,8 @@ def train():
         loss_fns["loss"] = lambda pred, data: nn.functional.smooth_l1_loss(pred, data["kcal"])
         loss_fns["l1_kcal"] = lambda pred, data: nn.functional.l1_loss(pred, data["kcal"])
         loss_fns["rel_error_kcal"] = lambda pred, data: criterion_rel_error(pred, data["kcal"])
-
     if training_type.startswith('regression_include_nutritional_data'):
+        prediction_keys = ["kcal", "protein", "fat", "carbohydrates"]
         num_output_neurons += 3
         loss_fns["loss"] = loss_top_ingredients
         from torch.nn.functional import l1_loss
@@ -149,7 +153,7 @@ def train():
             def fuck_python(pred, data):
                 return fn(pred[:, i:(i+1)], data[k])
             return fuck_python
-        for i, k in enumerate(["kcal", "protein", "fat", "carbohydrates"]):
+        for i, k in enumerate(prediction_keys):
             loss_fns[f"l1_{k}"] = mk_loss(i, k, l1_loss)
             loss_fns[f"rel_error_{k}"] = mk_loss(i, k, criterion_rel_error)
         i = 999
@@ -236,11 +240,8 @@ def train():
                 val_error = defaultdict(list)
                 # validation loop
                 with torch.no_grad():
-                    for data in islice(val_loader, validate_batches):
+                    for val_batch_inx, data in enumerate(islice(val_loader, validate_batches)):
                         image = data["image"].to(device)
-                        # print(data["image"], type(data["image"]))
-                        kcal_cpu = data["kcal"] if is_regression else data["kcal"].squeeze()
-                        kcal = kcal_cpu.to(device)
 
                         target_data = {k: v.to(device) for k, v in data.items() if k != "image"}
 
@@ -248,23 +249,34 @@ def train():
                         for loss_name, loss_fn in loss_fns.items():
                             val_error[loss_name].append(float(loss_fn(output, target_data).item()))
                         
-                        truth, pred = (
-                            kcal_cpu.squeeze().numpy(),
-                            output[:, 0:1].cpu().squeeze().numpy() if is_regression else torch.argmax(output.cpu(), 1).numpy(),
-                        )
-                    # only run this on last batch from val loop (truth, pred will be from last iteration)
-                    images_cpu = (
-                        image.view(-1, 3, 224, 224)[:show_img_count].cpu().numpy()
-                    )
+                        if val_batch_inx == 0:
+                            # only run this on last batch from val loop (truth, pred will be from last iteration)
+                            # generate and write pictures to tensorboard
 
-                    images_cpu = put_text(
-                        images_cpu,
-                        [
-                            (f"truth: {t:.0f}kcal, pred: {p:.0f}kcal" if is_regression else f"truth: {t*granularity}kcal, pred: {p*granularity}kcal")
-                            for t, p in zip(truth, pred)
-                        ],
-                    )
-                    writer.add_images("YOOO", images_cpu)
+                            pred_arrs = ["" for _ in range(output.shape[0])]
+                            for pred_inx, pred_key in enumerate(prediction_keys):
+                                kcal_cpu = data[pred_key] if is_regression else data[pred_key].squeeze()
+                                kcal = kcal_cpu.to(device)
+
+                                truth, pred = (
+                                    kcal_cpu.squeeze().numpy(),
+                                    output[:, pred_inx:pred_inx+1].cpu().squeeze().numpy() if is_regression else torch.argmax(output.cpu(), 1).numpy(),
+                                )
+                                if pred_key == "kcal":
+                                    for i, (t, p) in enumerate(zip(truth, pred)):
+                                        pred_arrs[i] += f"\ntruth: {t:.0f}kcal, pred: {p:.0f}kcal" if is_regression else f"truth: {t*granularity}kcal, pred: {p*granularity}kcal"
+                                else:
+                                    for i, (t, p) in enumerate(zip(truth, pred)):
+                                        pred_arrs[i] += f"\ntruth: {t:.0f}g {pred_key}, pred: {p:.0f}g {pred_key}"
+                            images_cpu = (
+                                image.view(-1, 3, 224, 224)[:show_img_count].cpu().numpy()
+                            )
+
+                            images_cpu = put_text(
+                                images_cpu,
+                                pred_arrs,
+                            )
+                            writer.add_images(pred_key, images_cpu)
                 write_losses(
                     writer=writer,
                     running_losses=val_error,
