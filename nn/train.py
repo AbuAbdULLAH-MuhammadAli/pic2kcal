@@ -106,9 +106,9 @@ def train():
     args = parser.parse_args()
     datadir = Path(args.datadir)
     batch_size = 50
-    epochs = 20
+    epochs = 40
     shuffle = True
-    validate_every = 100
+    validate_every = 200
     validate_batches = 50
     show_img_count = 16
 
@@ -152,6 +152,7 @@ def train():
         l1 += smooth_l1_loss(pred[:, 2:3], data["fat"])
         l1 += smooth_l1_loss(pred[:, 3:4], data["carbohydrates"])
         if training_type == "regression_include_nutritional_data_and_top_top_ingredients":
+            # todo: adjust the 400 factor to 2000 if per recipe etc
             bce = binary_cross_entropy_with_logits(pred[:, 4:], data["ingredients"]) * 400
             if random.random() < 0.1:
                 print("l1 vs bce weight", float(l1), float(bce))
