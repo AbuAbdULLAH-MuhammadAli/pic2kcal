@@ -1,0 +1,108 @@
+{
+	"https://dl.acm.org/citation.cfm?id=3297871": {
+		"fetched": "2019-08-02T18:38:03.513Z",
+		"bibtex": "\n@inproceedings{chokr_calories_2017,\n\taddress = {San Francisco, California, USA},\n\tseries = {{AAAI}'17},\n\ttitle = {Calories {Prediction} from {Food} {Images}},\n\turl = {http://dl.acm.org/citation.cfm?id=3297863.3297871},\n\tabstract = {Calculating the amount of calories in a given food item is now a common task. We propose a machine-learning-based approach to predict the amount of calories from food images. Our system does not require any input from the user, except from an image of the food item. We take a pragmatic approach to accurately predict the amount of calories in a food item and solve the problem in three phases. First, we identify the type of the food item in the image. Second, we estimate the size of the food item in grams. Finally, by taking into consideration the output of the first two phases, we predict the amount of calories in the photographed food item. All these three phases are based purely on supervised machine-learning. We show that this pipelined approach is very effective in predicting the amount of calories in a food item as compared to baseline approaches which directly predicts the amount of calories from the image.},\n\turldate = {2019-08-02},\n\tbooktitle = {Proceedings of the {Thirty}-{First} {AAAI} {Conference} on {Artificial} {Intelligence}},\n\tpublisher = {AAAI Press},\n\tauthor = {Chokr, Manal and Elbassuoni, Shady},\n\tyear = {2017},\n\tpages = {4664--4669}\n}",
+		"csl": {
+			"publisher-place": "San Francisco, California, USA",
+			"collection-title": "AAAI'17",
+			"title": "Calories <span class=\"nocase\">Prediction</span> from <span class=\"nocase\">Food</span> <span class=\"nocase\">Images</span>",
+			"URL": "http://dl.acm.org/citation.cfm?id=3297863.3297871",
+			"container-title": "Proceedings of the Thirty-First AAAI Conference on Artificial Intelligence",
+			"publisher": "AAAI Press",
+			"author": [
+				{
+					"given": "Manal",
+					"family": "Chokr"
+				},
+				{
+					"given": "Shady",
+					"family": "Elbassuoni"
+				}
+			],
+			"page": "4664-4669",
+			"type": "paper-conference",
+			"citation-label": "chokr_calories_2017",
+			"id": "https://dl.acm.org/citation.cfm?id=3297871",
+			"issued": {
+				"date-parts": [
+					[
+						2017
+					]
+				]
+			}
+		}
+	},
+	"https://dl.acm.org/citation.cfm?doid=3126686.3126742": {
+		"fetched": "2019-08-02T18:41:47.387Z",
+		"bibtex": "\n@inproceedings{ege_image-based_2017,\n\taddress = {New York, NY, USA},\n\tseries = {Thematic {Workshops} '17},\n\ttitle = {Image-{Based} {Food} {Calorie} {Estimation} {Using} {Knowledge} on {Food} {Categories}, {Ingredients} and {Cooking} {Directions}},\n\tisbn = {9781450354165},\n\turl = {http://doi.acm.org/10.1145/3126686.3126742},\n\tdoi = {10.1145/3126686.3126742},\n\tabstract = {Image-based food calorie estimation is crucial to diverse mobile applications for recording everyday meal. However, some of them need human help for calorie estimation, and even if it is automatic, food categories are often limited or images from multiple viewpoints are required. Then, it is not yet achieved to estimate food calorie with practical accuracy and estimating food calories from a food photo is an unsolved problem. Therefore, in this paper, we propose estimating food calorie from a food photo by simultaneous learning of food calories, categories, ingredients and cooking directions using deep learning. Since there exists a strong correlation between food calories and food categories, ingredients and cooking directions information in general, we expect that simultaneous training of them brings performance boosting compared to independent single training. To this end, we use a multi-task CNN [1]. In addition, in this research, we construct two kinds of datasets that is a dataset of calorie-annotated recipe collected from Japanese recipe sites on the Web and a dataset collected from an American recipe site. In this experiment, we trained multi-task and single-task CNNs. As a result, the multi-task CNN achieved the better performance on both food category estimation and food calorie estimation than single-task CNNs. For the Japanese recipe dataset, by introducing a multi-task CNN, 0.039 were improved on the correlation coefficient, while for the American recipe dataset, 0.090 were raised compared to the result by the single-task CNN.},\n\turldate = {2019-08-02},\n\tbooktitle = {Proceedings of the on {Thematic} {Workshops} of {ACM} {Multimedia} 2017},\n\tpublisher = {ACM},\n\tauthor = {Ege, Takumi and Yanai, Keiji},\n\tyear = {2017},\n\tkeywords = {calorie estimation, food recognition, multi-task cnn},\n\tpages = {367--375}\n}",
+		"csl": {
+			"publisher-place": "New York, NY, USA",
+			"collection-title": "Thematic Workshops '17",
+			"title": "Image-<span class=\"nocase\">Based</span> <span class=\"nocase\">Food</span> <span class=\"nocase\">Calorie</span> <span class=\"nocase\">Estimation</span> <span class=\"nocase\">Using</span> <span class=\"nocase\">Knowledge</span> on <span class=\"nocase\">Food</span> <span class=\"nocase\">Categories</span>, <span class=\"nocase\">Ingredients</span> and <span class=\"nocase\">Cooking</span> <span class=\"nocase\">Directions</span>",
+			"ISBN": "9781450354165",
+			"URL": "http://doi.acm.org/10.1145/3126686.3126742",
+			"DOI": "10.1145/3126686.3126742",
+			"container-title": "Proceedings of the on Thematic Workshops of ACM Multimedia 2017",
+			"publisher": "ACM",
+			"author": [
+				{
+					"given": "Takumi",
+					"family": "Ege"
+				},
+				{
+					"given": "Keiji",
+					"family": "Yanai"
+				}
+			],
+			"page": "367-375",
+			"type": "paper-conference",
+			"citation-label": "ege_image-based_2017",
+			"id": "https://dl.acm.org/citation.cfm?doid=3126686.3126742",
+			"issued": {
+				"date-parts": [
+					[
+						2017
+					]
+				]
+			}
+		}
+	},
+	"https://arxiv.org/abs/1812.06164": {
+		"fetched": "2019-08-02T18:50:23.770Z",
+		"bibtex": "\n@article{romero_inverse_2018,\n\ttitle = {Inverse {Cooking}: {Recipe} {Generation} from {Food} {Images}},\n\tshorttitle = {Inverse {Cooking}},\n\turl = {https://arxiv.org/abs/1812.06164v2},\n\tabstract = {People enjoy food photography because they appreciate food. Behind each meal\nthere is a story described in a complex recipe and, unfortunately, by simply\nlooking at a food image we do not have access to its preparation process.\nTherefore, in this paper we introduce an inverse cooking system that recreates\ncooking recipes given food images. Our system predicts ingredients as sets by\nmeans of a novel architecture, modeling their dependencies without imposing any\norder, and then generates cooking instructions by attending to both image and\nits inferred ingredients simultaneously. We extensively evaluate the whole\nsystem on the large-scale Recipe1M dataset and show that (1) we improve\nperformance w.r.t. previous baselines for ingredient prediction; (2) we are\nable to obtain high quality recipes by leveraging both image and ingredients;\n(3) our system is able to produce more compelling recipes than retrieval-based\napproaches according to human judgment. We make code and models publicly\navailable.},\n\tlanguage = {en},\n\turldate = {2019-08-02},\n\tauthor = {Romero, Adriana and Giro-i-Nieto, Xavier and Drozdzal, Michal and Salvador, Amaia},\n\tmonth = dec,\n\tyear = {2018}\n}",
+		"csl": {
+			"title": "Inverse <span class=\"nocase\">Cooking</span>: <span class=\"nocase\">Recipe</span> <span class=\"nocase\">Generation</span> from <span class=\"nocase\">Food</span> <span class=\"nocase\">Images</span>",
+			"URL": "https://arxiv.org/abs/1812.06164v2",
+			"language": "en",
+			"author": [
+				{
+					"given": "Adriana",
+					"family": "Romero"
+				},
+				{
+					"given": "Xavier",
+					"family": "Giro-i-Nieto"
+				},
+				{
+					"given": "Michal",
+					"family": "Drozdzal"
+				},
+				{
+					"given": "Amaia",
+					"family": "Salvador"
+				}
+			],
+			"type": "article-journal",
+			"citation-label": "romero_inverse_2018",
+			"id": "https://arxiv.org/abs/1812.06164",
+			"issued": {
+				"date-parts": [
+					[
+						2018,
+						12
+					]
+				]
+			}
+		}
+	}
+}
