@@ -72,6 +72,10 @@ The multi-task model is based on the regression model including the nutritional 
 # Experiments
 We divided the generated dataset into train/test/validation (xx/xx/xx) splits. Our training set contains xxx samples with arround xxx images each recipe. The network was trained 40 epochs using a batch size of 50 samples each batch. Each epoch we shuffled the data and every fiftieth batch the performance was evaluated. We implemented all networks using Pytorch. 
 
+training objectives
+- rezept 
+- 100g
+- portion
 
 The networks were trained using 
 -   todo: actually use test data set
