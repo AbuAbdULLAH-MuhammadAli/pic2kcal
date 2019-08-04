@@ -13,17 +13,37 @@ citekeys:
     takumi: https://dl.acm.org/citation.cfm?doid=3126686.3126742 # http://img.cs.uec.ac.jp/pub/conf17/171024ege_0.pdf
     salvador: https://arxiv.org/abs/1812.06164
 
-citation-style: template/ieee-with-url.csl
+citation-style: template/ieee.csl
 link-citations: true
 ---
 
-# Motivation and Related Work
+# Introduction
+
+# Related Work
 
 There's some other papers like [@chokr; @takumi; @salvador]. Ours is more end to end and also BETTER
 
 # Dataset Extraction and Preprocessing
 
+## Matching / Preprocessing
+
+-   preprocessing / fddb matching
+
+## Dataset Statistics
+
+-   statistics about dataset
+-   number of pictures per recipe
+-   number of recipes
+-   most common ingredients
+
+# Models
+
+- (SmoothL1Loss + weight * BCE)
+- What we predict (kcal, fat, etc, ings)
+
 # Experiments
+
+- todo: actually test 
 
 \clearpage
 
