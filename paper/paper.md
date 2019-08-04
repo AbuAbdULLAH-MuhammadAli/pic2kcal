@@ -22,6 +22,8 @@ link-citations: true
 
 # Introduction
 
+Food is life.
+
 # Related Work
 
 There's some other papers like [@chokr; @takumi; @salvador]. Ours is more end to end and also BETTER
@@ -54,6 +56,7 @@ If the amount matching fails, the ingredient is marked as unmatched. If a recipe
 -   number of pictures per recipe
 -   number of recipes
 -   most common ingredients
+-   cake bias
 
 # Models
 We followed an end-to-end approach to solve the calorie prediction  problem of food images. To do so we used a pretrained ResNet and DenseNet architecture. We kept the feature extractor layers and replaced the last fully-connected classification layer. We try to solve the problem interpreting it on the one hand as a classification task and on the other hand as a regression problem. Furthermore we introduced additional learning feedback following a mutli-task approach.
@@ -66,12 +69,12 @@ We transformed the two already described models to a classification problem quan
 
 The multi-task model is based on the regression model including the nutritional information with additional binary outputs to predict the top n ingredientssa
 
-- (SmoothL1Loss + weight * BCE)
-- What we predict (kcal, fat, etc, ings)
+-   (SmoothL1Loss + weight \* BCE)
+-   What we predict (kcal, fat, etc, ings)
 
 # Experiments
 
-- todo: actually test 
+-   todo: actually use test data set
 
 \clearpage
 
