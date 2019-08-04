@@ -104,5 +104,170 @@
 				]
 			}
 		}
+	},
+	"https://ndb.nal.usda.gov/ndb/": {
+		"fetched": "2019-08-04T15:36:36.014Z",
+		"bibtex": "\n@misc{noauthor_usda_nodate,\n\ttitle = {{USDA} {Food} {Composition} {Databases}},\n\turl = {https://ndb.nal.usda.gov/ndb/},\n\tabstract = {United States Department of Agriculture Food Composition Databases},\n\turldate = {2019-08-04},\n\tjournal = {ndb.nal.usda.gov}\n}",
+		"csl": {
+			"title": "<span class=\"nocase\">USDA</span> <span class=\"nocase\">Food</span> <span class=\"nocase\">Composition</span> <span class=\"nocase\">Databases</span>",
+			"URL": "https://ndb.nal.usda.gov/ndb/",
+			"container-title": "ndb.nal.usda.gov",
+			"type": "book",
+			"citation-label": "noauthor_usda_nodate",
+			"id": "https://ndb.nal.usda.gov/ndb/"
+		}
+	},
+	"https://arxiv.org/abs/1607.04606": {
+		"fetched": "2019-08-04T15:57:12.817Z",
+		"bibtex": "\n@article{mikolov_enriching_2016,\n\ttitle = {Enriching {Word} {Vectors} with {Subword} {Information}},\n\turl = {https://arxiv.org/abs/1607.04606v2},\n\tabstract = {Continuous word representations, trained on large unlabeled corpora are\nuseful for many natural language processing tasks. Popular models that learn\nsuch representations ignore the morphology of words, by assigning a distinct\nvector to each word. This is a limitation, especially for languages with large\nvocabularies and many rare words. In this paper, we propose a new approach\nbased on the skipgram model, where each word is represented as a bag of\ncharacter \\$n\\$-grams. A vector representation is associated to each character\n\\$n\\$-gram; words being represented as the sum of these representations. Our\nmethod is fast, allowing to train models on large corpora quickly and allows us\nto compute word representations for words that did not appear in the training\ndata. We evaluate our word representations on nine different languages, both on\nword similarity and analogy tasks. By comparing to recently proposed\nmorphological word representations, we show that our vectors achieve\nstate-of-the-art performance on these tasks.},\n\tlanguage = {en},\n\turldate = {2019-08-04},\n\tauthor = {Mikolov, Tomas and Joulin, Armand and Grave, Edouard and Bojanowski, Piotr},\n\tmonth = jul,\n\tyear = {2016}\n}",
+		"csl": {
+			"title": "Enriching <span class=\"nocase\">Word</span> <span class=\"nocase\">Vectors</span> with <span class=\"nocase\">Subword</span> <span class=\"nocase\">Information</span>",
+			"URL": "https://arxiv.org/abs/1607.04606v2",
+			"language": "en",
+			"author": [
+				{
+					"given": "Tomas",
+					"family": "Mikolov"
+				},
+				{
+					"given": "Armand",
+					"family": "Joulin"
+				},
+				{
+					"given": "Edouard",
+					"family": "Grave"
+				},
+				{
+					"given": "Piotr",
+					"family": "Bojanowski"
+				}
+			],
+			"type": "article-journal",
+			"citation-label": "mikolov_enriching_2016",
+			"id": "https://arxiv.org/abs/1607.04606",
+			"issued": {
+				"date-parts": [
+					[
+						2016,
+						7
+					]
+				]
+			}
+		}
+	},
+	"https://www.mitpressjournals.org/doi/abs/10.1162/tacl_a_00051": {
+		"fetched": "2019-08-04T15:57:47.701Z",
+		"bibtex": "\n@article{bojanowski_enriching_2017,\n\ttitle = {Enriching {Word} {Vectors} with {Subword} {Information}},\n\tvolume = {5},\n\turl = {https://doi.org/10.1162/tacl_a_00051},\n\tdoi = {10.1162/tacl_a_00051},\n\tabstract = {Continuous word representations, trained on large unlabeled corpora are useful                     for many natural language processing tasks. Popular models that learn such                     representations ignore the morphology of words, by assigning a distinct vector                     to each word. This is a limitation, especially for languages with large                     vocabularies and many rare words. In this paper, we propose a new approach based                     on the skipgram model, where each word is represented as a bag of character                         n-grams. A vector representation is associated                     to each character n-gram; words being represented                     as the sum of these representations. Our method is fast, allowing to train                     models on large corpora quickly and allows us to compute word representations                     for words that did not appear in the training data. We evaluate our word                     representations on nine different languages, both on word similarity and analogy                     tasks. By comparing to recently proposed morphological word representations, we                     show that our vectors achieve state-of-the-art performance on these tasks.},\n\turldate = {2019-08-04},\n\tjournal = {Transactions of the Association for Computational Linguistics},\n\tauthor = {Bojanowski, Piotr and Grave, Edouard and Joulin, Armand and Mikolov, Tomas},\n\tmonth = dec,\n\tyear = {2017},\n\tpages = {135--146}\n}",
+		"csl": {
+			"title": "Enriching <span class=\"nocase\">Word</span> <span class=\"nocase\">Vectors</span> with <span class=\"nocase\">Subword</span> <span class=\"nocase\">Information</span>",
+			"volume": "5",
+			"URL": "https://doi.org/10.1162/tacl_a_00051",
+			"DOI": "10.1162/tacl_a_00051",
+			"container-title": "Transactions of the Association for Computational Linguistics",
+			"author": [
+				{
+					"given": "Piotr",
+					"family": "Bojanowski"
+				},
+				{
+					"given": "Edouard",
+					"family": "Grave"
+				},
+				{
+					"given": "Armand",
+					"family": "Joulin"
+				},
+				{
+					"given": "Tomas",
+					"family": "Mikolov"
+				}
+			],
+			"page": "135-146",
+			"type": "article-journal",
+			"citation-label": "bojanowski_enriching_2017",
+			"id": "https://www.mitpressjournals.org/doi/abs/10.1162/tacl_a_00051",
+			"issued": {
+				"date-parts": [
+					[
+						2017,
+						12
+					]
+				]
+			}
+		}
+	},
+	"https://ai.google/research/pubs/pub46808/": {
+		"fetched": "2019-08-04T16:02:04.549Z",
+		"bibtex": "\n@inproceedings{cer_universal_2018,\n\taddress = {Brussels, Belgium},\n\ttitle = {Universal {Sentence} {Encoder}},\n\turl = {https://arxiv.org/abs/1803.11175},\n\turldate = {2019-08-04},\n\tbooktitle = {In submission to: {EMNLP} demonstration},\n\tauthor = {Cer, Daniel and Yang, Yinfei and Kong, Sheng-yi and Hua, Nan and Limtiaco, Nicole Lyn Untalan and John, Rhomni St and Constant, Noah and Guajardo-Céspedes, Mario and Yuan, Steve and Tar, Chris and Sung, Yun-hsuan and Strope, Brian and Kurzweil, Ray},\n\tyear = {2018}\n}",
+		"csl": {
+			"publisher-place": "Brussels, Belgium",
+			"title": "Universal <span class=\"nocase\">Sentence</span> <span class=\"nocase\">Encoder</span>",
+			"URL": "https://arxiv.org/abs/1803.11175",
+			"container-title": "In submission to: EMNLP demonstration",
+			"author": [
+				{
+					"given": "Daniel",
+					"family": "Cer"
+				},
+				{
+					"given": "Yinfei",
+					"family": "Yang"
+				},
+				{
+					"given": "Sheng-yi",
+					"family": "Kong"
+				},
+				{
+					"given": "Nan",
+					"family": "Hua"
+				},
+				{
+					"given": "Nicole Lyn Untalan",
+					"family": "Limtiaco"
+				},
+				{
+					"given": "Rhomni St",
+					"family": "John"
+				},
+				{
+					"given": "Noah",
+					"family": "Constant"
+				},
+				{
+					"given": "Mario",
+					"family": "Guajardo-Céspedes"
+				},
+				{
+					"given": "Steve",
+					"family": "Yuan"
+				},
+				{
+					"given": "Chris",
+					"family": "Tar"
+				},
+				{
+					"given": "Yun-hsuan",
+					"family": "Sung"
+				},
+				{
+					"given": "Brian",
+					"family": "Strope"
+				},
+				{
+					"given": "Ray",
+					"family": "Kurzweil"
+				}
+			],
+			"type": "paper-conference",
+			"citation-label": "cer_universal_2018",
+			"id": "https://ai.google/research/pubs/pub46808/",
+			"issued": {
+				"date-parts": [
+					[
+						2018
+					]
+				]
+			}
+		}
 	}
 }
