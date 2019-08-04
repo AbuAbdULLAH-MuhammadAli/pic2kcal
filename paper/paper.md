@@ -63,17 +63,17 @@ We followed an end-to-end approach to solve the calorie prediction  problem of f
 
 We describe in the following only the last layer of the neural network.  
 
-In the regression case we trained a model predicting only the kcal information with one output neuron and another to predict additionally protein, fat and carbohydrates information using 4 neurons. The two models were trained using a L1 and smooth L1 loss.
+In the regression case we trained a model predicting only the kcal information with one output neuron and another to predict additionally protein, fat and carbohydrates information using four neurons. The two models were trained using a L1 and smooth L1 loss.
 
 We transformed the two already described models to a classification problem quantising the regression outputs. So we introduced 50 class buckets for each regression output. The models were trained using a cross entropy loss.
 
-The multi-task model is based on the regression model including the nutritional information with additional binary outputs to predict the top n ingredientssa
-
--   (SmoothL1Loss + weight \* BCE)
--   What we predict (kcal, fat, etc, ings)
+The multi-task model is based on the regression model including the nutritional information with additional binary outputs to predict the top n ingredients. The resulting layer has four regession outputs with 50 binary outputs. The used loss combines a smooth L1 loss for the regression outputs and an binary cross entropy for the top 50 ingredients.  $$ loss = L1 + 400 * BCE $$
 
 # Experiments
+We divided the generated dataset into train/test/validation (xx/xx/xx) splits. Our training set contains xxx samples with arround xxx images each recipe. The network was trained 40 epochs using a batch size of 50 samples each batch. Each epoch we shuffled the data and every fiftieth batch the performance was evaluated. We implemented all networks using Pytorch. 
 
+
+The networks were trained using 
 -   todo: actually use test data set
 
 \clearpage
