@@ -69,6 +69,11 @@ We transformed the two already described models to a classification problem quan
 
 The multi-task model is based on the regression model including the nutritional information with additional binary outputs to predict the top n ingredients. The resulting layer has four regression outputs with 50 binary outputs. The used loss combines a smooth L1 loss for the regression outputs and an binary cross entropy for the top 50 ingredients. To get the same scaling of the two learning signals we scaled the binary cross entropy loss with a factor of 400.  $$ loss = L1 + 400 * BCE $$
 
+There are no reference papers with a similar task like we do therefore we could not compare our results to other implementations. Due to we implemented a simple baseline to get an evidence that our model actually learns something and is better than guessing. 
+
+The baseline for the kcal prediction basically is the mean of all samples in the train dataset. That means that the model predicts in the inference always just the mean of the already seen kcal values. We used the same baseline for predicting the nutritional data. 
+
+
 # Experiments
 We divided the generated dataset into train/test/validation (xx/xx/xx) splits. Our training set contains xxx samples with around xxx images each recipe. The network was trained 40 epochs using a batch size of 50 samples each batch. The samples of the batches were shuffled every epoch and we evaluated the performance of the model every fiftieth batch. We implemented all networks using Pytorch. 
 
