@@ -269,5 +269,78 @@
 				]
 			}
 		}
+	},
+	"https://ieeexplore.ieee.org/abstract/document/6123373": {
+		"fetched": "2019-08-10T10:38:06.672Z",
+		"bibtex": "\n@inproceedings{miyazaki_image-based_2011,\n\ttitle = {Image-based {Calorie} {Content} {Estimation} for {Dietary} {Assessment}},\n\turl = {https://ieeexplore.ieee.org/abstract/document/6123373},\n\tdoi = {10.1109/ISM.2011.66},\n\tabstract = {In this paper, we present an image-analysis based approach to calorie content estimation for dietary assessment. We make use of daily food images captured and stored by multiple users in a public Web service called FoodLog. The images are taken without any control or markers. We build a dictionary dataset of 6512 images contained in FoodLog the calorie content of which have been estimated by experts in nutrition. An image is compared to the ground truth data from the point of views of multiple image features such as color histograms, color correlograms and SURF fetures, and the ground truth images are ranked by similarities. Finally, calorie content of the input food image is computed by linear estimation using the top n ranked calories in multiple features. The distribution of the estimation shows that 79\\% of the estimations are correct within ±40\\% error and 35\\% correct within ±20\\% error.},\n\turldate = {2019-08-10},\n\tbooktitle = {2011 {IEEE} {International} {Symposium} on {Multimedia}},\n\tauthor = {Miyazaki, T. and Silva, G. C. de and Aizawa, K.},\n\tmonth = dec,\n\tyear = {2011},\n\tkeywords = {health care, image colour analysis, Web services, image-based calorie content estimation, dietary assessment, image-analysis, daily food image, public Web service, FoodLog, color histogram, color correlogram, SURF feature, ground truth image, linear estimation, dietary management system, Estimation, Image color analysis, Feature extraction, Accuracy, Histograms, Correlation, Dictionaries, Calorie content estimation, FoodLog, Image processing, LifeLog},\n\tpages = {363--368}\n}",
+		"csl": {
+			"title": "Image-based <span class=\"nocase\">Calorie</span> <span class=\"nocase\">Content</span> <span class=\"nocase\">Estimation</span> for <span class=\"nocase\">Dietary</span> <span class=\"nocase\">Assessment</span>",
+			"URL": "https://ieeexplore.ieee.org/abstract/document/6123373",
+			"DOI": "10.1109/ISM.2011.66",
+			"container-title": "2011 IEEE International Symposium on Multimedia",
+			"author": [
+				{
+					"given": "T.",
+					"family": "Miyazaki"
+				},
+				{
+					"given": "G. C. de",
+					"family": "Silva"
+				},
+				{
+					"given": "K.",
+					"family": "Aizawa"
+				}
+			],
+			"page": "363-368",
+			"type": "paper-conference",
+			"citation-label": "miyazaki_image-based_2011",
+			"id": "https://ieeexplore.ieee.org/abstract/document/6123373",
+			"issued": {
+				"date-parts": [
+					[
+						2011,
+						12
+					]
+				]
+			}
+		}
+	},
+	"https://ieeexplore.ieee.org/abstract/document/8666636": {
+		"fetched": "2019-08-10T10:51:05.562Z",
+		"bibtex": "\n@article{subhi_vision-based_2019,\n\ttitle = {Vision-{Based} {Approaches} for {Automatic} {Food} {Recognition} and {Dietary} {Assessment}: {A} {Survey}},\n\tvolume = {7},\n\tissn = {2169-3536},\n\tshorttitle = {Vision-{Based} {Approaches} for {Automatic} {Food} {Recognition} and {Dietary} {Assessment}},\n\turl = {https://ieeexplore.ieee.org/abstract/document/8666636},\n\tdoi = {10.1109/ACCESS.2019.2904519},\n\tabstract = {Consuming the proper amount and right type of food have been the concern of many dieticians and healthcare conventions. In addition to physical activity and exercises, maintaining a healthy diet is necessary to avoid obesity and other health-related issues, such as diabetes, stroke, and many cardiovascular diseases. Recent advancements in machine learning applications and technologies have made it possible to develop automatic or semi-automatic dietary assessment solutions, which is a more convenient approach to monitor daily food intake and control eating habits. These solutions aim to address the issues found in the traditional dietary monitoring systems that suffer from imprecision, underreporting, time consumption, and low adherence. In this paper, the recent vision-based approaches and techniques have been widely explored to outline the current approaches and methodologies used for automatic dietary assessment, their performances, feasibility, and unaddressed challenges and issues.},\n\turldate = {2019-08-10},\n\tjournal = {IEEE Access},\n\tauthor = {Subhi, M. A. and Ali, S. H. and Mohammed, M. A.},\n\tyear = {2019},\n\tkeywords = {computer vision, food products, food safety, health care, learning (artificial intelligence), medical computing, patient monitoring, machine learning applications, automatic dietary assessment, healthcare conventions, physical activity, food intake monitoring, vision-based approaches, automatic food recognition, food consumption, Image segmentation, Feature extraction, Classification algorithms, Training, Estimation, Machine learning, Image recognition, Food recognition, food classification, food volume estimation, food nutrient information, food image datasets},\n\tpages = {35370--35381}\n}",
+		"csl": {
+			"title": "Vision-<span class=\"nocase\">Based</span> <span class=\"nocase\">Approaches</span> for <span class=\"nocase\">Automatic</span> <span class=\"nocase\">Food</span> <span class=\"nocase\">Recognition</span> and <span class=\"nocase\">Dietary</span> <span class=\"nocase\">Assessment</span>: <span class=\"nocase\">A</span> <span class=\"nocase\">Survey</span>",
+			"volume": "7",
+			"ISSN": "2169-3536",
+			"URL": "https://ieeexplore.ieee.org/abstract/document/8666636",
+			"DOI": "10.1109/ACCESS.2019.2904519",
+			"container-title": "IEEE Access",
+			"author": [
+				{
+					"given": "M. A.",
+					"family": "Subhi"
+				},
+				{
+					"given": "S. H.",
+					"family": "Ali"
+				},
+				{
+					"given": "M. A.",
+					"family": "Mohammed"
+				}
+			],
+			"page": "35370-35381",
+			"type": "article-journal",
+			"citation-label": "subhi_vision-based_2019",
+			"id": "https://ieeexplore.ieee.org/abstract/document/8666636",
+			"issued": {
+				"date-parts": [
+					[
+						2019
+					]
+				]
+			}
+		}
 	}
 }

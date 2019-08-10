@@ -9,19 +9,21 @@ abstract: |
     We present in this paper a novel end-to-end approach to estimate the kcal directly from a picture. 
     Since there is no large scale public available dataset to train models on this task we furthermore collected data of recipes including images and matched the ingredients of the recipes with ground truth nutritional information of a food database. 
 citekeys:
-    chokr: https://dl.acm.org/citation.cfm?id=3297871
+    chokr: https://dl.acm.org/citation.cfm?id=3297871 # https://aaai.org/ocs/index.php/IAAI/IAAI17/paper/view/14204/13719
     takumi: https://dl.acm.org/citation.cfm?doid=3126686.3126742 # http://img.cs.uec.ac.jp/pub/conf17/171024ege_0.pdf
     salvador: https://arxiv.org/abs/1812.06164
     usda: https://ndb.nal.usda.gov/ndb/
     fasttext: https://www.mitpressjournals.org/doi/abs/10.1162/tacl_a_00051
     googleuniv: https://ai.google/research/pubs/pub46808/
+    miyazaki: https://ieeexplore.ieee.org/abstract/document/6123373 # http://sci-hub.tw/https://ieeexplore.ieee.org/abstract/document/6123373
+    survey: https://ieeexplore.ieee.org/abstract/document/8666636 # http://sci-hub.tw/https://ieeexplore.ieee.org/abstract/document/8666636
 
 citation-style: template/ieee.csl
 link-citations: true
 ---
 
 # Introduction
-The last years the awareness of healthier and more balanced food has risen a lot. For the user it is often hard to keep track of the consumed calories or related with a lot of  manually work to find recipes with calorie information or to look up the nutritional information of each ingredient. 
+The last years the awareness of healthier and more balanced diets has risen a lot. For the user it is often hard to keep track of the consumed calories or related with a lot of  manually work to find recipes with calorie information or to look up the nutritional information of each ingredient. 
 Even commercial offered apps often needs supervision of the user to select the recognized components of the meal. 
 
 Datasets play an important role to solve computer vision problems. It is crucial to have enough trainings data for the very deep CNN models with a lot parameters. In this work we present an entirely new food dataset which could be used as training or benchmark for machine learning models. The dataset contains roughly xxxx recipes including nutritional information as well as ingredients list and xxx images of prepared meals. 
@@ -30,7 +32,13 @@ We used the dataset to show that the mapping from food image to kcal information
 
 # Related Work
 
-There's some other papers like [@chokr; @takumi; @salvador]. Ours is more end to end and also BETTER
+There's some other papers like [@chokr; @takumi; ]. Ours is more end to end and also BETTER
+
+- calorie mama: recognizes ingredients and meals from pictures. pretty impressive tbh.
+- [@miyazaki]: "in which they searched the calorie-annotatedfood photo database for the top 5 similar images based onconventional hand-crafted features such as SURF-based BoFand color histograms and estimated food calories by averag-ing the food calories of the top 5 food photos"
+- [@salvador]: recipe generation (ingredients list, instructions, no amounts or kcal)
+- [@takumi]: multi-task VGG: kcal estimation, food categorization, ingredients estimation, cooking instructions. probably closest to ours? ingredients are not predicted individually, but as a single averaged word2vec embedding to make kcal prediction better
+- [@survey]: comparison of many different things: used datasets, segmentation methods, classification approaches, volume estimation methods  of 10+ other papers
 
 # Dataset Extraction and Preprocessing
 
@@ -91,7 +99,6 @@ Lastly we reformulated the training objective to a slightly easier problem. We t
 
 We could furthermore improve the results of the model using the multi-task approach. The top 50 ingredients of the recipes were injected as further information to support the model predicting the kcal information. We report the results of this model in the result section. 
 
-\clearpage
 
 # Results
 
@@ -114,5 +121,10 @@ ours (w/ macros+ings) & 0.328 \\
 \end{table}
 
 ![Some example results, showing predicted calories, fat, protein, carbohydrates and ingredients.](img/results.png){#fig:results}
+
+# Future Work
+
+- volume estimation completely missing
+- 
 
 # References
