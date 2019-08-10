@@ -5,9 +5,9 @@ author: |
     Karlsruhe Institute of Technology
 date: 2019-08-02
 abstract: |
-    We estimate kcal directly from a picture.
-    It good.
-
+    Latest approaches to predict calories of food are using mostly models which are composed out a several pipeline steps like segment the image, estimate the weight and classify the ingredient. 
+    We present in this paper a novel end-to-end approach to estimate the kcal directly from a picture. 
+    Since there is no large scale public available dataset to train models on this task we furthermore collected data of recipes including images and matched the ingredients of the recipes with ground truth nutritional information of a food database. 
 citekeys:
     chokr: https://dl.acm.org/citation.cfm?id=3297871
     takumi: https://dl.acm.org/citation.cfm?doid=3126686.3126742 # http://img.cs.uec.ac.jp/pub/conf17/171024ege_0.pdf
@@ -21,8 +21,12 @@ link-citations: true
 ---
 
 # Introduction
+The last years the awareness of healthier and more balanced food has risen a lot. For the user it is often hard to keep track of the consumed calories or related with a lot of  manually work to find recipes with calorie information or to look up the nutritional information of each ingredient. 
+Even commercial offered apps often needs supervision of the user to select the recognized components of the meal. 
 
-Food is life.
+Datasets play an important role to solve computer vision problems. It is crucial to have enough trainings data for the very deep CNN models with a lot parameters. In this work we present an entirely new food dataset which could be used as training or benchmark for machine learning models. The dataset contains roughly xxxx recipes including nutritional information as well as ingredients list and xxx images of prepared meals. 
+
+We used the dataset to show that the mapping from food image to kcal information could be learned by a neural network. Experiments have shown that injecting further information into the model in form of top n ingredients outperform the models with less information. 
 
 # Related Work
 
