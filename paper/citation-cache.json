@@ -342,5 +342,69 @@
 				]
 			}
 		}
+	},
+	"https://ieeexplore.ieee.org/document/7410503": {
+		"fetched": "2019-08-10T10:57:03.104Z",
+		"bibtex": "\n@inproceedings{myers_im2calories:_2015,\n\ttitle = {Im2Calories: {Towards} an {Automated} {Mobile} {Vision} {Food} {Diary}},\n\tshorttitle = {Im2Calories},\n\turl = {https://ieeexplore.ieee.org/document/7410503},\n\tdoi = {10.1109/ICCV.2015.146},\n\tabstract = {We present a system which can recognize the contents of your meal from a single image, and then predict its nutritional contents, such as calories. The simplest version assumes that the user is eating at a restaurant for which we know the menu. In this case, we can collect images offline to train a multi-label classifier. At run time, we apply the classifier (running on your phone) to predict which foods are present in your meal, and we lookup the corresponding nutritional facts. We apply this method to a new dataset of images from 23 different restaurants, using a CNN-based classifier, significantly outperforming previous work. The more challenging setting works outside of restaurants. In this case, we need to estimate the size of the foods, as well as their labels. This requires solving segmentation and depth / volume estimation from a single image. We present CNN-based approaches to these problems, with promising preliminary results.},\n\turldate = {2019-08-10},\n\tbooktitle = {2015 {IEEE} {International} {Conference} on {Computer} {Vision} ({ICCV})},\n\tauthor = {Myers, A. and Johnston, N. and Rathod, V. and Korattikara, A. and Gorban, A. and Silberman, N. and Guadarrama, S. and Papandreou, G. and Huang, J. and Murphy, K.},\n\tmonth = dec,\n\tyear = {2015},\n\tkeywords = {computer vision, image classification, image segmentation, medical computing, mobile computing, neural nets, personal computing, prediction theory, Im2Calories, automated mobile vision food diary, content recognition, nutritional content prediction, restaurant, multilabel classifier, food prediction, nutritional facts, CNN-based classifier, food size estimation, depth estimation, volume estimation, Image segmentation, Mobile communication, Visualization, Image recognition, Cameras, Machine learning},\n\tpages = {1233--1241}\n}",
+		"csl": {
+			"title": "Im2Calories: <span class=\"nocase\">Towards</span> an <span class=\"nocase\">Automated</span> <span class=\"nocase\">Mobile</span> <span class=\"nocase\">Vision</span> <span class=\"nocase\">Food</span> <span class=\"nocase\">Diary</span>",
+			"URL": "https://ieeexplore.ieee.org/document/7410503",
+			"DOI": "10.1109/ICCV.2015.146",
+			"container-title": "2015 IEEE International Conference on Computer Vision (ICCV)",
+			"author": [
+				{
+					"given": "A.",
+					"family": "Myers"
+				},
+				{
+					"given": "N.",
+					"family": "Johnston"
+				},
+				{
+					"given": "V.",
+					"family": "Rathod"
+				},
+				{
+					"given": "A.",
+					"family": "Korattikara"
+				},
+				{
+					"given": "A.",
+					"family": "Gorban"
+				},
+				{
+					"given": "N.",
+					"family": "Silberman"
+				},
+				{
+					"given": "S.",
+					"family": "Guadarrama"
+				},
+				{
+					"given": "G.",
+					"family": "Papandreou"
+				},
+				{
+					"given": "J.",
+					"family": "Huang"
+				},
+				{
+					"given": "K.",
+					"family": "Murphy"
+				}
+			],
+			"page": "1233-1241",
+			"type": "paper-conference",
+			"citation-label": "myers_im2calories:_2015",
+			"id": "https://ieeexplore.ieee.org/document/7410503",
+			"issued": {
+				"date-parts": [
+					[
+						2015,
+						12
+					]
+				]
+			}
+		}
 	}
 }

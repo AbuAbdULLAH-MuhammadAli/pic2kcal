@@ -8,6 +8,9 @@ abstract: |
     Latest approaches to predict calories of food are using mostly models which are composed out a several pipeline steps like segment the image, estimate the weight and classify the ingredient. 
     We present in this paper a novel end-to-end approach to estimate the kcal directly from a picture. 
     Since there is no large scale public available dataset to train models on this task we furthermore collected data of recipes including images and matched the ingredients of the recipes with ground truth nutritional information of a food database. 
+figPrefix: [Figure, Figures]
+tblPrefix: [Table, Tables]
+secPrefix: [Section, Sections]
 citekeys:
     chokr: https://dl.acm.org/citation.cfm?id=3297871 # https://aaai.org/ocs/index.php/IAAI/IAAI17/paper/view/14204/13719
     takumi: https://dl.acm.org/citation.cfm?doid=3126686.3126742 # http://img.cs.uec.ac.jp/pub/conf17/171024ege_0.pdf
@@ -17,6 +20,7 @@ citekeys:
     googleuniv: https://ai.google/research/pubs/pub46808/
     miyazaki: https://ieeexplore.ieee.org/abstract/document/6123373 # http://sci-hub.tw/https://ieeexplore.ieee.org/abstract/document/6123373
     survey: https://ieeexplore.ieee.org/abstract/document/8666636 # http://sci-hub.tw/https://ieeexplore.ieee.org/abstract/document/8666636
+    myers: https://ieeexplore.ieee.org/document/7410503 # https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44321.pdf
 
 citation-style: template/ieee.csl
 link-citations: true
@@ -33,6 +37,32 @@ We used the dataset to show that the mapping from food image to kcal information
 # Related Work
 
 There's some other papers like [@chokr; @takumi; ]. Ours is more end to end and also BETTER
+
+- [@chokr]:
+    - details von verena, wsl zu detailliert:
+    - supervised, pipeline: predict food-type -> predict size in g -> predict kcal based on size and food-type (nicht end-to-end)
+    - Dataset: Pittsburg fast-food image dataset (61Essens-Katergorien, 101Sub-Kategorien, jew. 3 Instanzen des Gerichts -> Annotiert mit Größe und Art des Gerichts; hier nur Subset verwendet (6 Klassen angerichten, ~1100 Bilder))
+    - Architektur / Ablauf
+
+        - PCA: auf 23Features runter
+        - Food-type-Classifier: verschiedene Varianten ausprobiert; beste: SVM
+        - Size Predictor: beste: Random forests
+        - Calories Predictor: NN als predictor
+            - input: 23 visual features + food type + food size
+            - Performance: Vergleich nur gegen eine eigene Studie, keine Angabe von Accuracy (Vergleich des pipeline-Ansatzes (visualfeatures+type+size) gegen Modell nur trainiert auf vis. features
+        - Handgemachte Annotationen für die Kcal-Angaben
+- [@myers]:
+    - wsl zu detailliert
+    - Restaurant specific im2calories
+    - Task1: Is food in Image ? -> Food vs. non-food (binäre Klassifikation)
+        - mit googLeNet CNN (pretrained on ImageNet)
+    - Task2: Content Analysis -> Calorie Prediction
+        - Training:
+            1. vorhersage der Zutaten über multi-label classifier
+            2. Lookup der Zutaten für mapping Zutat -> kcal
+            3. dann schätzen der Gesamt-kcal-anzahl (Summe über die Zutaten-kcal)
+        - Test: auf Datensatz ‘MenuMatch’
+    - Mapping Zutat -> Kcal über FNDDS 
 
 - calorie mama: recognizes ingredients and meals from pictures. pretty impressive tbh.
 - [@miyazaki]: "in which they searched the calorie-annotatedfood photo database for the top 5 similar images based onconventional hand-crafted features such as SURF-based BoFand color histograms and estimated food calories by averag-ing the food calories of the top 5 food photos"
@@ -60,15 +90,62 @@ The second problem is matching the amounts. For ingredients given in grams this 
 
 The amount matching is applied to all possible ingredient matches that are similar by more than 84% (measured by cosine distance) [why lol] in decending order, or to the single closest ingredient if there is no match more accurate than 84%.
 
-If the amount matching fails, the ingredient is marked as unmatched. If a recipe has at least one unmatched ingredient, it is discarded. With this method we have full nutritional information for around 38% of all recipes. This could be improved with further tweaking.
+If the amount matching fails, the ingredient is marked as unmatched. If a recipe has at least one unmatched ingredient, it is discarded. 
 
 ## Dataset Statistics
 
--   statistics about dataset
--   number of pictures per recipe
--   number of recipes
--   most common ingredients
--   cake bias
+In total, the recipe website contains 330 thousand recipes. Of these, 210 thousand have at least one picture. Around 20 thousand recipes with pictures have user-given calorie information, though we didn't use these in the end. The recipes contain a total of 374 thousand unique ingredients. This high number is caused by slight differences in spelling or irrelevant details. In total, we collected 900 thousand pictures. On average, each recipe has 3 pictures.
+
+The database of nutritional values contains a total of 390 thousand ingredients. Many of these are incomplete or duplicates, so we filter them by popularity to 123 thousand ingredients.
+
+After matching the ingredients to the recipes, we have 85 thousand recipes with full nutritional information. We lose 60% of recipes during matching because our matching discards recipes quickly when the ingredients don't fully match. This is so we can ensure we only retain data points that are accurate. This could be improved with further tweaking.
+
+In total, we have 270 thousand data points (because each recipe has multiple images). We split these into train, validation and test set so that multiple pictures of the same recipe are in the same data split.
+
+The 20 most common ingredients are shown in [@tbl:ings]. Note how common baking ingredients are. This indicates a cake bias, i.e. the dataset may be biased towards sweet meals and desserts.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{|r|l|}
+\hline
+Count & Ingredient \\
+\hline\hline
+   119244 & Salz  \\
+    59066 & Zucker  \\
+    58185 & Ei, vom Huhn \\
+    46069 & Mehl  \\
+    45891 & Butter  \\
+    41206 & Zwiebel, frisch  \\
+    24531 & Milch (3,8 \%)  \\
+    24011 & Vanillezucker  \\
+    23476 & Zucker  \\
+    22822 & Öl \\
+    22781 & Paprika, orange  \\
+    21348 & Knoblauch   \\
+    20359 & Wasser  \\
+    19935 & Knoblauch, frisch  \\
+    19336 & Pfefferbreze  \\
+    18928 & Olivenöl  \\
+    15966 & Backpulver  \\
+    15039 & Sahne  \\
+    14751 & Zitrone, frisch  \\
+    13077 & Paprikapulver  \\
+    12487 & Gemüsebrühe, pflanzlich  \\
+    12136 & Backpulver  \\
+    11960 & Käse  \\
+    11673 & Kartoffeln  \\
+    10926 & Eigelb, vom Huhn  \\
+    10780 & Butter, Durchschnittswert  \\
+     9591 & Puderzucker  \\
+     9439 & Petersilie, frisch  \\
+     8708 & Zucchini, grün, frisch  \\
+     8630 & Öl  \\
+     8293 & Mehl, Weizenmehl Typ 405  \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Most common ingredients after matching.\label{tbl:ings}}
+\end{table}
 
 # Models
 We followed an end-to-end approach to solve the calorie prediction  problem of food images. To do so we used a pretrained ResNet and DenseNet architecture. We kept the feature extractor layers and replaced the last fully-connected classification layer. We try to solve the problem interpreting it on the one hand as a classification task and on the other hand as a regression problem. Furthermore we introduced additional learning feedback following a multi-task approach.
@@ -128,6 +205,7 @@ ours (w/ macros+ings) & 0.328 \\
 The dataset we extracted contains at the moment much more attributes as we are using for now. Once the dataset gets further processed the recipe instructions, the type of the meal (cake, side dish), the rating and further properties could be used for training further models. The current dataset contains at the moment all available photos of each recipe. It may make sense to implement sanity checks to filter images out if they do not match the recipe in a proper way. 
 
 Further problems related to food could be approached using the dataset. For some people it may be interesting to know if the meal contains a special ingredient because of allergies or if it is vegan or vegetarian. The dataset provides needed information to train a variety of different models to solve problems related to food. 
+
 
 
 
