@@ -7,7 +7,7 @@ date: 2019-08-02
 abstract: |
     Latest approaches to predict calories of food are using mostly models which are composed out a several pipeline steps like segment the image, estimate the weight and classify the ingredient. 
     We present in this paper a novel end-to-end approach to estimate the kcal directly from a picture. 
-    Since there is no large scale public available dataset to train models on this task we furthermore collected data of recipes including images and matched the ingredients of the recipes with ground truth nutritional information of a food database. 
+    Since there is no large scale public available dataset to train models on this task we furthermore collected data of recipes including images and matched the ingredients of the recipes with ground truth nutritional information of a food database.
 figPrefix: [Figure, Figures]
 tblPrefix: [Table, Tables]
 secPrefix: [Section, Sections]
@@ -27,48 +27,52 @@ link-citations: true
 ---
 
 # Introduction
-The last years the awareness of healthier and more balanced diets has risen a lot. For the user it is often hard to keep track of the consumed calories or related with a lot of  manually work to find recipes with calorie information or to look up the nutritional information of each ingredient. 
-Even commercial offered apps often needs supervision of the user to select the recognized components of the meal. 
 
-Datasets play an important role to solve computer vision problems. It is crucial to have enough trainings data for the very deep CNN models with a lot parameters. In this work we present an entirely new food dataset which could be used as training or benchmark for machine learning models. The dataset contains roughly xxxx recipes including nutritional information as well as ingredients list and xxx images of prepared meals. 
+The last years the awareness of healthier and more balanced diets has risen a lot. For the user it is often hard to keep track of the consumed calories or related with a lot of manually work to find recipes with calorie information or to look up the nutritional information of each ingredient.
+Even commercial offered apps often needs supervision of the user to select the recognized components of the meal.
 
-We used the dataset to show that the mapping from food image to kcal information could be learned by a neural network. Experiments have shown that injecting further information into the model in form of top n ingredients outperform the models with less information. 
+Datasets play an important role to solve computer vision problems. It is crucial to have enough trainings data for the very deep CNN models with a lot parameters. In this work we present an entirely new food dataset which could be used as training or benchmark for machine learning models. The dataset contains roughly xxxx recipes including nutritional information as well as ingredients list and xxx images of prepared meals.
+
+We used the dataset to show that the mapping from food image to kcal information could be learned by a neural network. Experiments have shown that injecting further information into the model in form of top n ingredients outperform the models with less information.
 
 # Related Work
 
 There's some other papers like [@chokr; @takumi; ]. Ours is more end to end and also BETTER
 
-- [@chokr]:
-    - details von verena, wsl zu detailliert:
-    - supervised, pipeline: predict food-type -> predict size in g -> predict kcal based on size and food-type (nicht end-to-end)
-    - Dataset: Pittsburg fast-food image dataset (61Essens-Katergorien, 101Sub-Kategorien, jew. 3 Instanzen des Gerichts -> Annotiert mit Größe und Art des Gerichts; hier nur Subset verwendet (6 Klassen angerichten, ~1100 Bilder))
-    - Architektur / Ablauf
+-   [@chokr]:
 
-        - PCA: auf 23Features runter
-        - Food-type-Classifier: verschiedene Varianten ausprobiert; beste: SVM
-        - Size Predictor: beste: Random forests
-        - Calories Predictor: NN als predictor
-            - input: 23 visual features + food type + food size
-            - Performance: Vergleich nur gegen eine eigene Studie, keine Angabe von Accuracy (Vergleich des pipeline-Ansatzes (visualfeatures+type+size) gegen Modell nur trainiert auf vis. features
-        - Handgemachte Annotationen für die Kcal-Angaben
-- [@myers]:
-    - wsl zu detailliert
-    - Restaurant specific im2calories
-    - Task1: Is food in Image ? -> Food vs. non-food (binäre Klassifikation)
-        - mit googLeNet CNN (pretrained on ImageNet)
-    - Task2: Content Analysis -> Calorie Prediction
-        - Training:
+    -   details von verena, wsl zu detailliert:
+    -   supervised, pipeline: predict food-type -> predict size in g -> predict kcal based on size and food-type (nicht end-to-end)
+    -   Dataset: Pittsburg fast-food image dataset (61Essens-Katergorien, 101Sub-Kategorien, jew. 3 Instanzen des Gerichts -> Annotiert mit Größe und Art des Gerichts; hier nur Subset verwendet (6 Klassen angerichten, ~1100 Bilder))
+    -   Architektur / Ablauf
+
+        -   PCA: auf 23Features runter
+        -   Food-type-Classifier: verschiedene Varianten ausprobiert; beste: SVM
+        -   Size Predictor: beste: Random forests
+        -   Calories Predictor: NN als predictor
+            -   input: 23 visual features + food type + food size
+            -   Performance: Vergleich nur gegen eine eigene Studie, keine Angabe von Accuracy (Vergleich des pipeline-Ansatzes (visualfeatures+type+size) gegen Modell nur trainiert auf vis. features
+        -   Handgemachte Annotationen für die Kcal-Angaben
+
+-   [@myers]:
+
+    -   wsl zu detailliert
+    -   Restaurant specific im2calories
+    -   Task1: Is food in Image ? -> Food vs. non-food (binäre Klassifikation)
+        -   mit googLeNet CNN (pretrained on ImageNet)
+    -   Task2: Content Analysis -> Calorie Prediction
+        -   Training:
             1. vorhersage der Zutaten über multi-label classifier
             2. Lookup der Zutaten für mapping Zutat -> kcal
             3. dann schätzen der Gesamt-kcal-anzahl (Summe über die Zutaten-kcal)
-        - Test: auf Datensatz ‘MenuMatch’
-    - Mapping Zutat -> Kcal über FNDDS 
+        -   Test: auf Datensatz ‘MenuMatch’
+    -   Mapping Zutat -> Kcal über FNDDS
 
-- calorie mama: recognizes ingredients and meals from pictures. pretty impressive tbh.
-- [@miyazaki]: "in which they searched the calorie-annotatedfood photo database for the top 5 similar images based onconventional hand-crafted features such as SURF-based BoFand color histograms and estimated food calories by averag-ing the food calories of the top 5 food photos"
-- [@salvador]: recipe generation (ingredients list, instructions, no amounts or kcal)
-- [@takumi]: multi-task VGG: kcal estimation, food categorization, ingredients estimation, cooking instructions. probably closest to ours? ingredients are not predicted individually, but as a single averaged word2vec embedding to make kcal prediction better
-- [@survey]: comparison of many different things: used datasets, segmentation methods, classification approaches, volume estimation methods  of 10+ other papers
+-   calorie mama: recognizes ingredients and meals from pictures. pretty impressive tbh.
+-   [@miyazaki]: "in which they searched the calorie-annotatedfood photo database for the top 5 similar images based onconventional hand-crafted features such as SURF-based BoFand color histograms and estimated food calories by averag-ing the food calories of the top 5 food photos"
+-   [@salvador]: recipe generation (ingredients list, instructions, no amounts or kcal)
+-   [@takumi]: multi-task VGG: kcal estimation, food categorization, ingredients estimation, cooking instructions. probably closest to ours? ingredients are not predicted individually, but as a single averaged word2vec embedding to make kcal prediction better
+-   [@survey]: comparison of many different things: used datasets, segmentation methods, classification approaches, volume estimation methods of 10+ other papers
 
 # Dataset Extraction and Preprocessing
 
@@ -90,7 +94,9 @@ The second problem is matching the amounts. For ingredients given in grams this 
 
 The amount matching is applied to all possible ingredient matches that are similar by more than 84% (measured by cosine distance) [why lol] in decending order, or to the single closest ingredient if there is no match more accurate than 84%.
 
-If the amount matching fails, the ingredient is marked as unmatched. If a recipe has at least one unmatched ingredient, it is discarded. 
+If the amount matching fails, the ingredient is marked as unmatched. If a recipe has at least one unmatched ingredient, it is discarded.
+
+As a final step, we filter out all data points where the summed up calories of the recipe is outside of two standard deviations from the mean repeatedly until it converges. This is necessary because some recipes contain obviously wrong information (for example in a carrot cake recipe the author specified you need at a million carrots).
 
 ## Dataset Statistics
 
@@ -98,9 +104,22 @@ In total, the recipe website contains 330 thousand recipes. Of these, 210 thousa
 
 The database of nutritional values contains a total of 390 thousand ingredients. Many of these are incomplete or duplicates, so we filter them by popularity to 123 thousand ingredients.
 
-After matching the ingredients to the recipes, we have 85 thousand recipes with full nutritional information. We lose 60% of recipes during matching because our matching discards recipes quickly when the ingredients don't fully match. This is so we can ensure we only retain data points that are accurate. This could be improved with further tweaking.
+After matching the ingredients to the recipes, we have 50 to 85 thousand recipes with full nutritional information, depending on whether we aggregate calories per recipe, per portion or per 100g of raw mass (see [@sec:experiments]). We lose 60% of recipes during matching because our matching discards recipes quickly when the ingredients don't fully match. This is so we can ensure we only retain data points that are accurate, and it could be improved with further tweaking. When aggregating per portion, we lose even more data points since we have to exclude all recipes where the user did not supply information about how many portions a recipe consists of.
 
-In total, we have 270 thousand data points (because each recipe has multiple images). We split these into train, validation and test set so that multiple pictures of the same recipe are in the same data split.
+In total, we have around 179 to 308 thousand data points (because each recipe has multiple images). We split these into train, validation and test set such that multiple pictures of the same recipe are in the same data split.
+
+<!-- todo: convert table to latex probably so it is consistent -->
+
+|                            | per portion | per 100 g | per recipe |
+| -------------------------- | ----------- | --------- | ---------- |
+| recipes count before       | 211k        | 211k      | 211k       |
+| removed no ings match      | 127k        | 127k      | 127k       |
+| removed no portions        | 31k         | 0k        | 0k         |
+| kcal mean                  | 425 kcal    | 179 kcal  | 1791 kcal  |
+| kcal stddev                | 207 kcal    | 73 kcal   | 1007 kcal  |
+| kcal outliers              | 11k         | 14k       | 21k        |
+| final recipe count         | 42k         | 70k       | 63k        |
+| **final data point count** | 179k        | 308k      | 267k       |
 
 The 20 most common ingredients are shown in [@tbl:ings]. Note how common baking ingredients are. This indicates a cake bias, i.e. the dataset may be biased towards sweet meals and desserts.
 
@@ -110,36 +129,36 @@ The 20 most common ingredients are shown in [@tbl:ings]. Note how common baking 
 \hline
 Count & Ingredient \\
 \hline\hline
-   119244 & Salz  \\
-    59066 & Zucker  \\
-    58185 & Ei, vom Huhn \\
-    46069 & Mehl  \\
-    45891 & Butter  \\
-    41206 & Zwiebel, frisch  \\
-    24531 & Milch (3,8 \%)  \\
-    24011 & Vanillezucker  \\
-    23476 & Zucker  \\
-    22822 & Öl \\
-    22781 & Paprika, orange  \\
-    21348 & Knoblauch   \\
-    20359 & Wasser  \\
-    19935 & Knoblauch, frisch  \\
-    19336 & Pfefferbreze  \\
-    18928 & Olivenöl  \\
-    15966 & Backpulver  \\
-    15039 & Sahne  \\
-    14751 & Zitrone, frisch  \\
-    13077 & Paprikapulver  \\
-    12487 & Gemüsebrühe, pflanzlich  \\
-    12136 & Backpulver  \\
-    11960 & Käse  \\
-    11673 & Kartoffeln  \\
-    10926 & Eigelb, vom Huhn  \\
-    10780 & Butter, Durchschnittswert  \\
-     9591 & Puderzucker  \\
-     9439 & Petersilie, frisch  \\
-     8708 & Zucchini, grün, frisch  \\
-     8293 & Mehl, Weizenmehl Typ 405  \\
+119244 & Salz \\
+59066 & Zucker \\
+58185 & Ei, vom Huhn \\
+46069 & Mehl \\
+45891 & Butter \\
+41206 & Zwiebel, frisch \\
+24531 & Milch (3,8 \%) \\
+24011 & Vanillezucker \\
+23476 & Zucker \\
+22822 & Öl \\
+22781 & Paprika, orange \\
+21348 & Knoblauch \\
+20359 & Wasser \\
+19935 & Knoblauch, frisch \\
+19336 & Pfefferbreze \\
+18928 & Olivenöl \\
+15966 & Backpulver \\
+15039 & Sahne \\
+14751 & Zitrone, frisch \\
+13077 & Paprikapulver \\
+12487 & Gemüsebrühe, pflanzlich \\
+12136 & Backpulver \\
+11960 & Käse \\
+11673 & Kartoffeln \\
+10926 & Eigelb, vom Huhn \\
+10780 & Butter, Durchschnittswert \\
+9591 & Puderzucker \\
+9439 & Petersilie, frisch \\
+8708 & Zucchini, grün, frisch \\
+8293 & Mehl, Weizenmehl Typ 405 \\
 \hline
 \end{tabular}
 \end{center}
@@ -147,34 +166,34 @@ Count & Ingredient \\
 \end{table}
 
 # Models
-We followed an end-to-end approach to solve the calorie prediction  problem of food images. To do so we used a pretrained ResNet and DenseNet architecture. We kept the feature extractor layers and replaced the last fully-connected classification layer. We try to solve the problem interpreting it on the one hand as a classification task and on the other hand as a regression problem. Furthermore we introduced additional learning feedback following a multi-task approach.
 
-We describe in the following only the last layer of the neural network.  
+We followed an end-to-end approach to solve the calorie prediction problem of food images. To do so we used a pretrained ResNet and DenseNet architecture. We kept the feature extractor layers and replaced the last fully-connected classification layer. We try to solve the problem interpreting it on the one hand as a classification task and on the other hand as a regression problem. Furthermore we introduced additional learning feedback following a multi-task approach.
+
+We describe in the following only the last layer of the neural network.
 
 In the regression case we trained a model predicting only the kcal information with one output neuron and another to predict additionally protein, fat and carbohydrates information using four neurons. The two models were trained using a L1 and smooth L1 loss.
 
 We transformed the two already described models to a classification problem quantizing the regression outputs. So we introduced 50 class buckets for each regression output. The models were trained using a cross entropy loss.
 
-The multi-task model is based on the regression model including the nutritional information with additional binary outputs to predict the top n ingredients. The resulting layer has four regression outputs with 50 binary outputs. The used loss combines a smooth L1 loss for the regression outputs and an binary cross entropy for the top 50 ingredients. To get the same scaling of the two learning signals we scaled the binary cross entropy loss with a factor of 400.  $$ loss = L1 + 400 * BCE $$
+The multi-task model is based on the regression model including the nutritional information with additional binary outputs to predict the top n ingredients. The resulting layer has four regression outputs with 50 binary outputs. The used loss combines a smooth L1 loss for the regression outputs and an binary cross entropy for the top 50 ingredients. To get the same scaling of the two learning signals we scaled the binary cross entropy loss with a factor of 400. $$ loss = L1 + 400 * BCE $$
 
-There are no reference papers with a similar task like we do therefore we could not compare our results to other implementations. Due to we implemented a simple baseline to get an evidence that our model actually learns something and is better than guessing. 
+There are no reference papers with a similar task like we do therefore we could not compare our results to other implementations. Due to we implemented a simple baseline to get an evidence that our model actually learns something and is better than guessing.
 
-The baseline for the kcal prediction basically is the mean of all samples in the train dataset. That means that the model predicts in the inference always just the mean of the already seen kcal values. We used the same baseline for predicting the nutritional data. 
+The baseline for the kcal prediction basically is the mean of all samples in the train dataset. That means that the model predicts in the inference always just the mean of the already seen kcal values. We used the same baseline for predicting the nutritional data.
 
+# Experiments {#sec:experiments}
 
-# Experiments
-We divided the generated dataset into train/test/validation (xx/xx/xx) splits. Our training set contains xxx samples with around xxx images each recipe. The network was trained 40 epochs using a batch size of 50 samples each batch. The samples of the batches were shuffled every epoch and we evaluated the performance of the model every fiftieth batch. We implemented all networks using Pytorch. 
+We divided the generated dataset into train/test/validation (xx/xx/xx) splits. Our training set contains xxx samples with around xxx images each recipe. The network was trained 40 epochs using a batch size of 50 samples each batch. The samples of the batches were shuffled every epoch and we evaluated the performance of the model every fiftieth batch. We implemented all networks using Pytorch.
 
-To evaluate the performance of the model we trained several networks and run several experiments to evaluated them using firstly the evaluation data set to get quick feedback. To measure the performance of the model we only compared the given kcal information with the prediction of the network. 
+To evaluate the performance of the model we trained several networks and run several experiments to evaluated them using firstly the evaluation data set to get quick feedback. To measure the performance of the model we only compared the given kcal information with the prediction of the network.
 
-Firstly we used our raw data set to train the kcal-model. We wanted the network to predict the kcal information of the recipe visualized on the given input image. To perform well in this task the  model needs to learn the concept of the recipe size and predict the calories according it. We assumed due to the amount of samples and the capacity of the model the problem is well learnable. Unfortunately the trained regression model performed not well on the task probably because of outlier recipes in our dataset with not valid kcal information provided by the users. Even after outlier removal, prediction of normalized kcal information of portion and trying a classification approach the model was only slightly better than a baseline model. 
+Firstly we used our raw data set to train the kcal-model. We wanted the network to predict the kcal information of the recipe visualized on the given input image. To perform well in this task the model needs to learn the concept of the recipe size and predict the calories according it. We assumed due to the amount of samples and the capacity of the model the problem is well learnable. Unfortunately the trained regression model performed not well on the task probably because of outlier recipes in our dataset with not valid kcal information provided by the users. Even after outlier removal, prediction of normalized kcal information of portion and trying a classification approach the model was only slightly better than a baseline model.
 
-Second we evaluated if the additional nutritional information supports the networks capability to generalize on the recipe and portion size. Both the classification and regression objectives performed not well with the further information. 
+Second we evaluated if the additional nutritional information supports the networks capability to generalize on the recipe and portion size. Both the classification and regression objectives performed not well with the further information.
 
-Lastly we reformulated the training objective to a slightly easier problem. We trained the network to predict the calory density of the visualized image. Because of the normalization the network only needs to grasp how many calories are in for instance 100g of the meal. This modification led to significant better results. 
+Lastly we reformulated the training objective to a slightly easier problem. We trained the network to predict the calory density of the visualized image. Because of the normalization the network only needs to grasp how many calories are in for instance 100g of the meal. This modification led to significant better results.
 
-We could furthermore improve the results of the model using the multi-task approach. The top 50 ingredients of the recipes were injected as further information to support the model predicting the kcal information. We report the results of this model in the result section. 
-
+We could furthermore improve the results of the model using the multi-task approach. The top 50 ingredients of the recipes were injected as further information to support the model predicting the kcal information. We report the results of this model in the result section.
 
 # Results
 
@@ -201,11 +220,11 @@ ours (w/ macros+ings) & 0.328 \\
 # Problems/Fails
 
 # Future Work
-The dataset we extracted contains at the moment much more attributes as we are using for now. Once the dataset gets further processed the recipe instructions, the type of the meal (cake, side dish), the rating and further properties could be used for training further models. The current dataset contains at the moment all available photos of each recipe. It may make sense to implement sanity checks to filter images out if they do not match the recipe in a proper way. 
 
-Further problems related to food could be approached using the dataset. For some people it may be interesting to know if the meal contains a special ingredient because of allergies or if it is vegan or vegetarian. The dataset provides needed information to train a variety of different models to solve problems related to food. 
+The dataset we extracted contains at the moment much more attributes as we are using for now. Once the dataset gets further processed the recipe instructions, the type of the meal (cake, side dish), the rating and further properties could be used for training further models. The current dataset contains at the moment all available photos of each recipe. It may make sense to implement sanity checks to filter images out if they do not match the recipe in a proper way.
 
-Currently our kcal prediction model is not highly optimized for the task since it is build on top of pretrained models. As already evaluated it is benefital to inject further data into da model therefore it may be interesting to do further investigation an different model architectures. For instance the representation  of the top-n ingredient neurons could be changed from a binary value to the objective predicting the volume of the ingredient. It may also make sense to build entire new architectures using kernels with a size which match the requirenments of predicting/classifying food images.
+Further problems related to food could be approached using the dataset. For some people it may be interesting to know if the meal contains a special ingredient because of allergies or if it is vegan or vegetarian. The dataset provides needed information to train a variety of different models to solve problems related to food.
 
+Currently our kcal prediction model is not highly optimized for the task since it is build on top of pretrained models. As already evaluated it is benefital to inject further data into da model therefore it may be interesting to do further investigation an different model architectures. For instance the representation of the top-n ingredient neurons could be changed from a binary value to the objective predicting the volume of the ingredient. It may also make sense to build entire new architectures using kernels with a size which match the requirenments of predicting/classifying food images.
 
 # References

@@ -15,7 +15,7 @@ parser.add_argument("--mode", required=True, choices=["usergiven", "matched"])
 parser.add_argument(
     "--kcal-mode", choices=["per_portion", "per_100g", "per_recipe"], required=True
     )
-parser.add_argument("--ing-count", type=int, default=50)
+parser.add_argument("--ing-count", type=int, default=100)
 parser.add_argument("--out-dir", type=str, required=True)
 args = parser.parse_args()
 out_root = Path(args.out_dir)
