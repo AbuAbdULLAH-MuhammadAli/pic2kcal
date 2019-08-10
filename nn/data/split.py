@@ -14,7 +14,8 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--mode", required=True, choices=["usergiven", "matched"])
 parser.add_argument(
     "--kcal-mode", choices=["per_portion", "per_100g", "per_recipe"], required=True
-)
+    )
+parser.add_argument("--ing-count", type=int, default=50)
 parser.add_argument("--out-dir", type=str, required=True)
 args = parser.parse_args()
 out_root = Path(args.out_dir)
@@ -56,7 +57,9 @@ elif args.mode == "matched":
     f = open(inp_file, encoding='utf-8')
     data = (json.loads(line) for line in tqdm(f))#islice(tqdm(f), 1000))
     with open("../../data/recipes/ingredients_common.json") as fi:
-        ings_common = json.load(fi)[1:51]
+        start = 1
+        stop = args.ing_count + start
+        ings_common = json.load(fi)[start:stop]
     def get_recipe_outs(r):
         # print(type(r), r)
         try:

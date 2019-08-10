@@ -139,7 +139,6 @@ Count & Ingredient \\
      9591 & Puderzucker  \\
      9439 & Petersilie, frisch  \\
      8708 & Zucchini, grün, frisch  \\
-     8630 & Öl  \\
      8293 & Mehl, Weizenmehl Typ 405  \\
 \hline
 \end{tabular}
