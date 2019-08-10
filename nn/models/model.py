@@ -21,7 +21,7 @@ class Model:
     def save(self, model, run_name, path='./weights/'):
         time_str = str(time.time())
 
-        full_path = path+self.name+'-'+run_name+'-'+time_str+'.pt'
+        full_path = path + '/'+run_name + '.pt'
 
         torch.save(model.state_dict(), full_path)
 

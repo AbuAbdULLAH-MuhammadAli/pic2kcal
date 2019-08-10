@@ -104,10 +104,17 @@ def train():
     parser.add_argument("--train-type", required=True, choices=["classification", "regression", "regression_include_nutritional_data", "regression_include_nutritional_data_and_top_top_ingredients"])
     parser.add_argument("--bce-weight", required=True, type=int, help="set to 400 for per 100g, 2000 for per recipe, ?? for per portion")
     parser.add_argument("--model", required=True, choices=["resnet50", "resnet101", "resnet152", "densenet121", "densenet201", "resnext50_32x4d"])
+    parser.add_argument("--test", required=True, choices=["train", "", "train+test", "test"])
+    parser.add_argument("--weights", required=False)
+
     args = parser.parse_args()
     datadir = Path(args.datadir)
     batch_size = 50
     epochs = 40
+
+    if args.test == 'test':
+        epochs = 0
+
     shuffle = True
     validate_every = 200
     validate_batches = 50
@@ -306,7 +313,35 @@ def train():
                 )
 
     writer.close()
-    model.save(net, args.runname)
+    if args.test != 'test':
+        model.save(net, args.runname, logdir)
+
+    if args.test != 'train':
+
+        if args.test == 'test':
+            model.load(args.weights)
+
+        test_dataset = FoodDataset(datadir / "val.json", datadir / "val", is_regression, granularity, True, True)
+
+        test_loader = DataLoader(
+            test_dataset, batch_size=batch_size, shuffle=shuffle, num_workers=4
+        )
+
+        with torch.no_grad():
+            for epoch_batch_idx, data in enumerate(test_loader, 0):
+                image_ongpu = data["image"].to(device)
+
+                outputs = net(image_ongpu)
+
+                target_data = {k: v.to(device) for k, v in data.items() if k != "image"}
+
+                for loss_name, loss_fn in loss_fns.items():
+                    loss_value = loss_fn(outputs, target_data)
+                    running_losses[loss_name].append(float(loss_value.item()))
+
+                    print(loss_value)
+
+
 
 
 if __name__ == "__main__":
