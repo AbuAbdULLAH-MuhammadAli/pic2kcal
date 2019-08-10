@@ -121,7 +121,7 @@ def train():
 
     # regression settings
     regression_output_neurons = 1
-    num_top_ingredients = 50
+    num_top_ingredients = 100
 
 
     # classification settings
