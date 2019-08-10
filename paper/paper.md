@@ -122,7 +122,14 @@ ours (w/ macros+ings) & 0.328 \\
 
 ![Some example results, showing predicted calories, fat, protein, carbohydrates and ingredients.](img/results.png){#fig:results}
 
+# Problems/Fails
+
 # Future Work
+The dataset we extracted contains at the moment much more attributes as we are using for now. Once the dataset gets further processed the recipe instructions, the type of the meal (cake, side dish), the rating and further properties could be used for training further models. The current dataset contains at the moment all available photos of each recipe. It may make sense to implement sanity checks to filter images out if they do not match the recipe in a proper way. 
+
+Further problems related to food could be approached using the dataset. For some people it may be interesting to know if the meal contains a special ingredient because of allergies or if it is vegan or vegetarian. The dataset provides needed information to train a variety of different models to solve problems related to food. 
+
+
 
 - volume estimation completely missing
 - 
