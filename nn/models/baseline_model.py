@@ -8,7 +8,7 @@ from nn.models.model import Model
 
 class BaselineModel(Model):
     def __init__(self):
-        super().__init__("ResNet50-kcal")
+        super().__init__("Baseline-kcal")
 
     def get_model(self):
         return BaselineModule()
