@@ -206,10 +206,7 @@ The dataset we extracted contains at the moment much more attributes as we are u
 
 Further problems related to food could be approached using the dataset. For some people it may be interesting to know if the meal contains a special ingredient because of allergies or if it is vegan or vegetarian. The dataset provides needed information to train a variety of different models to solve problems related to food. 
 
+Currently our kcal prediction model is not highly optimized for the task since it is build on top of pretrained models. As already evaluated it is benefital to inject further data into da model therefore it may be interesting to do further investigation an different model architectures. For instance the representation  of the top-n ingredient neurons could be changed from a binary value to the objective predicting the volume of the ingredient. It may also make sense to build entire new architectures using kernels with a size which match the requirenments of predicting/classifying food images.
 
-
-
-- volume estimation completely missing
-- 
 
 # References
