@@ -28,12 +28,19 @@ link-citations: true
 
 # Introduction
 
-In the last years the awareness of healthier and more balanced diets has risen a lot. For the user it is often hard to keep track of the consumed calories or related with a lot of manual work to find recipes with calorie information or to look up the nutritional information of each ingredient.
+In recent years the awareness of healthier and more balanced diets has risen a lot. 
+Consumers often have a hard time keeping track of their diets.
+
+Currently, calorie tracking is mostly done manually. There are also a number of tools to help track calorie intake, such as the app Im2Calories by Google [@myers] from 2015, or CalorieMama [@caloriemama], with varying success.
+
+
+
+For the user it is often hard to keep track of the consumed calories or related with a lot of manual work to find recipes with calorie information or to look up the nutritional information of each ingredient.
 Even commercial offered apps often need supervision by the user to select the recognized components of the meal.
 
-Datasets play an important role to solve computer vision problems. It is crucial to have enough trainings data for the very deep CNN models with a lot parameters. In this work we present an entirely new food dataset which could be used as training or benchmark for machine learning models. The dataset contains roughly xxxx recipes including nutritional information as well as ingredients list and xxx images of prepared meals.
+Datasets play an important role in solving computer vision problems. It is crucial to have enough trainings data for the very deep CNN models with a lot parameters. In this work we present an entirely new food dataset which could be used as training or benchmark for machine learning models. The dataset contains roughly xxxx recipes including nutritional information as well as ingredients list and xxx images of prepared meals.
 
-We used the dataset to show that the mapping from food image to kcal information could be learned by a neural network. Experiments have shown that injecting further information into the model in form of top n ingredients outperform the models with less information.
+We used the dataset to show that the mapping from food image to kcal information could be learned by a neural network. Experiments have shown that injecting further information into the model in form of top n ingredients outperform the models with less information.solve
 
 # Related Work
 
