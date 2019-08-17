@@ -28,20 +28,15 @@ link-citations: true
 
 # Introduction
 
-In recent years the awareness of healthier and more balanced diets has risen a lot. 
-Consumers often have a hard time keeping track of their diets.
+In recent years the awareness of healthier and more balanced diets has risen a lot. Tracking the exact amount and quality of food eaten is important for successfully following a diet, but doing this manually takes a lot of time and effort, leading to non-optimal results.
 
-Currently, calorie tracking is mostly done manually. There are also a number of tools to help track calorie intake, such as the app Im2Calories by Google [@myers] from 2015, or CalorieMama [@caloriemama], with varying success.
+Currently, calorie tracking is mostly done by looking up specific ingredients and amounts. There are also a number of tools to help track calorie intake, such as the app Im2Calories by Google [@myers] from 2015, or CalorieMama [@caloriemama], with varying automation.
 
+In this work we propose a method to predict the caloric content of any prepared food based only on a single picture of one portion in an end-to-end fashion.
 
+We collected a dataset of recipes, pictures, and nutritional properties. Then we experimented with various features and models to best predict calories and other nutritional information directly from an image. We measure our results objectively and show that multi-task learning improves the performance.
 
-For the user it is often hard to keep track of the consumed calories or related with a lot of manual work to find recipes with calorie information or to look up the nutritional information of each ingredient.
-Even commercial offered apps often need supervision by the user to select the recognized components of the meal.
-
-Datasets play an important role in solving computer vision problems. It is crucial to have enough trainings data for the very deep CNN models with a lot parameters. In this work we present an entirely new food dataset which could be used as training or benchmark for machine learning models. The dataset contains roughly xxxx recipes including nutritional information as well as ingredients list and xxx images of prepared meals.
-
-We used the dataset to show that the mapping from food image to kcal information could be learned by a neural network. Experiments have shown that injecting further information into the model in form of top n ingredients outperform the models with less information.solve
-
+<!-- 
 # Related Work
 
 There's some other papers like [@chokr; @takumi; ]. Ours is more end to end and also BETTER
@@ -81,15 +76,19 @@ There's some other papers like [@chokr; @takumi; ]. Ours is more end to end and 
 -   [@takumi]: multi-task VGG: kcal estimation, food categorization, ingredients estimation, cooking instructions. probably closest to ours? ingredients are not predicted individually, but as a single averaged word2vec embedding to make kcal prediction better
 -   [@survey]: comparison of many different things: used datasets, segmentation methods, classification approaches, volume estimation methods of 10+ other papers
 
+-->
+
 # Dataset Extraction and Preprocessing
 
 ## Collection
 
-We collected a dataset from the a popular German recipe website that contains ingredient lists, cooking instructions, and pictures of the resulting meals. The recipes are from many different cuisines and also include things like cakes, cocktails, and other. Most recipes have at least one picture. Pictures can come both from the original author of the recipe, as well as from third parties. Some of the pictures are of a single plate of food, others are for example of a whole casserole. We do not have any information about whether a picture contains a single portion. Around 10% of recipes contain a user-given value for how many calories per portion the recipe has.
+We collected a dataset from a popular German recipe website that contains ingredient lists, cooking instructions, and pictures of the resulting meals. The recipes are from many different cuisines and also include things like cakes, cocktails, and others. Most recipes have at least one picture. Smoe of the pictures are uploaded by the original author of the recipe or by third parties. Some of the pictures are of a single plate of food, others are for example of a whole casserole. We do not have any information about whether a picture contains a single portion. Around 10% of recipes contain a user-given value for how many calories per portion the recipe supposedly has.
 
 ## Matching / Preprocessing
 
-Since the dataset only has user-given calorie information for a small part of the data and doesn't include any details regarding the macronutrient composition, and since the user given information is often inaccurate [todo: compare to ours??], we decided to match the list of ingredients against a database of nutritional values to sum up the proportions of macronutrients as well as the total calories.
+Since the dataset only has user-given calorie information for a small part of the data and doesn't include any details regarding the macronutrient composition, and since the user given information is often inaccurate (see [@fig:crappy]), we decided to match the list of ingredients against a database of nutritional values to sum up the proportions of macronutrients as well as the total calories.
+
+![A recipe with an obviously incorrect user-given calorie count.](img/crappy-calories.png)
 
 To facilitate this, we collected a secondary dataset from a German website of nutritional values. The website contains values for the amount of fat, protein, and carbohydrates in grams per 100g of product. Additionally, it contains user-sourced food amounts like "1 medium-sized apple = 130g". The data is partially sourced from the USDA Food Composition Database [@usda], and partially crowd sourced from manufacturer-given data of specific products.
 
