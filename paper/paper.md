@@ -22,6 +22,9 @@ citekeys:
     survey: https://ieeexplore.ieee.org/abstract/document/8666636 # http://sci-hub.tw/https://ieeexplore.ieee.org/abstract/document/8666636
     myers: https://ieeexplore.ieee.org/document/7410503 # https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44321.pdf
     caloriemama: https://caloriemama.ai/
+    DenseNet: https://ieeexplore.ieee.org/document/8099726
+    ResNet: https://ieeexplore.ieee.org/document/7780459
+    
 
 citation-style: template/ieee.csl
 link-citations: true
@@ -95,7 +98,7 @@ To facilitate this, we collected a secondary dataset from a German website of nu
 
 Matching the recipe ingredients to the nutritional database has two main problems.
 
-Firstly, the given ingredient name often includes information that is not relevant to the product itself, but rather to its preparation or visual qualities. These additional text snippets are hard to separate from information that is relevant. For example: `3 onions, diced` and `3 onions, in slices` refer to the same product, while `500g pasta, cooked` and `500g pasta, raw` vary significantly in their caloric density. We experimented with three approaches [reformulate] to solve this problem. Firstly, we tried simply matching the ingredient to the nearest ingredient based on character edit distance (Levenshtein distance). This resulted in very bad matchings because of missing handling of synonyms and the above issue. To solve this we tokenize the ingredient name to words, embed each word to a vector with Word2Vec or FastText [@fasttext], and then use average the word vectors to get a ingredient vector. This is the same method as used in the fasttext library for extracting sentence vectors. This still lead to unsatisfactory results, since each word in the ingredient name has the same weight, even though some specify less important details. For example in "red onion" vs "red apple", the word "red" is much less important than "onion" and "apple". We got the best result by using the Google Universal Sentence Encoder [@googleuniv], which creates 512-dimensional embeddings of any amount of text. We find the best matches for a ingredient by comparing the embedding of user-given free text from the recipe to the embeddings for all food items for which we have nutritional data using the cosine distance, and then try to find a conversion for the given amount to a normalized gram or milliliter amount.
+Firstly, the given ingredient name often includes information that is not relevant to the product itself, but rather to its preparation or visual qualities. These additional text snippets are hard to separate from information that is relevant. For example: `3 onions, diced` and `3 onions, in slices` refer to the same product, while `500g pasta, cooked` and `500g pasta, raw` vary significantly in their caloric density. We experimented with three approaches [reformulate] to solve this problem. Firstly, we tried simply matching the ingredient to the nearest ingredient based on character edit distance (Levenshtein distance). This resulted in very bad matchings because of missing handling of synonyms and the above issue. To solve this we tokenize the ingredient name to words, embed each word to a vector with Word2Vec or FastText [@fasttext], and then use average the word vectors to get an ingredient vector. This is the same method as used in the fasttext library for extracting sentence vectors. This still lead to unsatisfactory results, since each word in the ingredient name has the same weight, even though some specify less important details. For example in "red onion" vs "red apple", the word "red" is much less important than "onion" and "apple". We got the best result by using the Google Universal Sentence Encoder [@googleuniv], which creates 512-dimensional embeddings of any amount of text. We find the best matches for an ingredient by comparing the embedding of user-given free text from the recipe to the embeddings for all food items for which we have nutritional data using the cosine distance, and then try to find a conversion for the given amount to a normalized gram or milliliter amount.
 
 The second problem is matching the amounts. For ingredients given in grams this is trivial, but for many items the recipe authors use other units of measure like e.g. can, piece, tablespoon, "some", "2 large X", "salt 'by taste'". Since spices usually have little impact on the nutritional values, we exclude ingredients that are "by taste" and similar. For the other amounts, we match the unit name (like tablespoon or "medium large") exactly and multiply it with the given amount. We also add some special cases like matching "can" to "can (drained weight)" and similar.
 
@@ -103,7 +106,7 @@ The amount matching is applied to all possible ingredient matches that are simil
 
 If the amount matching fails, the ingredient is marked as unmatched. If a recipe has at least one unmatched ingredient, it is discarded.
 
-As a final step, we filter out all data points where the summed up calories of the recipe is outside of two standard deviations from the mean repeatedly until it converges. This is necessary because some recipes contain obviously wrong information (for example in a carrot cake recipe the author specified you need at a million carrots).
+As a final step, we filter out all data points where the summed up calories of the recipe is outside of two standard deviations from the mean repeatedly until it converges. This is necessary because some recipes contain obviously wrong information (for example in a carrot cake recipe the author specified to use a million carrots).
 
 ## Dataset Statistics
 
@@ -174,19 +177,22 @@ Count & Ingredient \\
 
 # Models
 
-We followed an end-to-end approach to solve the calorie prediction problem of food images. To do so we used a pretrained ResNet and DenseNet architecture. We kept the feature extractor layers and replaced the last fully-connected classification layer. We try to solve the problem interpreting it on the one hand as a classification task and on the other hand as a regression problem. Furthermore we introduced additional learning feedback following a multi-task approach.
+We followed an end-to-end approach to solve the calorie prediction problem of food images. To do so we used pretrained ResNet [@ResNet] and DenseNet [@DenseNet] architectures as base models. We kept the feature extractor layers and replaced the last fully-connected classification layer. We tried solve the problem interpreting it on the one hand as a classification task and on the other hand as a regression problem. Furthermore we introduced additional learning feedback following a multi-task learning approac.
 
-We describe in the following only the last layer of the neural network.
+In the following, only the last layer of the neural network is described. 
 
-In the regression case we trained a model predicting only the kcal information with one output neuron and another to predict additionally protein, fat and carbohydrates information using four neurons. The two models were trained using a L1 and smooth L1 loss.
+In the regression case we trained a model to predict the kcal information with one output neuron and additionally to predict protein, fat and carbohydrate information using three additional neurons. The two models were trained using a L1 and smooth L1 loss.
 
-We transformed the two already described models to a classification problem quantizing the regression outputs. So we introduced 50 class buckets for each regression output. The models were trained using a cross entropy loss.
+We adapted the base architecuters to the classification problem by quantizing the regression outputs. So we introduced 50 class buckets for each regression output. The models were trained using a cross entropy loss.
 
-The multi-task model is based on the regression model including the nutritional information with additional binary outputs to predict the top n ingredients. The resulting layer has four regression outputs with 50 binary outputs. The used loss combines a smooth L1 loss for the regression outputs and an binary cross entropy for the top 50 ingredients. To get the same scaling of the two learning signals we scaled the binary cross entropy loss with a factor of 400. $$ loss = L1 + 400 * BCE $$
+The multi-task model is based on the regression model including the nutritional information with additional binary outputs to predict the top n ingredients. The resulting layer has four regression outputs with 50 binary outputs. The used loss combines a smooth L1 loss for the regression outputs and a binary cross entropy loss for the top 50 ingredients. To get the same scaling of the two learning signals we scaled the binary cross entropy loss with a factor of 400. $$ loss = L1 + 400 * BCE $$
 
-There are no reference papers with a similar task like we do therefore we could not compare our results to other implementations. Due to we implemented a simple baseline to get an evidence that our model actually learns something and is better than guessing.
+As there are no reference papers working with similar approaches or similar data, the results could not be compared to other studies.
+Hence, a simple baseline was implemented to get evidence that our models actually learn and that they are better than random guessing. 
 
-The baseline for the kcal prediction basically is the mean of all samples in the train dataset. That means that the model predicts in the inference always just the mean of the already seen kcal values. We used the same baseline for predicting the nutritional data.
+The baseline for the kcal prediction basically is the mean of all samples in the train dataset. 
+A basleine model would predict during inference only the mean of the already seen kcal values seen. 
+The same baseline was used for predicting the nutritional data. 
 
 # Experiments {#sec:experiments}
 
