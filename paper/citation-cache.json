@@ -406,5 +406,17 @@
 				]
 			}
 		}
+	},
+	"https://caloriemama.ai/": {
+		"fetched": "2019-08-17T15:30:39.071Z",
+		"bibtex": "\n@misc{noauthor_calorie_nodate,\n\ttitle = {Calorie {Mama} {Food} {AI} - {Food} {Image} {Recognition} and {Calorie} {Counter} using {Deep} {Learning}},\n\turl = {https://caloriemama.ai/},\n\tabstract = {Calorie Mama makes instant nutrition and calorie estimates from your meals - just snap a food photo and let Mama do the rest. The app uses computer vision and deep learning to classify thousand of food categories from cuisines all around the world. Calorie Mama Food AI API (Smart Nutrition Analysis Platform) are developed by Azumio, Inc. },\n\turldate = {2019-08-17},\n\tjournal = {caloriemama.ai}\n}",
+		"csl": {
+			"title": "Calorie <span class=\"nocase\">Mama</span> <span class=\"nocase\">Food</span> <span class=\"nocase\">AI</span> - <span class=\"nocase\">Food</span> <span class=\"nocase\">Image</span> <span class=\"nocase\">Recognition</span> and <span class=\"nocase\">Calorie</span> <span class=\"nocase\">Counter</span> using <span class=\"nocase\">Deep</span> <span class=\"nocase\">Learning</span>",
+			"URL": "https://caloriemama.ai/",
+			"container-title": "caloriemama.ai",
+			"type": "book",
+			"citation-label": "noauthor_calorie_nodate",
+			"id": "https://caloriemama.ai/"
+		}
 	}
 }
