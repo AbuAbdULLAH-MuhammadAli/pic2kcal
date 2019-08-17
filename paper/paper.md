@@ -89,7 +89,7 @@ We collected a dataset from a popular German recipe website that contains ingred
 
 Since the dataset only has user-given calorie information for a small part of the data and doesn't include any details regarding the macronutrient composition, and since the user given information is often inaccurate (see [@fig:crappy]), we decided to match the list of ingredients against a database of nutritional values to sum up the proportions of macronutrients as well as the total calories.
 
-![A recipe with an obviously incorrect user-given calorie count.](img/crappy-kcal.png)
+![A recipe with an obviously incorrect user-given calorie count.](img/crappy-kcal.png){#fig:crappy}
 
 To facilitate this, we collected a secondary dataset from a German website of nutritional values. The website contains values for the amount of fat, protein, and carbohydrates in grams per 100g of product. Additionally, it contains user-sourced food amounts like "1 medium-sized apple = 130g". The data is partially sourced from the USDA Food Composition Database [@usda], and partially crowd sourced from manufacturer-given data of specific products.
 
