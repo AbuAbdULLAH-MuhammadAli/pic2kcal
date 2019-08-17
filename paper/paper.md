@@ -234,7 +234,9 @@ ours (w/ macros+ings) & 0.328 \\
 
 # Future Work
 
-The dataset we extracted contains at the moment much more attributes as we are using for now. Once the dataset gets further processed the recipe instructions, the type of the meal (cake, side dish), the rating and further properties could be used for training further models. The current dataset contains at the moment all available photos of each recipe. It may make sense to implement sanity checks to filter images out if they do not match the recipe in a proper way.
+We currently only use a portion of the information in our extracted dataset. There are other interesting attributes such as the type of the meal (cake, side dish), the ingredient amounts, the cooking instructions, the rating, and further properties. These could be used to further improve our calorie prediction model as did adding prediction of the ingredients. The current dataset contains all available photos of each recipe. It may make sense to implement sanity checks to filter images out if they do not match the recipe in a proper way.
+
+The cooking instructions could also be used to improve the ingredient matching by fine-tuning the text embedding model. We only used the pretrained Universal Sentence Encoder which is trained on online sources like Wikipedia, news, and discussion forums. Since these sources are very generic all ingredients are probably very close in the embedding space even though they may be different. The user-given free text formulation of the cooking instructions usually contain the names of the ingredients in text. Fine-tuning the Sentence Encoder with those instructions should also help better better encode similar ingredients (e.g. you usually add either baking powder or yeast at a specific cooking stage, so they are fairly similar ingredients).
 
 Further problems related to food could be approached using the dataset. For some people it may be interesting to know if the meal contains a special ingredient because of allergies or if it is vegan or vegetarian. The dataset provides needed information to train a variety of different models to solve problems related to food.
 
