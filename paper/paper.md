@@ -24,6 +24,7 @@ citekeys:
     caloriemama: https://caloriemama.ai/
     DenseNet: https://ieeexplore.ieee.org/document/8099726
     ResNet: https://ieeexplore.ieee.org/document/7780459
+    resnext: https://arxiv.org/abs/1611.05431
     
 
 citation-style: template/ieee.csl
@@ -108,7 +109,7 @@ If the amount matching fails, the ingredient is marked as unmatched. If a recipe
 
 As a final step, we filter out all data points where the summed up calories of the recipe is outside of two standard deviations from the mean repeatedly until it converges. This is necessary because some recipes contain obviously wrong information (for example in a carrot cake recipe the author specified to use a million carrots).
 
-## Dataset Statistics
+## Dataset Statistics {#sec:stats}
 
 In total, the recipe website contains 330 thousand recipes. Of these, 210 thousand have at least one picture. Around 20 thousand recipes with pictures have user-given calorie information, though we didn't use these in the end. The recipes contain a total of 374 thousand unique ingredients. This high number is caused by slight differences in spelling or irrelevant details. In total, we collected 900 thousand pictures. On average, each recipe has 3 pictures.
 
@@ -210,11 +211,16 @@ We could furthermore improve the results of the model using the multi-task appro
 
 For an objective comparison, we focus on the relative error ($\text{rel\_error} = 1 - \frac{\text{pred}}{\text{truth}}$) of the kcal output. We also provide the absolute error (L1 error) of calories (in kcal), fat, protein, and carbohydrates (each in grams).
 
-We computed a baseline as described in [@sec:models], then we compared the results for three different questions.
+We computed a baseline as described in [@sec:models], then we compared the results for three different questions. Unless noted otherwise, the model is a DenseNet121, predicting kcal, macros and ingredients per 100g.
+
+We first compared different model architectures, as seen in [@tbl:resbymodel]. The DenseNet architecture provided the best results. ResNet and ResNeXt [@resnext] both had worse results.
+
+We then compared predicting the calories for different amounts of food ([@tbl:resperper]), since we do not have an estimation of the actual amount of food in each picture. The most useful prediction, which is the amount of calories per portion, did not yield satisfactory results. This can be mostly attributed to the fact that we had less data for these predictions (see [@sec:stats]), and that the number of portions in one recipe is very subjective. Predicting the amounts per 100g of raw mass works best.
+
+Lastly, we compared the effect of predicting the macronutrient amounts (fat, carbohydrates, protein) and of the ingredients in addition to the calorie amount [@tbl:resbytask]. It can be seen that using multi-task learning improves the performance of our model. This shows that the model is able to learn the correlation between the amount of different macronutrients and the amount of calories, as well as between the ingredients and the calories, even though how these are correlated (e.g. 1g of protein = 4kcal) is never explicitly given.
 
 
-
-Our results can be seen in [@tbl:res]. Example outputs can be seen in [@fig:results].
+A set of example outputs from our best model can be seen in [@fig:results].
 
 <!--
 \begin{table}
@@ -242,7 +248,7 @@ ours (w/ macros+ings) & 0.328 \\
 \toprule
 {} &  kcal (rel) &  kcal &  protein &  fat &  carbs \\
 \midrule
-baseline & 0.464 & 60.5 & 3.1g & 4.5g & 10.5g \\
+baseline & 0.464 & 60.5 & 3.10 & 4.49 & 10.5 \\
 resnet50        &               0.334 &         47.8 &            2.54 &        3.93 &                  7.13 \\
 resnet101       &               0.336 &         48.2 &            2.54 &        3.94 &                  7.17 \\
 resnext50\_32x4d &                0.33 &         47.2 &             2.50 &        3.89 &                  6.99 \\
@@ -252,7 +258,7 @@ densenet201     &               0.327 &         47.2 &            2.53 &        
 \end{tabular}
 \end{center}
 
-\caption{Results by model.\label{tbl:resbymodel}}
+\caption{Results by model architecture. DenseNet performs best. \label{tbl:resbymodel}}
 \end{table}
 
 
@@ -264,22 +270,23 @@ densenet201     &               0.327 &         47.2 &            2.53 &        
 \toprule
 {} &  kcal (rel) &  kcal &  protein &  fat &  carbs \\
 \midrule
-per 100g \\
-baseline & 0.464 & 60.5 & 3.1g & 4.5g & 10.5g \\
-ours     &               0.326 &         46.9 &            2.51 &        3.88 &                  6.97 \\
-\midrule
-per recipe \\
-baseline & inf & 864 & 42.2 & 56.6 & 125 \\
-ours   &                 inf &          728 &            34.9 &        48.3 &                  93.1 \\
-\midrule
 per portion \\
 baseline & 0.787 & 173 & 11.4 & 11.8 & 21.6 \\
 ours  &               0.632 &          154 &            9.21 &        10.8 &                  19.1 \\
+\midrule
+per recipe \\
+baseline & inf & 864 & 42.2 & 56.6 & 125 \\
+ours   &   
+\midrule
+per 100g \\
+baseline & 0.464 & 60.5 & 3.1g & 4.5g & 10.5g \\
+ours     &               0.326 &         46.9 &            2.51 &        3.88 &                  6.97 \\
+              inf &          728 &            34.9 &        48.3 &                  93.1 \\
 \bottomrule
 \end{tabular}
 \end{center}
 
-\caption{Results by kcal prediction. \label{tbl:resperper}}
+\caption{Results depending on what amount of food the calories were predicted for. \label{tbl:resperper}}
 \end{table}
 
 
@@ -292,8 +299,8 @@ ours  &               0.632 &          154 &            9.21 &        10.8 &    
 {} &  kcal (rel) &  kcal &  protein &  fat &  carbs \\
 \midrule
 kcal only      &               0.362 &         50.3 &             nan &         nan &                   nan \\
-\"+ macronutrients        &               0.345 &           49 &            2.67 &        4.06 &                   7.7 \\
-\"+\"+ top100ings     &               0.326 &         46.9 &            2.51 &        3.88 &                  6.97 \\
+\"+ macros        &               0.345 &           49 &            2.67 &        4.06 &                   7.7 \\
+\textbf{\"+\"+ top100ings}     &               \textbf{0.326} &         46.9 &            2.51 &        3.88 &                  6.97 \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -304,15 +311,8 @@ kcal only      &               0.362 &         50.3 &             nan &         
 
 ![Relative validation error of the calorie prediction over training batches compared for a network predicting only calories (blue), predicting calories and macronutrients (gray), and predicting calories, macronutrients, and top100 ingredients (green). It can be seen that multi-task learning performs best.](img/multi-task-learning.png){#fig:mtl}
 
-![Some example results, showing predicted calories, fat, protein, carbohydrates and ingredients.](img/results-vert.png){#fig:results width=40%}
+![Some example results, showing predicted calories, fat, protein, carbohydrates and ingredients for eight samples from the validation dataset.](img/results-vert.png){#fig:results width=40%}
 
-### Different Architectures
-
-- ResNet50, Resnet101, ResNext50p, Densnet121, Densent201
-
-- per 100g vs per recipe vs per portion je mit Densnet121 und kcal+nut+ings
-
-- predict only kcal, kcal+fat+protein+carbos, kcal+nut+ings je mit per 100g & Densenet121
 
 # Problems / Fails
 

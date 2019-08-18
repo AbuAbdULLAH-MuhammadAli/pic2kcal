@@ -498,5 +498,47 @@
 				]
 			}
 		}
+	},
+	"https://arxiv.org/abs/1611.05431": {
+		"fetched": "2019-08-18T16:42:14.464Z",
+		"bibtex": "\n@article{he_aggregated_2016,\n\ttitle = {Aggregated {Residual} {Transformations} for {Deep} {Neural} {Networks}},\n\turl = {https://arxiv.org/abs/1611.05431v2},\n\tabstract = {We present a simple, highly modularized network architecture for image\nclassification. Our network is constructed by repeating a building block that\naggregates a set of transformations with the same topology. Our simple design\nresults in a homogeneous, multi-branch architecture that has only a few\nhyper-parameters to set. This strategy exposes a new dimension, which we call\n\"cardinality\" (the size of the set of transformations), as an essential factor\nin addition to the dimensions of depth and width. On the ImageNet-1K dataset,\nwe empirically show that even under the restricted condition of maintaining\ncomplexity, increasing cardinality is able to improve classification accuracy.\nMoreover, increasing cardinality is more effective than going deeper or wider\nwhen we increase the capacity. Our models, named ResNeXt, are the foundations\nof our entry to the ILSVRC 2016 classification task in which we secured 2nd\nplace. We further investigate ResNeXt on an ImageNet-5K set and the COCO\ndetection set, also showing better results than its ResNet counterpart. The\ncode and models are publicly available online.},\n\tlanguage = {en},\n\turldate = {2019-08-18},\n\tauthor = {He, Kaiming and Tu, Zhuowen and Dollár, Piotr and Girshick, Ross and Xie, Saining},\n\tmonth = nov,\n\tyear = {2016}\n}",
+		"csl": {
+			"title": "Aggregated <span class=\"nocase\">Residual</span> <span class=\"nocase\">Transformations</span> for <span class=\"nocase\">Deep</span> <span class=\"nocase\">Neural</span> <span class=\"nocase\">Networks</span>",
+			"URL": "https://arxiv.org/abs/1611.05431v2",
+			"language": "en",
+			"author": [
+				{
+					"given": "Kaiming",
+					"family": "He"
+				},
+				{
+					"given": "Zhuowen",
+					"family": "Tu"
+				},
+				{
+					"given": "Piotr",
+					"family": "Dollár"
+				},
+				{
+					"given": "Ross",
+					"family": "Girshick"
+				},
+				{
+					"given": "Saining",
+					"family": "Xie"
+				}
+			],
+			"type": "article-journal",
+			"citation-label": "he_aggregated_2016",
+			"id": "https://arxiv.org/abs/1611.05431",
+			"issued": {
+				"date-parts": [
+					[
+						2016,
+						11
+					]
+				]
+			}
+		}
 	}
 }
