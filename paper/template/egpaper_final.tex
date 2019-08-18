@@ -24,7 +24,6 @@ $if(highlighting-macros)$
 $highlighting-macros$
 $endif$
 $if(tables)$
-\usepackage{longtable,booktabs}
 $if(beamer)$
 \usepackage{caption}
 % Make caption package work with longtable
@@ -42,6 +41,8 @@ $else$
 \makesavenoteenv{longtable}
 $endif$
 $endif$
+\usepackage{longtable,booktabs}
+
 $if(graphics)$
 \usepackage{graphicx,grffile}
 \makeatletter

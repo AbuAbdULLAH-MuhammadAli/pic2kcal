@@ -131,7 +131,7 @@ After matching the ingredients to the recipes, we have 50 to 85 thousand recipes
 
 In total, we have around 179 to 308 thousand data points (because each recipe has multiple images). We split these into train, validation and test set such that multiple pictures of the same recipe are in the same data split.
 
-<!-- todo: convert table to latex probably so it is consistent  -->
+<!-- todo: convert table to latex probably so it is consistent  
 
 |                            | per portion | per 100 g | per recipe |
 | -------------------------- | ----------- | --------- | ---------- |
@@ -143,8 +143,8 @@ In total, we have around 179 to 308 thousand data points (because each recipe ha
 | kcal outliers              | 11k         | 14k       | 21k        |
 | final recipe count         | 42k         | 70k       | 63k        |
 | **final data point count** | 179k        | 308k      | 267k       |
+-->
 
-<!--
 \begin{table}
 \begin{center}
 \begin{tabular}{llll}
@@ -158,14 +158,13 @@ kcal mean                  & 425 kcal    & 179 kcal  & 1791 kcal  \\
 kcal stddev                & 207 kcal    & 73 kcal   & 1007 kcal  \\
 kcal outliers              & 11k         & 14k       & 21k        \\
 final recipe count         & 42k         & 70k       & 63k        \\
-**final data point count** & 179k        & 308k      & 267k      
+\textbf{final data point count} & 179k        & 308k      & 267k  \\
 \bottomrule
 \end{tabular}
 \end{center}
 
 \caption{Statistics of our dataset\label{tbl:stats}}
 \end{table}
--->
 
 The 20 most common ingredients are shown in [@tbl:ings]. Note how common baking ingredients are. This indicates a cake bias, i.e. the dataset may be biased towards sweet meals and desserts.
 
@@ -211,7 +210,7 @@ Count & Ingredient \\
 \caption{Most common ingredients after matching.\label{tbl:ings}}
 \end{table}
 
-# Models
+# Models {#sec:models}
 
 We followed an end-to-end approach to solve the calorie prediction problem of food images. To do so we used pretrained ResNet [@ResNet] and DenseNet [@DenseNet] architectures as base models. We kept the feature extractor layers and replaced the last fully-connected classification layer. We tried solve the problem interpreting it on the one hand as a classification task and on the other hand as a regression problem. Furthermore we introduced additional learning feedback following a multi-task learning approach.
 
@@ -221,7 +220,7 @@ In the regression case we trained a model to predict the kcal information with o
 
 We adapted the base architectures to the classification problem by quantizing the regression outputs. So we introduced 50 class buckets for each regression output. The models were trained using a cross entropy loss.
 
-The multi-task model is based on the regression model including the nutritional information with additional binary outputs to predict the top n ingredients. The resulting layer has four regression outputs with 100 binary outputs for predicting the 100 top ingredients. The used loss combines a smooth L1 loss for the regression outputs and a binary cross entropy loss for the top ingredients. To get the same scaling of the two learning signals we scaled the binary cross entropy loss with a factor $\gamma$ depending on the used dataset. $$ \text{loss} = \text{L1} + \gamma \text{BCE} $$
+The multi-task model is based on the regression model including the nutritional information with additional binary outputs to predict the top n ingredients. The resulting layer has four regression outputs with 100 binary outputs for predicting the 100 top ingredients. The used loss combines a smooth L1 loss for the regression outputs and a binary cross entropy loss for the top ingredients. To get the same scaling of the two learning signals we scaled the binary cross entropy loss with a factor $\gamma$ depending on the used dataset. $$ \text{loss} = \text{L1} + \gamma \cdot \text{BCE} $$
 
 As there are no reference papers working with similar approaches or similar data, the results could not directly be compared to other studies.
 Hence, a simple baseline was implemented to get evidence that our models actually learn and that they are better than random guessing. 
@@ -230,7 +229,7 @@ The baseline for the kcal prediction is the mean of all samples in the training 
 
 # Experiments {#sec:experiments}
 
-We divided the generated dataset into train/test/validation (.7/.15/.15) splits. The network was trained for 25 epochs using a batch size of 50 samples each batch. The samples were shuffled every epoch and we evaluated the performance of the model every 50th batch. We implemented all networks using Pytorch [@pytorch].
+We divided the generated dataset into train/test/validation (.7/.15/.15) splits. The network was trained for 25 epochs using a batch size of 50 samples each batch. The samples were shuffled every epoch and we evaluated the performance of the model every 200th batch. We implemented all networks using PyTorch [@pytorch].
 
 To evaluate the performance of the model we trained several networks and ran several experiments and evaluated them using the validation data set to get quick feedback. To measure the performance of the model we primarily compared the ground truth kcal information with the prediction of the network.
 
@@ -240,16 +239,16 @@ Initially we wanted to predict the kcal information of a meal shown on an image.
 - kcal prediction per portion 
 - kcal prediction per 100g 
 
-We did the first experiments on the raw and unfiltered dataset. In between we evaluated  a classification model because of the bad performance of the regression model. The actuall problem was not the model itsel but more the outliers which were in the dataset. For the further experiments we used only the regression models. 
+We did the first experiments on the raw and unfiltered dataset. In between we evaluated  a classification model because of the bad performance of the regression model. The actual problem was not the model itsel but more with the outliers which were in the dataset. For the further experiments we used only the regression models. 
 
-Firstly we comment on the  problem space of the recipe, portion and 100g prediction type.
-We wanted the network to predict the kcal information of the recipe shown in the given input image. To perform well in this task the model needs to learn the concept of the recipe size and predict the calories according it. We assumed that the problem would be well learnable due to the amount of samples and the capacity of the model. Unfortunately the trained regression model did not perform well on the task. Even after prediction of normalized kcal information of portion the model was only slightly better than the baseline model. Lastly we reformulated the training objective to a slightly easier problem. We trained the network to predict the caloric density of the visualized image. Because of the normalization the network only needs to grasp how many calories are in for instance 100g of the meal. This modification led to significant better results.
+Firstly we comment on the problem space of the recipe, portion and 100g prediction type.
+We wanted the network to predict the kcal information of the recipe shown in the given input image. To perform well in this task the model needs to learn the concept of the recipe size and predict the calories according it. We assumed that the problem would be well learnable due to the amount of samples and the capacity of the model. Unfortunately the trained regression model did not perform well on the task. Even when predicting normalized kcal information per portion the model was only slightly better than the baseline model. Lastly we reformulated the training objective to a slightly easier problem. We trained the network to predict the caloric density of the visualized image. Because of the normalization the network only needs to grasp how many calories are in for instance 100g of the meal. This modification led to significantly better results.
 
 Furthermore we ran experiments to answer the question if further information improves the prediction of the network. We ran experiments with the following three levels of additional information:
 
 - **kcal only:** As reference we predicted the kcal information directly with no further information. 
-- **kcal +  nutritional information:** The additional nutrial informatin supported the network to generalize.
-- **kcal +  nutritional information + top 100 ingedients:** We managed to furthermore improve the results of the model using the multi-task approach. The top 100 ingredients of the recipes were injected as further information to support the model predicting the kcal information. 
+- **kcal +  nutritional information:** The additional macronutrient information improved the generalization of the network.
+- **kcal +  nutritional information + top 100 ingedients:** We managed to furthermore improve the results of the model using the multi-task approach. The top 100 ingredients of the recipes were injected as further information to support the model in predicting the kcal information. 
 
 We report the results of most of these experiments in the result section.
 
