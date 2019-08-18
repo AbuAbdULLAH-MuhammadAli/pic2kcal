@@ -40,9 +40,21 @@ In this work we propose a method to predict the caloric content of any prepared 
 
 We collected a dataset of recipes, pictures, and nutritional properties. Then we experimented with various features and models to best predict calories and other nutritional information directly from an image. We measure our results objectively and show that multi-task learning improves the performance.
 
-<!-- 
 # Related Work
+Most of the previous approaches are based on several components to split the kcal prediction in sub problems. 
 
+The authors [@myers] implemented a mobile application and propose an approach which relies on several steps. Summarizing they perform the following steps to estimate the kcal information: 
+
+- Deciding if the image is a food image
+- Restaurant detection according GPS 
+- Food detection and image segmentation 
+- Food size detection 
+
+Since their approach uses a lot components it is not possible to train the system in a end-to-end fashion. 
+
+
+
+<!-- 
 There's some other papers like [@chokr; @takumi; ]. Ours is more end to end and also BETTER
 
 -   [@chokr]:
