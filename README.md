@@ -38,19 +38,6 @@
 
 ![slides18.png](slides/slides18.png)
 
-![slides19.png](slides/slides19.png)
-
-![slides20.png](slides/slides20.png)
-
-![slides21.png](slides/slides21.png)
-
-![slides22.png](slides/slides22.png)
-
-![slides23.png](slides/slides23.png)
-
-![slides24.png](slides/slides24.png)
-
-![slides25.png](slides/slides25.png)
 
 
 ## Pipeline
