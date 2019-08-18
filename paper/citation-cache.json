@@ -540,5 +540,18 @@
 				]
 			}
 		}
+	},
+	"https://pytorch.org/": {
+		"fetched": "2019-08-18T17:48:27.871Z",
+		"bibtex": "\n@misc{noauthor_pytorch_nodate,\n\ttitle = {{PyTorch}},\n\turl = {https://www.pytorch.org/},\n\tabstract = {An open source deep learning platform that provides a seamless path from research prototyping to production deployment.},\n\tlanguage = {en},\n\turldate = {2019-08-18},\n\tjournal = {www.pytorch.org}\n}",
+		"csl": {
+			"title": "PyTorch",
+			"URL": "https://www.pytorch.org/",
+			"language": "en",
+			"container-title": "www.pytorch.org",
+			"type": "book",
+			"citation-label": "noauthor_pytorch_nodate",
+			"id": "https://pytorch.org/"
+		}
 	}
 }
