@@ -13,13 +13,14 @@ def box_filt(n):
 
 def do_single(path: Path):
     [path] = path.glob("events.out.*")
+    print(path)
     avg_width = 50
 
     values = defaultdict(list)
     
     for e in tf.train.summary_iterator(str(path)):
         for v in e.summary.value:
-            if v.tag.startswith("val_") and not v.image.width:
+            if v.tag.startswith("val_") and not v.image.width and not (v.tag.startswith("val_rel_error") and not v.tag.endswith("_kcal")):
                 values[v.tag] += [v.simple_value]
 
     table = {}
@@ -40,4 +41,4 @@ all_data = {run_name(run): do_single(Path(run)) for run in sys.argv[1:]}
 
 df = pandas.DataFrame.from_dict(all_data, orient='index')
 print(df)
-print(df.to_latex())
+print(df.to_latex(float_format="{:.3g}".format))
