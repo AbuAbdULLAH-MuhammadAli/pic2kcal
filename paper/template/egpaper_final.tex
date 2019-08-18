@@ -75,6 +75,14 @@ $endif$
 % run, let it finish, and you should be clear).
 \usepackage[breaklinks=true,bookmarks=false]{hyperref}
 
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
 % htps://tex.stackexchange.com/questions/161431/how-to-solve-longtable-is-not-in-t1-column-mode-error
 \makeatletter
 \let\oldlt\longtable
