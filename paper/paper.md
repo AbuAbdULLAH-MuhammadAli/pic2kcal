@@ -234,13 +234,24 @@ We divided the generated dataset into train/test/validation (.7/.15/.15) splits.
 
 To evaluate the performance of the model we trained several networks and ran several experiments and evaluated them using the validation data set to get quick feedback. To measure the performance of the model we primarily compared the ground truth kcal information with the prediction of the network.
 
-Firstly we used our raw data set to train the kcal-model. We wanted the network to predict the kcal information of the recipe shown in the given input image. To perform well in this task the model needs to learn the concept of the recipe size and predict the calories according it. We assumed that the problem would be well learnable due to the amount of samples and the capacity of the model. Unfortunately the trained regression model did not perform well on the task probably because of outlier recipes in our dataset with wrong kcal information provided by the users. Even after outlier removal, prediction of normalized kcal information of portion and experimenting with a classification approach the model was only slightly better than the baseline model.
+Initially we wanted to predict the kcal information of a meal shown on an image. Since the dataset we have collected does not provide information for this task we run the following experiments:
 
-Secondly we evaluated if the additional nutritional information supports the capability of the network to generalize on the recipe and portion size. Both the classification and regression objectives did not perform well with the further information.
+- kcal prediction per recipe 
+- kcal prediction per portion 
+- kcal prediction per 100g 
 
-Lastly we reformulated the training objective to a slightly easier problem. We trained the network to predict the caloric density of the visualized image. Because of the normalization the network only needs to grasp how many calories are in for instance 100g of the meal. This modification led to significant better results.
+We did the first experiments on the raw and unfiltered dataset. In between we evaluated  a classification model because of the bad performance of the regression model. The actuall problem was not the model itsel but more the outliers which were in the dataset. For the further experiments we used only the regression models. 
 
-We managed to furthermore improve the results of the model using the multi-task approach. The top 100 ingredients of the recipes were injected as further information to support the model predicting the kcal information. We report the results of most of these experiments in the result section.
+Firstly we comment on the  problem space of the recipe, portion and 100g prediction type.
+We wanted the network to predict the kcal information of the recipe shown in the given input image. To perform well in this task the model needs to learn the concept of the recipe size and predict the calories according it. We assumed that the problem would be well learnable due to the amount of samples and the capacity of the model. Unfortunately the trained regression model did not perform well on the task. Even after prediction of normalized kcal information of portion the model was only slightly better than the baseline model. Lastly we reformulated the training objective to a slightly easier problem. We trained the network to predict the caloric density of the visualized image. Because of the normalization the network only needs to grasp how many calories are in for instance 100g of the meal. This modification led to significant better results.
+
+Furthermore we ran experiments to answer the question if further information improves the prediction of the network. We ran experiments with the following three levels of additional information:
+
+- **kcal only:** As reference we predicted the kcal information directly with no further information. 
+- **kcal +  nutritional information:** The additional nutrial informatin supported the network to generalize.
+- **kcal +  nutritional information + top 100 ingedients:** We managed to furthermore improve the results of the model using the multi-task approach. The top 100 ingredients of the recipes were injected as further information to support the model predicting the kcal information. 
+
+We report the results of most of these experiments in the result section.
 
 # Results
 
