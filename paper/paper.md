@@ -53,7 +53,7 @@ The authors [@myers] implemented a mobile application and propose an approach wh
 
 Since their approach uses a lot components it is not possible to train the system in a end-to-end fashion. 
 
-
+The authors of [@takumi] trained a model using a multi-task CNN. They not only predict calories but rather add as well an average ingredient word embedding, the type of food and an embedding of the preparation steps of the meal. They collected a dataset to train their models but it is not public available. 
 
 <!-- 
 There's some other papers like [@chokr; @takumi; ]. Ours is more end to end and also BETTER
