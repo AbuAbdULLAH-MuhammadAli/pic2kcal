@@ -5,7 +5,6 @@ import pandas
 import sys
 import glob
 from pathlib import Path
-values = defaultdict(list)
 
 
 def box_filt(n):
@@ -15,6 +14,9 @@ def box_filt(n):
 def do_single(path: Path):
     [path] = path.glob("events.out.*")
     avg_width = 50
+
+    values = defaultdict(list)
+    
     for e in tf.train.summary_iterator(str(path)):
         for v in e.summary.value:
             if v.tag.startswith("val_") and not v.image.width:
