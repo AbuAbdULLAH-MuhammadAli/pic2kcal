@@ -353,11 +353,11 @@ kcal only      &               0.362 &         50.3 &             nan &         
 
 Following we describe the most time consuming difficutlties we faced while working on the practical course task. 
 
-- **Scraping:** It was straight forward to crawl the recipes internet page because the graceful HTML structure. Whereas it was challenging to extract the nutritional data of the other website. The main problem was to find a proper method to extract the needed information out of the a HTML table which was modeld using several div tags.  
+- **Scraping:** It was fairly straight forward to crawl the recipes internet page because the graceful HTML structure, though it still took time due to the huge amount of data. It  was more challenging to extract the data from the nutritional database website. The main problem was to find a proper method to extract the needed information out of multiple HTML tables which were modeled using a ton of div tags in a hard parse manner.  
 
-- **Ingredient matching:** The matching of the recipe ingredients and the food database ingredients could not be solved with a simple method like Levenshtein distance. The obvious pairs could be matched but once for instance further information like *peeled potato*  was provided often  the optimal match was not found. 
+- **Ingredient matching:** The matching of the recipe ingredients and the food database ingredients could not be solved with a simple method like Levenshtein distance. The obvious pairs could be matched but once for instance further information like *peeled potato*  was provided often the optimal match was not found. 
 
-- **Kcal outlier:** It was not possible to use the raw user given kcal details because some of them were not accurate. The loss of the trained regression models exploded with bad results as consequence. Based on the matching we calculated kcal information and filtered the outlier recipes. 
+- **Kcal outlier:** It was not possible to use the raw user given kcal details because some of them were not accurate. The loss of the trained regression models exploded with bad results as consequence. Based on the matching we calculated our own kcal information and filtered the outlier recipes.
 
 - **Tensorboard image visualization:** We used TensorBoard to be able to debug the models. Therefore we logged meta data including the images of the recipes. Because of an error related to the image normalization the images got destroyed. 
  
