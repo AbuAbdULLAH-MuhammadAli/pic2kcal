@@ -312,6 +312,9 @@ def train():
                     prefix="val_",
                 )
 
+        model.save(net, args.runname + 'epoch-' + epoch, logdir)
+
+
     writer.close()
     if args.test != 'test':
         model.save(net, args.runname, logdir)
