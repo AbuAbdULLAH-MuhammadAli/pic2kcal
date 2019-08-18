@@ -231,23 +231,56 @@ ours (w/ macros+ings) & 0.328 \\
 \end{table}
 
 \begin{table}
-\begin{tabular}{lrrrrrr}
+
+\begin{tabular}{lrrrrr}
 \toprule
-{} &  val\_loss &  val\_l1\_kcal &  val\_rel\_error\_kcal &  val\_l1\_protein &  val\_l1\_fat &  val\_l1\_carbohydrates \\
+{} &  rel\_error\_kcal &  l1\_kcal &  l1\_protein &  l1\_fat &  l1\_carbohydrates \\
 \midrule
-2019-08-10T16.52.11-resnet50-p100g-nuting        &       114 &         47.8 &               0.334 &            2.54 &        3.93 &                  7.13 \\
-2019-08-10T20.56.14-resnet101-p100g-nuting       &       114 &         48.2 &               0.336 &            2.54 &        3.94 &                  7.17 \\
-2019-08-10T20.56.48-densenet121-p100g-nuting     &       112 &         46.9 &               0.326 &            2.51 &        3.88 &                  6.97 \\
-2019-08-11T16.05.25-resnext50\_32x4d-p100g-nuting &       112 &         47.2 &                0.33 &             2.5 &        3.89 &                  6.99 \\
-2019-08-11T19.00.15-densenet201-p100g-nuting     &       113 &         47.2 &               0.327 &            2.53 &        3.89 &                  7.04 \\
-2019-08-17T18.25.09-densenet121-precipe-nuting   &  1.16e+03 &          728 &                 inf &            34.9 &        48.3 &                  93.1 \\
-2019-08-17T18.31.23-densenet121-pportion-nuting  &      15.5 &            9 &              0.0258 &           0.417 &       0.457 &                  0.84 \\
-2019-08-17T18.38.35-densenet121-p100g-nut        &      61.5 &           49 &               0.345 &            2.67 &        4.06 &                  7.72 \\
-2019-08-17T18.39.45-densenet121-pportion-nuting  &       300 &          154 &               0.632 &            9.21 &        10.8 &                  19.1 \\
-2019-08-17T18.40.49-densenet121-p100g-nonut      &      49.8 &         50.3 &               0.362 &             nan &         nan &                   nan \\
+resnet50        &               0.334 &         47.8 &            2.54 &        3.93 &                  7.13 \\
+resnet101       &               0.336 &         48.2 &            2.54 &        3.94 &                  7.17 \\
+densenet121      &               0.326 &         46.9 &            2.51 &        3.88 &                  6.97 \\
+resnext50\_32x4d &                0.33 &         47.2 &             2.5 &        3.89 &                  6.99 \\
+densenet201     &               0.327 &         47.2 &            2.53 &        3.89 &                  7.04 \\
 \bottomrule
 \end{tabular}
+
+\caption{Results by model.\label{tbl:resbymodel}}
 \end{table}
+
+
+
+\begin{table}
+
+\begin{tabular}{lrrrrr}
+\toprule
+{} &  rel\_error\_kcal &  l1\_kcal &  l1\_protein &  l1\_fat &  l1\_carbohydrates \\
+\midrule
+kcal per 100g     &               0.326 &         46.9 &            2.51 &        3.88 &                  6.97 \\
+kcal per recipe   &                 inf &          728 &            34.9 &        48.3 &                  93.1 \\
+kcal per portion  &               0.632 &          154 &            9.21 &        10.8 &                  19.1 \\
+\bottomrule
+\end{tabular}
+
+\caption{Results by kcal prediction. \label{tbl:resperper}}
+\end{table}
+
+
+
+\begin{table}
+
+\begin{tabular}{lrrrrr}
+\toprule
+{} &  rel\_error\_kcal &  l1\_kcal &  l1\_protein &  l1\_fat &  l1\_carbohydrates \\
+\midrule
+kcal only      &               0.362 &         50.3 &             nan &         nan &                   nan \\
+kcal + macronutrients        &               0.345 &           49 &            2.67 &        4.06 &                   7.7 \\
+kcal +macros + top100ings     &               0.326 &         46.9 &            2.51 &        3.88 &                  6.97 \\
+\bottomrule
+\end{tabular}
+
+\caption{Results by task.\label{tbl:resbytask}}
+\end{table}
+
 
 ![Relative validation error of the calorie prediction over training batches compared for a network predicting only calories (blue), predicting calories and macronutrients (gray), and predicting calories, macronutrients, and top100 ingredients (green). It can be seen that multi-task learning performs best.](img/multi-task-learning.png){#fig:mtl}
 
