@@ -42,9 +42,9 @@ In this work we propose a method to predict the caloric content of any prepared 
 We collected a dataset of recipes, pictures, and nutritional properties. Then we experimented with various features and models to best predict calories and other nutritional information directly from an image. We measure our results objectively and show that multi-task learning improves the performance.
 
 # Related Work
-Most of the previous approaches are based on several components to split the kcal prediction in sub problems. 
+Most of the previous approaches are based on several components to split the kcal prediction into sub problems. 
 
-The authors [@myers] implemented a mobile application and propose an approach which relies on several steps. Summarizing they perform the following steps to estimate the kcal information: 
+The authors in [@myers] implemented a mobile application and propose an approach which relies on several steps. Summarizing they perform the following steps to estimate the kcal information: 
 
 - Deciding if the image is a food image
 - Restaurant detection according GPS 
@@ -53,7 +53,7 @@ The authors [@myers] implemented a mobile application and propose an approach wh
 
 Since their approach uses a lot components it is not possible to train the system in a end-to-end fashion. 
 
-The authors of [@takumi] trained a model using a multi-task CNN. They not only predict calories but rather add as well an average ingredient word embedding, the type of food and an embedding of the preparation steps of the meal. They collected a dataset to train their models but it is not public available. 
+The authors of [@takumi] trained a model using a multi-task CNN. They not only predict calories but also add an average ingredient word embedding, the type of food and an embedding of the preparation steps of the meal. They collected a dataset of English and Japanese recipes to train their models but it is not publicly available. 
 
 <!-- 
 There's some other papers like [@chokr; @takumi; ]. Ours is more end to end and also BETTER
@@ -364,11 +364,11 @@ kcal only      &               0.362 &         50.3 &             nan &         
 
 Following we describe the most time consuming difficutlties we faced while working on the practical course task. 
 
-- **Scraping:** It was straight forward to crawl the recipes internet page because the graceful HTML structure. Whereas it was challenging to extract the nutritional data of the other website. The main problem was to find a proper method to extract the needed information out of the a HTML table which was modeld using several div tags.  
+- **Scraping:** It was fairly straight forward to crawl the recipes internet page because the graceful HTML structure, though it still took time due to the huge amount of data. It  was more challenging to extract the data from the nutritional database website. The main problem was to find a proper method to extract the needed information out of multiple HTML tables which were modeled using a ton of div tags in a hard parse manner.  
 
-- **Ingredient matching:** The matching of the recipe ingredients and the food database ingredients could not be solved with a simple method like Levenshtein distance. The obvious pairs could be matched but once for instance further information like *peeled potato*  was provided often  the optimal match was not found. 
+- **Ingredient matching:** The matching of the recipe ingredients and the food database ingredients could not be solved with a simple method like Levenshtein distance. The obvious pairs could be matched but once for instance further information like *peeled potato*  was provided often the optimal match was not found. 
 
-- **Kcal outlier:** It was not possible to use the raw user given kcal details because some of them were not accurate. The loss of the trained regression models exploded with bad results as consequence. Based on the matching we calculated kcal information and filtered the outlier recipes. 
+- **Kcal outlier:** It was not possible to use the raw user given kcal details because some of them were not accurate. The loss of the trained regression models exploded with bad results as consequence. Based on the matching we calculated our own kcal information and filtered the outlier recipes.
 
 - **Tensorboard image visualization:** We used TensorBoard to be able to debug the models. Therefore we logged meta data including the images of the recipes. Because of an error related to the image normalization the images got destroyed. 
  

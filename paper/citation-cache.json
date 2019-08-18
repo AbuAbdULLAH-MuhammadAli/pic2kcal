@@ -549,7 +549,7 @@
 			"URL": "https://www.pytorch.org/",
 			"language": "en",
 			"container-title": "www.pytorch.org",
-			"type": "book",
+			"type": "webpage",
 			"citation-label": "noauthor_pytorch_nodate",
 			"id": "https://pytorch.org/"
 		}
