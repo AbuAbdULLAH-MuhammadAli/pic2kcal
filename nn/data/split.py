@@ -88,6 +88,10 @@ elif args.mode == "matched":
                 }
             else:
                 kcal_src = nut[kcal_mode]
+            if kcal_mode == "per_recipe":
+                if kcal_src["Kalorien"]["Menge"] < 10:
+                    # 0 calories? filter out recipe
+                    return None
             return {
                 "kcal": kcal_src["Kalorien"]["Menge"],
                 "protein": kcal_src["Protein"]["Menge"],

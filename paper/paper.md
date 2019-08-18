@@ -42,9 +42,9 @@ In this work we propose a method to predict the caloric content of any prepared 
 We collected a dataset of recipes, pictures, and nutritional properties. Then we experimented with various features and models to best predict calories and other nutritional information directly from an image. We measure our results objectively and show that multi-task learning improves the performance.
 
 # Related Work
-Most of the previous approaches are based on several components to split the kcal prediction in sub problems. 
+Most of the previous approaches are based on several components to split the kcal prediction into sub problems. 
 
-The authors [@myers] implemented a mobile application and propose an approach which relies on several steps. Summarizing they perform the following steps to estimate the kcal information: 
+The authors in [@myers] implemented a mobile application and propose an approach which relies on several steps. Summarizing they perform the following steps to estimate the kcal information: 
 
 - Deciding if the image is a food image
 - Restaurant detection according GPS 
@@ -53,7 +53,7 @@ The authors [@myers] implemented a mobile application and propose an approach wh
 
 Since their approach uses a lot components it is not possible to train the system in a end-to-end fashion. 
 
-The authors of [@takumi] trained a model using a multi-task CNN. They not only predict calories but rather add as well an average ingredient word embedding, the type of food and an embedding of the preparation steps of the meal. They collected a dataset to train their models but it is not public available. 
+The authors of [@takumi] trained a model using a multi-task CNN. They not only predict calories but also add an average ingredient word embedding, the type of food and an embedding of the preparation steps of the meal. They collected a dataset of English and Japanese recipes to train their models but it is not publicly available. 
 
 <!-- 
 There's some other papers like [@chokr; @takumi; ]. Ours is more end to end and also BETTER
