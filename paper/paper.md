@@ -185,7 +185,7 @@ In the regression case we trained a model to predict the kcal information with o
 
 We adapted the base architecuters to the classification problem by quantizing the regression outputs. So we introduced 50 class buckets for each regression output. The models were trained using a cross entropy loss.
 
-The multi-task model is based on the regression model including the nutritional information with additional binary outputs to predict the top n ingredients. The resulting layer has four regression outputs with 50 binary outputs. The used loss combines a smooth L1 loss for the regression outputs and a binary cross entropy loss for the top 50 ingredients. To get the same scaling of the two learning signals we scaled the binary cross entropy loss with a factor of 400. $$ loss = L1 + 400 * BCE $$
+The multi-task model is based on the regression model including the nutritional information with additional binary outputs to predict the top n ingredients. The resulting layer has four regression outputs with 50 binary outputs. The used loss combines a smooth L1 loss for the regression outputs and a binary cross entropy loss for the top 50 ingredients. To get the same scaling of the two learning signals we scaled the binary cross entropy loss with a factor of 400. $$ \text{loss} = \text{L1} + 400 * \text{BCE} $$
 
 As there are no reference papers working with similar approaches or similar data, the results could not be compared to other studies.
 Hence, a simple baseline was implemented to get evidence that our models actually learn and that they are better than random guessing. 
@@ -210,6 +210,8 @@ We could furthermore improve the results of the model using the multi-task appro
 
 # Results
 
+For an objective comparison, we use the relative error of the kcal output neuron $\text{rel\_error} = 1 - \frac{\text{pred}}{\text{truth}}$.
+
 Our results can be seen in [@tbl:res]. Example outputs can be seen in [@fig:results].
 
 \begin{table}
@@ -228,7 +230,17 @@ ours (w/ macros+ings) & 0.328 \\
 \caption{Results per 100g. Note that multitask learning improves performance.\label{tbl:res}}
 \end{table}
 
-![Some example results, showing predicted calories, fat, protein, carbohydrates and ingredients.](img/results.png){#fig:results}
+![Relative validation error of the calorie prediction over training batches compared for a network predicting only calories (blue), predicting calories and macronutrients (gray), and predicting calories, macronutrients, and top100 ingredients (green). It can be seen that multi-task learning performs best.](img/multi-task-learning.png){#fig:mtl}
+
+![Some example results, showing predicted calories, fat, protein, carbohydrates and ingredients.](img/results-vert.png){#fig:results width=40%}
+
+### Different Architectures
+
+- ResNet50, Resnet101, ResNext50p, Densnet121, Densent201
+
+- per 100g vs per recipe vs per portion je mit Densnet121 und kcal+nut+ings
+
+- predict only kcal, kcal+fat+protein+carbos, kcal+nut+ings je mit per 100g & Densenet121
 
 # Problems/Fails
 
