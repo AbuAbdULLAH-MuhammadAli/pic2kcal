@@ -312,7 +312,7 @@ def train():
                     prefix="val_",
                 )
 
-        model.save(net, args.runname + 'epoch-' + epoch, logdir)
+        model.save(net, f'{args.runname}-epoch-{epoch:02d}', logdir)
 
 
     writer.close()
