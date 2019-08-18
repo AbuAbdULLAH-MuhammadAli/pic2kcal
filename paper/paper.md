@@ -230,6 +230,25 @@ ours (w/ macros+ings) & 0.328 \\
 \caption{Results per 100g. Note that multitask learning improves performance.\label{tbl:res}}
 \end{table}
 
+\begin{table}
+\begin{tabular}{lrrrrrr}
+\toprule
+{} &  val\_loss &  val\_l1\_kcal &  val\_rel\_error\_kcal &  val\_l1\_protein &  val\_l1\_fat &  val\_l1\_carbohydrates \\
+\midrule
+2019-08-10T16.52.11-resnet50-p100g-nuting        &       114 &         47.8 &               0.334 &            2.54 &        3.93 &                  7.13 \\
+2019-08-10T20.56.14-resnet101-p100g-nuting       &       114 &         48.2 &               0.336 &            2.54 &        3.94 &                  7.17 \\
+2019-08-10T20.56.48-densenet121-p100g-nuting     &       112 &         46.9 &               0.326 &            2.51 &        3.88 &                  6.97 \\
+2019-08-11T16.05.25-resnext50\_32x4d-p100g-nuting &       112 &         47.2 &                0.33 &             2.5 &        3.89 &                  6.99 \\
+2019-08-11T19.00.15-densenet201-p100g-nuting     &       113 &         47.2 &               0.327 &            2.53 &        3.89 &                  7.04 \\
+2019-08-17T18.25.09-densenet121-precipe-nuting   &  1.16e+03 &          728 &                 inf &            34.9 &        48.3 &                  93.1 \\
+2019-08-17T18.31.23-densenet121-pportion-nuting  &      15.5 &            9 &              0.0258 &           0.417 &       0.457 &                  0.84 \\
+2019-08-17T18.38.35-densenet121-p100g-nut        &      61.5 &           49 &               0.345 &            2.67 &        4.06 &                  7.72 \\
+2019-08-17T18.39.45-densenet121-pportion-nuting  &       300 &          154 &               0.632 &            9.21 &        10.8 &                  19.1 \\
+2019-08-17T18.40.49-densenet121-p100g-nonut      &      49.8 &         50.3 &               0.362 &             nan &         nan &                   nan \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 ![Relative validation error of the calorie prediction over training batches compared for a network predicting only calories (blue), predicting calories and macronutrients (gray), and predicting calories, macronutrients, and top100 ingredients (green). It can be seen that multi-task learning performs best.](img/multi-task-learning.png){#fig:mtl}
 
 ![Some example results, showing predicted calories, fat, protein, carbohydrates and ingredients.](img/results-vert.png){#fig:results width=40%}
