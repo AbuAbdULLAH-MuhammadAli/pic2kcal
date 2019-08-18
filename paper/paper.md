@@ -7,7 +7,7 @@ date: 2019-08-02
 abstract: |
     Latest approaches to predicting calories of food usually use models that consist of several pipeline steps, such as segmenting the image, estimating the weight and classifying the ingredient. 
      In this article we present a novel end-to-end approach to estimate the kcal directly from a picture. 
-      Since there is no large-scale publicly available dataset to train models on this task, we also collected data from recipes, including images, and matched the ingredients of the recipes with ground truth nutritional information of a food database.
+      Since there is no large-scale publicly available dataset to train models on this task, we also collected data from recipes, including images, and matched the ingredients of the recipes with ground truth nutritional information from a food database.
 figPrefix: [Figure, Figures]
 tblPrefix: [Table, Tables]
 secPrefix: [Section, Sections]
@@ -33,9 +33,9 @@ link-citations: true
 
 # Introduction
 
-In recent years the awareness of healthier and more balanced diets has risen a lot. Tracking the exact amount and quality of food eaten is important for successfully following a diet, but doing this manually takes a lot of time and effort, leading to non-optimal results.
+In recent years the awareness of healthier and more balanced diets has risen a lot. Tracking the exact amount and quality of food eaten is important for successfully following a diet, but doing this manually takes a lot of time and effort, leading to quick motivation loss and non-optimal results for many people.
 
-Currently, calorie tracking is mostly done by looking up specific ingredients and amounts. There are also a number of tools to help track calorie intake, such as the app Im2Calories by Google [@myers] from 2015, or CalorieMama [@caloriemama], with varying automation.
+Currently, calorie tracking is mostly done manually by looking up specific ingredients and amounts for each eaten meal. There are also a number of tools to help track calorie intake, such as the app Im2Calories by Google [@myers] from 2015, or CalorieMama [@caloriemama], with varying automation.
 
 In this work we propose a method to predict the caloric content of any prepared food based only on a single picture of one portion in an end-to-end fashion.
 
@@ -288,12 +288,11 @@ ours  &               0.632 &          154 &            9.21 &        10.8 &    
 \midrule
 per recipe \\
 baseline & inf & 864 & 42.2 & 56.6 & 125 \\
-ours   &   
+ours   &   inf &          728 &            34.9 &        48.3 &                  93.1 \\
 \midrule
 per 100g \\
 baseline & 0.464 & 60.5 & 3.1g & 4.5g & 10.5g \\
 ours     &               0.326 &         46.9 &            2.51 &        3.88 &                  6.97 \\
-              inf &          728 &            34.9 &        48.3 &                  93.1 \\
 \bottomrule
 \end{tabular}
 \end{center}

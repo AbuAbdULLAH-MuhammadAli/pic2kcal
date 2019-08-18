@@ -112,7 +112,7 @@
 			"title": "<span class=\"nocase\">USDA</span> <span class=\"nocase\">Food</span> <span class=\"nocase\">Composition</span> <span class=\"nocase\">Databases</span>",
 			"URL": "https://ndb.nal.usda.gov/ndb/",
 			"container-title": "ndb.nal.usda.gov",
-			"type": "book",
+			"type": "webpage",
 			"citation-label": "noauthor_usda_nodate",
 			"id": "https://ndb.nal.usda.gov/ndb/"
 		}
@@ -414,7 +414,7 @@
 			"title": "Calorie <span class=\"nocase\">Mama</span> <span class=\"nocase\">Food</span> <span class=\"nocase\">AI</span> - <span class=\"nocase\">Food</span> <span class=\"nocase\">Image</span> <span class=\"nocase\">Recognition</span> and <span class=\"nocase\">Calorie</span> <span class=\"nocase\">Counter</span> using <span class=\"nocase\">Deep</span> <span class=\"nocase\">Learning</span>",
 			"URL": "https://caloriemama.ai/",
 			"container-title": "caloriemama.ai",
-			"type": "book",
+			"type": "webpage",
 			"citation-label": "noauthor_calorie_nodate",
 			"id": "https://caloriemama.ai/"
 		}
