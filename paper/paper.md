@@ -190,9 +190,7 @@ The multi-task model is based on the regression model including the nutritional 
 As there are no reference papers working with similar approaches or similar data, the results could not be compared to other studies.
 Hence, a simple baseline was implemented to get evidence that our models actually learn and that they are better than random guessing. 
 
-The baseline for the kcal prediction basically is the mean of all samples in the train dataset. 
-A basleine model would predict during inference only the mean of the already seen kcal values seen. 
-The same baseline was used for predicting the nutritional data. 
+The baseline for the kcal prediction is the mean of all samples in the training dataset. The same mean baseline was used for predicting the macronutrient data. 
 
 # Experiments {#sec:experiments}
 
@@ -210,10 +208,15 @@ We could furthermore improve the results of the model using the multi-task appro
 
 # Results
 
-For an objective comparison, we use the relative error of the kcal output neuron $\text{rel\_error} = 1 - \frac{\text{pred}}{\text{truth}}$.
+For an objective comparison, we focus on the relative error ($\text{rel\_error} = 1 - \frac{\text{pred}}{\text{truth}}$) of the kcal output. We also provide the absolute error (L1 error) of calories (in kcal), fat, protein, and carbohydrates (each in grams).
+
+We computed a baseline as described in [@sec:models], then we compared the results for three different questions.
+
+
 
 Our results can be seen in [@tbl:res]. Example outputs can be seen in [@fig:results].
 
+<!--
 \begin{table}
 \begin{center}
 \begin{tabular}{|l|c|}
@@ -229,20 +232,25 @@ ours (w/ macros+ings) & 0.328 \\
 \end{center}
 \caption{Results per 100g. Note that multitask learning improves performance.\label{tbl:res}}
 \end{table}
+-->
+
 
 \begin{table}
+\begin{center}
 
 \begin{tabular}{lrrrrr}
 \toprule
-{} &  rel\_error\_kcal &  l1\_kcal &  l1\_protein &  l1\_fat &  l1\_carbohydrates \\
+{} &  kcal (rel) &  kcal &  protein &  fat &  carbs \\
 \midrule
+baseline & 0.464 & 60.5 & 3.1g & 4.5g & 10.5g \\
 resnet50        &               0.334 &         47.8 &            2.54 &        3.93 &                  7.13 \\
 resnet101       &               0.336 &         48.2 &            2.54 &        3.94 &                  7.17 \\
-densenet121      &               0.326 &         46.9 &            2.51 &        3.88 &                  6.97 \\
-resnext50\_32x4d &                0.33 &         47.2 &             2.5 &        3.89 &                  6.99 \\
+resnext50\_32x4d &                0.33 &         47.2 &             2.50 &        3.89 &                  6.99 \\
+\textbf{densenet121}      &               \textbf{0.326} &         46.9 &            2.51 &        3.88 &                  6.97 \\
 densenet201     &               0.327 &         47.2 &            2.53 &        3.89 &                  7.04 \\
 \bottomrule
 \end{tabular}
+\end{center}
 
 \caption{Results by model.\label{tbl:resbymodel}}
 \end{table}
@@ -250,16 +258,26 @@ densenet201     &               0.327 &         47.2 &            2.53 &        
 
 
 \begin{table}
+\begin{center}
 
 \begin{tabular}{lrrrrr}
 \toprule
-{} &  rel\_error\_kcal &  l1\_kcal &  l1\_protein &  l1\_fat &  l1\_carbohydrates \\
+{} &  kcal (rel) &  kcal &  protein &  fat &  carbs \\
 \midrule
-kcal per 100g     &               0.326 &         46.9 &            2.51 &        3.88 &                  6.97 \\
-kcal per recipe   &                 inf &          728 &            34.9 &        48.3 &                  93.1 \\
-kcal per portion  &               0.632 &          154 &            9.21 &        10.8 &                  19.1 \\
+per 100g \\
+baseline & 0.464 & 60.5 & 3.1g & 4.5g & 10.5g \\
+ours     &               0.326 &         46.9 &            2.51 &        3.88 &                  6.97 \\
+\midrule
+per recipe \\
+baseline & inf & 864 & 42.2 & 56.6 & 125 \\
+ours   &                 inf &          728 &            34.9 &        48.3 &                  93.1 \\
+\midrule
+per portion \\
+baseline & 0.787 & 173 & 11.4 & 11.8 & 21.6 \\
+ours  &               0.632 &          154 &            9.21 &        10.8 &                  19.1 \\
 \bottomrule
 \end{tabular}
+\end{center}
 
 \caption{Results by kcal prediction. \label{tbl:resperper}}
 \end{table}
@@ -267,16 +285,18 @@ kcal per portion  &               0.632 &          154 &            9.21 &      
 
 
 \begin{table}
+\begin{center}
 
 \begin{tabular}{lrrrrr}
 \toprule
-{} &  rel\_error\_kcal &  l1\_kcal &  l1\_protein &  l1\_fat &  l1\_carbohydrates \\
+{} &  kcal (rel) &  kcal &  protein &  fat &  carbs \\
 \midrule
 kcal only      &               0.362 &         50.3 &             nan &         nan &                   nan \\
-kcal + macronutrients        &               0.345 &           49 &            2.67 &        4.06 &                   7.7 \\
-kcal +macros + top100ings     &               0.326 &         46.9 &            2.51 &        3.88 &                  6.97 \\
+\"+ macronutrients        &               0.345 &           49 &            2.67 &        4.06 &                   7.7 \\
+\"+\"+ top100ings     &               0.326 &         46.9 &            2.51 &        3.88 &                  6.97 \\
 \bottomrule
 \end{tabular}
+\end{center}
 
 \caption{Results by task.\label{tbl:resbytask}}
 \end{table}
@@ -294,7 +314,9 @@ kcal +macros + top100ings     &               0.326 &         46.9 &            
 
 - predict only kcal, kcal+fat+protein+carbos, kcal+nut+ings je mit per 100g & Densenet121
 
-# Problems/Fails
+# Problems / Fails
+
+
 Following we describe the most time consuming difficutlties we faced while working on the practical course task. 
 
 - **Scraping:** It was straight forward to crawl the recipes internet page because the graceful HTML structure. Whereas it was challenging to extract the nutritional data of the other website. The main problem was to find a proper method to extract the needed information out of the a HTML table which was modeld using several div tags.  
