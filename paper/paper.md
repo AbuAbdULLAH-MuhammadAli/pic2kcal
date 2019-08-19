@@ -255,9 +255,8 @@ We report the results of most of these experiments in the result section.
 
 # Results
 
-For an objective comparison, we focus on the relative error ($\text{rel\_error} = 1 - \frac{\text{pred}}{\text{truth}}$) of the kcal output. We also provide the absolute error (L1 error) of calories (in kcal), fat, protein, and carbohydrates (each in grams). The relative error is meaningless here, since in many dishes at least one of the macronutrients is not present at all.
-
-We computed a baseline as described in [@sec:models], then we compared the results for three different questions. Unless noted otherwise, the model is a DenseNet121, predicting calories, macros and ingredients per 100g.
+For an objective comparison, we focus on the relative error ($\text{rel\_error} = 1 - \frac{\text{pred}}{\text{truth}}$) of the kcal output. We also provide the absolute error (L1 error) of calories (in kcal), fat, protein, and carbohydrates (each in grams). The relative error is meaningless here, since in many dishes at least one of the macronutrients is not present at all. In all the [@tbl:resbymodel; @tbl:resperper; @tbl:resbytask], the first column is relative, the others are the absolute error (in kcal or grams). 
+We computed a baseline as described in [@sec:models], then we compared the results for three different questions. Unless noted otherwise, the model is a DenseNet121, predicting calories, macros and ingredients per 100g. 
 
 We first compared different model architectures, as seen in [@tbl:resbymodel]. The DenseNet architecture provided the best results. ResNet and ResNeXt [@resnext] both had worse results.
 
@@ -331,7 +330,7 @@ ours     &               0.326 &         46.9 &            2.51 &        3.88 & 
 \end{tabular}
 \end{center}
 
-\caption{Results depending on what amount of food the nutritional values were predicted for. The first column is relative, the others are the absolute error (in kcal or grams). \label{tbl:resperper}}
+\caption{Results depending on what amount of food the nutritional values were predicted for. \label{tbl:resperper}}
 \end{table}
 
 
