@@ -35,6 +35,7 @@ def put_text(imgs, texts):
         from PIL import ImageDraw
 
         img = Image.fromarray((img.transpose((1, 2, 0)) * 255).astype("uint8"), "RGB")
+        
         draw = ImageDraw.Draw(img)
         font = ImageFont.truetype("/usr/share/fonts/TTF/LiberationSans-Regular.ttf", 12)
         # draw.text((x, y),"Sample Text",(r,g,b))
@@ -43,8 +44,12 @@ def put_text(imgs, texts):
         result[i] = (result[i] - result[i].min()) / (result[i].max() - result[i].min())
     return result
 
-
-
+def write_imgs_to_dir(batch, dir, imgs, texts):
+    for i, (img, text) in enumerate(zip(imgs, texts)):
+        from PIL import Image
+        img = Image.fromarray((img.transpose((1, 2, 0)) * 255).astype("uint8"), "RGB")
+        img.save(dir / f"{i:02}.png")
+        (dir / f"{batch:05}" / f"{i:02}.txt").write_text(text)
 
 def write_losses(
     *, writer, running_losses, epoch, batch_idx, epoch_batch_idx, prefix=""
@@ -58,7 +63,7 @@ def write_losses(
             % (epoch, epoch_batch_idx, loss_name_prefixed, avg_loss)
         )
 
-def draw_val_images(*, output, data, image, is_regression, device, prediction_keys, granularity, writer, ingredient_names):
+def draw_val_images(*, output, data, image, is_regression, device, prediction_keys, granularity, writer, ingredient_names, logdir, epoch, batch_idx, epoch_batch_idx):
     show_img_count = 16
     # generate and write pictures to tensorboard
 
@@ -88,11 +93,19 @@ def draw_val_images(*, output, data, image, is_regression, device, prediction_ke
     )
     pred_arrs = [s.strip() for s in pred_arrs]
 
+    # write images to out dir
+    imgdir = Path(logdir) / "val_images"
+    imgdir.mkdir(parents=True)
+    write_imgs_to_dir(batch_idx, imgdir, images_cpu, pred_arrs)
+
+    # write images to tensorboard
     images_cpu = put_text(
         images_cpu,
         pred_arrs,
     )
-    writer.add_images("val examples", images_cpu)
+    writer.add_images("val examples", images_cpu, global_step=batch_idx)
+    
+
 
 
 def train():
@@ -116,7 +129,7 @@ def train():
         epochs = 0
 
     shuffle = True
-    validate_every = 200
+    validate_every = 1
     validate_batches = 50
 
     # training_type = 'classification'
@@ -301,7 +314,11 @@ def train():
                                 device=device, 
                                 prediction_keys=prediction_keys,
                                 granularity=granularity,
-                                ingredient_names=train_dataset.ingredient_names
+                                ingredient_names=train_dataset.ingredient_names,
+                                logdir=logdir,
+                                epoch=epoch,
+                                batch_idx=batch_idx,
+                                epoch_batch_idx=epoch_batch_idx,
                             )
                 write_losses(
                     writer=writer,
