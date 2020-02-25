@@ -14,6 +14,7 @@ from torch.utils.tensorboard import SummaryWriter
 from nn.models.pretrained_model import PretrainedModel
 from nn.models.baseline_model import BaselineModel
 from pathlib import Path
+import json
 
 # https://github.com/microsoft/ptvsd/issues/943
 import multiprocessing
@@ -44,12 +45,15 @@ def put_text(imgs, texts):
         result[i] = (result[i] - result[i].min()) / (result[i].max() - result[i].min())
     return result
 
-def write_imgs_to_dir(batch, dir, imgs, texts):
-    for i, (img, text) in enumerate(zip(imgs, texts)):
+def write_imgs_to_dir(batch, dir, imgs, texts, meta):
+    for i, (img, text, datapoint) in enumerate(zip(imgs, texts, meta)):
         from PIL import Image
         img = Image.fromarray((img.transpose((1, 2, 0)) * 255).astype("uint8"), "RGB")
-        img.save(dir / f"{i:02}.png")
-        (dir / f"{batch:05}" / f"{i:02}.txt").write_text(text)
+        batchdir = dir / f"{batch:05}"
+        batchdir.mkdir(parents=True, exist_ok=True)
+        img.save(batchdir / f"{i:02}.png")
+        (batchdir / f"{i:02}.txt").write_text(text)
+        (batchdir / f"{i:02}.json").write_text(json.dumps(datapoint, indent=3))
 
 def write_losses(
     *, writer, running_losses, epoch, batch_idx, epoch_batch_idx, prefix=""
@@ -67,7 +71,14 @@ def draw_val_images(*, output, data, image, is_regression, device, prediction_ke
     show_img_count = 16
     # generate and write pictures to tensorboard
 
-    pred_arrs = ["" for _ in range(output.shape[0])]
+    ings_pred = (torch.sigmoid(output[:, 4:]) > 0.5).cpu().numpy()
+    ings_truth = data["ingredients"].numpy()
+    meta = [{
+        "truth": {"ings": [ingredient_names[inx].replace(",", "") for inx in ing_truth.nonzero()[0]]},
+        "pred": {"ings": [ingredient_names[inx].replace(",", "") for inx in ing_pred.nonzero()[0]]},
+        "fname": fname
+    } for ing_truth, ing_pred, fname in zip(ings_truth, ings_pred, data["fname"])]
+
     for pred_inx, pred_key in enumerate(prediction_keys):
         kcal_cpu = data[pred_key] if is_regression else data[pred_key].squeeze()
 
@@ -77,17 +88,30 @@ def draw_val_images(*, output, data, image, is_regression, device, prediction_ke
         )
         if pred_key == "kcal":
             for i, (t, p) in enumerate(zip(truth, pred)):
-                pred_arrs[i] += f"\ntruth: {t:.0f}kcal, pred: {p:.0f}kcal" if is_regression else f"truth: {t*granularity}kcal, pred: {p*granularity}kcal"
+                meta[i]["truth"][pred_key] = t.astype(float) if is_regression else t * granularity
+                meta[i]["pred"][pred_key] = p.astype(float) if is_regression else t * granularity
         else:
             pred_key_p = "carbs" if pred_key == "carbohydrates" else pred_key
             for i, (t, p) in enumerate(zip(truth, pred)):
-                pred_arrs[i] += f"\ntruth: {t:.0f}g {pred_key_p}, pred: {p:.0f}g {pred_key_p}"
-    ings_pred = (torch.sigmoid(output[:, 4:]) > 0.5).cpu().numpy()
-    ings_truth = data["ingredients"].numpy()
-    for i, (ing_truth, ing_pred) in enumerate(zip(ings_truth, ings_pred)):
-        tru_str = ", ".join([ingredient_names[inx].replace(",", "") for inx in ing_truth.nonzero()[0]])
-        pred_str = ", ".join([ingredient_names[inx].replace(",", "") for inx in ing_pred.nonzero()[0]])
-        pred_arrs[i] += f"\n\nings truth: {tru_str}\nings pred: {pred_str}"
+                meta[i]["truth"][pred_key_p] = t.astype(float)
+                meta[i]["pred"][pred_key_p] = p.astype(float)
+    
+
+    pred_arrs = ["" for _ in meta]
+    for i, m in enumerate(meta):
+        text = ""
+        for k in m["truth"]:
+            t = m["truth"][k]
+            p = m["pred"][k]
+            if k == "ings":
+                tru_str = ", ".join(t)
+                pred_str = ", ".join(p)
+                text += f"\n\nings truth: {tru_str}\nings pred: {pred_str}"
+            elif k == "kcal":
+                text += f"\ntruth: {t:.0f}kcal, pred: {p:.0f}kcal"
+            else:
+                text += f"\ntruth: {t:.0f}g {k}, pred: {p:.0f}g {k}"
+        pred_arrs[i] = text
     images_cpu = (
         image.view(-1, 3, 224, 224)[:show_img_count].cpu().numpy()
     )
@@ -95,8 +119,7 @@ def draw_val_images(*, output, data, image, is_regression, device, prediction_ke
 
     # write images to out dir
     imgdir = Path(logdir) / "val_images"
-    imgdir.mkdir(parents=True)
-    write_imgs_to_dir(batch_idx, imgdir, images_cpu, pred_arrs)
+    write_imgs_to_dir(batch_idx, imgdir, images_cpu, pred_arrs, meta)
 
     # write images to tensorboard
     images_cpu = put_text(
@@ -270,7 +293,7 @@ def train():
 
             # print("out", outputs.shape)
 
-            target_data = {k: v.to(device) for k, v in data.items() if k != "image"}
+            target_data = {k: v.to(device) for k, v in data.items() if k not in ["image", "fname"]}
 
             for loss_name, loss_fn in loss_fns.items():
                 loss_value = loss_fn(outputs, target_data)
@@ -297,7 +320,7 @@ def train():
                     for val_batch_inx, data in enumerate(islice(val_loader, validate_batches)):
                         image = data["image"].to(device)
 
-                        target_data = {k: v.to(device) for k, v in data.items() if k != "image"}
+                        target_data = {k: v.to(device) for k, v in data.items() if k not in ["image", "fname"]}
 
                         output = net(image)
                         for loss_name, loss_fn in loss_fns.items():

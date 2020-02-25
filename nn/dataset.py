@@ -74,7 +74,7 @@ class FoodDataset(Dataset):
         image = io.imread(img_name)
         kcal = transform_data(element["kcal"], self.is_regression, self.granularity)
 
-        sample = {"image": image, "kcal": kcal}
+        sample = {"fname": element["name"], "image": image, "kcal": kcal}
 
         if self.include_nutritional_data:
             protein = transform_data(element["protein"], self.is_regression, self.granularity)
