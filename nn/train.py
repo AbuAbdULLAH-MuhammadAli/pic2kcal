@@ -152,7 +152,7 @@ def train():
         epochs = 0
 
     shuffle = True
-    validate_every = 1
+    validate_every = 200
     validate_batches = 50
 
     # training_type = 'classification'
