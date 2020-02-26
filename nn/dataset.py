@@ -15,24 +15,18 @@ class ToTensor(object):
         return image.convert("RGB")
 
 
-def transform_data(element, is_regression=False, granularity=50):
-    if is_regression:
-        return np.array(
-            [element], dtype=np.float32
-        )
-    else:
-        return np.array(
-            [np.floor(element / granularity)], dtype=np.int64
-        )
+def transform_data(element):
+    return np.array(
+        [element], dtype=np.float32
+    )
 
 
 class FoodDataset(Dataset):
     def __init__(
         self,
+        *,
         calories_file,
         image_dir,
-        is_regression,
-        granularity,
         include_nutritional_data=False,
         include_top_ingredients=False,
         transform=transforms.Compose(
@@ -51,15 +45,14 @@ class FoodDataset(Dataset):
             ]
         ),
     ):
-
+        print(f"loading {calories_file}")
         with open(calories_file) as json_file:
             self.data = json.load(json_file)
             self.calorie_image_tuples = self.data["data"]
             self.ingredient_names = self.data["ingredient_names"]
+        print(f"loading {calories_file} done")
         self.image_dir = image_dir
         self.transform = transform
-        self.granularity = granularity
-        self.is_regression = is_regression
         self.include_nutritional_data = include_nutritional_data
         self.include_top_ingredients = include_top_ingredients
 
@@ -72,14 +65,14 @@ class FoodDataset(Dataset):
         img_name = os.path.join(self.image_dir, element["name"])
 
         image = io.imread(img_name)
-        kcal = transform_data(element["kcal"], self.is_regression, self.granularity)
+        kcal = transform_data(element["kcal"])
 
         sample = {"fname": element["name"], "image": image, "kcal": kcal}
 
         if self.include_nutritional_data:
-            protein = transform_data(element["protein"], self.is_regression, self.granularity)
-            carbohydrates = transform_data(element["carbohydrates"], self.is_regression, self.granularity)
-            fat = transform_data(element["fat"], self.is_regression, self.granularity)
+            protein = transform_data(element["protein"])
+            carbohydrates = transform_data(element["carbohydrates"])
+            fat = transform_data(element["fat"])
             sample.update({"protein": protein, "fat": fat, "carbohydrates": carbohydrates})
 
         if self.include_top_ingredients:
