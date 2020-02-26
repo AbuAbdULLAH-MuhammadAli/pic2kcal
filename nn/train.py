@@ -17,9 +17,9 @@ from pathlib import Path
 import json
 
 # https://github.com/microsoft/ptvsd/issues/943
-import multiprocessing
+# import multiprocessing
 
-multiprocessing.set_start_method("spawn", True)
+# multiprocessing.set_start_method("spawn", True)
 
 
 def count_parameters(model):
@@ -315,7 +315,7 @@ def train():
             #print("batch idx", batch_idx)
             #if batch_idx > 100:
             #   return
-            print("is pinned", data["image"].is_pinned())
+            # print("is pinned", data["image"].is_pinned())
             image_ongpu = data["image"].to(device)
             optimizer.zero_grad()
 
