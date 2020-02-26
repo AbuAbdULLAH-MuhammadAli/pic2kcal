@@ -60,6 +60,7 @@ class FoodDataset(Dataset):
         return len(self.calorie_image_tuples)
 
     def __getitem__(self, idx):
+        # print("getitem", idx)
         element = self.calorie_image_tuples[idx]
 
         img_name = os.path.join(self.image_dir, element["name"])

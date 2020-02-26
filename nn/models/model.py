@@ -8,7 +8,9 @@ class Model:
     def __init__(self, name, num_output_neurons):
         self.name = name
         self.num_output_neurons = num_output_neurons
-        self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+        devname = "cuda:0" if torch.cuda.is_available() else "cpu"
+        print("device: ", devname)
+        self.device = torch.device(devname)
 
     @abstractmethod
     def get_model(self, all_layers_trainable):

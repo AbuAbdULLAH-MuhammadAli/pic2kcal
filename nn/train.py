@@ -17,9 +17,9 @@ from pathlib import Path
 import json
 
 # https://github.com/microsoft/ptvsd/issues/943
-# import multiprocessing
+import multiprocessing
 
-# multiprocessing.set_start_method("spawn", True)
+multiprocessing.set_start_method("spawn", True)
 
 
 def count_parameters(model):
@@ -157,7 +157,7 @@ def MyLoader(datadir: str, ds: str, batch_size: int):
         include_top_ingredients=True,
     )
     return DataLoader(
-        dataset, batch_size=batch_size, shuffle=True, num_workers=8, pin_memory=True
+        dataset, batch_size=batch_size, shuffle=True, num_workers=12, pin_memory=True
     )
 
 
@@ -300,7 +300,7 @@ def train():
     trainable_params, total_params = count_parameters(net)
     print(f"Parameters: {trainable_params} trainable, {total_params} total")
     running_losses = defaultdict(list)
-    batch_idx = 0
+    batch_idx = -1
 
     for epoch in range(1, epochs + 1):
         if epoch == 3:
@@ -312,9 +312,10 @@ def train():
 
         for epoch_batch_idx, data in enumerate(train_loader, 0):
             batch_idx += 1
-            # print("batch idx", batch_idx)
-            # if batch_idx > 100:
-            #    return
+            #print("batch idx", batch_idx)
+            #if batch_idx > 100:
+            #   return
+            print("is pinned", data["image"].is_pinned())
             image_ongpu = data["image"].to(device)
             optimizer.zero_grad()
 
