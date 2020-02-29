@@ -14,9 +14,6 @@ multiprocessing.set_start_method("spawn", True)
 
 """
 extracts info for each food item from fddb
-requires: 
-
-TODO: set directory 'DIR' in __main__
 """
 
 
@@ -314,8 +311,8 @@ if __name__ == "__main__":
     # create dictionary
     data = []
 
-    with Pool(8) as pool:
-        for out in pool.imap(handle_dir, tqdm(DATA_DIR.iterdir(), total=330000), chunksize=50):
+    with Pool(multiprocessing.cpu_count()) as pool:
+        for out in pool.imap(handle_dir, tqdm(DATA_DIR.iterdir(), total=392000), chunksize=50):
             if out is not None:
                 data.append(out)
 

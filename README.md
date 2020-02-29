@@ -16,6 +16,11 @@
 
     Run all the notebooks in the [extract_ingredients](extract_ingredients/) directory.
 
+    You can run them in a docker container as follows:
+
+        sudo docker run -p 8890:8888 -v /home/checkout/dir/pic2kcal:/tf/notebooks --runtime=nvidia -it --rm tensorflow/tensorflow:1.12.0-gpu-py3 jupyter notebook --allow-root --notebook-dir=/tf/notebooks
+
+
     This will give you these files:
 
     * `data/recipes/parsed_amounts.json` created by step 1 containing the unique amounts from the recipes parsed into (count, unit) tuples
@@ -35,7 +40,7 @@
 
     Train a model using nn/train.py, for example:
 
-        ./train.sh --runname densenet121-p100g-nuting --datadir ~/data/extracted_v3_per_100g --train-type regression_include_nutritional_data_and_top_top_ingredients --bce-weight 400 --model densenet121
+        ./train.sh --runname dn121-p100g-nuting --datadir data/extracted_v3_per_100g --train-type kcal+nut+topings --bce-weight 400 --model densenet121 --test train+test
 
     Logs and the weights will be sade to `nn/runs`.
 
