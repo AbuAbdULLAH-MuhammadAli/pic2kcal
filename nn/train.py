@@ -211,7 +211,6 @@ def train():
     predict_portion_size = args.predict_portion_size
 
     # regression settings
-    regression_output_neurons = 1
     num_top_ingredients = 100
 
     def criterion_rel_error(pred, truth):
@@ -251,7 +250,7 @@ def train():
 
     prediction_keys = ["kcal"]
 
-    num_output_neurons = regression_output_neurons
+    num_output_neurons = 1
 
     loss_fns["loss"] = lambda pred, data: nn.functional.smooth_l1_loss(
         pred, data["kcal"]
@@ -265,7 +264,7 @@ def train():
         prediction_keys = ["kcal", "protein", "fat", "carbohydrates"]
         if predict_portion_size:
             prediction_keys += ["mass_per_portion"]
-        num_output_neurons += len(prediction_keys) - 1
+        num_output_neurons = len(prediction_keys)
         loss_fns["loss"] = loss_top_ingredients
         from torch.nn.functional import l1_loss
 
@@ -281,8 +280,6 @@ def train():
         i = 999
     if training_type == "kcal+nut+topings":
         num_output_neurons += num_top_ingredients
-    if predict_portion_size:
-        num_output_neurons += 1
 
     logdir = (
         "runs/"
