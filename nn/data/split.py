@@ -55,7 +55,7 @@ if args.mode == "usergiven":
 elif args.mode == "matched":
     inp_file = "../../data/recipes/recipes_matched.jsonl"
     f = open(inp_file, encoding='utf-8')
-    data = (json.loads(line) for line in tqdm(f))#islice(tqdm(f), 1000))
+    data = (json.loads(line) for line in tqdm(f, total=330000))#islice(tqdm(f), 1000))
     with open("../../data/recipes/ingredients_common.json") as fi:
         start = 1
         stop = args.ing_count + start
@@ -65,6 +65,7 @@ elif args.mode == "matched":
         try:
             kcal_mode = args.kcal_mode
             if kcal_mode == "per_portion" and r["portions"] < 2:
+                # 1 portion is indistinguishable from "user did not give portion information"
                 return None
             nut = r["nutritional_values"]
             if nut is None:
@@ -76,12 +77,11 @@ elif args.mode == "matched":
                 if ingredient["type"] == "ingredient"
                 and ingredient["matched"]["matched"]
             ]
+            total_mass = sum(
+                ingredient["matched"]["normal"]["count"]
+                for ingredient in matched_ingredients
+            )
             if kcal_mode == "per_100g":
-                # just
-                total_mass = sum(
-                    ingredient["matched"]["normal"]["count"]
-                    for ingredient in matched_ingredients
-                )
                 kcal_src = {
                     k: {**v, "Menge": v["Menge"] / total_mass * 100}
                     for k, v in nut["per_recipe"].items()
@@ -98,6 +98,9 @@ elif args.mode == "matched":
                 "fat": kcal_src["Fett"]["Menge"],
                 "carbohydrates": kcal_src["Kohlenhydrate"]["Menge"],
                 "recipe_id": r["id"],
+                "recipe_total_mass": total_mass,
+                "portions_per_recipe": r["portions"],
+                "mass_per_portion": total_mass / r["portions"],
                 "ingredients": [any(x for x in matched_ingredients if x["matched"]["id"] == ing_common["id"]) for ing_common in ings_common]
             }
         except Exception as e:
