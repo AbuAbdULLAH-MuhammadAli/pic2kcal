@@ -194,7 +194,7 @@ def train():
         "--test", required=True, choices=["train", "train+test", "test"]
     )
     parser.add_argument("--weights", required=False)
-    parser.add_argument("--no-predict-portion-size", dest='predict_portion_size', required=False, default=True, type=bool, action='store_false')
+    parser.add_argument("--no-predict-portion-size", dest='predict_portion_size', required=False, default=True, action='store_false')
 
     args = parser.parse_args()
     datadir = Path(args.datadir)
