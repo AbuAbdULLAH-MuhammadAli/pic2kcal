@@ -27,8 +27,6 @@ class FoodDataset(Dataset):
         *,
         calories_file,
         image_dir,
-        include_nutritional_data=False,
-        include_top_ingredients=False,
         transform=transforms.Compose(
             [
                 transforms.ToPILImage(),
@@ -53,8 +51,6 @@ class FoodDataset(Dataset):
         print(f"loading {calories_file} done")
         self.image_dir = image_dir
         self.transform = transform
-        self.include_nutritional_data = include_nutritional_data
-        self.include_top_ingredients = include_top_ingredients
 
     def __len__(self):
         return len(self.calorie_image_tuples)
