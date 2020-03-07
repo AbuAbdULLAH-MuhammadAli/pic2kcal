@@ -88,7 +88,7 @@ def draw_val_images(
     show_img_count = 16
     # generate and write pictures to tensorboard
 
-    ings_pred = (torch.sigmoid(output[:, 4:]) > 0.5).cpu().numpy()
+    ings_pred = (torch.sigmoid(output) > 0.5).cpu().numpy()
     ings_truth = data["ingredients"].numpy()
     meta = [
         {
@@ -219,6 +219,10 @@ def train():
         ret[torch.isnan(ret)] = 0  # if truth = 0 relative error is undefined
         return torch.mean(ret)
 
+    ings_start_idx = 4
+    if predict_portion_size:
+        ings_start_idx = 5
+
     def loss_top_ingredients(pred, data):
         from torch.nn.functional import smooth_l1_loss, binary_cross_entropy_with_logits
 
@@ -227,14 +231,12 @@ def train():
         l1 += smooth_l1_loss(pred[:, 1:2], data["protein"])
         l1 += smooth_l1_loss(pred[:, 2:3], data["fat"])
         l1 += smooth_l1_loss(pred[:, 3:4], data["carbohydrates"])
-        ings_start = 4
         if predict_portion_size:
-            ings_start = 5
             l1 += smooth_l1_loss(pred[:, 4:5], data["mass_per_portion"])
         if training_type == "kcal+nut+topings":
             # todo: adjust the 400 factor to 2000 if per recipe etc
             bce = (
-                binary_cross_entropy_with_logits(pred[:, ings_start:], data["ingredients"])
+                binary_cross_entropy_with_logits(pred[:, ings_start_idx:], data["ingredients"])
                 * args.bce_weight
             )
             if random.random() < 0.02:
@@ -375,7 +377,7 @@ def train():
                             # only run this on last batch from val loop
                             draw_val_images(
                                 writer=writer,
-                                output=output,
+                                output=output[:, ings_start_idx:],
                                 data=data,
                                 image=image,
                                 device=device,
