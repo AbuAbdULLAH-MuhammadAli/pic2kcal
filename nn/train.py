@@ -230,10 +230,14 @@ def train():
         l1 += smooth_l1_loss(pred[:, 1:2], data["protein"])
         l1 += smooth_l1_loss(pred[:, 2:3], data["fat"])
         l1 += smooth_l1_loss(pred[:, 3:4], data["carbohydrates"])
+        ings_start = 4
+        if predict_portion_size:
+            ings_start = 5
+            l1 += smooth_l1_loss(pred[:, 4:5], data["mass_per_portion"])
         if training_type == "kcal+nut+topings":
             # todo: adjust the 400 factor to 2000 if per recipe etc
             bce = (
-                binary_cross_entropy_with_logits(pred[:, 4:], data["ingredients"])
+                binary_cross_entropy_with_logits(pred[:, ings_start:], data["ingredients"])
                 * args.bce_weight
             )
             if random.random() < 0.02:
