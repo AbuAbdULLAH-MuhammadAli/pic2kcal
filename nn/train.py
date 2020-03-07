@@ -153,8 +153,6 @@ def MyLoader(datadir: str, ds: str, batch_size: int):
     dataset = FoodDataset(
         calories_file=datadir / f"{ds}.json",
         image_dir=datadir / ds,
-        include_nutritional_data=True,
-        include_top_ingredients=True,
     )
     return DataLoader(
         dataset, batch_size=batch_size, shuffle=True, num_workers=12, pin_memory=True

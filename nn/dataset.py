@@ -65,20 +65,17 @@ class FoodDataset(Dataset):
 
         img_name = os.path.join(self.image_dir, element["name"])
 
-        image = io.imread(img_name)
-        kcal = transform_data(element["kcal"])
 
-        sample = {"fname": element["name"], "image": image, "kcal": kcal}
+        sample = {
+            "fname": element["name"], 
+            "image": io.imread(img_name)
+        }
 
-        if self.include_nutritional_data:
-            protein = transform_data(element["protein"])
-            carbohydrates = transform_data(element["carbohydrates"])
-            fat = transform_data(element["fat"])
-            sample.update({"protein": protein, "fat": fat, "carbohydrates": carbohydrates})
+        for key in ["kcal", "protein", "fat", "carbohydrates", "mass_per_portion"]:
+            value = transform_data(element[key])
+            sample[key] = value
 
-        if self.include_top_ingredients:
-            ingredients = np.array(element["ingredients"], dtype=np.float32)
-            sample.update({"ingredients": ingredients})
+        sample["ingredients"] = np.array(element["ingredients"], dtype=np.float32)
 
         if self.transform:
             sample["image"] = self.transform(sample["image"])
