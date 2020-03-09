@@ -108,8 +108,8 @@ The final Pic2Cal dataset consists of the following files:
 
 The total dataset is around 190GByte, most of which is the images.
 
-1. Scraping
-    1. Run the steps in the [extraction](extraction/) directory one by one. Steps 0 to 3 download data as HTML and images and are omitted due to copyright.
+1. Extraction
+    1. Run the steps in the [extraction](extraction/) directory one by one. Steps 1 to 3 download data as HTML and images and are omitted due to copyright.
     2. `cd data/recipes && sqlite3 processed_data.sqlite3 'select data from recipes' | pv | jq -s > processed_data.json`
 
     This will give you these files:
@@ -120,7 +120,7 @@ The total dataset is around 190GByte, most of which is the images.
 
 2. Ingredients Matching
 
-    Run all the notebooks in the [extract_ingredients](extract_ingredients/) directory.
+    Run all the notebooks in the [ingredients_matching](ingredients_matching/) directory.
 
     You can run them in a docker container as follows:
 
@@ -136,7 +136,7 @@ The total dataset is around 190GByte, most of which is the images.
 
 3. Dataset creation
 
-    Run [nn/data/do.sh](nn/data/do.sh) to create the three datasets (per 100g, per portion and per recipe). Image files will be created as symlinks to the results from the scraping scripts.
+    Run [nn/data/do.sh](nn/data/do.sh) to create the three datasets (per 100g, per portion and per recipe). Image files will be created as symlinks to the results from the extraction scripts.
 
     **Input**: `data/recipes/recipes_matched.jsonl` and `data/recipes/ingredients_common.json` from above.
 

@@ -1,9 +1,8 @@
 # %%
 from multiprocessing import Pool
-from scrape_1_index import db, get_or_retry, data_dir
 from bs4 import BeautifulSoup, element
-from scrape_3_images import get_filename as get_image_filename, get_image_urls
-from util import sqlite_db
+from private.extract_3_dl_images import get_filename as get_image_filename, get_image_urls
+from util import sqlite_db, db, data_dir
 import re
 import json
 from tqdm import tqdm

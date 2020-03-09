@@ -1,7 +1,7 @@
 import json
 import itertools
 import collections
-
+from pathlib import Path
 
 def sqlite_db(fname: str):
     import sqlite3
@@ -20,3 +20,27 @@ def sqlite_db(fname: str):
     db.execute("pragma incremental_vacuum;")
     db.execute("pragma optimize;")
     return db
+
+
+data_dir = Path("data")
+
+db = sqlite_db(data_dir / "raw_data.sqlite3")
+
+db.executescript(
+    """
+    create table if not exists index_pages (
+        url text primary key not null,
+        fetched boolean not null
+    );
+    create index if not exists idx_pages_fetched on index_pages (fetched);
+
+    create table if not exists recipes (
+        id text primary key not null,
+        canonical_url text not null,
+        index_html text not null,
+        detail_html text,
+        data json
+    );
+    create index if not exists idx_rd on recipes(detail_html) where detail_html is null;
+    """
+)
