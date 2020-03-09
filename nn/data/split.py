@@ -55,7 +55,7 @@ if args.mode == "usergiven":
 elif args.mode == "matched":
     inp_file = "../../data/recipes/recipes_matched.jsonl"
     f = open(inp_file, encoding='utf-8')
-    data = (json.loads(line) for line in tqdm(f, total=330000))#islice(tqdm(f), 1000))
+    data = (json.loads(line) for line in tqdm(f, total=211000))#islice(tqdm(f), 1000))
     with open("../../data/recipes/ingredients_common.json") as fi:
         start = 1
         stop = args.ing_count + start
@@ -92,6 +92,10 @@ elif args.mode == "matched":
                 if kcal_src["Kalorien"]["Menge"] < 10:
                     # 0 calories? filter out recipe
                     return None
+            if total_mass > 100 * 1000:
+                # > 100kg: error
+                print("filter out", r["id"], "too heavy")
+                return None
             return {
                 "kcal": kcal_src["Kalorien"]["Menge"],
                 "protein": kcal_src["Protein"]["Menge"],

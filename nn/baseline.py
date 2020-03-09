@@ -22,7 +22,7 @@ def criterion_rel_error(pred, truth):
     return torch.mean(ret)
 
 for key in train[0].keys():
-    if key not in ["kcal", "protein", "fat", "carbohydrates"]:
+    if key not in ["kcal", "protein", "fat", "carbohydrates", "mass_per_portion"]:
         continue
     kcals = [e[key] for e in train]
 
