@@ -20,28 +20,28 @@ def transform_data(element):
         [element], dtype=np.float32
     )
 
+food_image_transform = transforms.Compose(
+    [
+        transforms.ToPILImage(),
+        # transforms.Resize((224, 224)),
+        transforms.RandomResizedCrop(224, scale=(0.7, 1.0), ratio=(0.9, 1.1)),
+        transforms.RandomHorizontalFlip(),
+        #transforms.Resize((224, 224)),
+        # imageNet normalization
+        transforms.ToTensor(),
+        #TODO: re add this normalization. only disabled because we probably have a bug with the tensorboard visualization somewhere
+        #transforms.Normalize(
+        #   mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]
+        #),
+    ]
+)
 
 class FoodDataset(Dataset):
     def __init__(
         self,
         *,
         calories_file,
-        image_dir,
-        transform=transforms.Compose(
-            [
-                transforms.ToPILImage(),
-                # transforms.Resize((224, 224)),
-                transforms.RandomResizedCrop(224, scale=(0.7, 1.0), ratio=(0.9, 1.1)),
-                transforms.RandomHorizontalFlip(),
-                #transforms.Resize((224, 224)),
-                # imageNet normalization
-                transforms.ToTensor(),
-                #TODO: re add this normalization. only disabled because we have a bug with the tensorboard visualization somewhere
-                #transforms.Normalize(
-                #   mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]
-                #),
-            ]
-        ),
+        image_dir
     ):
         print(f"loading {calories_file}")
         with open(calories_file) as json_file:
@@ -50,7 +50,7 @@ class FoodDataset(Dataset):
             self.ingredient_names = self.data["ingredient_names"]
         print(f"loading {calories_file} done")
         self.image_dir = image_dir
-        self.transform = transform
+        self.transform = food_image_transform
 
     def __len__(self):
         return len(self.calorie_image_tuples)
