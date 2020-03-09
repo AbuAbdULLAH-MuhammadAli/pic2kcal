@@ -312,8 +312,8 @@ class Model:
         net = self.net
         args = self.args
 
-        validate_every = 1
-        validate_batches = 50
+        validate_every = 200
+        validate_batches = 100
 
         logdir = (
             "runs/"
