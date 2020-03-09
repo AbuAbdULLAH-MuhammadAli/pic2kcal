@@ -16,81 +16,6 @@ multiprocessing.set_start_method("spawn", True)
 extracts info for each food item from fddb
 """
 
-
-def extractor_standard(string):
-
-    # print(string)
-    # split text at different entries
-    naehrwert_idx = string.find('Nährwerte für')
-    end_idx = string.find('Angaben korrigieren')
-
-    # workaround if 'Angaben korrigieren' is not present
-    # if end_idx > naehrwert_idx:
-    #
-
-    # consider string from naehrwerte_idx on
-    # string = string[naehrwert_idx:end_idx]
-    string = string[naehrwert_idx:end_idx]
-
-    # define end index_
-    # end_idx =
-
-    print(string)
-    # string = string[0:]
-    string = string[0:end_idx]
-
-
-    # print('STRING: ', string)
-    brennwert_idx = string.find('Brennwert')
-    kalorien_idx = string.find('Kalorien')
-    protein_idx = string.find('Protein')
-    ballasstoff_idx = string.find('Ballaststoffe')
-    kohlenhydrate_idx = string.find('Kohlenhydrate')
-    davon_zucker_idx = string.find('davon Zucker')
-    if davon_zucker_idx == -1:
-        davon_zucker_idx = kohlenhydrate_idx
-
-    fett_idx = string.find('Fett')
-    broteinheiten_idx = string.find('Broteinheiten')
-    cholesterin_idx = string.find('Cholesterin')
-
-    indices = [naehrwert_idx, brennwert_idx, kalorien_idx, protein_idx, kohlenhydrate_idx, davon_zucker_idx,
-               fett_idx, ballasstoff_idx, broteinheiten_idx, cholesterin_idx]
-
-    # separate parts and remove double spaces
-    parts = [re.sub(' +', ' ', string[i:j]) for i, j in zip(indices, indices[1:] + [None])]
-
-    # only keep reelvant parts
-    parts = parts[0:11]
-    part_dict = {}
-
-    for i in range(0, len(parts)):
-        part = parts[i]
-        if part.strip() != '':
-            # remove double-dot and all whitespace
-            part = re.sub(r"[\s:]*", "", part)
-
-            if 'Cholesterin' in part:
-                # find index of mg
-                mg_idx = part.find('mg')
-                part = part[:mg_idx+2]
-
-            # extract letters / words
-            naehrwert, *einheit = list(filter(None, re.split(r'[(-?\d+\,?.?\d)]', part)))
-            # extract numbers
-            menge = list(filter(None, re.split(r'[a-z]|[A-Z]', part)))
-            # transform list of strings to strings
-            menge = ''.join(map(str, menge))
-            einheit = ''.join(map(str, einheit))
-            if 'Cholesterin' in part:
-                einheit = einheit[:2]
-            # save dict
-            part_dict[naehrwert] = {'Menge': menge, 'Einheit': einheit}
-
-    dict = {re.sub(' +', ' ', string[0:brennwert_idx]): part_dict}
-    return dict
-
-
 def extractor_specialized(dict, idx):
     part_dict = {}
 
@@ -201,7 +126,6 @@ def extract_from_html(file_name, folder_name):
         if 'Nährwerte' in itext:
             standard_dict = {}
             # extract info to dict
-            # standard_dict = extractor_standard(itext)
             for div in soup.select("div.standardcontent > div:nth-child(2) > div"):
                 if "itemsec2012" in div.get("class", []):
                     cur = {}
@@ -304,8 +228,9 @@ def handle_dir(folder):
 
 if __name__ == "__main__":
 
-    DIR = Path(sys.argv[1])  # "/home/veheusser/Code_Projects/cvhci_praktikum/fddb/"
-
+    DIR = Path(sys.argv[1])
+    # data needs to be downloaded before
+    
     DATA_DIR = DIR / "fddb.info/db/de/lebensmittel/"
 
     # create dictionary

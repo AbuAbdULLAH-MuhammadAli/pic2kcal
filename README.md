@@ -109,9 +109,8 @@ The final Pic2Cal dataset consists of the following files:
 The total dataset is around 190GByte, most of which is the images.
 
 1. Scraping
-    1. Download fddb.info to html files using wget (sadly much more resource intensive than it should be since fddb.info immediately closes http connections after every call). `wget -4 -nc -r -l inf --adjust-extension --page-requisites --include-directories='/db/de/produktgruppen,/db/de/lebensmittel' https://fddb.info/db/de/produktgruppen/produkt_verzeichnis/index.html --reject jpg,png -o log4 --waitretry=3 -U 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36b`
-    2. Run the steps in the [scraping](scraping/) directory one by one.
-    3. `cd data/recipes && sqlite3 processed_data.sqlite3 'select data from recipes' |pv |jq -s > processed_data.json`
+    1. Run the steps in the [extraction](extraction/) directory one by one. Steps 0 to 3 download data as HTML and images and are omitted due to copyright.
+    2. `cd data/recipes && sqlite3 processed_data.sqlite3 'select data from recipes' | pv | jq -s > processed_data.json`
 
     This will give you these files:
     
