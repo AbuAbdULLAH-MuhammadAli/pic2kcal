@@ -9,14 +9,23 @@ from pathlib import Path
 import argparse
 from tqdm import tqdm
 from itertools import islice
+import sys
 
+print("RUN:", sys.argv)
 parser = argparse.ArgumentParser()
 parser.add_argument("--mode", required=True, choices=["usergiven", "matched"])
 parser.add_argument(
     "--kcal-mode", choices=["per_portion", "per_100g", "per_recipe"], required=True
-    )
+)
 parser.add_argument("--ing-count", type=int, default=100)
 parser.add_argument("--out-dir", type=str, required=True)
+parser.add_argument(
+    "--in-file", type=str, default="../../data/recipes/recipes_matched.jsonl"
+)
+parser.add_argument(
+    "--in-ings", type=str, default="../../data/recipes/ingredients_common.json"
+)
+parser.add_argument("--img-base", type=str, default="../../img")
 args = parser.parse_args()
 out_root = Path(args.out_dir)
 if out_root.exists():
@@ -48,18 +57,25 @@ if args.mode == "usergiven":
 
     def get_recipe_outs(r):
         return {"kcal": r["kcal_per_portion"], "recipe_id": r["id"]}
+
     with open(inp_file) as f:
         data = json.load(f)
+
     def get_meta():
         return {}
+
+
 elif args.mode == "matched":
-    inp_file = "../../data/recipes/recipes_matched.jsonl"
-    f = open(inp_file, encoding='utf-8')
-    data = (json.loads(line) for line in tqdm(f, total=211000))#islice(tqdm(f), 1000))
-    with open("../../data/recipes/ingredients_common.json") as fi:
+    inp_file = args.in_file
+    f = open(inp_file, encoding="utf-8")
+    data = (
+        json.loads(line) for line in tqdm(f, total=211000)
+    )  # islice(tqdm(f), 1000))
+    with open(args.in_ings) as fi:
         start = 1
         stop = args.ing_count + start
         ings_common = json.load(fi)[start:stop]
+
     def get_recipe_outs(r):
         # print(type(r), r)
         try:
@@ -73,7 +89,8 @@ elif args.mode == "matched":
             if "Kalorien" not in nut["per_portion"]:
                 return None
             matched_ingredients = [
-                ingredient for ingredient in r["ingredients"]
+                ingredient
+                for ingredient in r["ingredients"]
                 if ingredient["type"] == "ingredient"
                 and ingredient["matched"]["matched"]
             ]
@@ -105,19 +122,36 @@ elif args.mode == "matched":
                 "recipe_total_mass": total_mass,
                 "portions_per_recipe": r["portions"],
                 "mass_per_portion": total_mass / r["portions"],
-                "ingredients": [any(x for x in matched_ingredients if x["matched"]["id"] == ing_common["id"]) for ing_common in ings_common]
+                "ingredients": [
+                    any(
+                        x
+                        for x in matched_ingredients
+                        if x["matched"]["id"] == ing_common["id"]
+                    )
+                    for ing_common in ings_common
+                ],
             }
         except Exception as e:
             print("at recipe", r["id"])
             raise e
+
     def get_meta():
-        return {"ingredient_names": [ing["most_common_matches"][0] for ing in ings_common]}
+        use_inp_name = False
+        return {
+            "ingredient_names": [
+                ing["most_common_matches"][0] if use_inp_name else ing["name"]
+                for ing in ings_common
+            ]
+        }
+
+
 else:
     raise Exception("noee")
 
 
-#if "__len__" in data:
+# if "__len__" in data:
 #    print("before removing", len(data), "recipes")
+
 
 def o_iter():
     rem_no_pics = 0
@@ -133,12 +167,12 @@ def o_iter():
         yield {**d, "r_out": r_out}
     print("removed no pics", rem_no_pics)
     print("removed no ings", rem_no_ings)
+
+
 data = [d for d in o_iter()]
 print("after removing", len(data), "recipes")
 bef_count = len(data)
-data, filt_min, filt_max = filter_outliers(
-    data, key=lambda r: r["r_out"]["kcal"]
-)
+data, filt_min, filt_max = filter_outliers(data, key=lambda r: r["r_out"]["kcal"])
 print(f"filtering kcal to [{filt_min}, {filt_max}]")
 
 print(f"outliers: removed {bef_count - len(data)} of {bef_count}")
@@ -146,9 +180,7 @@ print(f"outliers: removed {bef_count - len(data)} of {bef_count}")
 random = np.random.RandomState(seed=42)
 random.shuffle(data)
 # train, test and val split
-train, val, test = np.split(
-    data, [int(0.7 * len(data)), int(0.85 * len(data))]
-)
+train, val, test = np.split(data, [int(0.7 * len(data)), int(0.85 * len(data))])
 
 # save selected receipe names into distinct subfolders)
 os.makedirs(out_root / "train", exist_ok=True)
@@ -163,7 +195,7 @@ for dataset, dsname in ((train, "train"), (val, "val"), (test, "test")):
             # print(img_name)
             name = row["id"] + "_" + str(i) + ".jpg"
             output[dsname].append({"name": name, **get_recipe_outs(row)})
-            src = "../../img/" + img_name
+            src = args.img_base + "/" + img_name
             dest = out_root / dsname / name
             os.symlink(src, dest)
     with open(out_root / (dsname + ".json"), "w") as file:
