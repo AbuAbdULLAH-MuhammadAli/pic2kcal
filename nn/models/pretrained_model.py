@@ -32,7 +32,7 @@ class PretrainedModel(torch.nn.Module):
         torch.save(model.state_dict(), full_path)
 
     def load(self, path):
-        self.model.load_state_dict(torch.load(path))
+        self.load_state_dict(torch.load(path))
 
     def get_last_layer(self):
         if self.pytorch_model.startswith("resnet") or self.pytorch_model.startswith(
