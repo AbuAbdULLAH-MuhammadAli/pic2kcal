@@ -14,6 +14,7 @@ from torch.utils.tensorboard import SummaryWriter
 from nn.models.pretrained_model import PretrainedModel
 from pathlib import Path
 import json
+import sys
 
 # https://github.com/microsoft/ptvsd/issues/943
 # import multiprocessing
@@ -158,6 +159,7 @@ def MyLoader(datadir: str, ds: str, batch_size: int):
 
 
 def get_args(predict: bool):
+    print("ARGS:", sys.argv)
     parser = argparse.ArgumentParser()
     if not predict:
         parser.add_argument("--runname", help="name this experiment", required=True)
