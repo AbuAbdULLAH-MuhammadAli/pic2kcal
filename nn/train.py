@@ -194,7 +194,11 @@ def get_args(predict: bool):
             "resnext50_32x4d",
         ],
     )
-    parser.add_argument("--weights", required=False)
+    parser.add_argument(
+        "--weights",
+        required=False,
+        help="continue training (/testing) from these weights",
+    )
     parser.add_argument(
         "--no-predict-portion-size",
         dest="predict_portion_size",
@@ -304,6 +308,10 @@ class Model:
         self.model = PretrainedModel(
             self.num_output_neurons, pytorch_model=args.model, all_layers_trainable=True
         )  #
+
+        if args.weights:
+            print(f"Loading model weights from {args.weights}")
+            self.model.load(args.weights)
         print("model:", self.model.name)
         self.net = self.model.to(self.device)
         print(self.net)
@@ -440,9 +448,10 @@ class Model:
             if not do_train:
                 self.model.load(args.weights)
 
-            test_loader = MyLoader(self.datadir, "test", self.batch_size)
+            test_loader = MyLoader(datadir, "test", self.batch_size)
 
             with torch.no_grad():
+                model.model.eval()
                 for epoch_batch_idx, data in enumerate(test_loader, 0):
                     image_ongpu = data["image"].to(self.device)
 
