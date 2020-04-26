@@ -164,9 +164,11 @@ The total dataset is around 190GByte, most of which is the images.
 
     To calculate the baseline (error when using the mean as the prediction) for a specific dataset, use `python baseline.py --datadir data/extracted_v3_per_portion`
 
-# Paper
+# Report
 
-The paper is in [paper/paper.pdf](paper/paper.pdf).
+The practical report is in [paper/paper.pdf](paper/paper.pdf).
+
+The full paper is submitted to ICPR2020 and pending review.
 
 # Result Slides
 
