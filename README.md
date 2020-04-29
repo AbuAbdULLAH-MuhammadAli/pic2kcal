@@ -166,7 +166,7 @@ The total dataset is around 190GByte, most of which is the images.
 
 # Report
 
-The practical report is [here](paper/paper.pdf).
+The practical report is [here](report/paper.pdf).
 
 The full paper is submitted to ICPR2020 and pending review.
 
