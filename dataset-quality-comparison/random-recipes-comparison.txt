@@ -1,0 +1,1801 @@
+
+
+0 http://www.food.com/recipe/1927-peanut-butter-bread-450534
+                        orig                                         r1m_parsed
+0               2 cups flour  2 cup wheat flour, white, all-purpose, unenriched
+1  4 teaspoons baking powder  4 teaspoon leavening agents, baking powder, do...
+2            1 teaspoon salt                             1 teaspoon salt, table
+3              1⁄3 cup sugar                          13 cup sugars, granulated
+4      1⁄2 cup peanut butter   12 cup peanut butter, smooth style, without salt
+5       1 1⁄2 cups skim milk  1 1/2 cup milk, fluid, 1% fat, without added v...
+
+
+1 http://www.food.com/recipe/ginger-broth-399781
+                            orig                                  r1m_parsed
+0           4 cups chicken broth  4 cup soup, chicken broth or bouillon, dry
+1      1 tablespoon onion powder           1 tablespoon spices, onion powder
+2     1⁄2 teaspoon garlic powder           12 teaspoon spices, garlic powder
+3        1 teaspoon black pepper            1 teaspoon spices, pepper, black
+4  1 1⁄4 teaspoons ground ginger       1 1/4 teaspoon spices, ginger, ground
+5                 1 teaspoon oil     1 teaspoon oil, olive, salad or cooking
+
+
+2 http://www.food.com/recipe/peanut-butter-211138
+                     orig                                 r1m_parsed
+0  2 cups chopped peanuts         2 cup oil, corn, peanut, and olive
+1       3 tablespoons oil  3 tablespoon oil, olive, salad or cooking
+2       1⁄2 teaspoon salt                    12 teaspoon salt, table
+3        1 teaspoon honey                           1 teaspoon honey
+
+
+3 http://www.food.com/recipe/parsley-rice-391080
+                         orig                                         r1m_parsed
+0  1 1⁄2 cups long grain rice  1 1/2 cup rice, white, long-grain, regular, un...
+1                3 cups water                      3 cup water, bottled, generic
+2        4 tablespoons butter                  4 tablespoon butter, without salt
+3  1 tablespoon dried parsley                1 tablespoon spices, parsley, dried
+
+
+4 http://www.food.com/recipe/sugar-and-spice-peanuts-151522
+                           orig                          r1m_parsed
+0                 3⁄4 cup sugar           34 cup sugars, granulated
+1                 1⁄2 cup water      12 cup water, bottled, generic
+2    2 cups shelled raw peanuts  2 cup oil, corn, peanut, and olive
+3  1 teaspoon pumpkin pie spice             1 teaspoon pumpkin, raw
+
+
+5 http://www.food.com/recipe/tropical-fruit-freezer-jam-450178
+                                                orig                               r1m_parsed
+0  1 5⁄8 ounces ball simple creations freezer jam...  1 5/8 ounce jams and preserves, apricot
+1                                   1 1⁄2 cups sugar             1 1/2 cup sugars, granulated
+2  1 1⁄2 cups peeled peeled cored crushed pineapp...  1 1/2 cup pineapple, raw, all varieties
+3  1 1⁄2 cups peeled peeled seeded crushed papaya...                   1 1/2 cup papayas, raw
+4        1 cup peeled finely chopped mango (1 large)               1 cup mango nectar, canned
+
+
+6 http://www.food.com/recipe/breakfast-fruit-smoothie-353157
+                             orig                           r1m_parsed
+0                 1 cup pineapple  1 cup pineapple, raw, all varieties
+1                       1 cup ice        1 cup water, bottled, generic
+2             1⁄2 cup blueberries              12 cup blueberries, raw
+3             1⁄2 cup raspberries              12 cup raspberries, raw
+4  1⁄2 cup low-fat vanilla yogurt  12 cup yogurt, greek, plain, nonfat
+
+
+7 http://www.food.com/recipe/pork-roast-with-green-peppercorn-crust-108734
+differing ings lengths
+<bound method Food.ingredients of <recipe_scrapers.food.Food object at 0x7fc16aae82e0>>
+orig ['4 lbs boneless pork loin roast', '1⁄4 cup butter, softened', '1⁄4 cup flour', '1⁄4 cup Dijon mustard', '2 tablespoons mustard seeds', '2 tablespoons dried mustard', '2 tablespoons green peppercorns, coarsley ground', '2 tablespoons black peppercorns, coarsley ground', '1 tablespoon sugar', '1 tablespoon dried thyme', 'Sauce', '1⁄4 cup flour', '2 1⁄2 cups apple cider or 2 1/2 cups apple juice', '1 1⁄2 teaspoons cider vinegar', '1 1⁄2 teaspoons sugar', '1 teaspoon Dijon mustard', '1⁄2 teaspoon salt']
+r1m_parsed ['4 pound pork, fresh, loin, tenderloin, separable lean only, raw', '14 cup butter, without salt', '14 cup wheat flour, white, all-purpose, unenriched', '14 cup mustard, prepared, yellow', '2 tablespoon mustard, prepared, yellow', '2 tablespoon mustard, prepared, yellow', '2 tablespoon peppers, sweet, green, raw', '2 tablespoon corn, sweet, white, raw', '1 tablespoon sugars, granulated', '1 tablespoon spices, thyme, dried', '14 cup wheat flour, white, all-purpose, unenriched', '2 1/2 cup apple juice, canned or bottled, unsweetened, without added ascorbic acid', '1 1/2 teaspoon vinegar, cider', '1 1/2 teaspoon sugars, granulated', '1 teaspoon mustard, prepared, yellow', '12 teaspoon salt, table']
+
+
+8 http://www.food.com/recipe/chocolate-ganache-tart-211962
+                                                orig                                         r1m_parsed
+0            3 tablespoons blanched slivered almonds                         3 tablespoon nuts, almonds
+1                                6 tablespoons sugar                    6 tablespoon sugars, granulated
+2                       1 3⁄4 cups all-purpose flour  1 3/4 cup wheat flour, white, all-purpose, une...
+3  2 teaspoons grated orange zest (optional) or 2...                       2 teaspoon orange juice, raw
+4                                  1⁄4 teaspoon salt                            14 teaspoon salt, table
+5  6 tablespoons unsalted butter, cold and cut in...                  6 tablespoon butter, without salt
+6  12 ounces bittersweet chocolate, coarsely chop...  12 ounce pascha, organic bitter-sweet dark cho...
+7                             1 1⁄4 cups heavy cream             1 1/4 cup cream, fluid, heavy whipping
+8                         1 teaspoon vanilla extract                         1 teaspoon vanilla extract
+
+
+9 http://www.food.com/recipe/cabernet-sauvignon-chocolate-chip-cookies-413451
+                                          orig                                         r1m_parsed
+0             1 1⁄4 cups blanched almond flour                            1 1/4 cup nuts, almonds
+1                 1⁄4 teaspoon celtic sea salt                            14 teaspoon salt, table
+2                     1⁄4 teaspoon baking soda          14 teaspoon leavening agents, baking soda
+3                        1⁄4 cup grapeseed oil                14 cup oil, olive, salad or cooking
+4                         1⁄4 cup agave nectar                     14 cup sweetener, syrup, agave
+5  1⁄4 cup cabernet sauvignon grape seed flour  14 cup grapes, red or green (european type, su...
+6                  1⁄4 cup dark chocolate, 73%  14 cup spartan, real semi-sweet chocolate baki...
+
+
+10 http://www.food.com/recipe/whole-wheat-biscuits-273540
+                                                orig                                         r1m_parsed
+0                1⁄2 cup butter or 1/2 cup margarine                        12 cup butter, without salt
+1                           2 cups whole wheat flour  2 cup wheat flour, white, all-purpose, unenriched
+2                         1 tablespoon baking powder  1 tablespoon leavening agents, baking powder, ...
+3                                    1 teaspoon salt                             1 teaspoon salt, table
+4  1 tablespoon sugar or 1 tablespoon splenda sug...                    1 tablespoon sugars, granulated
+5                                3⁄4 cup nonfat milk  34 cup milk, fluid, 1% fat, without added vita...
+
+
+11 http://www.food.com/recipe/swiss-steak-and-gravy-510745
+                                  orig                                         r1m_parsed
+0                   1 tablespoon flour  1 tablespoon wheat flour, white, all-purpose, ...
+1             1⁄4 teaspoon garlic salt                  14 teaspoon spices, garlic powder
+2              1⁄4 teaspoon onion salt                            14 teaspoon salt, table
+3                  1⁄4 teaspoon pepper                  14 teaspoon spices, pepper, black
+4               2 lbs beef round steak               2 pound beef, grass-fed, ground, raw
+5             3 tablespoons canola oil                           3 tablespoon oil, canola
+6                 2 cups sliced onions                                  2 cup onions, raw
+7                1 1⁄2 cups beef broth  1 1/2 cup soup, beef broth or bouillon canned,...
+8                   1 tablespoon sugar                    1 tablespoon sugars, granulated
+9   2 tablespoons Worcestershire sauce                 2 tablespoon sauce, worcestershire
+10                    1 cup beef broth  1 cup soup, beef broth or bouillon canned, rea...
+11                       1⁄4 cup flour  14 cup wheat flour, white, all-purpose, unenri...
+12                   1⁄4 teaspoon salt                            14 teaspoon salt, table
+13                 1⁄8 teaspoon pepper                  18 teaspoon spices, pepper, black
+
+
+12 http://www.kraftrecipes.com/recipes/chicken-satay-83998.aspx
+recipe  12 skipped
+
+
+13 http://www.food.com/recipe/chocolate-hazelnut-spread-463097
+                                    orig                             r1m_parsed
+0             2 cups whole raw hazelnuts      2 cup nuts, hazelnuts or filberts
+1                   1 cup powdered sugar                 1 cup sugars, powdered
+2       1⁄4 cup unsweetened cocoa powder  14 cup cocoa, dry powder, unsweetened
+3  1⁄4 cup vegetables or 1/4 cup nut oil    14 cup oil, olive, salad or cooking
+4           1⁄2 teaspoon vanilla extract            12 teaspoon vanilla extract
+
+
+14 http://www.food.com/recipe/roasted-strawberries-128446
+                                 orig                 r1m_parsed
+0  1 quart fresh strawberries, hulled  1 quart strawberries, raw
+1                       1⁄2 cup sugar  12 cup sugars, granulated
+
+
+15 http://www.food.com/recipe/mixed-bean-and-tomato-salad-242654
+                                                orig                                  r1m_parsed
+0                    1 lb fresh green beans, trimmed             1 pound beans, snap, green, raw
+1                           1⁄4 cup balsamic vinegar                    14 cup vinegar, balsamic
+2               2 tablespoons extra virgin olive oil   2 tablespoon oil, olive, salad or cooking
+3                           1⁄2 teaspoon kosher salt                     12 teaspoon salt, table
+4                          1⁄2 teaspoon black pepper           12 teaspoon spices, pepper, black
+5  3 cups cherry tomatoes, cut in half (approx. 2...                  3 cup cherries, sweet, raw
+6                          1 cup chopped fresh basil                  1 cup spices, basil, dried
+7                     1⁄2 cup finely diced red onion  12 cup fresh red onions, upc: 888670013229
+8                       1⁄2 cup crumbled feta cheese                         12 cup cheese, feta
+
+
+16 http://www.epicurious.com/recipes/food/views/chocolate-dirt-379072
+                                       orig                                         r1m_parsed
+0  1/2 cup dark chocolate chips (73% cacao)  1/2 cup spartan, real semi-sweet chocolate bak...
+
+
+17 http://www.food.com/recipe/tuck-box-energy-bar-409201
+                             orig                                         r1m_parsed
+0            2 tablespoons butter                  2 tablespoon butter, without salt
+1      5 tablespoons golden syrup                5 tablespoon syrup, maple, canadian
+2     4 tablespoons peanut butter  4 tablespoon peanut butter, smooth style, with...
+3     140 g dried apricots, diced          140 g apricots, dried, sulfured, uncooked
+4                      100 g oats                                         100 g oats
+5            100 g rice, crispies  100 g rice, white, long-grain, regular, unenri...
+6                50 g brown sugar                                 50 g sugars, brown
+7    3 tablespoons dried cherries                  3 tablespoon cherries, sweet, raw
+8                    25 g coconut  25 g shortening confectionery, coconut (hydrog...
+9   3 tablespoons sunflower seeds  3 tablespoon seeds, sunflower seed kernels, dried
+10     1 teaspoon ground cinnamon                1 teaspoon spices, cinnamon, ground
+
+
+18 http://www.food.com/recipe/ricardos-homemade-fudge-191238
+                       orig                                        r1m_parsed
+0          2 cups 35% cream  2 cup cream, whipped, cream topping, pressurized
+1    2 1⁄4 cups brown sugar                           2 1/4 cup sugars, brown
+2       2 tablespoons sugar                   2 tablespoon sugars, granulated
+3  2 tablespoons corn syrup                  2 tablespoon syrups, corn, light
+
+
+19 http://www.food.com/recipe/summers-strawberry-rose-299404
+                                               orig                                         r1m_parsed
+0                    1 1⁄2 ounces Bacardi light rum  1 1/2 ounce alcoholic beverage, distilled, rum...
+1                   3⁄4 cup strawberry daiquiri mix                           34 cup strawberries, raw
+2  6 ounces tequila rose (strawberry cream liqueur)  6 ounce alcoholic beverage, tequila sunrise, c...
+
+
+20 http://www.food.com/recipe/easy-roasted-asparagus-349959
+                                   orig                                 r1m_parsed
+0                       2 lbs asparagus                     2 pound asparagus, raw
+1  2 tablespoons extra virgin olive oil  2 tablespoon oil, olive, salad or cooking
+2                1 teaspoon kosher salt                     1 teaspoon salt, table
+3                   1⁄2 teaspoon pepper          12 teaspoon spices, pepper, black
+
+
+21 http://cookeatshare.com/recipes/homemade-thousand-island-dressing-11497
+recipe  21 skipped
+
+
+22 http://www.kraftrecipes.com/recipes/spicy-20-minute-potato-salad-57802.aspx
+recipe  22 skipped
+
+
+23 http://www.food.com/recipe/apricot-cherry-bars-210468
+                                                orig                                         r1m_parsed
+0                            1 cup all-purpose flour  1 cup wheat flour, white, all-purpose, unenriched
+1                           1 cup old fashioned oats                                         1 cup oats
+2                          3⁄4 cup light brown sugar                               34 cup sugars, brown
+3                                  1⁄4 teaspoon salt                            14 teaspoon salt, table
+4              8 tablespoons unsalted butter, melted                  8 tablespoon butter, without salt
+5                    2 cups sweetened flaked coconut  2 cup shortening confectionery, coconut (hydro...
+6                              2 cups sliced almonds                                2 cup nuts, almonds
+7                2 cups dried cherries (about 10 oz)                         2 cup cherries, sweet, raw
+8  2 cups dried apricots, coarsely chopped (about...          2 cup apricots, dried, sulfured, uncooked
+9                 21 ounces sweetened condensed milk        21 ounce milk, canned, condensed, sweetened
+
+
+24 http://www.food.com/recipe/sweet-pecans-77711
+                           orig                      r1m_parsed
+0  1⁄2 cup brown sugar (packed)            12 cup sugars, brown
+1    2 tablespoons orange juice  2 tablespoon orange juice, raw
+2         1 cup pecans (halves)              1 cup nuts, pecans
+
+
+25 http://www.food.com/recipe/steamed-whitefish-fillets-165102
+                                          orig                                         r1m_parsed
+0                       1 kg white fish fillet                   1 kg sauce, fish, ready-to-serve
+1                          360 ml tomato juice  360 ml tomatoes, red, ripe, raw, year round av...
+2                      1 1⁄2 teaspoons oregano              1 1/2 teaspoon spices, oregano, dried
+3                 1⁄2 teaspoon salt (to taste)                            12 teaspoon salt, table
+4  1⁄2 teaspoon white pepper powder (to taste)                  12 teaspoon spices, pepper, black
+
+
+26 http://www.epicurious.com/recipes/food/views/grilled-sweet-potatoes-with-lime-cilantro-vinaigrette-106757
+                                       orig                             r1m_parsed
+0  4 lb sweet potatoes (8; preferably long)  4 pound sweet potato, raw, unprepared
+1                  1/4 cup fresh lime juice                1/4 cup lime juice, raw
+2               1 1/2 teaspoons kosher salt             1 1/2 teaspoon salt, table
+3                 1/4 teaspoon black pepper     1/4 teaspoon spices, pepper, black
+4                         1/2 cup olive oil   1/2 cup oil, olive, salad or cooking
+5            1/4 cup chopped fresh cilantro         1/4 cup spices, coriander seed
+
+
+27 http://www.food.com/recipe/beef-and-rice-skillet-280667
+                                    orig                                         r1m_parsed
+0                  1 lb lean ground beef               1 pound beef, grass-fed, ground, raw
+1                           2 cups water                      2 cup water, bottled, generic
+2         1⁄4 cup kraft Italian dressing  14 cup salad dressing, italian dressing, comme...
+3      1⁄2 teaspoon dried oregano leaves                 12 teaspoon spices, oregano, dried
+4                3 cups chopped broccoli                                3 cup broccoli, raw
+5          2 cups instant rice, uncooked  2 cup rice, white, long-grain, regular, unenri...
+6  1⁄2 cup kraft shredded cheddar cheese                             12 cup cheese, cheddar
+
+
+28 http://www.food.com/recipe/oven-roasted-breaded-tofu-317544
+differing ings lengths
+<bound method Food.ingredients of <recipe_scrapers.food.Food object at 0x7fc15d1a8100>>
+orig ['1 lb reduced-fat firm tofu, rinsed and patted dry', 'Marinade', '3⁄4 cup water', '3 tablespoons reduced sodium soy sauce', '3 tablespoons nutritional yeast flakes', '1⁄2 teaspoon poultry seasoning or 1/2 teaspoon curry powder', '1⁄2 teaspoon ground coriander', '1⁄2 teaspoon onion powder', '1⁄2 teaspoon garlic granules', 'Coating mix', '1⁄2 cup whole wheat pastry flour', '1⁄4 cup yellow cornmeal', '1⁄4 cup nutritional yeast flakes', '1⁄2 teaspoon onion powder', '1⁄2 teaspoon salt', '1⁄8 teaspoon black pepper']
+r1m_parsed ['1 pound tofu, raw, regular, prepared with calcium sulfate', '34 cup water, bottled, generic', '3 tablespoon soy sauce made from soy (tamari)', "3 tablespoon leavening agents, yeast, baker's, active dry", '12 teaspoon spices, curry powder', '12 teaspoon spices, coriander seed', '12 teaspoon spices, onion powder', '12 teaspoon spices, garlic powder', '12 cup wheat flour, white, all-purpose, unenriched', '14 cup cornmeal, degermed, unenriched, yellow', "14 cup leavening agents, yeast, baker's, active dry", '12 teaspoon spices, onion powder', '12 teaspoon salt, table', '18 teaspoon spices, pepper, black']
+
+
+29 http://www.food.com/recipe/lavash-310451
+differing ings lengths
+<bound method Food.ingredients of <recipe_scrapers.food.Food object at 0x7fc15cd51040>>
+orig ['4 ounces refrigerated bread dough (see Recicpe #387518 or No-Knead Flatbreads - Master Recipe (Pizza, Naan, Focaccia))', 'TOPPING (see note above)', '1 tablespoon sesame seeds', '1 teaspoon cornstarch', '1 tablespoon water']
+r1m_parsed ['4 ounce wheat flours, bread, unenriched', '1 tablespoon seeds, sesame seeds, whole, dried', '1 teaspoon cornstarch', '1 tablespoon water, bottled, generic']
+
+
+30 http://www.cookstr.com/recipes/cumin-coriander-powder
+                            orig                           r1m_parsed
+0      3 tablespoons cumin seeds      3 tablespoon spices, cumin seed
+1  3 tablespoons coriander seeds  3 tablespoon spices, coriander seed
+
+
+31 http://www.food.com/recipe/carrot-relish-326050
+                                    orig                                r1m_parsed
+0  2 cups ground carrots, packed lightly                        2 cup carrots, raw
+1     4 cups ground cucumbers, with peel             4 cup pickles, cucumber, sour
+2               1 1⁄2 cups ground onions                     1 1/2 cup onions, raw
+3     2 tablespoons coarse pickling salt                  2 tablespoon salt, table
+4                 2 1⁄4 cups white sugar              2 1/4 cup sugars, granulated
+5               1 1⁄2 cups white vinegar              1 1/2 cup vinegar, distilled
+6           1 1⁄2 teaspoons celery seeds                1 1/2 teaspoon celery, raw
+7          1 1⁄2 teaspoons mustard seeds  1 1/2 teaspoon mustard, prepared, yellow
+
+
+32 http://www.food.com/recipe/peanut-butter-criss-cross-cookies-in-a-jar-198269
+                           orig                                         r1m_parsed
+0  1 1⁄2 cups all-purpose flour  1 1/2 cup wheat flour, white, all-purpose, une...
+1        1 teaspoon baking soda           1 teaspoon leavening agents, baking soda
+2             1⁄2 teaspoon salt                            12 teaspoon salt, table
+3   3⁄4 cup mini chocolate chip  34 cup mini semi-sweet chocolate baking chips,...
+4       3⁄4 cup chopped peanuts                34 cup oil, corn, peanut, and olive
+5   3⁄4 cup brown sugar, packed                               34 cup sugars, brown
+6      3⁄4 cup granulated sugar                          34 cup sugars, granulated
+
+
+33 http://cookeatshare.com/recipes/butternut-squash-rolls-96251
+recipe  33 skipped
+
+
+34 http://www.epicurious.com/recipes/food/views/mexican-ice-cream-sundaes-with-cinnamon-chocolate-sauce-388086
+                                                orig                                         r1m_parsed
+0                   3/4 cup sweetened flaked coconut  3/4 cup shortening confectionery, coconut (hyd...
+1                                2/3 cup heavy cream               2/3 cup cream, fluid, heavy whipping
+2   6 ounces bittersweet chocolate, coarsely chopped  6 ounce pascha, organic bitter-sweet dark choc...
+3                         1 teaspoon ground cinnamon                1 teaspoon spices, cinnamon, ground
+4                                      Pinch of salt                                1 pinch salt, table
+5  1 1/2 pints dulce de leche ice cream, softened...                     1 1/2 pint ice creams, vanilla
+6                   1/4 cup roasted unsalted peanuts               1/4 cup oil, corn, peanut, and olive
+
+
+35 http://www.epicurious.com/recipes/food/views/home-fries-with-wild-mushrooms-101696
+                                                orig                                 r1m_parsed
+0  3 pounds medium-size white or Yukon Gold potat...                3 pound potatoes, raw, skin
+1                   4 tablespoons (1/2 stick) butter          4 tablespoon butter, without salt
+2                1 tablespoon extra-virgin olive oil  1 tablespoon oil, olive, salad or cooking
+3  6 ounces fresh shiitake mushrooms, stemmed, la...           6 ounce mushrooms, shiitake, raw
+4  6 ounces fresh oyster mushrooms, large mushroo...      6 ounce sauce, oyster, ready-to-serve
+5                       1/4 cup minced fresh parsley                     1/4 cup parsley, fresh
+
+
+36 http://www.food.com/recipe/vadouvan-spiced-lamb-ribs-516212
+                                      orig                                         r1m_parsed
+0  1 1⁄2 tablespoons vadouvan curry powder              1 1/2 tablespoon spices, curry powder
+1                 1 tablespoon kosher salt                           1 tablespoon salt, table
+2                       1 tablespoon sugar                    1 tablespoon sugars, granulated
+3                      3 1⁄2 lbs lamb ribs  3 1/2 pound pork, fresh, loin, country-style r...
+
+
+37 http://www.food.com/recipe/traditional-coconut-macaroon-200777
+                           orig                                         r1m_parsed
+0          1 cup powdered sugar                             1 cup sugars, powdered
+1  2 1⁄2 cups sweetened coconut  2 1/2 cup shortening confectionery, coconut (h...
+2             1⁄2 cup egg white                      12 cup egg, white, raw, fresh
+3  1⁄2 teaspoon vanilla extract                        12 teaspoon vanilla extract
+4             1⁄4 teaspoon salt                            14 teaspoon salt, table
+
+
+38 http://www.foodandwine.com/recipes/cream-biscuits-dill
+recipe  38 skipped
+
+
+39 http://cookeatshare.com/recipes/balsamic-vinaigrette-dressing-76430
+recipe  39 skipped
+
+
+40 https://cookpad.com/us/recipes/282495-paratha-indian-flat-bread
+                      orig                                         r1m_parsed
+0        300 g white flour  300 g wheat flour, white, all-purpose, unenriched
+1  300 g whole wheat flour  300 g wheat flour, white, all-purpose, unenriched
+2     6 tbsp melted butter                  6 tablespoon butter, without salt
+3             300 ml water                     300 ml water, bottled, generic
+
+
+41 http://www.food.com/recipe/cold-cocoa-drink-healthy-363400
+                                                orig                                         r1m_parsed
+0                          1 tablespoon baking cocoa        1 tablespoon cocoa, dry powder, unsweetened
+1                  2 tablespoons sugar (is optional)                    2 tablespoon sugars, granulated
+2                        1 1⁄2 tablespoons hot water           1 1/2 tablespoon water, bottled, generic
+3  8 ounces soymilk (sweetened or unsweetened, or...  8 ounce milk, fluid, 1% fat, without added vit...
+
+
+42 http://allrecipes.com/recipe/barbie-shot/
+                                                orig                                         r1m_parsed
+0                      ½ cup ice cubes, or as needed                    1/2 cup water, bottled, generic
+1  1 fluid ounce coconut-flavored rum (such as Ma...  1 fl. oz alcoholic beverage, distilled, rum, 8...
+2             1 fluid ounce vodka (such as Absolut®)  1 fl. oz alcoholic beverage, distilled, vodka,...
+3                      1 fluid ounce cranberry juice              1 fl. oz cranberry juice, unsweetened
+4                         1 fluid ounce orange juice                         1 fl. oz orange juice, raw
+
+
+43 http://www.epicurious.com/recipes/food/views/broccoli-mascarpone-soup-236583
+                                                orig                                         r1m_parsed
+0                            3 tablespoons olive oil          3 tablespoon oil, olive, salad or cooking
+1         1 1/2 cups sliced shallots (about 6 large)                            1 1/2 cup shallots, raw
+2  1 1/2 pounds broccoli florets, cut into 1-inch...                          1 1/2 pound broccoli, raw
+3                      6 cups low-salt chicken broth         6 cup soup, chicken broth or bouillon, dry
+4  1 1/2 cups (12 ounces) mascarpone cheese (Ital...  1 1/2 cup il villaggio, mascarpone cheese, upc...
+5                        1/4 teaspoon cayenne pepper        1/4 teaspoon spices, pepper, red or cayenne
+6                 3 tablespoons chopped fresh chives                           3 tablespoon chives, raw
+
+
+44 http://tastykitchen.com/recipes/appetizers-and-snacks/apricot-dipping-sauce/
+                                orig                                     r1m_parsed
+0           ½ cups Apricot Preserves    1/2 cup apricots, dried, sulfured, uncooked
+1           1 Tablespoon Lemon Juice                  1 tablespoon lemon juice, raw
+2  1 Tablespoon Low Sodium Soy Sauce  1 tablespoon soy sauce made from soy (tamari)
+3            ¼ teaspoons Dry Mustard         1/4 teaspoon mustard, prepared, yellow
+4      ¼ teaspoons Red Pepper Flakes    1/4 teaspoon spices, pepper, red or cayenne
+5   ½ teaspoons Fresh Ginger, Minced            1/2 teaspoon spices, ginger, ground
+6         ¼ teaspoons Garlic, Minced             1/4 teaspoon spices, garlic powder
+
+
+45 http://allrecipes.com/recipe/barbequed-hamburgers/
+                                orig                                         r1m_parsed
+0                1 pound ground beef               1 pound beef, grass-fed, ground, raw
+1         ½ cup uncooked rolled oats                                       1/2 cup oats
+2              ⅔ cup evaporated milk  2/3 cup milk, fluid, 1% fat, without added vit...
+3         2 tablespoons minced onion                           2 tablespoon onions, raw
+4                    ⅛ teaspoon salt                           1/8 teaspoon salt, table
+5     ⅛ teaspoon ground black pepper                 1/8 teaspoon spices, pepper, black
+6   4 teaspoons Worcestershire sauce                   4 teaspoon sauce, worcestershire
+7              2 tablespoons vinegar                    2 tablespoon vinegar, distilled
+8       4 teaspoons granulated sugar                      4 teaspoon sugars, granulated
+9                      ⅔ cup ketchup                                     2/3 cup catsup
+10               ¼ cup chopped onion                                1/4 cup onions, raw
+11       3 tablespoons vegetable oil          3 tablespoon oil, olive, salad or cooking
+
+
+46 http://www.kraftrecipes.com/recipes/salted-caramel-peanut-butter-yogurt-dip-176449.aspx
+recipe  46 skipped
+
+
+47 http://www.food.com/recipe/busy-day-company-crab-377546
+                            orig                                         r1m_parsed
+0            1 lb jumbo crabmeat  1 pound crustaceans, crab, alaska king, imitat...
+1             1⁄2 cup mayonnaise         12 cup salad dressing, mayonnaise, regular
+2  2 tablespoons capers, drained                        2 tablespoon capers, canned
+3   2 tablespoons butter, melted                  2 tablespoon butter, without salt
+4         1 cup fresh breadcrumb  1 cup delallo, italian seasoned breadcrumbs, u...
+5           1⁄2 teaspoon paprika                        12 teaspoon spices, paprika
+
+
+48 http://www.food.com/recipe/roasted-brussels-sprouts-56103
+                                                orig                                 r1m_parsed
+0                         1 1⁄2 lbs Brussels sprouts          1 1/2 pound brussels sprouts, raw
+1                            3 tablespoons olive oil  3 tablespoon oil, olive, salad or cooking
+2                     1⁄2 - 3⁄4 teaspoon kosher salt                 12-34 teaspoon salt, table
+3  1⁄2 teaspoon lemon-pepper seasoning or 1/2 tea...          12 teaspoon spices, pepper, black
+
+
+49 http://www.food.com/recipe/spicy-roast-pumpkin-193241
+                                               orig                                 r1m_parsed
+0              2 lbs fresh pumpkin, peeled & seeded                       2 pound pumpkin, raw
+1                           2 tablespoons olive oil  2 tablespoon oil, olive, salad or cooking
+2                                 1⁄2 teaspoon salt                    12 teaspoon salt, table
+3              1 teaspoon fresh ground black pepper           1 teaspoon spices, pepper, black
+4  1 teaspoon ground cumin or 1 teaspoon cumin seed              1 teaspoon spices, cumin seed
+
+
+50 http://www.epicurious.com/recipes/food/views/onion-and-poppy-seed-focaccia-5215
+                                                orig                                 r1m_parsed
+0                            2 tablespoons olive oil  2 tablespoon oil, olive, salad or cooking
+1                         1 cup finely chopped onion                          1 cup onions, raw
+2  1 11-ounce package refrigerated French Loaf br...   11 ounce wheat flours, bread, unenriched
+3                     1/4 cup grated Parmesan cheese             1/4 cup cheese, parmesan, hard
+4                            2 teaspoons poppy seeds              2 teaspoon spices, poppy seed
+
+
+51 https://recipeland.com/recipe/v/blueberry-parfaits-5588
+recipe  51 skipped
+
+
+52 http://tastykitchen.com/recipes/main-courses/cheesy-quinoa-with-meatballs/
+                                                orig                            r1m_parsed
+0  12 ounces, weight Meatballs (I Used Aidell's M...          12 ounce meatballs, meatless
+1                              2 cups Quinoa, Cooked                2 cup quinoa, uncooked
+2             1 cup Grape Or Cherry Tomatoes, Halved            1 cup cherries, sweet, raw
+3                  1 cup Mozzarella Cheese, Shredded  1 cup cheese, mozzarella, low sodium
+4                       ½ cups Fresh Basil, Shredded          1/2 cup spices, basil, dried
+
+
+53 http://www.food.com/recipe/soft-100-whole-wheat-tortillas-264458
+                                                orig                                         r1m_parsed
+0  8 ounces whole wheat flour (I use white whole ...  8 ounce wheat flour, white, all-purpose, unenr...
+1  1 tablespoon potato flour (keeps tortillas moi...                   1 tablespoon potatoes, raw, skin
+2                                  1⁄2 teaspoon salt                            12 teaspoon salt, table
+3                         1⁄4 teaspoon baking powder  14 teaspoon leavening agents, baking powder, d...
+4                                  2 tablespoons oil          2 tablespoon oil, olive, salad or cooking
+5       2⁄3 cup water, perhaps 1-2 T. more if needed                     23 cup water, bottled, generic
+6                     1⁄4 cup flour, for rolling out  14 cup wheat flour, white, all-purpose, unenri...
+
+
+54 http://www.food.com/recipe/pomegranate-sunrise-234892
+                       orig                                         r1m_parsed
+0  2 cups pomegranate juice                   2 cup pomegranate juice, bottled
+1       3 cups orange juice                            3 cup orange juice, raw
+2            2 cups tequila  2 cup alcoholic beverage, tequila sunrise, canned
+
+
+55 http://www.food.com/recipe/creamy-cheddar-potatoes-124400
+                                 orig                                         r1m_parsed
+0  3 -4 lbs baking potatoes, scrubbed                      3-4 pound potatoes, raw, skin
+1  12 ounces cheddar cheese, shredded                           12 ounce cheese, cheddar
+2                          1 cup milk  1 cup milk, fluid, 1% fat, without added vitam...
+3              1⁄2 cup whipping cream  12 cup cream, whipped, cream topping, pressurized
+4                1 1⁄2 teaspoons salt                         1 1/2 teaspoon salt, table
+5              1 teaspoon dry mustard               1 teaspoon mustard, prepared, yellow
+6                 1⁄8 teaspoon nutmeg                 18 teaspoon spices, nutmeg, ground
+7           1⁄8 teaspoon black pepper                  18 teaspoon spices, pepper, black
+
+
+56 http://www.food.com/recipe/sparkling-grape-lemonade-269552
+                                          orig                                         r1m_parsed
+0             1 cup white grape juice, chilled  1 cup grapes, red or green (european type, suc...
+1  1⁄2 cup frozen lemonade concentrate, thawed  12 cup lemonade, frozen concentrate, white, pr...
+2                         2 1⁄2 cups club soda            2 1/2 cup leavening agents, baking soda
+
+
+57 http://www.kraftrecipes.com/recipes/creamy-fiesta-dip-109927.aspx
+recipe  57 skipped
+
+
+58 http://cookeatshare.com/recipes/crispy-peanut-butter-balls-3229
+recipe  58 skipped
+
+
+59 http://www.food.com/recipe/sauce-for-fish-tacos-286082
+                                                orig                                  r1m_parsed
+0                                 3⁄4 cup mayonnaise  34 cup salad dressing, mayonnaise, regular
+1  1⁄4 cup nonfat yogurt or 1/4 cup low-fat plain...         14 cup yogurt, greek, plain, nonfat
+2                         1⁄2 teaspoon minced garlic           12 teaspoon spices, garlic powder
+3                      1 tablespoon chopped cilantro         1 tablespoon spices, coriander seed
+
+
+60 http://www.food.com/recipe/citrusberry-bircher-breakfast-283060
+                             orig                                         r1m_parsed
+0              2 cups rolled oats                                         2 cup oats
+1        1 cup blood orange juice                            1 cup orange juice, raw
+2               1⁄2 cup skim milk  12 cup milk, fluid, 1% fat, without added vita...
+3              1 cup plain yogurt                 1 cup yogurt, greek, plain, nonfat
+4                  1 cup currants                       1 cup currants, zante, dried
+5             3 tablespoons honey                                 3 tablespoon honey
+6   2 cups quartered strawberries                            2 cup strawberries, raw
+7  1⁄2 cup roughly chopped pecans                                12 cup nuts, pecans
+
+
+61 http://www.food.com/recipe/orange-spice-pancakes-278537
+                                                 orig                                         r1m_parsed
+0                             1 cup whole wheat flour  1 cup wheat flour, white, all-purpose, unenriched
+1   1 1⁄4 cups whole wheat pastry flour (you can a...  1 1/4 cup wheat flour, white, all-purpose, une...
+2                           2 teaspoons baking powder  2 teaspoon leavening agents, baking powder, do...
+3                            1⁄2 teaspoon baking soda          12 teaspoon leavening agents, baking soda
+4                                   1⁄2 teaspoon salt                            12 teaspoon salt, table
+5                        1⁄4 teaspoon ground cinnamon               14 teaspoon spices, cinnamon, ground
+6                  1⁄8 teaspoon freshly grated nutmeg                 18 teaspoon spices, nutmeg, ground
+7                          1⁄8 teaspoon ground cloves                 18 teaspoon spices, cloves, ground
+8              2 teaspoons freshly grated orange zest                       2 teaspoon orange juice, raw
+9                      2 tablespoons whole flax seeds                       2 tablespoon seeds, flaxseed
+10                            1 1⁄2 cups orange juice                        1 1/2 cup orange juice, raw
+
+
+62 http://www.food.com/recipe/pioneer-irish-soda-bread-420627
+                         orig                                         r1m_parsed
+0                1⁄2 cup milk  12 cup milk, fluid, 1% fat, without added vita...
+1          1 teaspoon vinegar                      1 teaspoon vinegar, distilled
+2                2 cups flour  2 cup wheat flour, white, all-purpose, unenriched
+3      1 teaspoon baking soda           1 teaspoon leavening agents, baking soda
+4  1 teaspoon cream of tartar  1 teaspoon cream, whipped, cream topping, pres...
+5           1⁄2 teaspoon salt                            12 teaspoon salt, table
+6        2 tablespoons butter                  2 tablespoon butter, without salt
+
+
+63 http://www.vegetariantimes.com/recipe/cocoa-dusted-glazed-almonds/
+recipe  63 skipped
+
+
+64 http://www.food.com/recipe/oatmeal-with-barley-and-blueberries-22121
+                           orig                                         r1m_parsed
+0               1⁄2 cup oatmeal                                        12 cup oats
+1         1⁄4 cup cooked barley                              14 cup barley, hulled
+2  2 tablespoons protein powder  2 tablespoon beverages, protein powder whey based
+3    1⁄4 cup frozen blueberries                            14 cup blueberries, raw
+4               1 dash cinnamon                    1 dash spices, cinnamon, ground
+5          1 dash stevia powder  1 dash sweetener, herbal extract powder from s...
+
+
+65 https://cookpad.com/us/recipes/169458-crunchy-snowball-cookies
+                      orig                                         r1m_parsed
+0      75 grams Cake flour            75 g wheat flour, white, cake, enriched
+1  30 grams Powdered sugar                              30 g sugars, powdered
+2    30 grams Almond flour                                 30 g nuts, almonds
+3       15 grams Skim milk  15 g milk, fluid, 1% fat, without added vitami...
+4          60 grams Butter                          60 g butter, without salt
+
+
+66 http://www.epicurious.com/recipes/food/views/three-green-pasta-with-scallops-and-pesto-sauce-1999
+                                                orig                                         r1m_parsed
+0  1 pound asparagus, trimmed, cut into 1 1/2-inc...                             1 pound asparagus, raw
+1  1/2 pound small green beans (preferably harico...                  1/2 pound beans, snap, green, raw
+2                                 1 pound fettuccine  1 pound kashi, steam meal, chicken fettuccine,...
+3                               3 tablespoons butter                  3 tablespoon butter, without salt
+4             1 10-ounce package frozen peas, thawed           10 ounce peas, green, frozen, unprepared
+5          2 pounds sea scallops, each one quartered  2 pound mollusks, scallop, (bay and sea), cook...
+6                   1 1/2 cups purchased pesto sauce  1 1/2 cup sauce, pesto, ready-to-serve, refrig...
+7                             3/4 cup whipping cream  3/4 cup cream, whipped, cream topping, pressur...
+8                    2 tablespoons fresh lemon juice                      2 tablespoon lemon juice, raw
+
+
+67 http://www.kraftrecipes.com/recipes/herbed-tomatoes-chicken-rice-76051.aspx
+recipe  67 skipped
+
+
+68 http://www.food.com/recipe/tasty-mexican-rice-181706
+                                           orig                                         r1m_parsed
+0                   3 tablespoons vegetable oil          3 tablespoon oil, olive, salad or cooking
+1          1 cup uncooked long-grain white rice  1 cup rice, white, long-grain, regular, unenri...
+2                        1 teaspoon garlic salt                   1 teaspoon spices, garlic powder
+3                     1⁄2 teaspoon ground cumin                     12 teaspoon spices, cumin seed
+4                         1⁄4 cup chopped onion                                 14 cup onions, raw
+5                          1⁄2 cup tomato sauce         12 cup tomato sauce, canned, no salt added
+6  2 cups chicken broth (use broth, not water!)         2 cup soup, chicken broth or bouillon, dry
+
+
+69 http://tastykitchen.com/recipes/desserts/orange-creamsicle-protein-balls/
+                                         orig                                         r1m_parsed
+0               1 cup Cashews, Lightly Salted                       1 cup nuts, cashew nuts, raw
+1       ⅓ cups Coconut, Shredded, Unsweetened  13 cup shortening confectionery, coconut (hydr...
+2                 ¼ teaspoons Vanilla Extract                       1/4 teaspoon vanilla extract
+3                  ½ teaspoons Orange Extract                     1/2 teaspoon orange juice, raw
+4                      1 teaspoon Maple Syrup                  1 teaspoon syrup, maple, canadian
+5  1 Tablespoon French Vanilla Protein Powder  1 tablespoon beverages, protein powder whey based
+
+
+70 http://www.food.com/recipe/herb-garden-blend-35082
+                              orig                         r1m_parsed
+0        2 tablespoons dill leaves      2 tablespoon dill weed, fresh
+1       2 tablespoons basil leaves  2 tablespoon spices, basil, dried
+2       2 tablespoons thyme leaves  2 tablespoon spices, thyme, dried
+3  1⁄2 teaspoon orange zest, dried      12 teaspoon orange juice, raw
+4       2 tablespoons onion powder  2 tablespoon spices, onion powder
+5           1 teaspoon celery seed             1 teaspoon celery, raw
+6              1⁄8 teaspoon pepper  18 teaspoon spices, pepper, black
+7        1 teaspoon oregano leaves  1 teaspoon spices, oregano, dried
+
+
+71 http://www.food.com/recipe/maple-oatmeal-bread-362910
+                       orig                                         r1m_parsed
+0  2 1⁄2 cups boiling water                  2 1/2 cup water, bottled, generic
+1         1 cup rolled oats                                         1 cup oats
+2   2 1⁄4 tablespoons yeast  2 1/4 tablespoon leavening agents, yeast, bake...
+3       3⁄4 cup maple syrup                      34 cup syrup, maple, canadian
+4          2 teaspoons salt                             2 teaspoon salt, table
+5          1 tablespoon oil          1 tablespoon oil, olive, salad or cooking
+6        5 cups bread flour              5 cup wheat flours, bread, unenriched
+
+
+72 http://www.food.com/recipe/superb-rye-bread-bread-machine-395966
+                                               orig                                         r1m_parsed
+0                                   1 cup rye flour  1 cup wheat flour, white, all-purpose, unenriched
+1                            2 3⁄4 cups bread flour          2 3/4 cup wheat flours, bread, unenriched
+2  1⁄3 cup brown sugar (I use the gruanulated type)                               13 cup sugars, brown
+3                         2 teaspoons caraway seeds                    2 teaspoon spices, caraway seed
+4          1 1⁄2 teaspoons salt (I use kosher salt)                         1 1/2 teaspoon salt, table
+5                              2 tablespoons butter                  2 tablespoon butter, without salt
+6                             1 1⁄2 cups warm water                  1 1/2 cup water, bottled, generic
+7                         1 1⁄2 teaspoons dry yeast  1 1/2 teaspoon leavening agents, yeast, baker'...
+
+
+73 http://www.food.com/recipe/maple-glazed-chicken-with-sweet-potatoes-323163
+                                                orig                                         r1m_parsed
+0  8 ounces sweet potatoes, mashed in refrigerate...              8 ounce sweet potato, raw, unprepared
+1                           1 lb chicken tenderloins  1 pound chicken, broiler or fryers, breast, sk...
+2  2 teaspoons steak seasoning, such as Montreal ...  2 teaspoon la flor, steak seasoning, upc: 0776...
+3                               2 tablespoons butter                  2 tablespoon butter, without salt
+4                                1⁄4 cup maple syrup                      14 cup syrup, maple, canadian
+5                                1⁄2 cup green onion  12 cup onions, spring or scallions (includes t...
+
+
+74 http://www.food.com/recipe/rye-bread-bread-machine-457172
+differing ings lengths
+<bound method Food.ingredients of <recipe_scrapers.food.Food object at 0x7fc15c1ed430>>
+orig ['1 1/2 pound loaf', '1 1⁄4 cups water', '1⁄4 cup nonfat dry milk powder', '1 1⁄4 teaspoons salt', '2 tablespoons vegetable oil', '2 tablespoons light molasses', '1 cup whole wheat flour', '1 1⁄2 cups bread flour', '3⁄4 cup dark rye flour', '1 tablespoon fennel seed', '3⁄4 teaspoon bread machine yeast or 3/4 teaspoon fast rising yeast']
+r1m_parsed ['1 1/4 cup water, bottled, generic', '14 cup milk, fluid, 1% fat, without added vitamin a and vitamin d', '1 1/4 teaspoon salt, table', '2 tablespoon oil, olive, salad or cooking', '2 tablespoon molasses', '1 cup wheat flour, white, all-purpose, unenriched', '1 1/2 cup wheat flours, bread, unenriched', '34 cup wheat flour, white, all-purpose, unenriched', '1 tablespoon spices, fennel seed', '34 teaspoon wheat flours, bread, unenriched']
+
+
+75 http://www.food.com/recipe/williams-sonoma-vanilla-buttercream-frosting-495525
+                                        orig                                         r1m_parsed
+0                3 cups confectioners' sugar                           3 cup sugars, granulated
+1    8 tablespoons unsalted butter, softened                  8 tablespoon butter, without salt
+2  2 tablespoons milk (plus more, if needed)  2 tablespoon milk, fluid, 1% fat, without adde...
+3                 1 teaspoon vanilla extract                         1 teaspoon vanilla extract
+4                        1 pinch kosher salt                                1 pinch salt, table
+
+
+76 http://www.food.com/recipe/honey-spice-oatmeal-cookie-mix-gift-in-a-jar-194242
+                                                orig                                         r1m_parsed
+0                       2 3⁄4 cups all-purpose flour  2 3/4 cup wheat flour, white, all-purpose, une...
+1                         1 tablespoon ground ginger                1 tablespoon spices, ginger, ground
+2                        2 teaspoons ground cinnamon                2 teaspoon spices, cinnamon, ground
+3                             1 teaspoon baking soda           1 teaspoon leavening agents, baking soda
+4                                  1⁄2 teaspoon salt                            12 teaspoon salt, table
+5                         1⁄4 teaspoon ground cloves                 14 teaspoon spices, cloves, ground
+6                                1⁄4 teaspoon nutmeg                 14 teaspoon spices, nutmeg, ground
+7  1 1⁄2 cups quaker quick oats or 1 1/2 cups old...                                     1 1/2 cup oats
+
+
+77 http://www.food.com/recipe/very-blueberry-parfait-139425
+                                              orig                                         r1m_parsed
+0                     1 cup low fat cottage cheese  1 cup cheese, cottage, creamed, large or small...
+1               3 tablespoons confectioners' sugar                    3 tablespoon sugars, granulated
+2                                3 teaspoons sugar                      3 teaspoon sugars, granulated
+3                     1⁄2 teaspoon vanilla extract                        12 teaspoon vanilla extract
+4                               4 cups blueberries                             4 cup blueberries, raw
+5  4 teaspoons miniature semisweet chocolate chips  4 teaspoon spartan, real semi-sweet chocolate ...
+
+
+78 http://www.epicurious.com/recipes/food/views/dry-rub-for-meats-and-poultry-232950
+                                orig                             r1m_parsed
+0                 6 tablespoons salt               6 tablespoon salt, table
+1         3 tablespoons onion powder      3 tablespoon spices, onion powder
+2        3 tablespoons garlic powder     3 tablespoon spices, garlic powder
+3  3 tablespoons ground black pepper     3 tablespoon spices, pepper, black
+4     1 1/2 teaspoons ground oregano  1 1/2 teaspoon spices, oregano, dried
+
+
+79 http://www.food.com/recipe/pomegranate-syrup-359268
+                             orig                        r1m_parsed
+0        4 cups pomegranate juice  4 cup pomegranate juice, bottled
+1                   1⁄2 cup sugar         12 cup sugars, granulated
+2  1 tablespoon fresh lemon juice     1 tablespoon lemon juice, raw
+
+
+80 http://www.kraftrecipes.com/recipes/quick-fruity-crunchy-coleslaw-179072.aspx
+recipe  80 skipped
+
+
+81 http://www.food.com/recipe/self-rising-flour-america-5274
+                       orig                                         r1m_parsed
+0               1 cup flour  1 cup wheat flour, white, all-purpose, unenriched
+1         1⁄2 teaspoon salt                            12 teaspoon salt, table
+2  1 teaspoon baking powder  1 teaspoon leavening agents, baking powder, do...
+3  1⁄2 teaspoon baking soda          12 teaspoon leavening agents, baking soda
+
+
+82 http://www.epicurious.com/recipes/food/views/maple-whipped-cream-375971
+                                       orig                          r1m_parsed
+0                        2 cups heavy cream  2 cup cream, fluid, heavy whipping
+1              1/3 cup confectioners’ sugar            1/3 cup sugars, powdered
+2           1 teaspoon pure vanilla extract          1 teaspoon vanilla extract
+3  1/2 cup Grade B maple syrup, or to taste      1/2 cup syrup, maple, canadian
+
+
+83 http://www.food.com/recipe/chocolate-fudge-sauce-129776
+                            orig                                         r1m_parsed
+0  150 g dark chocolate, chopped  150 g spartan, real semi-sweet chocolate bakin...
+1                  1⁄2 cup cream  12 cup cream, whipped, cream topping, pressurized
+2    2 teaspoons vanilla extract                         2 teaspoon vanilla extract
+
+
+84 http://allrecipes.com/recipe/lemon-fizz/
+                                 orig                           r1m_parsed
+0  3 cups vanilla ice cream, softened            3 cup ice creams, vanilla
+1    1 ½ cups lemon sherbet, softened            1 1/2 cup sherbet, orange
+2      3 cups chilled lemon-lime soda  3 cup leavening agents, baking soda
+
+
+85 http://www.foodnetwork.com/recipes/nigella-lawson/the-union-square-cafes-bar-nuts-recipe.html
+differing ings lengths
+<bound method FoodNetwork.ingredients of <recipe_scrapers.foodnetwork.FoodNetwork object at 0x7fc15c1e2130>>
+orig []
+r1m_parsed ['2 1/4 cup nuts, cashew nuts, raw', '2 tablespoon spices, rosemary, dried', '1/2 teaspoon spices, pepper, red or cayenne', '2 teaspoon sugars, brown', '2 teaspoon salt, table', '1 tablespoon butter, without salt']
+
+
+86 http://www.food.com/recipe/chia-chocolate-pudding-vegan-513691
+                                   orig                                         r1m_parsed
+0                6 teaspoons chia seeds                6 teaspoon seeds, chia seeds, dried
+1               1 teaspoon agave nectar                 1 teaspoon sweetener, syrup, agave
+2         2⁄3 cup chocolate almond milk  23 cup beverages, almond milk, unsweetened, sh...
+3  2 teaspoons unsweetened cocoa powder          2 teaspoon cocoa, dry powder, unsweetened
+
+
+87 http://www.food.com/recipe/crock-pot-creamed-corn-141103
+                      orig                      r1m_parsed
+0       8 cups frozen corn   8 cup corn, sweet, white, raw
+1           1⁄2 cup butter     12 cup butter, without salt
+2    8 ounces cream cheese  8 ounce cheese, parmesan, hard
+3  1 1⁄2 tablespoons honey          1 1/2 tablespoon honey
+
+
+88 http://www.food.com/recipe/pork-rub-316241
+                   orig                          r1m_parsed
+0       1 teaspoon salt              1 teaspoon salt, table
+1   1⁄4 teaspoon nutmeg  14 teaspoon spices, nutmeg, ground
+2  1 teaspoon coriander   1 teaspoon spices, coriander seed
+3    1⁄2 teaspoon sugar      12 teaspoon sugars, granulated
+4   1⁄8 teaspoon pepper   18 teaspoon spices, pepper, black
+
+
+89 http://www.epicurious.com/recipes/food/views/pink-applesauce-15175
+                                                orig                      r1m_parsed
+0  3 pounds McIntosh apples (about 8) cored and q...  3 pound apples, raw, with skin
+1                          1/2 cup fresh lemon juice        1/2 cup lemon juice, raw
+2                                      1/2 cup sugar      1/2 cup sugars, granulated
+
+
+90 http://www.food.com/recipe/rose-nail-oil-92261
+                              orig                               r1m_parsed
+0               1⁄4 cup almond oil                     14 cup nuts, almonds
+1   2 teaspoons apricot kernel oil  2 teaspoon oil, olive, salad or cooking
+2  5 drops geranium essential oils      5 drop oil, olive, salad or cooking
+3      2 drops rose essential oils      2 drop oil, olive, salad or cooking
+
+
+91 http://www.food.com/recipe/raspberry-syrup-210535
+                                  orig                     r1m_parsed
+0  1 cup raspberries (fresh or frozen)         1 cup raspberries, raw
+1                          1 cup sugar       1 cup sugars, granulated
+2             2 tablespoons cornstarch        2 tablespoon cornstarch
+3                          1 cup water  1 cup water, bottled, generic
+
+
+92 http://allrecipes.com/recipe/fettuccini-alfredo-i/
+                                orig                                         r1m_parsed
+0      8 ounces dry fettuccine pasta  8 ounce kashi, steam meal, chicken fettuccine,...
+1             4 ½ tablespoons butter              4 1/2 tablespoon butter, without salt
+2  2 ½ tablespoons all-purpose flour  2 1/2 tablespoon wheat flour, white, all-purpo...
+3                        2 cups milk  2 cup milk, fluid, 1% fat, without added vitam...
+4           1 teaspoon minced garlic                   1 teaspoon spices, garlic powder
+5           5 drops hot pepper sauce                       5 drop spices, pepper, black
+6       ½ cup grated Parmesan cheese                     1/2 cup cheese, parmesan, hard
+
+
+93 http://cooking.nytimes.com/recipes/4282
+                               orig                             r1m_parsed
+0       3 cups pitted sour cherries             3 cup cherries, sweet, raw
+1                     3/4 cup sugar             3/4 cup sugars, granulated
+2      1/4 teaspoon ground cinnamon  1/4 teaspoon spices, cinnamon, ground
+3  1 1/2 teaspoons balsamic vinegar       1 1/2 teaspoon vinegar, balsamic
+4           3/4 teaspoon cornstarch                3/4 teaspoon cornstarch
+5                  1 teaspoon water     1 teaspoon water, bottled, generic
+
+
+94 http://www.foodandwine.com/recipes/mashed-sweet-potatoes-greek-yogurt
+recipe  94 skipped
+
+
+95 http://www.food.com/recipe/archangels-seafood-cocktail-sauce-251123
+                                   orig                              r1m_parsed
+0             2 tablespoons lemon juice           2 tablespoon lemon juice, raw
+1              1 tablespoon horseradish      1 tablespoon horseradish, prepared
+2         4 dashes Worcestershire sauce            4 dash sauce, worcestershire
+3                      1 1⁄2 cups salsa  1 1/2 cup sauce, salsa, ready-to-serve
+4                    1 1⁄2 cups ketchup                        1 1/2 cup catsup
+5            1 tablespoon garlic butter      1 tablespoon spices, garlic powder
+6  2 tablespoons chopped fresh tarragon    2 tablespoon spices, tarragon, dried
+7                1 tablespoon dill weed           1 tablespoon dill weed, fresh
+8                   1 tablespoon chives                1 tablespoon chives, raw
+
+
+96 http://www.food.com/recipe/cream-cheese-biscuits-cooks-country-487118
+                                                orig                                         r1m_parsed
+0                       1 1⁄2 cups all-purpose flour  1 1/2 cup wheat flour, white, all-purpose, une...
+1                              1 1⁄2 cups cake flour       1 1/2 cup wheat flour, white, cake, enriched
+2                                 1 tablespoon sugar                    1 tablespoon sugars, granulated
+3                         1 tablespoon baking powder  1 tablespoon leavening agents, baking powder, ...
+4                                    1 teaspoon salt                             1 teaspoon salt, table
+5                           3⁄4 teaspoon baking soda          34 teaspoon leavening agents, baking soda
+6  4 ounces cream cheese, cut into 1/2-inch piece...                     4 ounce cheese, parmesan, hard
+7  4 tablespoons unsalted butter, cut into 1/2-in...                  4 tablespoon butter, without salt
+8                                   1 cup buttermilk    1 cup milk, buttermilk, fluid, cultured, lowfat
+9                            1 tablespoon buttermilk  1 tablespoon milk, buttermilk, fluid, cultured...
+
+
+97 http://www.food.com/recipe/plain-good-butter-biscuits-309222
+                        orig                                         r1m_parsed
+0   2 cups all-purpose flour  2 cup wheat flour, white, all-purpose, unenriched
+1  2 teaspoons baking powder  2 teaspoon leavening agents, baking powder, do...
+2          1⁄2 teaspoon salt                            12 teaspoon salt, table
+3       4 tablespoons butter                  4 tablespoon butter, without salt
+4       3⁄4 cup milk (about)  34 cup milk, fluid, 1% fat, without added vita...
+
+
+98 http://cookeatshare.com/recipes/chicken-marinade-36621
+recipe  98 skipped
+
+
+99 http://www.food.com/recipe/berry-quinoa-501826
+                                    orig                                         r1m_parsed
+0        1⁄2 cup unsweetened almond milk  12 cup beverages, almond milk, unsweetened, sh...
+1                         1⁄4 cup quinoa                            14 cup quinoa, uncooked
+2                    1⁄2 cup mixed berry                         12 cup goji berries, dried
+3                       1 pinch cinnamon                   1 pinch spices, cinnamon, ground
+4  1 tablespoon blueberry-flavored syrup                1 tablespoon syrup, maple, canadian
+
+
+100 http://www.food.com/recipe/santa-fe-dry-rub-372323
+                                                orig                           r1m_parsed
+0  3 tablespoons chili powder (for heat, chipotle...    3 tablespoon spices, chili powder
+1                     2 tablespoons ground coriander  2 tablespoon spices, coriander seed
+2                                2 tablespoons cumin      2 tablespoon spices, cumin seed
+3                         1 tablespoon ground fennel     1 tablespoon spices, fennel seed
+4                                    1 teaspoon salt               1 teaspoon salt, table
+
+
+101 http://www.food.com/recipe/oatmeal-molasses-quick-bread-181124
+                            orig                                         r1m_parsed
+0     2 cups fat-free buttermilk    2 cup milk, buttermilk, fluid, cultured, lowfat
+1                   1⁄2 cup oats                                        12 cup oats
+2   1⁄4 cup unsulphured molasses                                    14 cup molasses
+3    2 tablespoons vegetable oil          2 tablespoon oil, olive, salad or cooking
+4   2 3⁄4 cups all-purpose flour  2 3/4 cup wheat flour, white, all-purpose, une...
+5        1 cup whole wheat flour  1 cup wheat flour, white, all-purpose, unenriched
+6            2 tablespoons sugar                    2 tablespoon sugars, granulated
+7           1 1⁄2 teaspoons salt                         1 1/2 teaspoon salt, table
+8       1 teaspoon baking powder  1 teaspoon leavening agents, baking powder, do...
+9         1 teaspoon baking soda           1 teaspoon leavening agents, baking soda
+10                 1 cup raisins                              1 cup raisins, seeded
+11  1 tablespoon yellow cornmeal  1 tablespoon cornmeal, degermed, unenriched, y...
+
+
+102 http://www.food.com/recipe/rotisserie-rub-lone-star-157728
+                                            orig                                  r1m_parsed
+0                           1⁄4 cup chili powder                 14 cup spices, chili powder
+1                      2 tablespoons kosher salt                    2 tablespoon salt, table
+2  2 tablespoons firmly packed light brown sugar                  2 tablespoon sugars, brown
+3                    1⁄2 teaspoon cayenne pepper  12 teaspoon spices, pepper, red or cayenne
+4                      1 tablespoon ground cumin             1 tablespoon spices, cumin seed
+5                      2 teaspoons garlic powder            2 teaspoon spices, garlic powder
+6                         1 teaspoon dry mustard        1 teaspoon mustard, prepared, yellow
+
+
+103 http://allrecipes.com/recipe/caramel-apple-smoothie/
+                                     orig                                         r1m_parsed
+0                       1 cup apple juice  1 cup apple juice, canned or bottled, unsweete...
+1                 1 cup chunky applesauce  1 cup applesauce, canned, unsweetened, without...
+2            1 cup low-fat vanilla yogurt                 1 cup yogurt, greek, plain, nonfat
+3         ¼ cup caramel ice cream topping                        1/4 cup ice creams, vanilla
+4      2 tablespoons smooth peanut butter  2 tablespoon peanut butter, smooth style, with...
+5  1 tablespoon caramel ice cream topping                   1 tablespoon ice creams, vanilla
+
+
+104 http://www.food.com/recipe/ranch-style-salad-dressing-155243
+                                                 orig                                        r1m_parsed
+0                               1 1⁄2 cups mayonnaise     1 1/2 cup salad dressing, mayonnaise, regular
+1                                  1⁄2 cup buttermilk  12 cup milk, buttermilk, fluid, cultured, lowfat
+2                       1 tablespoon red wine vinegar                    1 tablespoon vinegar, red wine
+3                                  1 tablespoon sugar                   1 tablespoon sugars, granulated
+4                            1 teaspoon garlic powder                  1 teaspoon spices, garlic powder
+5                             1 teaspoon onion powder                   1 teaspoon spices, onion powder
+6   1 tablespoon dried parsley or 2 tablespoons ch...               1 tablespoon spices, parsley, dried
+7   1⁄2 teaspoon dried dill or 1 tablespoon choppe...                      12 teaspoon dill weed, fresh
+8              1⁄2 teaspoon fresh ground black pepper                 12 teaspoon spices, pepper, black
+9                                   1⁄2 teaspoon salt                           12 teaspoon salt, table
+10                               1 dash sweet paprika                            1 dash spices, paprika
+
+
+105 http://www.food.com/recipe/beef-stroganoff-38281
+                                                 orig                                         r1m_parsed
+0                                        1 cup butter                         1 cup butter, without salt
+1                     1 1⁄2 cups onions, chopped fine                              1 1/2 cup onions, raw
+2                  1 1⁄2 cups fresh mushrooms, sliced                    1 1/2 cup mushrooms, white, raw
+3   3 1⁄2 lbs beef top round steak, cut into 2 inc...           3 1/2 pound beef, grass-fed, ground, raw
+4                                 6 tablespoons flour  6 tablespoon wheat flour, white, all-purpose, ...
+5                                3 cups beef bouillon                 3 cup beef, grass-fed, ground, raw
+6                                1 1⁄2 teaspoons salt                         1 1/2 teaspoon salt, table
+7                          6 tablespoons tomato paste  6 tablespoon tomatoes, red, ripe, raw, year ro...
+8                    2 teaspoons Worcestershire sauce                   2 teaspoon sauce, worcestershire
+9                                  3⁄4 cup sour cream                       34 cup cream, sour, cultured
+10                             1 1⁄2 cups heavy cream             1 1/2 cup cream, fluid, heavy whipping
+11                          8 cups fluffy cooked rice  8 cup rice, white, long-grain, regular, unenri...
+
+
+106 http://www.cookstr.com/recipes/fresh-corn-tortillas
+differing ings lengths
+<bound method Cookstr.ingredients of <recipe_scrapers.cookstr.Cookstr object at 0x7fc15d121fa0>>
+orig []
+r1m_parsed ['2 cup corn, sweet, white, raw', '1 1/4 cup water, bottled, generic']
+
+
+107 http://www.food.com/recipe/simple-red-wine-vinegar-salad-dressing-8945
+                                              orig                                    r1m_parsed
+0  1⁄2 cup Star's garlic flavored red wine vinegar                      12 cup vinegar, red wine
+1                           1 cup virgin olive oil            1 cup oil, olive, salad or cooking
+2                          1 teaspoon sesame seeds  1 teaspoon seeds, sesame seeds, whole, dried
+3                  1 teaspoon fresh minced parsley                     1 teaspoon parsley, fresh
+4                1 teaspoon grated parmesan cheese             1 teaspoon cheese, parmesan, hard
+5                          1 teaspoon black pepper              1 teaspoon spices, pepper, black
+
+
+108 http://www.food.com/recipe/mexican-couscous-128067
+                           orig                                         r1m_parsed
+0         1⁄2 cup chopped onion                                 12 cup onions, raw
+1    2 teaspoons crushed garlic                   2 teaspoon spices, garlic powder
+2        1 tablespoon olive oil          1 tablespoon oil, olive, salad or cooking
+3     1⁄2 teaspoon chili powder                   12 teaspoon spices, chili powder
+4     1⁄2 teaspoon ground cumin                     12 teaspoon spices, cumin seed
+5           1 cup chicken broth         1 cup soup, chicken broth or bouillon, dry
+6             1 cup frozen peas              1 cup peas, green, frozen, unprepared
+7        1⁄2 cup chopped tomato  12 cup tomatoes, red, ripe, raw, year round av...
+8  1 tablespoon minced cilantro                1 tablespoon spices, coriander seed
+9              3⁄4 cup couscous                               34 cup couscous, dry
+
+
+109 http://www.food.com/recipe/always-perfect-biscuits-348929
+                           orig                                         r1m_parsed
+0                  2 cups flour  2 cup wheat flour, white, all-purpose, unenriched
+1             1⁄2 teaspoon salt                            12 teaspoon salt, table
+2     4 teaspoons baking powder  4 teaspoon leavening agents, baking powder, do...
+3  1⁄2 teaspoon cream of tartar  12 teaspoon cream, whipped, cream topping, pre...
+4             2 teaspoons sugar                      2 teaspoon sugars, granulated
+5             1⁄2 cup margarine  12 cup margarine, regular, 80% fat, composite,...
+6                  3⁄4 cup milk  34 cup milk, fluid, 1% fat, without added vita...
+
+
+110 http://www.foodgeeks.com/recipes/5192
+recipe  110 skipped
+
+
+111 http://www.food.com/recipe/arugula-rocket-fig-bleu-blue-cheese-salad-166149
+                                     orig                               r1m_parsed
+0            2 cups torn red leaf lettuce       2 cup lettuce, cos or romaine, raw
+1        1 1⁄4 cups fresh figs, quartered          1 1/4 cup figs, dried, uncooked
+2                   1 cup trimmed arugula                       1 cup arugula, raw
+3         2 tablespoons fresh lemon juice            2 tablespoon lemon juice, raw
+4                   2 teaspoons olive oil  2 teaspoon oil, olive, salad or cooking
+5                       1⁄4 teaspoon salt                  14 teaspoon salt, table
+6  1⁄4 teaspoon fresh ground black pepper        14 teaspoon spices, pepper, black
+7      3 tablespoons crumbled blue cheese                3 tablespoon cheese, blue
+
+
+112 http://www.kraftrecipes.com/recipes/fruity-kiwi-lime-punch-54818.aspx
+recipe  112 skipped
+
+
+113 http://www.food.com/recipe/fondue-apricot-dijon-sauce-82277
+                          orig                              r1m_parsed
+0           3⁄4 cup sour cream            34 cup cream, sour, cultured
+1          1⁄2 cup apricot jam      12 cup jams and preserves, apricot
+2  3 tablespoons Dijon mustard  3 tablespoon mustard, prepared, yellow
+
+
+114 http://www.food.com/recipe/lime-ginger-honeydew-156488
+                                             orig                            r1m_parsed
+0       1⁄3 cup Splenda granular or 1/3 cup sugar             13 cup sugars, granulated
+1                             3 tablespoons water  3 tablespoon water, bottled, generic
+2                           2 teaspoons lime zest            2 teaspoon lime juice, raw
+3                         1 tablespoon lime juice          1 tablespoon lime juice, raw
+4  1 teaspoon fresh ginger, peeled, finely grated     1 teaspoon spices, ginger, ground
+5           10 cups honeydew melon, cut in chunks          10 cup melons, honeydew, raw
+
+
+115 http://www.food.com/recipe/japanese-shrimp-sauce-204983
+                          orig                                     r1m_parsed
+0             1 cup mayonnaise      1 cup salad dressing, mayonnaise, regular
+1          3 tablespoons sugar                3 tablespoon sugars, granulated
+2   3 tablespoons rice vinegar  3 tablespoon rice vinegar, upc: 4979435030332
+3  2 tablespoons melted butter              2 tablespoon butter, without salt
+4         3⁄4 teaspoon paprika                    34 teaspoon spices, paprika
+5   3⁄8 teaspoon garlic powder              38 teaspoon spices, garlic powder
+
+
+116 http://www.food.com/recipe/blueberry-cream-bread-bread-machine-27688
+                          orig                                         r1m_parsed
+0                1⁄4 cup water                     14 cup water, bottled, generic
+1           1⁄4 cup sour cream                       14 cup cream, sour, cultured
+2     1⁄2 cup blueberry yogurt                12 cup yogurt, greek, plain, nonfat
+3  1⁄2 cup blueberry preserves                            12 cup blueberries, raw
+4           4 cups bread flour              4 cup wheat flours, bread, unenriched
+5         1 1⁄4 teaspoons salt                         1 1/4 teaspoon salt, table
+6             1 teaspoon yeast  1 teaspoon leavening agents, yeast, baker's, a...
+7    1⁄2 cup dried blueberries                            12 cup blueberries, raw
+
+
+117 http://www.food.com/recipe/sauerkraut-salad-165106
+                        orig                                    r1m_parsed
+0  500 g sauerkraut, drained  500 g sauerkraut, canned, solids and liquids
+1                 30 g sugar                       30 g sugars, granulated
+2      400 g fresh pineapple           400 g pineapple, raw, all varieties
+
+
+118 https://cookpad.com/us/recipes/337031-lanas-tartar-sauce
+                                orig                                   r1m_parsed
+0                 1/2 cup mayonnaise  1/2 cup salad dressing, mayonnaise, regular
+1                    1 1/2 tsp sugar            1 1/2 teaspoon sugars, granulated
+2  1 1/2 tsp shredded/minced carrots                  1 1/2 teaspoon carrots, raw
+3         1 tbsp sweet pickle relish            1 tablespoon pickle relish, sweet
+4             1 1/2 tsp minced onion                   1 1/2 teaspoon onions, raw
+
+
+119 http://allrecipes.com/recipe/cheesy-chicken-and-potato-soup/
+                               orig                                         r1m_parsed
+0                ¼ cup onion, diced                                1/4 cup onions, raw
+1         1 tablespoon bacon grease                       1 tablespoon bacon, meatless
+2       3 cups 1-inch potato chunks                          3 cup potatoes, raw, skin
+3              2 cups chicken broth         2 cup soup, chicken broth or bouillon, dry
+4                       1 cup water                      1 cup water, bottled, generic
+5              3 tablespoons butter                  3 tablespoon butter, without salt
+6               3 tablespoons flour  3 tablespoon wheat flour, white, all-purpose, ...
+7                        1 cup milk  1 cup milk, fluid, 1% fat, without added vitam...
+8  3 ounces shredded Cheddar cheese                            3 ounce cheese, cheddar
+9  1 ½ cups shredded cooked chicken  1 1/2 cup chicken, broiler or fryers, breast, ...
+
+
+120 http://www.food.com/recipe/moms-coleslaw-dressing-180702
+                       orig                                        r1m_parsed
+0  2 tablespoons sour cream                2 tablespoon cream, sour, cultured
+1  2 tablespoons mayonnaise  2 tablespoon salad dressing, mayonnaise, regular
+2      1 tablespoon vinegar                   1 tablespoon vinegar, distilled
+3        1 tablespoon sugar                   1 tablespoon sugars, granulated
+
+
+121 http://tastykitchen.com/recipes/drinks/strawberry-mango-smoothie-3/
+                                          orig                                         r1m_parsed
+0                    1 cup Frozen Strawberries                            1 cup strawberries, raw
+1                  ½ cups Mango Chunks, Frozen                       1/2 cup mango nectar, canned
+2  1 cup Coconut Milk, Unsweetened From Carton  1 cup milk, fluid, 1% fat, without added vitam...
+3                  ¼ teaspoons Coconut Extract  1/4 teaspoon shortening confectionery, coconut...
+
+
+122 http://www.food.com/recipe/pilipit-glazed-rice-flour-twists-243727
+                                                orig                                         r1m_parsed
+0  1 1⁄2 cups sticky rice (Mochiko rice, reserve ...  1 1/2 cup rice, white, long-grain, regular, un...
+1                   1 cup unsweetened flaked coconut  1 cup shortening confectionery, coconut (hydro...
+2                                  1 cup brown sugar                                1 cup sugars, brown
+3                                  2 cups canola oil                                  2 cup oil, canola
+4                                      1⁄2 cup water                     12 cup water, bottled, generic
+
+
+123 http://www.epicurious.com/recipes/food/views/sweet-and-salty-pecan-shortbread-383810
+                                                orig                                         r1m_parsed
+0     1/2 pound (2 sticks) unsalted butter, softened                     1/2 pound butter, without salt
+1                         1/2 cup natural cane sugar                         1/2 cup sugars, granulated
+2                               2 teaspoons sea salt                             2 teaspoon salt, table
+3                                1/2 cup maple syrup                     1/2 cup syrup, maple, canadian
+4                   2 teaspoons pure vanilla extract                         2 teaspoon vanilla extract
+5                       2 1/2 cups all-purpose flour  2 1/2 cup wheat flour, white, all-purpose, une...
+6                          1 1/2 cups chopped pecans                             1 1/2 cup nuts, pecans
+7  1/3 cup demerara or turbinado sugar, plus more...                         1/3 cup sugars, granulated
+
+
+124 http://www.food.com/recipe/drunk-chicks-rub-down-413332
+                             orig                                 r1m_parsed
+0                 1⁄4 cup paprika                     14 cup spices, paprika
+1  1 tablespoon light brown sugar                 1 tablespoon sugars, brown
+2      2 teaspoons cayenne pepper  2 teaspoon spices, pepper, red or cayenne
+3     2 teaspoons ground cinnamon        2 teaspoon spices, cinnamon, ground
+4         2 teaspoons dry mustard       2 teaspoon mustard, prepared, yellow
+5        1 teaspoon garlic powder           1 teaspoon spices, garlic powder
+6         1 teaspoon onion powder            1 teaspoon spices, onion powder
+7                 1 teaspoon salt                     1 teaspoon salt, table
+8               1 teaspoon pepper           1 teaspoon spices, pepper, black
+
+
+125 http://tastykitchen.com/recipes/appetizers-and-snacks/honey-roasted-cashews/
+                              orig                             r1m_parsed
+0              2 Tablespoons Honey                     2 tablespoon honey
+1  1-½ Tablespoon Real Maple Syrup    1 tablespoon syrup, maple, canadian
+2   1-½ Tablespoon Unsalted Butter      1 tablespoon butter, without salt
+3                  1 teaspoon Salt                 1 teaspoon salt, table
+4  1 teaspoon Real Vanilla Extract             1 teaspoon vanilla extract
+5             ¼ teaspoons Cinnamon  1/4 teaspoon spices, cinnamon, ground
+6                  1 pound Cashews         1 pound nuts, cashew nuts, raw
+7        2 Tablespoons White Sugar        2 tablespoon sugars, granulated
+
+
+126 http://www.food.com/recipe/nut-butter-breakfast-or-anytime-cookies-497005
+                                                orig                                         r1m_parsed
+0                                  1⁄2 cup oat flour  12 cup wheat flour, white, all-purpose, unenri...
+1                          1⁄2 cup whole wheat flour  12 cup wheat flour, white, all-purpose, unenri...
+2  2 tablespoons sugar (optional, if your nut but...                    2 tablespoon sugars, granulated
+3                            1 pinch salt (optional)                                1 pinch salt, table
+4  1 cup chocolate almond butter (or other nut bu...                                1 cup nuts, almonds
+5  2 -3 tablespoons yogurt (vegans use a non-dair...        2-3 tablespoon yogurt, greek, plain, nonfat
+
+
+127 http://allrecipes.com/recipe/berry-surprise/
+                                               orig                                         r1m_parsed
+0                                1 cup strawberries                            1 cup strawberries, raw
+1                            1 cup pineapple chunks                1 cup pineapple, raw, all varieties
+2                                 ½ cup raspberries                           1/2 cup raspberries, raw
+3  2 tablespoons frozen limeade concentrate, thawed  2 tablespoon limeade, frozen concentrate, prep...
+
+
+128 http://tastykitchen.com/recipes/sidedishes/hash-brown-bake/
+                                   orig                                         r1m_parsed
+0  1 pound Shredded Hash Browns, Thawed                       1 pound denny's, hash browns
+1           1 cup Chicken Or Beef Broth  1 cup soup, beef broth or bouillon canned, rea...
+2                 ½ cups Whipping Cream  1/2 cup cream, whipped, cream topping, pressur...
+3           2 Tablespoons Melted Butter                  2 tablespoon butter, without salt
+4           ¼ cups Finely Chopped Onion                                1/4 cup onions, raw
+5      1 cup Parmesan And Asiago Cheese                       1 cup cheese, parmesan, hard
+6                       1 teaspoon Salt                             1 teaspoon salt, table
+7                     1 teaspoon Pepper                   1 teaspoon spices, pepper, black
+
+
+129 http://www.food.com/recipe/super-d-duper-chocolate-milk-308769
+                                  orig                                         r1m_parsed
+0                     3 cups skim milk  3 cup milk, fluid, 1% fat, without added vitam...
+1  1⁄2 cup powdered chocolate milk mix  12 cup milk, fluid, 1% fat, without added vita...
+2         1 cup non-fat vanilla yogurt                     1 cup yogurt, vanilla, non-fat
+3          1 cup non-fat powdered milk  1 cup milk, fluid, 1% fat, without added vitam...
+
+
+130 https://recipeland.com/recipe/v/maryland-beaten-biscuits-42946
+recipe  130 skipped
+
+
+131 http://www.cookstr.com/recipes/chopped-fruit-salad
+                                                orig                                       r1m_parsed
+0                  1 cup finely chopped strawberries                          1 cup strawberries, raw
+1                       1 teaspoon pomegranate juice            1 teaspoon pomegranate juice, bottled
+2                                  ½ cup diced mango                     1/2 cup mango nectar, canned
+3                              ½ teaspoon lime juice                     1/2 teaspoon lime juice, raw
+4                                  ¾ cup blueberries                         3/4 cup blueberries, raw
+5                               ½ cup vanilla yogurt             1/2 cup yogurt, greek, plain, nonfat
+6  2 teaspoons mixed seeds (pumpkin, sunflower, s...  2 teaspoon seeds, sunflower seed kernels, dried
+
+
+132 http://www.food.com/recipe/farmhouse-poinsettia-punch-for-the-holidays-318603
+                                                orig                                         r1m_parsed
+0  12 ounces frozen pink lemonade concentrate (th...  12 ounce lemonade, frozen concentrate, white, ...
+1                       2 liters ginger ale, chilled          2 liter beverages, carbonated, ginger ale
+2                1 quart raspberry sherbet, softened                            1 quart sherbet, orange
+
+
+133 http://www.food.com/recipe/boston-baked-beans-81950
+                                                orig                                         r1m_parsed
+0  3 cups dried pea beans (other dry white beans ...                      3 cup beans, snap, green, raw
+1                                   1⁄2 lb salt pork  12 pound pork, fresh, loin, tenderloin, separa...
+2                                   1⁄3 cup molasses                                    13 cup molasses
+3                                   2 teaspoons salt                             2 teaspoon salt, table
+4                             1 teaspoon dry mustard               1 teaspoon mustard, prepared, yellow
+
+
+134 http://tastykitchen.com/recipes/homemade-ingredients/homemade-ricotta-cheese-3/
+                                                orig                                         r1m_parsed
+0  4 cups, 3 tablespoons, 1-⅞ teaspoons, ¼ pinche...  4 cup milk, fluid, 1% fat, without added vitam...
+1                                 ¼ cups Heavy Cream               1/4 cup cream, fluid, heavy whipping
+2                            ¼ cups Whole Fat Yogurt               1/4 cup yogurt, greek, plain, nonfat
+3                                    1 teaspoon Salt                             1 teaspoon salt, table
+4                               1 Tablespoon Vinegar                    1 tablespoon vinegar, distilled
+
+
+135 http://www.food.com/recipe/polynesian-crock-pot-spareribs-59175
+                        orig                                         r1m_parsed
+0    3 -4 lbs pork spareribs  3-4 pound pork, fresh, loin, tenderloin, separ...
+1        5 tablespoons sugar                    5 tablespoon sugars, granulated
+2        3 tablespoons honey                                 3 tablespoon honey
+3    3 tablespoons soy sauce      3 tablespoon soy sauce made from soy (tamari)
+4      2 tablespoons ketchup                                2 tablespoon catsup
+5  1 teaspoon seasoning salt                             1 teaspoon salt, table
+6        1 cup chicken broth         1 cup soup, chicken broth or bouillon, dry
+
+
+136 http://online-cookbook.com/goto/cook/rpage/00118D
+recipe  136 skipped
+
+
+137 http://www.food.com/recipe/dry-enchilada-sauce-mix-substitute-306854
+                                  orig                                  r1m_parsed
+0        2 teaspoons mild chili powder             2 teaspoon spices, chili powder
+1                  2 teaspoons paprika                  2 teaspoon spices, paprika
+2               2 teaspoons cornstarch                       2 teaspoon cornstarch
+3                 1 1⁄2 teaspoons salt                  1 1/2 teaspoon salt, table
+4   1 1⁄2 teaspoons dried onion flakes                  1 1/2 teaspoon onions, raw
+5                     1 teaspoon sugar               1 teaspoon sugars, granulated
+6              1 teaspoon ground cumin               1 teaspoon spices, cumin seed
+7             1 teaspoon garlic powder            1 teaspoon spices, garlic powder
+8                 1⁄2 teaspoon oregano          12 teaspoon spices, oregano, dried
+9        1⁄2 teaspoon ground coriander          12 teaspoon spices, coriander seed
+10                1⁄4 teaspoon cayenne  14 teaspoon spices, pepper, red or cayenne
+
+
+138 http://www.foodnetwork.com/recipes/peanut-cashew-butter-recipe.html
+differing ings lengths
+<bound method FoodNetwork.ingredients of <recipe_scrapers.foodnetwork.FoodNetwork object at 0x7fc15cf55040>>
+orig []
+r1m_parsed ['1 1/2 cup oil, corn, peanut, and olive', '1 1/2 cup nuts, cashew nuts, raw']
+
+
+139 http://tastykitchen.com/recipes/drinks/pink-smoothie/
+                                 orig                                         r1m_parsed
+0                   1 cup Crushed Ice                      1 cup water, bottled, generic
+1                         ½ cups Milk  1/2 cup milk, fluid, 1% fat, without added vit...
+2  ½ cups Quick Or Old Fashioned Oats                                       1/2 cup oats
+3    ½ cups Greek Yogurt (any Flavor)               1/2 cup yogurt, greek, plain, nonfat
+4                  1 Tablespoon Honey                                 1 tablespoon honey
+5          ½ cups Frozen Strawberries                          1/2 cup strawberries, raw
+
+
+140 http://www.food.com/recipe/peach-glazed-pork-tenderloin-247633
+                               orig                                         r1m_parsed
+0             2 lbs pork tenderloin  2 pound pork, fresh, loin, tenderloin, separab...
+1           2 teaspoons cooking oil            2 teaspoon oil, olive, salad or cooking
+2          3⁄4 teaspoon dried thyme                   34 teaspoon spices, thyme, dried
+3                 1⁄4 teaspoon salt                            14 teaspoon salt, table
+4               1⁄4 teaspoon pepper                  14 teaspoon spices, pepper, black
+5           2⁄3 cup peach preserves                        23 cup peaches, yellow, raw
+6  4 teaspoons Worcestershire sauce                   4 teaspoon sauce, worcestershire
+7        1⁄2 teaspoon ground ginger                 12 teaspoon spices, ginger, ground
+
+
+141 http://www.food.com/recipe/pesto-mayonnaise-118025
+                                  orig                                        r1m_parsed
+0             3 tablespoons mayonnaise  3 tablespoon salad dressing, mayonnaise, regular
+1   1 teaspoon parmesan cheese, grated                 1 teaspoon cheese, parmesan, hard
+2           1⁄2 teaspoon garlic powder                 12 teaspoon spices, garlic powder
+3              2 teaspoons dried basil                   2 teaspoon spices, basil, dried
+4  1⁄4 teaspoon extra virgin olive oil          14 teaspoon oil, olive, salad or cooking
+
+
+142 http://www.food.com/recipe/quick-curried-chicken-and-couscous-274826
+                                     orig                                         r1m_parsed
+0                        1 3⁄4 cups water                  1 3/4 cup water, bottled, generic
+1                1 cup couscous, uncooked                                1 cup couscous, dry
+2     10 3⁄4 ounces cream of chicken soup  10 3/4 ounce soup, cream of chicken, canned, c...
+3                           1⁄2 cup water                     12 cup water, bottled, generic
+4            1 1⁄2 teaspoons curry powder                1 1/2 teaspoon spices, curry powder
+5  2 cups cooked chicken (can use canned)  2 cup chicken, broiler or fryers, breast, skin...
+6   1 cup frozen mixed vegetables, thawed  1 cup shortening, vegetable, household, composite
+
+
+143 http://www.food.com/recipe/blackberry-flummery-294731
+                                       orig                     r1m_parsed
+0                       2 cups blackberries        2 cup blackberries, raw
+1                              2 cups water  2 cup water, bottled, generic
+2                               1 cup sugar       1 cup sugars, granulated
+3                         1⁄4 teaspoon salt        14 teaspoon salt, table
+4                  4 tablespoons cornstarch        4 tablespoon cornstarch
+5  1 tablespoon lemon juice (fresh is best)  1 tablespoon lemon juice, raw
+
+
+144 https://recipeland.com/recipe/v/pickled-cherries-hyssop-46835
+recipe  144 skipped
+
+
+145 http://www.food.com/recipe/firm-polenta-245560
+                    orig                                    r1m_parsed
+0      1 tablespoon salt                      1 tablespoon salt, table
+1  1 cup medium cornmeal  1 cup cornmeal, degermed, unenriched, yellow
+
+
+146 http://www.food.com/recipe/chinese-peach-soup-352130
+                                                orig                            r1m_parsed
+0                                6 tablespoons sugar       6 tablespoon sugars, granulated
+1                           2 tablespoons cornstarch               2 tablespoon cornstarch
+2                 2 cups peach juice or 2 cups water         2 cup water, bottled, generic
+3        2 tablespoons butter (the Chinese use lard)     2 tablespoon butter, without salt
+4  1 lb saturn peach, pared, seeded and chopped i...          1 pound peaches, yellow, raw
+5                            1 tablespoon rose water  1 tablespoon water, bottled, generic
+
+
+147 http://cookeatshare.com/recipes/african-spiced-broccoli-and-cauliflower-salad-62617
+recipe  147 skipped
+
+
+148 http://www.food.com/recipe/goodies-for-halloween-12651
+                                                orig                                     r1m_parsed
+0                             10 cups popped popcorn  10 cup snacks, popcorn, air-popped (unsalted)
+1                1 cup dry-roasted salted mixed nuts                   1 cup nuts, walnuts, english
+2                                      1⁄4 cup honey                                   14 cup honey
+3                         2 tablespoons orange juice                 2 tablespoon orange juice, raw
+4    2 tablespoons butter or 2 tablespoons margarine              2 tablespoon butter, without salt
+5                      1 teaspoon grated orange rind                   1 teaspoon orange juice, raw
+6  1⁄4 teaspoon ground cinnamon or 1/4 teaspoon n...           14 teaspoon spices, cinnamon, ground
+
+
+149 https://recipeland.com/recipe/v/mango-jam-41616
+recipe  149 skipped
+
+
+150 http://www.food.com/recipe/fat-free-oatmeal-muffins-296543
+                                  orig                                         r1m_parsed
+0                         1⁄2 cup oats                                        12 cup oats
+1            1⁄2 cup whole wheat flour  12 cup wheat flour, white, all-purpose, unenri...
+2                    1⁄2 cup skim milk  12 cup milk, fluid, 1% fat, without added vita...
+3    1⁄8 cup Splenda brown sugar blend                               18 cup sugars, brown
+4             1⁄3 cup sugar substitute                          13 cup sugars, granulated
+5  4 ounces nonfat yogurt (any flavor)               4 ounce yogurt, greek, plain, nonfat
+6                1⁄4 teaspoon cinnamon               14 teaspoon spices, cinnamon, ground
+7           1⁄2 teaspoon baking powder  12 teaspoon leavening agents, baking powder, d...
+8             1⁄4 teaspoon baking soda          14 teaspoon leavening agents, baking soda
+9                    1⁄4 teaspoon salt                            14 teaspoon salt, table
+
+
+151 http://www.food.com/recipe/garbanzo-nosh-161494
+                                                orig                             r1m_parsed
+0          4 cups garbanzo beans, cooked (chickpeas)          4 cup beans, snap, green, raw
+1         1 1⁄2 tablespoons unsalted butter, melted*  1 1/2 tablespoon butter, without salt
+2  1⁄2 - 1 tablespoon kosher salt (or other coars...           1/2-1 tablespoon salt, table
+3          1⁄2 tablespoon black pepper, fresh ground    12 tablespoon spices, pepper, black
+
+
+152 https://cookpad.com/us/recipes/367689-arabic-bread
+differing ings lengths
+<bound method CookPad.ingredients of <recipe_scrapers.cookpad.CookPad object at 0x7fc15c8e60a0>>
+orig ['500 grams whole wheat flour', '1 tbsp yeast', '1 tsp salt', 'water']
+r1m_parsed ['500 g wheat flour, white, all-purpose, unenriched', "1 tablespoon leavening agents, yeast, baker's, active dry", '1 teaspoon salt, table']
+
+
+153 http://www.food.com/recipe/southern-style-gluten-free-cornbread-289267
+                          orig                                         r1m_parsed
+0          1 -2 tablespoon oil          1 tablespoon oil, olive, salad or cooking
+1              2 cups cornmeal       2 cup cornmeal, degermed, unenriched, yellow
+2                  2 cups milk  2 cup milk, fluid, 1% fat, without added vitam...
+3                1⁄2 cup sugar                          12 cup sugars, granulated
+4  2 tablespoons baking powder  2 tablespoon leavening agents, baking powder, ...
+
+
+154 http://cookeatshare.com/recipes/broiled-scallops-93386
+recipe  154 skipped
+
+
+155 http://www.food.com/recipe/triple-seed-bread-abm-508737
+                            orig                                         r1m_parsed
+0               1 1⁄3 cups water                  1 1/3 cup water, bottled, generic
+1           1 1⁄2 teaspoons salt                         1 1/2 teaspoon salt, table
+2    2 tablespoons vegetable oil          2 tablespoon oil, olive, salad or cooking
+3            3 tablespoons honey                                 3 tablespoon honey
+4   1 1⁄3 cups whole wheat flour  1 1/3 cup wheat flour, white, all-purpose, une...
+5             2 cups bread flour              2 cup wheat flours, bread, unenriched
+6         1⁄3 cup dry buttermilk   13 cup milk, buttermilk, fluid, cultured, lowfat
+7          1⁄3 cup pumpkin seeds  13 cup seeds, pumpkin and squash seeds, whole,...
+8    1⁄3 cup raw sunflower seeds        13 cup seeds, sunflower seed kernels, dried
+9           1⁄3 cup sesame seeds           13 cup seeds, sesame seeds, whole, dried
+10      1 teaspoon instant yeast  1 teaspoon leavening agents, yeast, baker's, a...
+
+
+156 http://cookeatshare.com/recipes/beans-slow-cooker-style-81176
+recipe  156 skipped
+
+
+157 http://www.food.com/recipe/seared-salmon-with-balsamic-vinegar-and-dijon-glaze-244671
+                                                orig                                     r1m_parsed
+0  1 tablespoon olive oil or 1 tablespoon canola oil      1 tablespoon oil, olive, salad or cooking
+1                                   1 1⁄2 lbs salmon  1 1/2 pound fish, salmon, atlantic, wild, raw
+2                     1 teaspoon fresh ground pepper               1 teaspoon spices, pepper, black
+3                           1⁄3 cup balsamic vinegar                       13 cup vinegar, balsamic
+4                         1 tablespoon Dijon mustard         1 tablespoon mustard, prepared, yellow
+
+
+158 http://www.food.com/recipe/barbados-pork-roast-373771
+                                  orig                                         r1m_parsed
+0       3 lbs boneless pork loin roast  3 pound pork, fresh, loin, tenderloin, separab...
+1                    1⁄2 teaspoon salt                            12 teaspoon salt, table
+2            1 tablespoon ground cumin                    1 tablespoon spices, cumin seed
+3            1 tablespoon chili powder                  1 tablespoon spices, chili powder
+4     1 1⁄2 teaspoons ground coriander              1 1/2 teaspoon spices, coriander seed
+5            1 teaspoon cayenne pepper          1 teaspoon spices, pepper, red or cayenne
+6  1 1⁄2 teaspoons ground black pepper               1 1/2 teaspoon spices, pepper, black
+7         3⁄4 teaspoon ground cinnamon               34 teaspoon spices, cinnamon, ground
+8             3⁄4 teaspoon brown sugar                          34 teaspoon sugars, brown
+
+
+159 http://tastykitchen.com/recipes/desserts/toffee-time/
+                                     orig                                         r1m_parsed
+0                          1 pound Butter                       1 pound butter, without salt
+1                          2-¼ cups Sugar                       2 1/4 cup sugars, granulated
+2                     4 Tablespoons Water               4 tablespoon water, bottled, generic
+3       12 ounces, weight Chocolate Chips  12 ounce spartan, real semi-sweet chocolate ba...
+4  1-½ cup Chopped Nuts (walnuts/almonds)                       1 cup nuts, walnuts, english
+
+
+160 http://allrecipes.com/recipe/spicy-raspberry-balsamic-dressing/
+                               orig                                   r1m_parsed
+0                   ½ cup olive oil         1/2 cup oil, olive, salad or cooking
+1            ¼ cup balsamic vinegar                    1/4 cup vinegar, balsamic
+2           1 tablespoon sesame oil   1 tablespoon oil, sesame, salad or cooking
+3  1 tablespoon raspberry preserves                1 tablespoon raspberries, raw
+4                   ½ teaspoon salt                     1/2 teaspoon salt, table
+5           ½ teaspoon onion powder            1/2 teaspoon spices, onion powder
+6    ½ teaspoon ground black pepper           1/2 teaspoon spices, pepper, black
+7         ¼ teaspoon cayenne pepper  1/4 teaspoon spices, pepper, red or cayenne
+8            ¼ teaspoon dry mustard       1/4 teaspoon mustard, prepared, yellow
+
+
+161 http://www.kraftrecipes.com/recipes/iced-hot-chocolate-124468.aspx
+recipe  161 skipped
+
+
+162 http://www.food.com/recipe/healthy-brie-crisps-95718
+                                        orig                                         r1m_parsed
+0  4 ounces brie cheese, at room temperature                               4 ounce cheese, brie
+1        1⁄2 cup butter, at room temperature                        12 cup butter, without salt
+2                          1⁄3 cup soy flour  13 cup wheat flour, white, all-purpose, unenri...
+3                1 tablespoon protein powder  1 tablespoon beverages, protein powder whey based
+4                    2 dashes cayenne pepper              2 dash spices, pepper, red or cayenne
+5                          1⁄8 teaspoon salt                            18 teaspoon salt, table
+6                       1⁄8 teaspoon paprika                        18 teaspoon spices, paprika
+
+
+163 http://www.food.com/recipe/hot-chocolate-with-assorted-syrup-stir-ins-469372
+differing ings lengths
+<bound method Food.ingredients of <recipe_scrapers.food.Food object at 0x7fc15d683b80>>
+orig ['9 1⁄2 cups water', '1 1⁄2 cups hot chocolate powder', 'For the stir ins', '1 tablespoon hazelnut syrup, per cup', '1 tablespoon almond syrup, per cup', '1 tablespoon raspberry flavored syrup, per cup', '1 tablespoon irish creme syrup, per cup']
+r1m_parsed ['9 1/2 cup water, bottled, generic', '1 1/2 cup spartan, real semi-sweet chocolate baking chips, upc: 011213162966', '1 tablespoon nuts, hazelnuts or filberts', '1 tablespoon nuts, almonds', '1 tablespoon syrup, maple, canadian', '1 tablespoon syrup, maple, canadian']
+
+
+164 http://www.myrecipes.com/recipe/tex-mex-pork
+                                                orig                                         r1m_parsed
+0  1 pound pork tenderloin, trimmed and cut into ...  1 pound pork, fresh, loin, tenderloin, separab...
+1                           3/4 teaspoon kosher salt                           3/4 teaspoon salt, table
+2           3/4 teaspoon freshly ground black pepper                 3/4 teaspoon spices, pepper, black
+3                1 1/2 cups refrigerated fresh salsa             1 1/2 cup sauce, salsa, ready-to-serve
+4                                      1/4 cup water                    1/4 cup water, bottled, generic
+5                  2 cups hot cooked long-grain rice  2 cup rice, white, long-grain, regular, unenri...
+6                           1/4 cup light sour cream                      1/4 cup cream, sour, cultured
+7                              3/4 cup cubed avocado    3/4 cup avocados, raw, all commercial varieties
+
+
+165 http://tastykitchen.com/recipes/breakfastbrunch/raspberry-lemon-breakfast-jar/
+differing ings lengths
+<bound method TastyKitchen.ingredients of <recipe_scrapers.tastykitchen.TastyKitchen object at 0x7fc15c8feee0>>
+orig ['FOR THE OATMEAL:', '¼ cups Oatmeal (I Used Gluten Free)', '¼ cups Milk', '2 Tablespoons Greek Yogurt, Plain', '¼ teaspoons Chia Seeds', '½ teaspoons Vanilla Extract', '¼ teaspoons Stevia', 'FOR THE LAYERS:', '½ cups Greek Yogurt, Plain , Divided', '3 Tablespoons Lemon Pie Filling, Divided', '½ cups Raspberries, Divided']
+r1m_parsed ['1/4 cup oats', '1/4 cup milk, fluid, 1% fat, without added vitamin a and vitamin d', '2 tablespoon yogurt, greek, plain, nonfat', '1/4 teaspoon seeds, chia seeds, dried', '1/2 teaspoon vanilla extract', '1/4 teaspoon sweetener, herbal extract powder from stevia leaf', '1/2 cup yogurt, greek, plain, nonfat', '3 tablespoon spices, pumpkin pie spice', '1/2 cup raspberries, raw']
+
+
+166 http://www.food.com/recipe/browned-onion-and-corn-pilaf-299491
+                                    orig                                         r1m_parsed
+0                  1⁄2 cup chopped onion                                 12 cup onions, raw
+1  1⁄2 cup corn kernel, thawed if frozen                     12 cup corn, sweet, white, raw
+2           1 tablespoon unsalted butter                  1 tablespoon butter, without salt
+3    1⁄2 cup unconverted long-grain rice  12 cup rice, white, long-grain, regular, unenr...
+4                        1 teaspoon salt                             1 teaspoon salt, table
+
+
+167 https://recipeland.com/recipe/v/olive-bread-46848
+recipe  167 skipped
+
+
+168 http://www.food.com/recipe/pizza-dough-bread-machine-117391
+                    orig                                         r1m_parsed
+0        1 cup flat beer       1 cup alcoholic beverage, beer, regular, all
+1   2 tablespoons butter                  2 tablespoon butter, without salt
+2    2 tablespoons sugar                    2 tablespoon sugars, granulated
+3        1 teaspoon salt                             1 teaspoon salt, table
+4       2 1⁄2 cups flour  2 1/2 cup wheat flour, white, all-purpose, une...
+5  2 1⁄4 teaspoons yeast  2 1/4 teaspoon leavening agents, yeast, baker'...
+
+
+169 https://cookpad.com/us/recipes/344964-wild-berry-ice-cubes
+                                                orig                                         r1m_parsed
+0                                 1 1/2 cup lemonade  1 1/2 cup lemonade, frozen concentrate, white,...
+1  3/4 cup fresh seasonal berries (blueberries, r...                        3/4 cup goji berries, dried
+
+
+170 http://www.chowhound.com/recipes/chocolate-raspberry-bonbons-28147
+recipe  170 skipped
+
+
+171 http://tastykitchen.com/recipes/appetizers-and-snacks/edamame-three-ways/
+                            orig                                 r1m_parsed
+0         1 pound Frozen Edamame          1 pound edamame, frozen, prepared
+1           1 teaspoon Chili Oil    1 teaspoon oil, olive, salad or cooking
+2  1 teaspoon Crushed Red Pepper  1 teaspoon spices, pepper, red or cayenne
+3            2 Tablespoons Honey                         2 tablespoon honey
+4           2 Tablespoons Butter          2 tablespoon butter, without salt
+5       2 teaspoons Salt, Kosher                     2 teaspoon salt, table
+
+
+172 http://www.food.com/recipe/super-fast-delicious-easy-and-ooey-gooey-caramel-corn-137635
+                                        orig                                     r1m_parsed
+0                             1⁄2 cup butter                    12 cup butter, without salt
+1                          1 cup brown sugar                            1 cup sugars, brown
+2                         1⁄2 cup corn syrup                     12 cup syrups, corn, light
+3  12 cups popped popcorn, old maids removed  12 cup snacks, popcorn, air-popped (unsalted)
+
+
+173 http://www.food.com/recipe/chocolate-cake-301327
+                      orig                                         r1m_parsed
+0             3 cups flour  3 cup wheat flour, white, all-purpose, unenriched
+1   1 cup baking chocolate  1 cup spartan, real semi-sweet chocolate bakin...
+2  3 teaspoons baking soda           3 teaspoon leavening agents, baking soda
+3         1 cup mayonnaise          1 cup salad dressing, mayonnaise, regular
+4             2 cups sugar                           2 cup sugars, granulated
+5             2 cups water                      2 cup water, bottled, generic
+
+
+174 http://www.food.com/recipe/my-favorite-maple-brown-sugar-oatmeal-278634
+                                                orig                                         r1m_parsed
+0                         1⁄2 cup quick-cooking oats                                        12 cup oats
+1  1 cup water (you can use milk for a creamier o...  1 cup milk, fluid, 1% fat, without added vitam...
+2                                        1 dash salt                                 1 dash salt, table
+3  1 tablespoon dried cranberries or 1 tablespoon...         1 tablespoon cranberries, dried, sweetened
+4  1 1⁄2 teaspoons maple syrup or 1 1/2 teaspoons...              1 1/2 teaspoon syrup, maple, canadian
+5                   1 -2 teaspoon packed brown sugar                           1 teaspoon sugars, brown
+
+
+175 http://tastykitchen.com/recipes/soups/cream-cheese-potato-soup-3/
+                                                orig                                  r1m_parsed
+0                   4 cups Peeled And Cubed Potatoes                   4 cup potatoes, raw, skin
+1                      4 cups Chicken Broth Or Stock  4 cup soup, chicken broth or bouillon, dry
+2                              ¼ cups Chopped Onions                         1/4 cup onions, raw
+3                              ¼ cups Chopped Celery                         1/4 cup celery, raw
+4                             1 teaspoon Kosher Salt                      1 teaspoon salt, table
+5                           ½ teaspoons Black Pepper          1/2 teaspoon spices, pepper, black
+6  8 ounces, weight Cream Cheese (1 Block), Cut I...              8 ounce cheese, parmesan, hard
+7         ¼ cups Instant Mashed Potatoes, Any Flavor                 1/4 cup potatoes, raw, skin
+
+
+176 http://allrecipes.com/recipe/baking-powder-biscuits-ii/
+                         orig                                         r1m_parsed
+0    2 cups all-purpose flour  2 cup wheat flour, white, all-purpose, unenriched
+1  1 tablespoon baking powder  1 tablespoon leavening agents, baking powder, ...
+2             1 teaspoon salt                             1 teaspoon salt, table
+3         ⅓ cup vegetable oil               1/3 cup oil, olive, salad or cooking
+4            ⅔ cup buttermilk  2/3 cup milk, buttermilk, fluid, cultured, lowfat
+
+
+177 http://cookeatshare.com/recipes/baked-potato-bread-75364
+recipe  177 skipped
+
+
+178 http://www.food.com/recipe/thai-black-rice-pudding-99414
+                       orig                                         r1m_parsed
+0  1 cup black rice (sweet)  1 cup rice, white, long-grain, regular, unenri...
+1         1⁄2 teaspoon salt                            12 teaspoon salt, table
+2             1⁄2 cup sugar                          12 cup sugars, granulated
+3     3 1⁄2 cups cold water                  3 1/2 cup water, bottled, generic
+4        1 cup coconut milk  1 cup milk, fluid, 1% fat, without added vitam...
+
+
+179 http://tastykitchen.com/recipes/appetizers-and-snacks/spicy-honey-mustard-pretzels/
+                                          orig                             r1m_parsed
+0  14 ounces, weight Box Of Sourdough Pretzels      14 ounce pretzels, soft, unsalted
+1                         ¼ cups Vegetable Oil   1/4 cup oil, olive, salad or cooking
+2                                 ½ cups Honey                          1/2 cup honey
+3                        ½ cups Yellow Mustard      1/2 cup mustard, prepared, yellow
+4                      1 teaspoon Onion Powder        1 teaspoon spices, onion powder
+5               2 teaspoons Sriracha Hot Sauce  2 teaspoon sauce, hot chile, sriracha
+
+
+180 http://tastykitchen.com/recipes/appetizers-and-snacks/homemade-rosemary-cheese-crackers/
+                                           orig                                         r1m_parsed
+0                       1 cup All-purpose Flour  1 cup wheat flour, white, all-purpose, unenriched
+1  1 teaspoon Fresh Rosemary, Chopped Very Fine                 1 teaspoon spices, rosemary, dried
+2                 ½ teaspoons Granulated Garlic                 1/2 teaspoon spices, garlic powder
+3                          ¼ teaspoons Sea Salt                           1/4 teaspoon salt, table
+4         ½ teaspoons Fresh Ground Black Pepper                 1/2 teaspoon spices, pepper, black
+5         ½ cups Parmesan Cheese, Finely Grated                     1/2 cup cheese, parmesan, hard
+6                                 ½ cups Butter                       1/2 cup butter, without salt
+7                            2 Tablespoons Milk  2 tablespoon milk, fluid, 1% fat, without adde...
+
+
+181 https://cookpad.com/us/recipes/144373-aromatic-shokupan-square-loaf-with-rice-and-sake
+                                              orig                                         r1m_parsed
+0      125 grams ○Cooked rice that has cooled down  125 g rice, white, long-grain, regular, unenri...
+1                                 130 grams ○Water                      130 g water, bottled, generic
+2                   250 grams Bread (strong) flour              250 g wheat flours, bread, unenriched
+3                                   23 grams Sugar                            23 g sugars, granulated
+4                                     5 grams Salt                                    5 g salt, table
+5                                3 grams Dry yeast   3 g leavening agents, yeast, baker's, active dry
+6  35 grams Sake (or water if you don't have sake)                       35 g water, bottled, generic
+7                                    20 grams Milk  20 g milk, fluid, 1% fat, without added vitami...
+8                         23 grams Unsalted butter                          23 g butter, without salt
+
+
+182 http://www.food.com/recipe/black-punch-with-disembodied-hand-398571
+                                                orig                                         r1m_parsed
+0  1 ounce unsweetened grape powdered drink mix (...  1 ounce grapes, red or green (european type, s...
+1  1 ounce unsweetened orange powdered drink mix ...                          1 ounce orange juice, raw
+2                                 2 cups white sugar                           2 cup sugars, granulated
+3                                3 quarts cold water                    3 quart water, bottled, generic
+4                                 1 liter ginger ale          1 liter beverages, carbonated, ginger ale
+
+
+183 http://www.kraftrecipes.com/recipes/cheese-chips-169370.aspx
+recipe  183 skipped
+
+
+184 http://www.food.com/recipe/simple-brussels-sprouts-455280
+                                               orig                                 r1m_parsed
+0         1 lb Brussels sprout, cleaned and prepped              1 pound brussels sprouts, raw
+1  3 tablespoons olive oil, to coat brussel sprouts  3 tablespoon oil, olive, salad or cooking
+2                   1 teaspoon cracked black pepper           1 teaspoon spices, pepper, black
+3                                   1 teaspoon salt                     1 teaspoon salt, table
+
+
+185 https://cookpad.com/us/recipes/335366-chocolate-cheesecake-mousse
+                                          orig                              r1m_parsed
+0                   8 oz Full Fat Cream cheese          8 ounce cheese, parmesan, hard
+1  1/2 cup Cocoa powder / Hot chocolate powder  1/2 cup cocoa, dry powder, unsweetened
+2                                 2 tbsp Honey                      2 tablespoon honey
+
+
+186 http://www.food.com/recipe/easy-oatmeal-for-the-crockpot-461425
+                   orig                                         r1m_parsed
+0  1 cup steel cut oats                                         1 cup oats
+1          2 cups water                      2 cup water, bottled, generic
+2       2 1⁄2 cups milk  2 1/2 cup milk, fluid, 1% fat, without added v...
+3   1 teaspoon cinnamon                1 teaspoon spices, cinnamon, ground
+
+
+187 http://www.food.com/recipe/teddy-bear-snack-mix-228237
+                                          orig                                         r1m_parsed
+0  1 cup Teddy Grahams chocolate graham snacks  1 cup spartan, real semi-sweet chocolate bakin...
+1      1 cup Teddy Grahams honey graham snacks                                        1 cup honey
+2                  1 cup honey-roasted peanuts                 1 cup oil, corn, peanut, and olive
+3                              1⁄2 cup raisins                             12 cup raisins, seeded
+4                    2 cups Honey Nut Cheerios                                        2 cup honey
+
+
+188 http://www.food.com/recipe/cinnamon-scented-sweet-potato-chapati-330402
+                               orig                                         r1m_parsed
+0      1 1⁄2 cups whole wheat flour  1 1/2 cup wheat flour, white, all-purpose, une...
+1              1⁄2 cup barley flour  12 cup wheat flour, white, all-purpose, unenri...
+2  1 cup mashed cooked sweet potato                1 cup sweet potato, raw, unprepared
+3       1 tablespoon butter, melted                  1 tablespoon butter, without salt
+4                   1 teaspoon salt                             1 teaspoon salt, table
+5      1⁄2 teaspoon ground cinnamon               12 teaspoon spices, cinnamon, ground
+6                     1⁄4 cup water                     14 cup water, bottled, generic
+
+
+189 http://www.food.com/recipe/volcano-potato-bake-sp5-515094
+                                                orig                                         r1m_parsed
+0              1⁄2 cup shredded sharp cheddar cheese                             12 cup cheese, cheddar
+1                             1⁄2 cup whipping cream  12 cup cream, whipped, cream topping, pressurized
+2                                       1 pinch salt                                1 pinch salt, table
+3  24 ounces Simply Potatoes Traditional Mashed P...                       24 ounce potatoes, raw, skin
+
+
+190 http://www.food.com/recipe/watermelon-yogurt-ice-384831
+                                                orig                          r1m_parsed
+0                                      1⁄4 cup water      14 cup water, bottled, generic
+1                                      1⁄4 cup sugar           14 cup sugars, granulated
+2  4 cups diced seedless watermelon (about 3 poun...               4 cup watermelon, raw
+3                       1 cup low-fat vanilla yogurt  1 cup yogurt, greek, plain, nonfat
+4                            1 tablespoon lime juice        1 tablespoon lime juice, raw
+
+
+191 http://www.food.com/recipe/radical-savory-spiced-ground-turkey-180975
+                                 orig                           r1m_parsed
+0           1 lb ground turkey breast           1 pound ground turkey, raw
+1         2 teaspoons ground cinnamon  2 teaspoon spices, cinnamon, ground
+2             1 teaspoon chili powder      1 teaspoon spices, chili powder
+3  2 tablespoons honey barbeque sauce         2 tablespoon sauce, barbecue
+
+
+192 http://www.food.com/recipe/buttermilk-pie-crust-dough-368914
+                                           orig                                         r1m_parsed
+0                  2 1⁄2 cups all-purpose flour  2 1/2 cup wheat flour, white, all-purpose, une...
+1                           2 tablespoons sugar                    2 tablespoon sugars, granulated
+2                               1 teaspoon salt                             1 teaspoon salt, table
+3  1⁄2 cup butter, diced (chilled and unsalted)                        12 cup butter, without salt
+4         1⁄2 cup vegetable shortening, chilled  12 cup shortening, vegetable, household, compo...
+5                      1⁄4 cup buttermilk, plus   14 cup milk, buttermilk, fluid, cultured, lowfat
+6                      2 tablespoons buttermilk  2 tablespoon milk, buttermilk, fluid, cultured...
+
+
+193 http://tastykitchen.com/recipes/desserts/sweet-balsamic-brown-sugar-strawberries-with-toasted-almonds/
+                                         orig                      r1m_parsed
+0               1 Tablespoon Balsamic Vinegar  1 tablespoon vinegar, balsamic
+1                   3 Tablespoons Brown Sugar      3 tablespoon sugars, brown
+2  1-½ cup Strawberries, Hulled And Quartered         1 cup strawberries, raw
+3                      ½ cups Toasted Almonds           1/2 cup nuts, almonds
+
+
+194 http://www.food.com/recipe/gruyere-cheese-sticks-230959
+                                              orig                                         r1m_parsed
+0                     1 1⁄2 cups all-purpose flour  1 1/2 cup wheat flour, white, all-purpose, une...
+1                                1⁄4 teaspoon salt                            14 teaspoon salt, table
+2                        1⁄8 teaspoon black pepper                  18 teaspoon spices, pepper, black
+3                      1⁄8 teaspoon cayenne pepper         18 teaspoon spices, pepper, red or cayenne
+4  2 tablespoons margarine or 2 tablespoons butter                  2 tablespoon butter, without salt
+5                   1 cup gruyere cheese, shredded                              1 cup cheese, gruyere
+6                                1⁄2 cup skim milk  12 cup milk, fluid, 1% fat, without added vita...
+
+
+195 http://www.food.com/recipe/peanut-butter-protein-balls-430497
+                        orig                                         r1m_parsed
+0        1 cup peanut butter    1 cup peanut butter, smooth style, without salt
+1                1 cup honey                                        1 cup honey
+2       1 cup protein powder         1 cup beverages, protein powder whey based
+3      1 cup chocolate chips  1 cup spartan, real semi-sweet chocolate bakin...
+4             2 cups oatmeal                                         2 cup oats
+5  1⁄4 cup dried cranberries               14 cup cranberries, dried, sweetened
+6            3⁄4 cup peanuts                34 cup oil, corn, peanut, and olive
+
+
+196 http://www.food.com/recipe/scottish-shortbread-429020
+                                      orig                                         r1m_parsed
+0                         2 1⁄2 cups flour  2 1/2 cup wheat flour, white, all-purpose, une...
+1  1⁄2 cup sugar, plus some extra to taste                          12 cup sugars, granulated
+2                 3 tablespoons cornstarch                            3 tablespoon cornstarch
+3                    3⁄4 lb butter, melted                      34 pound butter, without salt
+
+
+197 http://www.food.com/recipe/green-onion-cakes-274972
+                                orig                                         r1m_parsed
+0           2 cups all-purpose flour  2 cup wheat flour, white, all-purpose, unenriched
+1                  3⁄4 cup hot water                     34 cup water, bottled, generic
+2  1 cup green onion, finely chopped  1 cup onions, spring or scallions (includes to...
+3                   1 teaspoon honey                                   1 teaspoon honey
+4                  1⁄2 teaspoon salt                            12 teaspoon salt, table
+5        2 tablespoons vegetable oil          2 tablespoon oil, olive, salad or cooking
+
+
+198 http://www.food.com/recipe/raspberry-or-strawberry-coulis-373597
+                                                orig                         r1m_parsed
+0  1 1⁄2 cups raspberries or 1 1/2 cups strawberr...        1 1/2 cup strawberries, raw
+1                          2 1⁄2 cups water, divided  2 1/2 cup water, bottled, generic
+2                                      3⁄4 cup sugar          34 cup sugars, granulated
+3            1⁄4 cup fresh lime juice, about 4 limes             14 cup lime juice, raw
+4                           2 tablespoons cornstarch            2 tablespoon cornstarch
+
+
+199 http://www.food.com/recipe/vegetarian-chicken-sandwich-spread-124123
+                                                orig                                         r1m_parsed
+0                                      1⁄2 cup water                     12 cup water, bottled, generic
+1      1⁄2 cup unflavored textured vegetable protein  12 cup shortening, vegetable, household, compo...
+2  2 teaspoons instant vegetarian chicken bouillo...    2 teaspoon soup, chicken broth or bouillon, dry
+3  3 tablespoons vegan mayonnaise or 3 tablespoon...   3 tablespoon salad dressing, mayonnaise, regular
+4  2 tablespoons vegan sour cream or 2 tablespoon...                 2 tablespoon cream, sour, cultured
+5                 2 tablespoons chopped green onions  2 tablespoon onions, spring or scallions (incl...
+6                         2 tablespoons chopped nuts                2 tablespoon nuts, walnuts, english
+7                          1⁄4 teaspoon curry powder                   14 teaspoon spices, curry powder
