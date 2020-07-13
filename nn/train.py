@@ -182,7 +182,7 @@ def get_args(predict: bool):
         "--bce-weight",
         required=True,
         type=int,
-        help="set to 400 for per 100g, 2000 for per recipe, ?? for per portion",
+        help="scale of the contribution of the ingredients loss (called gamma in the paper). For equal weighing, set this to 400 for per 100g, 2000 for per recipe, 800 for per portion",
     )
     parser.add_argument(
         "--model",
@@ -199,7 +199,7 @@ def get_args(predict: bool):
     parser.add_argument(
         "--weights",
         required=False,
-        help="continue training (/testing) from these weights",
+        help="continue training (/testing) from these model weights",
     )
     parser.add_argument(
         "--no-predict-portion-size",
@@ -233,6 +233,7 @@ class Model:
         if predict_portion_size:
             ings_start_idx = 5
 
+        # multi-task loss
         def loss_top_ingredients(pred, data):
             from torch.nn.functional import (
                 smooth_l1_loss,
@@ -254,7 +255,9 @@ class Model:
                     )
                     * args.bce_weight
                 )
-                if random.random() < 0.02:
+                if (
+                    random.random() < 0.02
+                ):  # debug checking if contribution to loss is similar
                     print(
                         "l1 vs bce weight (should be around the same)",
                         float(l1),
