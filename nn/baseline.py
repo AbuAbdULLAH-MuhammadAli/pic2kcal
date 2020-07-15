@@ -37,6 +37,7 @@ def criterion_rel_error(pred, truth):
 
 
 def get_mean_baseline_model(train_values):
+    print("using MEAN baseline")
     mean = np.mean(train_values)
 
     def model():
@@ -46,6 +47,8 @@ def get_mean_baseline_model(train_values):
 
 
 def get_random_choice_baseline_model(train_values):
+    print("using RANDOM CHOICE baseline")
+
     def model():
         return random.choice(train_values)
 
@@ -65,9 +68,9 @@ for key in train[0].keys():
     with open(dir / "val.json") as f:
         test = json.load(f)["data"]
 
-    baseline_model = get_random_choice_baseline_model(
-        ground_truths
-    )  # get_mean_baseline_model(kcals)
+    baseline_model = get_random_choice_baseline_model(ground_truths)
+
+    # baseline_model = get_mean_baseline_model(ground_truths)
 
     l1_train = np.mean(
         np.abs([ground_truth - baseline_model() for ground_truth in ground_truths])
