@@ -4,101 +4,101 @@ The final Pic2Cal dataset consists of the following files:
 
 - `data/recipes/recipes_matched.jsonl` (1.94GB, 211k entries)
 
-  All of the recipes with matched nutritional information per ingredient and in total
+    All of the recipes with matched nutritional information per ingredient and in total
 
-  Structure:
+    Structure:
 
-  ```json
-  [
-  {
-  ,
-  ,
-  ,
-  ,
-  ,
-  ,
-  ,
-  ,
-  ,
-  ,
-  ,
-  ,
-  ,
-  ,
-  ,
-  ,
-  ,
-  ,
-  {
-  {
-  {
-  ,
-  "
-  ,
-  {
-  ,
-  "
-  ,
-  {
-  ,
-  "
-  ,
-  {
-  ,
-  "
-  ,
-  }
-  ,
-  {
-  }
-  ,
-  {
-  }
-  }
-  ,
-  [
-  {
-  {
-  ,
-  "
-  ,
-  ,
-  {
-  ,
-  ,
-  ,
-  {
-  ,
-  "
-  ,
-  {
-  ,
-  "
-  ,
-  ,
-  ,
-  {
-  {
-  ,
-  "
-  ,
-  {
-  ,
-  "
-  ,
-  {
-  ,
-  "
-  ,
-  "
-  }
-  }
-  ,
-  }
-  ]
-  }
-  ]
-  ```
+    ```json
+ 	[
+	  {
+	    "id": "[...]",
+	    "title": "Die beste vegetarische Lasagne",
+	    "subtitle": "",
+	    "recipe_text": "Die geschälten Möhren und den geschälten Sellerie andünsten [...]",
+	    "rating_count": 2,
+	    "picture_urls": ["https://[...]", "https://[...]"],
+	    "kcal_per_portion": null,
+	    "restingtime_min": 1440,
+	    "cookingtime_min": 30,
+	    "workingtime_min": 40,
+	    "rating": 3,
+	    "author": "[...]",
+	    "tags": [],
+	    "canonical_url": "https://[...]",
+	    "portions": 4,
+	    "date": "[...]",
+	    "difficulty": "normal",
+	    "picture_files": ["./[...]", "./[...]"],
+	    "nutritional_values": {
+	      "per_portion": {
+	        "Kohlenhydrate": {
+	          "Menge": 68.064,
+	          "Einheit": "g"
+	        },
+	        "Kalorien": {
+	          "Menge": 671.8875,
+	          "Einheit": "kcal"
+	        },
+	        "Protein": {
+	          "Menge": 8.355,
+	          "Einheit": "g"
+	        },
+	        "Fett": {
+	          "Menge": 39.14,
+	          "Einheit": "g"
+	        },
+	        "[...]": {}
+	      },
+	      "per_recipe": {
+	        "[...]": {}
+	      },
+	      "per_100g": {
+	        "[...]": {}
+	      }
+	    },
+	    "ingredients": [
+	      {
+	        "original": {
+	          "ingredient": "Möhre(n)",
+	          "amount": "2"
+	        },
+	        "type": "ingredient",
+	        "matched": {
+	          "id": "[...]",
+	          "name": "Karotten / Möhren, frisch",
+	          "multiplier": 2,
+	          "normal": {
+	            "count": 200,
+	            "unit": "g"
+	          },
+	          "weird": {
+	            "count": 2,
+	            "unit": "Stück"
+	          },
+	          "match_accuracy": 0.9999998807907104,
+	          "matched": true,
+	          "nutritional_values": {
+	            "Kohlenhydrate": {
+	              "Menge": 4.8,
+	              "Einheit": "g"
+	            },
+	            "Wassergehalt": {
+	              "Menge": 88,
+	              "Einheit": "%"
+	            },
+	            "Kalorien": {
+	              "Menge": 39,
+	              "Einheit": "kcal"
+	            },
+	            "[...]": "..."
+	          }
+	        }
+	      },
+	      { "": "[...]" }
+	    ]
+	  }
+	]
+    ```
 
 - `data/recipes/img/**/*.jpg` (181GB, 902k images)
 
