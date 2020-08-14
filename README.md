@@ -1,6 +1,6 @@
 # Dataset
 
-The final Pic2Cal dataset consists of the following files:
+The final pic2kcal dataset consists of the following files:
 
 - `data/recipes/recipes_matched.jsonl` (1.94GB, 211k entries)
 
