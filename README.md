@@ -1,3 +1,4 @@
+![Teaser](teaser.png)
 
 # Paper
 
