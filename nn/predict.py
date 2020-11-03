@@ -5,6 +5,7 @@ from nn.train import Model, get_args, draw_val_images
 import torch
 
 args = get_args(predict=True)
+indicator = "__".join(args.weights.split("/")[-2:]) + "__" + args.input_file.split("/")[-1]
 
 model = Model(args)  #
 
@@ -31,7 +32,7 @@ draw_val_images(
     device=model.device,
     prediction_keys=model.prediction_keys,
     ingredient_names=[f"{i}" for i in range(1, 101)],
-    logdir="predict",
+    logdir="predict/"+indicator,
     epoch=0,
     batch_idx=0,
     epoch_batch_idx=0,

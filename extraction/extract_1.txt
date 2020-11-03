@@ -1,0 +1,8 @@
+Step 1 downloads data as HTML and images and our code is omitted to satisfy copyright.
+
+`extract_1_recipe_ids.json` contains the full list of recipe IDs we used in our paper (including ones which will be removed in later steps due to missing images or unmatched metadata).
+
+The corresponding HTML pages that you need to fetch (e.g. with wget) are in https://www.chefkoch.de/rezepte/drucken/{recipe_id}. You also need all the image files on those webpages (keep those file names the same).
+
+
+For fddb, a recursive wget command can be used starting at https://fddb.info/db/de/produktgruppen/produkt_verzeichnis/index.html.

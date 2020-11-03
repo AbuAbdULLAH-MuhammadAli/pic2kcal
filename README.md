@@ -1,3 +1,8 @@
+
+# Paper
+
+The paper "Multi-Task Learning for Calorie Prediction on a Novel Large-Scale Recipe Dataset Enriched with Nutritional Information" was accepted to ICPR 2020: https://arxiv.org/abs/2011.01082
+
 # Dataset
 
 The final pic2kcal dataset consists of the following files:
@@ -104,11 +109,11 @@ The final pic2kcal dataset consists of the following files:
 
 # Pipeline
 
-The total dataset is around 190GByte, most of which is the images.
+The total dataset is around 190GByte, most of which is the images. Due to copyright, KIT can sadly not publish the full dataset itself.
 
 1.  Extraction
 
-    1. Run the steps in the [extraction](extraction/) directory one by one. Steps 1 downloads data as HTML and images and is omitted due to copyright.
+    1. Run the steps in the [extraction](extraction/) directory one by one.
     2. `cd data/recipes && sqlite3 processed_data.sqlite3 'select data from recipes' | pv | jq -s > processed_data.json`
 
     This will give you these files:
@@ -163,66 +168,3 @@ The total dataset is around 190GByte, most of which is the images.
 
     To calculate the baseline (error when using the mean as the prediction) for a specific dataset, use `python baseline.py --datadir data/extracted_v3_per_portion`
 
-# Report
-
-The practical report is [here](report/paper.pdf).
-
-The full paper is submitted to ICPR2020 and pending review.
-
-# Result Slides
-
-![slides01.png](slides/slides01.png)
-
-![slides02.png](slides/slides02.png)
-
-![slides03.png](slides/slides03.png)
-
-![slides04.png](slides/slides04.png)
-
-![slides05.png](slides/slides05.png)
-
-![slides06.png](slides/slides06.png)
-
-![slides07.png](slides/slides07.png)
-
-![slides08.png](slides/slides08.png)
-
-![slides09.png](slides/slides09.png)
-
-![slides10.png](slides/slides10.png)
-
-![slides11.png](slides/slides11.png)
-
-![slides12.png](slides/slides12.png)
-
-![slides13.png](slides/slides13.png)
-
-![slides14.png](slides/slides14.png)
-
-![slides15.png](slides/slides15.png)
-
-![slides16.png](slides/slides16.png)
-
-![slides17.png](slides/slides17.png)
-
-![slides18.png](slides/slides18.png)
-
-## Notes
-
-### Potential recipe sites
-
-- https://chefkoch.de - 320k recipes
-- https://lecker.de - 8k recipes
-- https://essen-und-trinken.de - ?? recipes, organized kinda weirdly
-- https://lecker.de - 60k recipes
-- https://www.kuechengoetter.de - ?? recipes, partially with kcal data
-- https://eatsmarter.de/rezepte
-
-- international sites?
-
-## Potential nutritional database sites
-
-- https://www.lebensmittelwissen.de/tipps/haushalt/portionsgroessen/
-- https://www.bvl.bund.de/SharedDocs/Downloads/04_Pflanzenschutzmittel/rueckst_gew_obst_gem%C3%BCde_pdf.html?nn=1401078
-- https://ndb.nal.usda.gov/ndb/
-- https://fddb.info/
