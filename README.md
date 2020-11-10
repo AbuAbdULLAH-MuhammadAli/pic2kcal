@@ -10,7 +10,7 @@ The final pic2kcal dataset consists of the following files:
 
 - `data/recipes/recipes_matched.jsonl` (1.94GB, 211k entries)
 
-    All of the recipes with matched nutritional information per ingredient and in total
+    All of the recipes with matched nutritional information per ingredient and in total. Note that some of the free-text is in German, since the recipes come from German websites. The same approach of matching ingredients should work for international sites though, using e.g. [recipe-scrapers](https://github.com/hhursev/recipe-scrapers).
 
     Structure:
 
