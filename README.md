@@ -1,4 +1,4 @@
-![Teaser](teaser.png)
+<img src=teaser.png align=right width=50%>
 
 # Paper
 
